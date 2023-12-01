@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./Styles/globals.scss";
-import Navbar from "@/app/Components/navs/Navbar";
+import Navbar from "@/components/navs/Navbar";
 
-import GotoTop from "./Components/GotoTop";
+import GotoTop from "../components/GotoTop";
 import StateContextProvider from "@/context/StateContext";
 
 const workSans = Work_Sans({
