@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.max-container {
+	max-width: 1440px;
+	margin: 0 auto;
+}
+
+// ======MISCELLANEOUS=========
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 6px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #052c42;
+	border-radius: 8px;
+}
+
+::selection {
+	color: white;
+	background: #052c42;
+}
