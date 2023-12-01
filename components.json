@@ -11,6 +11,6 @@
 	},
 	"aliases": {
 		"components": "@app/Components",
-		"utils": "utils"
+		"utils": "utils/util.ts"
 	}
 }

@@ -2,7 +2,7 @@
 
 import useWindowHeight from "@/hooks/useDimension";
 import React from "react";
-import cn from "@/utils/tailwind";
+import cn from "@/utils/util";
 
 const GotoTop = () => {
 	const scrollY = useWindowHeight();
