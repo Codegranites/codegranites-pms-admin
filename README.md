@@ -1,4 +1,4 @@
-# CODEGRANITES | FRONTEND
+# CODEGRANITES-PMS | FRONTEND
 
 ![Project Image](https://github.com/Codegranites/codegranites-frontend/blob/dev/public/codeGranites.png)
 
@@ -22,12 +22,6 @@ First, run:
 
 ```bash
 npm install
-```
-
-To activate husky(If needed)
-
-```bash
-npm run prepare
 ```
 
 Then run:
