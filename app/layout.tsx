@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "./Styles/globals.scss";
-import Navbar from "@/components/navs/Navbar";
+import Navbar from "../components/navs/Navbar";
 
 import GotoTop from "../components/GotoTop";
-import StateContextProvider from "@/context/StateContext";
+import StateContextProvider from "../context/StateContext";
 
 const workSans = Work_Sans({
 	subsets: ["latin"],
