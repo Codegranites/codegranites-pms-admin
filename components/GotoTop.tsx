@@ -1,8 +1,8 @@
 "use client";
 
-import useWindowHeight from "@/hooks/useDimension";
+import useWindowHeight from "../hooks/useDimension";
 import React from "react";
-import cn from "@/utils/util";
+import cn from "../utils/util";
 
 const GotoTop = () => {
 	const scrollY = useWindowHeight();
