@@ -26,7 +26,7 @@ export default function RootLayout({
 		<html lang="en" className={workSans.variable}>
 			<body className={workSans.className}>
 				<StateContextProvider>
-					<Navbar />
+					{/* <Navbar /> */}
 
 					{children}
 
