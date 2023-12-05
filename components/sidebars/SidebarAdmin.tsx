@@ -2,10 +2,11 @@
 
 import Image from 'next/image';
 import { SIDEBAR_ADMIN_LINKS, TYPESidebarLinks } from '../../libs/constants';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import cn from '../../utils/util';
 import { Setting2 } from 'iconsax-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 // Mock-Data for user profile
 const user = {
@@ -15,7 +16,14 @@ const user = {
 };
 
 const SidebarAdmin = () => {
-	const [activeLink, setActiveLink] = useState(TYPESidebarLinks[0]);
+	const [activeLink, setActiveLink] = useState('');
+	const pathname = usePathname();
+	// remove the / from the pathname
+	const currentPath = pathname?.replace('/', '');
+
+	useEffect(() => {
+		setActiveLink(currentPath);
+	}, [currentPath]);
 
 	return (
 		<section className="bg-white z-50 w-[96px] lg:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
@@ -26,6 +34,7 @@ const SidebarAdmin = () => {
 				{SIDEBAR_ADMIN_LINKS.map((link) => (
 					<Link
 						href={`/${link.link}`}
+						aria-current={activeLink === link.link ? 'page' : undefined}
 						key={link.id}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter' || e.key === ' ') {
@@ -64,7 +73,7 @@ const SidebarAdmin = () => {
 						}
 					}}
 					className={cn(
-						'flex group-hover:w-full lg:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
+						'flex group-hover:w-full lg:w-full lg:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
 						activeLink === 'settings'
 							? 'bg-primary-light text-white rounded outline-none'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
@@ -80,8 +89,8 @@ const SidebarAdmin = () => {
 				<Link
 					href="/admin-profile"
 					className={cn(
-						'flex items-center gap-x-[6px] ml-1 p-2 transition-colors duration-300',
-						activeLink === 'profile'
+						'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300',
+						activeLink === 'admin-profile'
 							? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
 					)}
@@ -90,11 +99,11 @@ const SidebarAdmin = () => {
 					aria-label="Profile"
 					onKeyUp={(e) => {
 						if (e.key === 'Enter' || e.key === ' ') {
-							setActiveLink('profile');
+							setActiveLink('admin-profile');
 							return;
 						}
 					}}
-					onClick={() => setActiveLink('profile')}
+					onClick={() => setActiveLink('admin-profile')}
 				>
 					<div className="relative w-full max-w-[60px] flex justify-center h-[60px] ">
 						<Image src={user.image} alt="user" width={60} height={60} />

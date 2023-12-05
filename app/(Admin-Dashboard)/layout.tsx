@@ -1,5 +1,6 @@
 import GotoTop from '../../components/GotoTop';
-import Navbar from '../../components/navs/Navbar';
+import AdminNavbar from '../../components/navs/AdminNavbar';
+
 import SidebarAdmin from '../../components/sidebars/SidebarAdmin';
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -7,9 +8,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 		<>
 			<SidebarAdmin />
 			<section className="w-full relative pl-[96px] lg:pl-[270px]">
-				<Navbar />
-
-				{children}
+				<AdminNavbar />
+				<div className="flex w-full pt-8 flex-col h-full relative lg:px-9">{children}</div>
 			</section>
 
 			<GotoTop />

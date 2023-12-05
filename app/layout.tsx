@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Work_Sans } from 'next/font/google';
 import './Styles/globals.scss';
-import Navbar from '../components/navs/Navbar';
+import Navbar from '../components/navs/AdminNavbar';
 
 import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
