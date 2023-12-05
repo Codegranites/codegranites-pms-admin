@@ -1,7 +1,12 @@
 import React from 'react';
+import ProjectNav from '../../../components/admin/projects/ProjectNav';
 
 const ProjectsAdmin = () => {
-	return <div>ProjectsAdmin</div>;
+	return (
+		<section>
+			<ProjectNav />
+		</section>
+	);
 };
 
 export default ProjectsAdmin;
