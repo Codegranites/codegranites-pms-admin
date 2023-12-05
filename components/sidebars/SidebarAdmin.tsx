@@ -68,7 +68,7 @@ const SidebarAdmin = () => {
 					aria-label="Settings"
 					onKeyUp={(e) => {
 						if (e.key === 'Enter' || e.key === ' ') {
-							setActiveLink('settings');
+							setActiveLink('admin-settings');
 							return;
 						}
 					}}
@@ -78,7 +78,7 @@ const SidebarAdmin = () => {
 							? 'bg-primary-light text-white rounded outline-none'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
 					)}
-					onClick={() => setActiveLink('settings')}
+					onClick={() => setActiveLink('admin-settings')}
 				>
 					<Setting2 size={24} aria-hidden variant={activeLink === 'settings' ? 'Bold' : 'Outline'} />
 					<span className="max-lg:hidden group-hover:block">Settings</span>
