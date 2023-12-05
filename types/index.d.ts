@@ -4,11 +4,10 @@ export interface ModalProps {
   children?: React.ReactNode;
   closeOnOverlayClick?: boolean;
   title?: string;
-  size?: "lg" | "md" | "sm" | "xl" | "xxl";
+  size?: 'lg' | 'md' | 'sm' | 'xl' | 'xxl';
   isCloseIconPresent?: boolean;
   closeBtnClass?: string;
 }
-
 
 export interface SEOProps {
   title: string;
