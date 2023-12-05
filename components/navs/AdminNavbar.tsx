@@ -19,7 +19,7 @@ const AdminNavbar = () => {
 
 	return (
 		<header className="lg:px-9 border-b border-gray-200 h-[89px] flex items-center ">
-			<h2 className="text-3xl capitalize font-medium text-header">{name.replace('-', ' ')}</h2>
+			<h2 className="text-xl sm:text-3xl capitalize font-medium text-header">{name.replace('-', ' ')}</h2>
 		</header>
 	);
 };
