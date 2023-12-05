@@ -7,28 +7,28 @@ import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
 
 const workSans = Work_Sans({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-work-sans',
+	subsets: ['latin'],
+	display: 'swap',
+	variable: '--font-work-sans'
 });
 
 export const metadata: Metadata = {
-  title: 'Code Granites',
-  description: 'Illuminating Ideas and Forging Solutions',
+	title: 'Code Granites',
+	description: 'Illuminating Ideas and Forging Solutions'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en" className={workSans.variable}>
-      <body className={workSans.className}>
-        <StateContextProvider>
-          {/* <Navbar /> */}
+	return (
+		<html lang="en" className={workSans.variable}>
+			<StateContextProvider>
+				<body className={workSans.className}>
+					{/* <Navbar /> */}
 
-          {children}
+					{children}
 
-          <GotoTop />
-        </StateContextProvider>
-      </body>
-    </html>
-  );
+					<GotoTop />
+				</body>
+			</StateContextProvider>
+		</html>
+	);
 }

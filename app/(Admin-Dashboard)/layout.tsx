@@ -1,18 +1,18 @@
-import StateContextProvider from '../../context/StateContext';
 import GotoTop from '../../components/GotoTop';
+import Navbar from '../../components/navs/Navbar';
+import SidebarAdmin from '../../components/sidebars/SidebarAdmin';
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({ children }: { children: React.ReactNode }) {
 	return (
-		<html lang="en">
-			<body>
-				<StateContextProvider>
-					{/* <Navbar /> */}
+		<>
+			<SidebarAdmin />
+			<section className="w-full relative pl-[96px] lg:pl-[270px]">
+				<Navbar />
 
-					{children}
+				{children}
+			</section>
 
-					<GotoTop />
-				</StateContextProvider>
-			</body>
-		</html>
+			<GotoTop />
+		</>
 	);
 }
