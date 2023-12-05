@@ -17,7 +17,7 @@ const SidebarMod = () => {
 	const [activeLink, setActiveLink] = useState(TYPESidebarLinksMod[0]);
 
 	return (
-		<section className="w-[96px] lg:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none justify-between">
+		<section className="w-[96px] lg:w-[270px] sm:hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none justify-between">
 			<div className="max-lg:w-[65px] group-hover:w-full h-[53px]">
 				<Image src="/logo.png" alt="Logo" width={155} height={53} />
 			</div>
@@ -67,18 +67,14 @@ const SidebarMod = () => {
 						}
 					}}
 					className={cn(
-						"flex group-hover:w-full lg:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer",
+						"flex sm:group-hover:w-full lg:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer",
 						activeLink === "settings"
 							? "bg-primary-light text-white rounded outline-none"
 							: "hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
 					)}
 					onClick={() => setActiveLink("settings")}
 				>
-					<Setting2
-						size={24}
-						aria-hidden
-						variant={activeLink === "settings" ? "Bold" : "Outline"}
-					/>
+					<Setting2 size={24} aria-hidden variant="Outline" />
 					<span className="max-lg:hidden group-hover:block">Settings</span>
 				</div>
 
@@ -86,7 +82,7 @@ const SidebarMod = () => {
 
 				<div
 					className={cn(
-						"flex items-center gap-x-[6px] p-2 transition-colors duration-300",
+						"hidden sm:flex items-center gap-x-[6px] p-2 transition-colors duration-300",
 						activeLink === "profile"
 							? "bg-primary-light text-white rounded outline-none [&>div>span]:text-white"
 							: "hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light"
