@@ -1,12 +1,6 @@
-import Modal from "@ui/Modal";
+import Modal from '@ui/Modal';
 
-function SampleModal({
-  isOpen,
-  onClose,
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
+function SampleModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   return (
     <Modal
       closeOnOverlayClick

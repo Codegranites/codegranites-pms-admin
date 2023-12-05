@@ -1,15 +1,15 @@
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment } from "react";
-import { CloseCircle } from "iconsax-react";
-import { ModalProps } from "../../types";
-import Button from "./Button";
+import { Dialog, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
+import { CloseCircle } from 'iconsax-react';
+import { ModalProps } from '../../types';
+import Button from './Button';
 
-const sizes: Record<"xxl" | "xl" | "lg" | "md" | "sm", string> = {
-  xxl: "max-w-[980px]",
-  xl: "max-w-[700px]",
-  lg: "max-w-xl",
-  md: "max-w-lg",
-  sm: "max-w-[480px]",
+const sizes: Record<'xxl' | 'xl' | 'lg' | 'md' | 'sm', string> = {
+  xxl: 'max-w-[980px]',
+  xl: 'max-w-[700px]',
+  lg: 'max-w-xl',
+  md: 'max-w-lg',
+  sm: 'max-w-[480px]',
 };
 function Modal({
   isOpen,
@@ -17,18 +17,14 @@ function Modal({
   closeOnOverlayClick = false,
   children,
   title,
-  size = "sm",
+  size = 'sm',
   isCloseIconPresent = true,
   closeBtnClass,
 }: ModalProps) {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="relative z-50"
-          onClose={closeOnOverlayClick ? closeModal : () => null}
-        >
+        <Dialog as="div" className="relative z-50" onClose={closeOnOverlayClick ? closeModal : () => null}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -55,10 +51,7 @@ function Modal({
                   className={`relative w-full ${sizes[size]} bg-white and p-4 font-nunito font-light transform overflow-hidden text-sm rounded-[12px] text-left align-middle shadow-xl transition-all`}
                 >
                   {title && (
-                    <Dialog.Title
-                      as="h3"
-                      className="text-lg font-medium leading-6 text-gray-900"
-                    >
+                    <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
                       {title}
                     </Dialog.Title>
                   )}

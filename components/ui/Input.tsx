@@ -1,45 +1,34 @@
-import { VariantProps, cva } from "class-variance-authority";
-import React, {
-  DetailedHTMLProps,
-  InputHTMLAttributes,
-  SelectHTMLAttributes,
-} from "react";
-import { twMerge } from "tailwind-merge";
+import { VariantProps, cva } from 'class-variance-authority';
+import React, { DetailedHTMLProps, InputHTMLAttributes, SelectHTMLAttributes } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 const inputVariants = cva(
-  "relative px-4 py-3 flex items-center justify-center gap-3 w-fit h-[48px] rounded-[10px] font-manropeL text-dark-100 hide-caret transition-all select-none focus-within:border-primary-light ",
+  'relative px-4 py-3 flex items-center justify-center gap-3 w-fit h-[48px] rounded-[10px] font-manropeL text-dark-100 hide-caret transition-all select-none focus-within:border-primary-light ',
   {
     variants: {
       intent: {
-        default: "border-solid border-[2px] border-white-400 text-dark-600 ",
-        primary:
-          "border-solid border-[2px] focus-within:text-dark-100 text-white-400 ",
+        default: 'border-solid border-[2px] border-white-400 text-dark-600 ',
+        primary: 'border-solid border-[2px] focus-within:text-dark-100 text-white-400 ',
       },
       inputSize: {
-        sm: "text-sm py-2",
-        md: "text-base py-3",
-        lg: "text-lg py-4",
+        sm: 'text-sm py-2',
+        md: 'text-base py-3',
+        lg: 'text-lg py-4',
       },
     },
     defaultVariants: {
-      intent: "default",
-      inputSize: "sm",
+      intent: 'default',
+      inputSize: 'sm',
     },
-  }
+  },
 );
 
 export interface InputVariants
-  extends DetailedHTMLProps<
-      InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    >,
+  extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
     VariantProps<typeof inputVariants> {}
 
 export interface SelectInputVariants
-  extends DetailedHTMLProps<
-      SelectHTMLAttributes<HTMLSelectElement>,
-      HTMLSelectElement
-    >,
+  extends DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>,
     VariantProps<typeof inputVariants> {}
 
 interface SelectInputVariantsProps extends SelectInputVariants {
@@ -50,7 +39,7 @@ interface SelectInputVariantsProps extends SelectInputVariants {
   href?: string;
   caretColor?: string;
   caretSize?: string | number;
-  className?: React.ComponentProps<"div">["className"];
+  className?: React.ComponentProps<'div'>['className'];
   leftIcon?: React.ReactNode;
   optionColor?: string;
 }
@@ -84,8 +73,7 @@ export function SelectInput({
   const classNames = twMerge(
     inputVariants({ intent, inputSize }),
     className,
-    disabled &&
-      "bg-disabled opacity-[.8] border-[1px] border-disaled cursor-not-allowed"
+    disabled && 'bg-disabled opacity-[.8] border-[1px] border-disaled cursor-not-allowed',
   );
   return (
     <div className={classNames}>
@@ -93,33 +81,28 @@ export function SelectInput({
       <select
         onChange={onChange}
         className={twMerge(
-          "w-full pr-2 border-none outline-none bg-transparent hide-caret mr-3",
-          leftIcon && "pl-7",
-          disabled ? "cursor-not-allowed" : ""
+          'w-full pr-2 border-none outline-none bg-transparent hide-caret mr-3',
+          leftIcon && 'pl-7',
+          disabled ? 'cursor-not-allowed' : '',
         )}
         {...(props as any)}
         disabled={disabled}
       >
         {options.map((op, idx) => (
-          <option
-            key={idx}
-            value={op.value}
-            disabled={op.disabled}
-            className={`${optionColor}`}
-          >
+          <option key={idx} value={op.value} disabled={op.disabled} className={`${optionColor}`}>
             {op.label}
           </option>
         ))}
       </select>
       <svg
-        width={caretSize ?? "30"}
-        height={caretSize ?? "30"}
+        width={caretSize ?? '30'}
+        height={caretSize ?? '30'}
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
         className="absolute top-2 right-2"
       >
         <path
-          fill={caretColor ?? "#7777"}
+          fill={caretColor ?? '#7777'}
           fillRule="evenodd"
           d="M16.53 8.97a.75.75 0 0 1 0 1.06l-4 4a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 1 1 1.06-1.06L12 12.44l3.47-3.47a.75.75 0 0 1 1.06 0Z"
           clipRule="evenodd"
@@ -148,8 +131,8 @@ export function Input({
     inputVariants({ intent, inputSize }),
     className,
     disabled || isLoading
-      ? "bg-brand-disabled opacity-[.8] border-[1px] border-brand-disabled2 cursor-not-allowed"
-      : ""
+      ? 'bg-brand-disabled opacity-[.8] border-[1px] border-brand-disabled2 cursor-not-allowed'
+      : '',
   );
   return (
     <div className={classNames}>
@@ -158,11 +141,11 @@ export function Input({
         onChange={onChange}
         type={type}
         className={twMerge(
-          "w-full outline-none hide-caret",
-          disabled ?? isLoading ? "cursor-not-allowed" : "",
-          leftIcon && "pl-1"
+          'w-full outline-none hide-caret',
+          disabled ?? isLoading ? 'cursor-not-allowed' : '',
+          leftIcon && 'pl-1',
         )}
-        placeholder={placeHolder ?? "Placeholder"}
+        placeholder={placeHolder ?? 'Placeholder'}
         disabled={isLoading ?? disabled}
         {...props}
       />
