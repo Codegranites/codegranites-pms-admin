@@ -28,7 +28,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		};
 	}, []);
 	// Add Your State(s) Here
-	const [showMobileMenu, setShowMobileMenu] = React.useState(true);
+	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');

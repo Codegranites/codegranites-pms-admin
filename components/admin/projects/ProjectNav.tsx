@@ -1,11 +1,20 @@
 'use client';
 
-import { SelectContent, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 import { Input } from '@ui/Input';
-import { Select } from '@ui/SelectInput';
-import { ArrowDown2, ArrowUp2, Filter, SearchNormal } from 'iconsax-react';
+import {
+	Select,
+	SelectContent,
+	SelectGroup,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue
+} from '../../../components/ui/select';
+
+import { Add, ArrowDown2, ArrowUp2, Filter, SearchNormal } from 'iconsax-react';
 import { FilterIcon } from 'lucide-react';
 import { useState } from 'react';
+import Button from '@ui/Button';
 
 type SelectProps = {
 	id?: number;
@@ -39,6 +48,8 @@ const ProjectNav = () => {
 	const [selectedValue, setSelectedValue] = useState(selectFilters[0].value);
 	const [searchTerm, setSearchTerm] = useState('');
 
+	console.log(selectedValue);
+
 	return (
 		<div className="w-full h-[56px] flex justify-between gap-x-4 items-center">
 			<div className="flex w-full max-w-1/2">
@@ -55,19 +66,27 @@ const ProjectNav = () => {
 					<FilterIcon className="sm:hidden" color="#282828" />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
 
-					<select
-						value={selectedValue}
-						onChange={(e) => setSelectedValue(e.target.value)}
-						className=" cursor-pointer p-2 outline-none rounded-md  border border-gray-200 py-3 focus:border-primary focus:valid:border-primary  transition-all duration-300 capitalize text-gray-700"
-					>
-						{selectFilters.map((filter) => (
-							<option key={filter.id} value={filter.value}>
-								{filter.label}
-							</option>
-						))}
-					</select>
+					<Select onValueChange={(value) => setSelectedValue(value)} defaultValue="all">
+						<SelectTrigger className="w-[150px] select-none h-full py-3">
+							<SelectValue placeholder={selectFilters[0].label} />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectGroup>
+								{selectFilters.map((filter) => (
+									<SelectItem key={filter.id} value={filter.value} className="hover:bg-[#becbd7]">
+										{filter.label}
+									</SelectItem>
+								))}
+							</SelectGroup>
+						</SelectContent>
+					</Select>
 				</div>
-				<div className="flex"></div>
+				<div className="flex sm:w-[214px]">
+					<Button className="flex w-full" intent={'secondary'}>
+						<Add size={24} />
+						<span className="">Add Client</span>
+					</Button>
+				</div>
 			</div>
 		</div>
 	);

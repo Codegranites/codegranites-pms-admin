@@ -15,9 +15,12 @@ const AdminNavbar = () => {
 				aria-haspopup
 				aria-expanded={showMobileMenu}
 				type="button"
-				className={cn('md:hidden', {
-					'rotate-45 relative z-[9999] text-white': showMobileMenu
-				})}
+				className={cn(
+					'md:hidden rounded-full focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light',
+					{
+						'rotate-45 relative z-[9999] text-white': showMobileMenu
+					}
+				)}
 				onClick={() => setShowMobileMenu(!showMobileMenu)}
 			>
 				{showMobileMenu ? <Add size={50} /> : <HambergerMenu size={32} />}
