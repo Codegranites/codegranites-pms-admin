@@ -3,6 +3,7 @@
 import useWindowHeight from '../hooks/useDimension';
 import React from 'react';
 import cn from '../utils/util';
+import { ArrowUp } from 'iconsax-react';
 
 const GotoTop = () => {
 	const scrollY = useWindowHeight();
@@ -23,7 +24,7 @@ const GotoTop = () => {
 			)}
 			onClick={handleTop}
 		>
-			<span>&tarr;</span>
+			<ArrowUp />
 			<span className="text-[10px] sm:text-sm ">Top</span>
 		</div>
 	);
