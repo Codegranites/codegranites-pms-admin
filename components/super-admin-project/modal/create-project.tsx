@@ -7,25 +7,37 @@ import { Add, ArrowDown2, ArrowRight, ArrowRight2, ArrowRight3, ArrowUp2 } from 
 import { Input } from '@ui/Input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/SelectInput';
 import Button from '@ui/Button';
+import { useStateCtx } from '../../../context/StateContext';
 
 function CreateProject() {
 	const [open, setOpen] = useState<boolean>(false);
 	const [isDdOpen, setIsDdOpen] = useState<boolean>(false);
 	const [selectedValue, setSelectedValue] = useState<string>('');
+	const { user } = useStateCtx();
+
 	const closeModal = () => {
 		setOpen(false);
 	};
 	return (
-		<div>
-			<Button intent="secondary" className="rounded-lg" onClick={() => setOpen(true)}>
+		// @loyalsfc the Button component is not responsive
+		<>
+			{/* <Button intent="secondary" className="rounded-lg">
 				<Add /> New Project
-			</Button>
+			</Button> */}
+			<button
+				onClick={() => setOpen(true)}
+				type="button"
+				className="flex w-full max-w-[200px] md:max-w-[214px] items-center sm:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center"
+			>
+				<Add size={24} />
+				New Project
+			</button>
 			<Modal isOpen={open} closeModal={closeModal} title="" closeBtnClass="bg-transparent" size="lg">
 				<div className="max-h-[550px] px-4 overflow-scroll">
 					<div className="relative flex items-center mb-6 text-header">
 						<div className=" flex items-center gap-2 text-base">
-							<Image src={'/facemoji.png'} alt="user" width={32} height={32} />
-							<span className="text-header">Jane Doe</span>
+							<Image src={user?.image} alt="user" width={32} height={32} />
+							<span className="text-header">{user.name}</span>
 							<ArrowRight2 />
 							<span className="text-lg font-medium">New Project</span>
 						</div>
@@ -136,7 +148,7 @@ function CreateProject() {
 					</form>
 				</div>
 			</Modal>
-		</div>
+		</>
 	);
 }
 

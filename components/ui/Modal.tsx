@@ -34,10 +34,10 @@ function Modal({
 						leaveFrom="opacity-100"
 						leaveTo="opacity-0"
 					>
-						<div className="fixed inset-0 bg-gray-600 bg-opacity-50 backdrop-blur-sm" />
+						<div className="fixed inset-0 bg-gray-600 bg-opacity-50 backdrop-blur-sm" onClick={closeModal} />
 					</Transition.Child>
-					<div className="fixed inset-0  overflow-y-auto">
-						<div className="flex min-h-full items-center md:items-center md:pt-14 justify-center p-4 text-center">
+					<div className="fixed inset-0  overflow-y-auto sidebar-scroll">
+						<div className="flex min-h-full items-center md:items-center md:pt-14 justify-center p-4 text-center sidebar-scroll">
 							<Transition.Child
 								as={Fragment}
 								enter="ease-out duration-300"
@@ -57,9 +57,9 @@ function Modal({
 									)}
 									{/* Close button */}
 									{isCloseIconPresent ? (
-										<div className="absolute right-1 top-2">
+										<div className="absolute right-3 top-2">
 											<Button onClick={closeModal} className={closeBtnClass}>
-												<CloseCircle size="15" color="#555555" />
+												<CloseCircle size="24" color="#555555" />
 											</Button>
 										</div>
 									) : null}
