@@ -109,7 +109,7 @@ const AdminMobileSidebar = () => {
 					<Link
 						href="/admin-profile"
 						className={cn(
-							'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300',
+							'w-full flex items-center gap-x-[6px] justify-center bg-black  p-2 transition-colors duration-300',
 							activeLink === 'admin-profile'
 								? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
 								: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
@@ -125,7 +125,7 @@ const AdminMobileSidebar = () => {
 						}}
 						onClick={() => setActiveLink('admin-profile')}
 					>
-						<div className="relative w-full max-w-[60px] flex justify-center h-[60px] ">
+						<div className="relative w-full  flex justify-center h-[60px] ">
 							<Image src={user.image} alt="user" width={60} height={60} />
 							<span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
 						</div>

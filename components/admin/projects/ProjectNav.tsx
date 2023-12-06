@@ -24,23 +24,23 @@ type SelectProps = {
 const selectFilters: SelectProps[] = [
 	{
 		id: 0,
-		label: 'All Clients',
+		label: 'All Projects',
 		value: 'all'
 	},
 	{
 		id: 1,
-		label: 'New Clients',
-		value: 'new'
+		label: 'Completed Projects',
+		value: 'completed'
 	},
 	{
 		id: 2,
-		label: 'Active Clients',
-		value: 'active'
+		label: 'In Progress',
+		value: 'inProgress'
 	},
 	{
 		id: 3,
-		label: 'Inactive Clients',
-		value: 'inactive'
+		label: 'Pending Projects',
+		value: 'pending'
 	}
 ];
 
@@ -51,7 +51,7 @@ const ProjectNav = () => {
 	console.log(selectedValue);
 
 	return (
-		<div className="w-full h-[56px] flex justify-between gap-x-4 items-center">
+		<div className="w-full md:h-[56px] flex justify-between gap-x-4 items-center flex-col md:flex-row gap-y-4 ">
 			<div className="flex w-full max-w-1/2">
 				<Input
 					onChange={(e) => setSearchTerm(e.target.value)}
@@ -59,11 +59,12 @@ const ProjectNav = () => {
 					leftIcon={<SearchNormal size={18} color="#535353" />}
 					type="text"
 					placeHolder="Search for projects..."
+					className="w-full"
 				/>
 			</div>
-			<div className="flex w-full max-w-1/2 justify-between">
+			<div className="flex w-full max-w-1/2 justify-between gap-x-2">
 				<div className="flex items-center gap-x-1 text-[#535353] w-full">
-					<FilterIcon className="sm:hidden" color="#282828" />
+					<FilterIcon className="sm:hidden" color="#535353" />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
 
 					<Select onValueChange={(value) => setSelectedValue(value)} defaultValue="all">
@@ -81,12 +82,14 @@ const ProjectNav = () => {
 						</SelectContent>
 					</Select>
 				</div>
-				<div className="flex sm:w-[214px]">
-					<Button className="flex w-full" intent={'secondary'}>
-						<Add size={24} />
-						Add Client
-					</Button>
-				</div>
+
+				<button
+					type="button"
+					className="flex w-full max-w-[200px] md:max-w-[214px] items-center sm:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center"
+				>
+					<Add size={24} />
+					New Project
+				</button>
 			</div>
 		</div>
 	);
