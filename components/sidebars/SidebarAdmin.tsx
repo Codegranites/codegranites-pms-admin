@@ -89,7 +89,7 @@ const SidebarAdmin = () => {
 				<Link
 					href="/admin-profile"
 					className={cn(
-						'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300',
+						'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300 justify-center',
 						activeLink === 'admin-profile'
 							? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
