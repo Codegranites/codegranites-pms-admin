@@ -84,7 +84,7 @@ const ProjectNav = () => {
 				<div className="flex sm:w-[214px]">
 					<Button className="flex w-full" intent={'secondary'}>
 						<Add size={24} />
-						<span className="">Add Client</span>
+						Add Client
 					</Button>
 				</div>
 			</div>
