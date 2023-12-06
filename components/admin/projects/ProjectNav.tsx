@@ -52,7 +52,7 @@ const ProjectNav = () => {
 	console.log(selectedValue);
 
 	return (
-		<div className="w-full md:h-[56px] flex justify-between gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
+		<div className="w-full md:h-[56px] flex justify-between min-[450px]:gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
 			<div className="flex w-full max-w-1/2">
 				<Input
 					onChange={(e) => setSearchTerm(e.target.value)}
@@ -63,8 +63,8 @@ const ProjectNav = () => {
 					className="w-full"
 				/>
 			</div>
-			<div className="flex w-full max-w-1/2 justify-between gap-x-2">
-				<div className="flex items-center gap-x-1 text-[#535353] w-full">
+			<div className="flex w-full sm:max-w-1/2 justify-between gap-x-2 ">
+				<div className="flex items-center gap-x-1 text-[#535353] w-full ">
 					{/* <FilterIcon className="sm:hidden" color="#535353" /> */}
 					<ListFilter color="#282828 sm:hidden" size={18} />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
@@ -85,13 +85,6 @@ const ProjectNav = () => {
 					</Select>
 				</div>
 
-				{/* <button
-					type="button"
-					className="flex w-full max-w-[200px] md:max-w-[214px] items-center sm:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center"
-				>
-					<Add size={24} />
-					New Project
-				</button> */}
 				<CreateProject />
 			</div>
 		</div>

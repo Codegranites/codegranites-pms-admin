@@ -15,12 +15,12 @@ const CounterCard = ({ count, label }: ProjectCounterProps) => {
 	return (
 		<div
 			onMouseMove={handleMouseMove}
-			className="relative w-full sm:max-w-[214px] sm:h-[148px] flex justify-center items-center border border-gray-300 rounded-xl sm:rounded-2xl admin-card p-[1px]"
+			className="relative max-[410px]:min-w-[70px] w-full sm:max-w-[214px] sm:h-[148px] flex justify-center items-center border border-gray-300 rounded-xl sm:rounded-2xl admin-card sm:p-[1px] select-none"
 		>
 			<div className="card-border" />
-			<div className="card-content w-full h-full flex justify-center items-center flex-col gap-y-2 py-2 sm:gap-y-4 bg-white p-1">
+			<div className="card-content  w-full h-full flex justify-center items-center flex-col gap-y-2 py-2 sm:gap-y-4 bg-white p-1">
 				<span className="font-semibold text-2xl sm:text-5xl text-header">{count}</span>
-				<span className="font-medium sm:text-lg">{label} </span>
+				<span className="font-medium text-[12px] sm:text-lg">{label} </span>
 			</div>
 		</div>
 	);
