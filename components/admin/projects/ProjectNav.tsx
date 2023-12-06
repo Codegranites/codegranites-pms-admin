@@ -12,9 +12,10 @@ import {
 } from '../../../components/ui/select';
 
 import { Add, ArrowDown2, ArrowUp2, Filter, SearchNormal } from 'iconsax-react';
-import { FilterIcon } from 'lucide-react';
+import { FilterIcon, ListFilter } from 'lucide-react';
 import { useState } from 'react';
 import Button from '@ui/Button';
+import CreateProject from '../../super-admin-project/modal/create-project';
 
 type SelectProps = {
 	id?: number;
@@ -64,14 +65,15 @@ const ProjectNav = () => {
 			</div>
 			<div className="flex w-full max-w-1/2 justify-between gap-x-2">
 				<div className="flex items-center gap-x-1 text-[#535353] w-full">
-					<FilterIcon className="sm:hidden" color="#535353" />
+					{/* <FilterIcon className="sm:hidden" color="#535353" /> */}
+					<ListFilter color="#282828 sm:hidden" size={18} />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
 
 					<Select onValueChange={(value) => setSelectedValue(value)} defaultValue="all">
 						<SelectTrigger className="w-[150px] select-none h-full py-3">
 							<SelectValue placeholder={selectFilters[0].label} />
 						</SelectTrigger>
-						<SelectContent>
+						<SelectContent className="backdrop-blur-xl">
 							<SelectGroup>
 								{selectFilters.map((filter) => (
 									<SelectItem key={filter.id} value={filter.value} className="hover:bg-[#becbd7]">
@@ -83,13 +85,14 @@ const ProjectNav = () => {
 					</Select>
 				</div>
 
-				<button
+				{/* <button
 					type="button"
 					className="flex w-full max-w-[200px] md:max-w-[214px] items-center sm:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center"
 				>
 					<Add size={24} />
 					New Project
-				</button>
+				</button> */}
+				<CreateProject />
 			</div>
 		</div>
 	);
