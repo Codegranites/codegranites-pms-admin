@@ -12,6 +12,7 @@
 # next.js
 /.next/
 /out/
+.next/
 
 # production
 /build
@@ -30,7 +31,25 @@ yarn-error.log*
 
 # vercel
 .vercel
+.next
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+
+./dist
+
+**/*.yml
+**/*.md
+**/*.json
+.prettierrc
+postcss.config.js
+.eslintrc.json
+.prettierrc
+next.config.js
+package-lock.json
+postcss.config.js
+README.md
+tailwind.config.ts
+tsconfig.json

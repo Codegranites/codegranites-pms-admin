@@ -26,8 +26,8 @@ const SidebarAdmin = () => {
 	}, [currentPath]);
 
 	return (
-		<section className="bg-white z-50 w-[96px] lg:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
-			<div className="max-lg:w-[65px] group-hover:w-full h-[53px]">
+		<section className="bg-white z-50 w-[0px] md:w-[96px] lg:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 hidden md:flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
+			<div className="max-lg:w-full group-hover:w-full h-[53px]">
 				<Image src="/logo.png" alt="Logo" width={155} height={53} />
 			</div>
 			<ul className="flex flex-col gap-y-4 pt-8">
@@ -89,7 +89,7 @@ const SidebarAdmin = () => {
 				<Link
 					href="/admin-profile"
 					className={cn(
-						'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300',
+						'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300 justify-center',
 						activeLink === 'admin-profile'
 							? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
