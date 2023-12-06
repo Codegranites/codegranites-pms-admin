@@ -51,7 +51,7 @@ const ProjectNav = () => {
 	console.log(selectedValue);
 
 	return (
-		<div className="w-full md:h-[56px] flex justify-between gap-x-4 items-center flex-col md:flex-row gap-y-4 ">
+		<div className="w-full md:h-[56px] flex justify-between gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
 			<div className="flex w-full max-w-1/2">
 				<Input
 					onChange={(e) => setSearchTerm(e.target.value)}

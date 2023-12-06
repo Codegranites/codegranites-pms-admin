@@ -1,4 +1,4 @@
-type ProjectCounterProps = {
+export type ProjectCounterProps = {
 	id?: number;
 	label: string;
 	count: number;
@@ -14,22 +14,22 @@ export type ProjectCardProps = {
 export const PROJECT_COUNTERS: ProjectCounterProps[] = [
 	{
 		id: 1,
-		label: 'All',
+		label: 'All Projects',
 		count: 30
 	},
 	{
 		id: 2,
-		label: 'New',
+		label: 'Completed',
 		count: 12
 	},
 	{
 		id: 3,
-		label: 'Active',
+		label: 'In Progress',
 		count: 10
 	},
 	{
 		id: 4,
-		label: 'Inactive',
+		label: 'Pending',
 		count: 8
 	}
 ];
