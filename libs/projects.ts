@@ -9,93 +9,113 @@ export type ProjectCardProps = {
 	status: string;
 	project_owner: string;
 	due_date: string;
+	start_date?: string;
+	description?: string;
 };
-
-export const PROJECT_COUNTERS: ProjectCounterProps[] = [
-	{
-		id: 1,
-		label: 'All Projects',
-		count: 30
-	},
-	{
-		id: 2,
-		label: 'Completed',
-		count: 12
-	},
-	{
-		id: 3,
-		label: 'In Progress',
-		count: 10
-	},
-	{
-		id: 4,
-		label: 'Pending',
-		count: 8
-	}
-];
 
 export const PROJECTS: ProjectCardProps[] = [
 	{
 		id: 1,
-		title: 'Emergency Response App',
+		title: 'Emergency &Response App@#$',
 		status: 'in-progress',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 2,
 		title: 'Emergency Response App',
 		status: 'pending',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 3,
 		title: 'Emergency Response App',
 		status: 'completed',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 4,
 		title: 'Emergency Response App',
 		status: 'in-progress',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 5,
 		title: 'Emergency Response App',
 		status: 'pending',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 6,
 		title: 'Emergency Response App',
 		status: 'completed',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 7,
 		title: 'Emergency Response App',
 		status: 'in-progress',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 8,
 		title: 'Emergency Response App',
 		status: 'pending',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
 	},
 	{
 		id: 9,
 		title: 'Emergency Response App',
 		status: 'completed',
 		project_owner: 'Karl Mbemba',
-		due_date: '12/04/2024'
+		due_date: '12/04/2024',
+		start_date: '04/02/24',
+		description: `Empower communities and individuals with the Emergency Response App, a groundbreaking solution designed to enhance and expedite emergency assistance. This app integrates real-time location tracking, instant communication features, and emergency service coordination to provide swift response during critical situations. With an intuitive interface and seamless collaboration tools, the Emergency Response App is your go-to resource for rapid and effective crisis management. Prioritize safety and responsiveness with this essential tool for emergency situations.`
+	}
+];
+
+export const PROJECT_COUNTERS: ProjectCounterProps[] = [
+	{
+		id: 1,
+		label: 'All Projects',
+		count: PROJECTS.length
+	},
+	{
+		id: 2,
+		label: 'Completed',
+		count: PROJECTS.filter((status) => status.status === 'completed').length
+	},
+	{
+		id: 3,
+		label: 'In Progress',
+		count: PROJECTS.filter((status) => status.status === 'in-progress').length
+	},
+	{
+		id: 4,
+		label: 'Pending',
+		count: PROJECTS.filter((status) => status.status === 'pending').length
 	}
 ];

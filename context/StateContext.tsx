@@ -36,7 +36,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 	useEffect(() => {
 		if (pathname.startsWith('/admin-')) {
-			setCurrentPath(pathname.replace('/admin-', ''));
+			setCurrentPath(pathname.replace(/^\/([^\/]+).*$/, '$1'));
 			return;
 		}
 		if (pathname.startsWith('/')) {

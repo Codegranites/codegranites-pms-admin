@@ -5,7 +5,7 @@ import { ProjectCardProps } from '../../../libs/projects';
 import useInView from '../../../hooks/useInView';
 import cn from '../../../utils/util';
 
-const ProjectCardAdmin = ({ status, title, project_owner, due_date }: ProjectCardProps) => {
+const ProjectCardAdmin = ({ status, title, project_owner, due_date, id }: ProjectCardProps) => {
 	const projectCardRef = React.useRef<HTMLDivElement>(null);
 	const isInView = useInView(projectCardRef);
 
@@ -31,15 +31,15 @@ const ProjectCardAdmin = ({ status, title, project_owner, due_date }: ProjectCar
 			className="relative w-full max-w-[454px] h-[261px]  flex items-center justify-center pb-1 p-[2px] border border-gray-300 rounded-xl sm:rounded-2xl admin-card"
 		>
 			<div className="card-border" />
-			<div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white min-[380px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
+			<div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white min-[1310px]:p-4 max-[1140px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
 				<Folder2 variant="Bold" />
 				<p className="text-sm text-header">
 					Project Title: <strong>{title}</strong>
 				</p>
-				<p className="text-sm text-header flex items-center gap-x-2">
+				<p className="text-sm text-header flex items-center gap-x-1 xl:gap-x-2">
 					Project Status:{' '}
 					<span
-						className={cn('relative w-[100px] min-[404px]:w-[130px] min-[427px]:w-[150px] h-[8px] border  rounded-md', {
+						className={cn('relative w-[100px] min-[404px]:w-[130px] xl:w-[150px] h-[8px] border  rounded-md', {
 							'border-[#eea300] ': status === 'in-progress',
 							'border-[#008d36] ': status === 'completed',
 							'border-black/90 ': status === 'pending'
@@ -53,7 +53,11 @@ const ProjectCardAdmin = ({ status, title, project_owner, due_date }: ProjectCar
 							})}
 						/>
 					</span>{' '}
-					<span>({status})</span>
+					<span
+						className={cn('text-[11px] xl:text-sm max-lg:text-sm', { 'max-[1158px]-[11px]': status === 'in-progress' })}
+					>
+						({status})
+					</span>
 				</p>
 				<p className="text-sm text-header">
 					Project Owner: <strong>{project_owner}</strong>{' '}
@@ -64,13 +68,14 @@ const ProjectCardAdmin = ({ status, title, project_owner, due_date }: ProjectCar
 				<p className="text-sm text-header">
 					Project end date: <strong>{due_date}</strong>
 				</p>
-				<button
+				<Link
+					href={`/admin-projects/details?id=${id}&project_title=${title.toLowerCase().trim().replace(/ /g, '_')}`}
 					type="button"
 					tabIndex={0}
-					className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium"
+					className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
 				>
 					View more
-				</button>
+				</Link>
 			</div>
 		</div>
 	);

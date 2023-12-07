@@ -19,7 +19,7 @@ const CounterCard = ({ count, label }: ProjectCounterProps) => {
 		>
 			<div className="card-border" />
 			<div className="card-content  w-full h-full flex justify-center items-center flex-col gap-y-2 py-2 sm:gap-y-4 bg-white p-1">
-				<span className="font-semibold text-2xl sm:text-5xl text-header">{count}</span>
+				<span className="font-semibold text-2xl sm:text-5xl text-header">{count < 10 ? `0${count}` : count}</span>
 				<span className="font-medium text-[12px] sm:text-lg">{label} </span>
 			</div>
 		</div>

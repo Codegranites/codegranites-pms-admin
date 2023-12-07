@@ -4,25 +4,26 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useStateCtx } from '../../context/StateContext';
 import cn from '../../utils/util';
-import { CloseCircle, Setting2 } from 'iconsax-react';
+import { Setting2 } from 'iconsax-react';
 import { SIDEBAR_ADMIN_LINKS } from '../../libs/constants';
 
 const AdminMobileSidebar = () => {
 	const { showMobileMenu, setShowMobileMenu, user } = useStateCtx();
 
 	const [activeLink, setActiveLink] = useState('');
+
 	const pathname = usePathname();
 	// remove the / from the pathname
-	const currentPath = pathname?.replace('/', '');
-
 	useEffect(() => {
-		setActiveLink(currentPath);
-	}, [currentPath]);
+		const currentPath = pathname?.replace(/^\/([^\/]+).*$/, '$1');
+		console.log(currentPath);
+		setActiveLink(currentPath.trim());
+	}, [pathname]);
 
 	return (
 		<>
@@ -35,14 +36,14 @@ const AdminMobileSidebar = () => {
 			/>
 			<section
 				className={cn(
-					'py-4 md:hidden  px-4 flex flex-col w-full max-w-[270px] justify-between items-start bg-white/90 backdrop-blur-lg fixed left-0 top-0 z-50 h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none',
+					'py-6 md:hidden  px-4 flex flex-col w-full max-w-[270px] justify-between items-start bg-white/90 backdrop-blur-lg fixed left-0 top-0 z-50 h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none !overflow-y-auto',
 					showMobileMenu ? 'translate-x-0 duration-700 opacity-100' : '-translate-x-full duration-300'
 				)}
 			>
 				<div className="w-full  h-[53px]">
 					<Image src="/logo.png" alt="Logo" width={155} height={53} />
 				</div>
-				<ul className="flex flex-col gap-y-4">
+				<ul className="flex flex-col gap-y-4 py-8">
 					{SIDEBAR_ADMIN_LINKS.map((link) => (
 						<Link
 							href={`/${link.link}`}
@@ -109,7 +110,7 @@ const AdminMobileSidebar = () => {
 					<Link
 						href="/admin-profile"
 						className={cn(
-							'w-full flex items-center gap-x-[6px] justify-center bg-black  p-2 transition-colors duration-300',
+							'w-full flex items-center gap-x-[6px] justify-center   p-2 transition-colors duration-300',
 							activeLink === 'admin-profile'
 								? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
 								: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'

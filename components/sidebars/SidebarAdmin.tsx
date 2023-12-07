@@ -18,16 +18,17 @@ const user = {
 const SidebarAdmin = () => {
 	const [activeLink, setActiveLink] = useState('');
 	const pathname = usePathname();
-	// remove the / from the pathname
-	const currentPath = pathname?.replace('/', '');
 
+	// remove the / from the pathname
 	useEffect(() => {
-		setActiveLink(currentPath);
-	}, [currentPath]);
+		const currentPath = pathname?.replace(/^\/([^\/]+).*$/, '$1');
+
+		setActiveLink(currentPath.trim());
+	}, [pathname]);
 
 	return (
-		<section className="bg-white z-50 w-[0px] md:w-[96px] lg:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 hidden md:flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
-			<div className="max-lg:w-full group-hover:w-full h-[53px]">
+		<section className="bg-white z-50 w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
+			<div className=" max-[1140px]:w-full group-hover:w-full h-[53px]">
 				<Image src="/logo.png" alt="Logo" width={155} height={53} />
 			</div>
 			<ul className="flex flex-col gap-y-4 pt-8">
@@ -54,7 +55,7 @@ const SidebarAdmin = () => {
 					>
 						<link.icon size={24} aria-hidden variant={activeLink === link.link ? 'Bold' : 'Outline'} />
 
-						<span className="max-lg:hidden group-hover:block w-[185px]">{link.label}</span>
+						<span className=" max-[1140px]:hidden group-hover:block w-[185px]">{link.label}</span>
 					</Link>
 				))}
 
@@ -73,7 +74,7 @@ const SidebarAdmin = () => {
 						}
 					}}
 					className={cn(
-						'flex group-hover:w-full lg:w-full lg:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
+						'flex group-hover:w-full min-[1140px]:w-full min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
 						activeLink === 'settings'
 							? 'bg-primary-light text-white rounded outline-none'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
@@ -81,7 +82,7 @@ const SidebarAdmin = () => {
 					onClick={() => setActiveLink('admin-settings')}
 				>
 					<Setting2 size={24} aria-hidden variant={activeLink === 'settings' ? 'Bold' : 'Outline'} />
-					<span className="max-lg:hidden group-hover:block">Settings</span>
+					<span className=" max-[1140px]:hidden group-hover:block">Settings</span>
 				</Link>
 
 				{/* User Profile */}
@@ -109,7 +110,7 @@ const SidebarAdmin = () => {
 						<Image src={user.image} alt="user" width={60} height={60} />
 						<span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
 					</div>
-					<div className="flex flex-col max-lg:hidden group-hover:w-full group-hover:flex">
+					<div className="flex flex-col  max-[1140px]:hidden group-hover:w-full group-hover:flex">
 						<span className="text-[#090909] text-base">{user.name}</span>
 						<span className="text-[#3a3a3a] text-sm" title={user.email}>
 							{user.email.length > 17 ? user.email.slice(0, 17) + '...' : user.email}
