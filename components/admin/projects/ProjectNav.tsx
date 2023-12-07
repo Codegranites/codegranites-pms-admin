@@ -49,8 +49,6 @@ const ProjectNav = () => {
 	const [selectedValue, setSelectedValue] = useState(selectFilters[0].value);
 	const [searchTerm, setSearchTerm] = useState('');
 
-	console.log(selectedValue);
-
 	return (
 		<div className="w-full md:h-[56px] flex justify-between min-[450px]:gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
 			<div className="flex w-full max-w-1/2">
@@ -73,7 +71,7 @@ const ProjectNav = () => {
 						<SelectTrigger className="w-[150px] select-none h-full py-3">
 							<SelectValue placeholder={selectFilters[0].label} />
 						</SelectTrigger>
-						<SelectContent className="backdrop-blur-xl">
+						<SelectContent className="backdrop-blur-xl bg-white/80">
 							<SelectGroup>
 								{selectFilters.map((filter) => (
 									<SelectItem key={filter.id} value={filter.value} className="hover:bg-[#becbd7]">

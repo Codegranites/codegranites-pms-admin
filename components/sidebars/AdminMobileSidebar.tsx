@@ -4,25 +4,26 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useSearchParams } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 import { useStateCtx } from '../../context/StateContext';
 import cn from '../../utils/util';
-import { CloseCircle, Setting2 } from 'iconsax-react';
+import { Setting2 } from 'iconsax-react';
 import { SIDEBAR_ADMIN_LINKS } from '../../libs/constants';
 
 const AdminMobileSidebar = () => {
 	const { showMobileMenu, setShowMobileMenu, user } = useStateCtx();
 
 	const [activeLink, setActiveLink] = useState('');
+
 	const pathname = usePathname();
 	// remove the / from the pathname
-	const currentPath = pathname?.replace('/', '');
-
 	useEffect(() => {
-		setActiveLink(currentPath);
-	}, [currentPath]);
+		const currentPath = pathname?.replace(/^\/([^\/]+).*$/, '$1');
+		console.log(currentPath);
+		setActiveLink(currentPath.trim());
+	}, [pathname]);
 
 	return (
 		<>
