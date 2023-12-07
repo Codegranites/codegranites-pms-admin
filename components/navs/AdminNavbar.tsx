@@ -13,19 +13,19 @@ const AdminNavbar = () => {
 	const pathName = currentPath.replace('admin-', '');
 
 	return (
-		<header className="lg:px-9 px-3 border-b border-gray-200 h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
-			<div className="flex gap-x-4 items-center">
+		<header className="lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
+			<div className="flex gap-x-2 sm:gap-x-4 items-center">
 				<h2
 					onMouseEnter={handleMouseEnter}
-					className="text-xl sm:text-3xl capitalize font-medium text-header  "
+					className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
 					data-value={projectTitle ? pathName.replace('projects', 'project') : pathName}
 				>
 					{projectTitle ? pathName.replace('projects', 'project') : pathName}
 				</h2>
 				{projectTitle && (
 					<>
-						<span className="text-4xl text-gray-700">•</span>
-						<h3 className="text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
+						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
 							{projectTitle.replace(/_/g, ' ')}
 						</h3>
 					</>
