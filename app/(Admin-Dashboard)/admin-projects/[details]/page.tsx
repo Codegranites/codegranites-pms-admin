@@ -1,18 +1,14 @@
 import React from 'react';
+import ProjectDetailsContent from './ProjectDetailsContent';
 
 interface PageProps {
 	searchParams: {
-		[key: string]: string | string[] | undefined;
+		[key: string]: string | undefined;
 	};
 }
 
 const ProjectDetails = ({ searchParams: { project_title, id } }: PageProps) => {
-	return (
-		<>
-			<section className="w-full h-full flex flex-col gap-y-6"></section>
-			{project_title}==={id}
-		</>
-	);
+	return <ProjectDetailsContent id={id} />;
 };
 
 export default ProjectDetails;
