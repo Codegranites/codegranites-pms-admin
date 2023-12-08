@@ -9,10 +9,8 @@ function ErrorPage() {
 				<Image src="/logo.svg" alt="Logo" width={225} height={76} />
 			</header>
 			<div className="flex flex-col items-center py-14 px-4">
-				<div className="relative w-full max-w-sm aspect-[421/342]">
-					<Image src="/denied.svg" fill alt="Denied" />
-				</div>
-				<h2 className="mb-6 text-black font-bold lg:text-6xl text-3xl">Access Denied!</h2>
+				<Image src="/denied.svg" alt="Denied" width={200} height={200} />
+				<h2 className="mb-6 text-black font-bold mt-5 lg:text-6xl text-3xl">Access Denied!</h2>
 				<p className="max-w-[996px] text-center text-xl mb-5">
 					You don&apos;t have permissions to access this page. Contact an administrator to get permissions or go to the
 					home page and browse other pages
