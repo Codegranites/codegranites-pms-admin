@@ -10,6 +10,7 @@ const AdminNavbar = () => {
 	const { currentPath, showMobileMenu, setShowMobileMenu } = useStateCtx();
 	const searchParams = useSearchParams();
 	const projectTitle = searchParams.get('project_title');
+	const clientName = searchParams.get('client_name');
 	const pathName = currentPath.replace('admin-', '');
 
 	return (
@@ -18,15 +19,33 @@ const AdminNavbar = () => {
 				<h2
 					onMouseEnter={handleMouseEnter}
 					className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
-					data-value={projectTitle ? pathName.replace('projects', 'project') : pathName}
+					data-value={
+						projectTitle
+							? pathName.replace('projects', 'project')
+							: clientName
+							  ? pathName.replace('clients', 'client')
+							  : pathName
+					}
 				>
-					{projectTitle ? pathName.replace('projects', 'project') : pathName}
+					{projectTitle
+						? pathName.replace('projects', 'project')
+						: clientName
+						  ? pathName.replace('clients', 'client')
+						  : pathName}
 				</h2>
 				{projectTitle && (
 					<>
 						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
 						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
 							{projectTitle.replace(/_/g, ' ')}
+						</h3>
+					</>
+				)}
+				{clientName && (
+					<>
+						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
+						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+							{clientName.replace(/_/g, ' ')}
 						</h3>
 					</>
 				)}
