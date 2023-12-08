@@ -12,6 +12,8 @@ type User = {
 interface StateContextProps {
 	showMobileMenu: boolean;
 	currentPath: string;
+	openPaymentModal: boolean;
+	setOpenPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
 	setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 	user: User;
 }
@@ -29,6 +31,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, []);
 	// Add Your State(s) Here
 	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
@@ -46,7 +49,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (showMobileMenu) {
+		if (showMobileMenu || openPaymentModal) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
@@ -54,6 +57,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
 				setShowMobileMenu(false);
+				setOpenPaymentModal(false);
 			}
 		};
 
@@ -62,11 +66,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [showMobileMenu]);
+	}, [showMobileMenu, openPaymentModal]);
 
 	const value = useMemo(
-		() => ({ showMobileMenu, setShowMobileMenu, currentPath, user }),
-		[showMobileMenu, setShowMobileMenu, currentPath, user]
+		() => ({ showMobileMenu, setShowMobileMenu, currentPath, user, openPaymentModal, setOpenPaymentModal }),
+		[showMobileMenu, currentPath, user, openPaymentModal]
 	);
 
 	return <StateContext.Provider value={value}>{children}</StateContext.Provider>;

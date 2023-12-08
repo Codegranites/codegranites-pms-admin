@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useState } from 'react';
 import Container from '../transaction-container/container';
 import { Folder } from '../svg-icons/svg-icons';

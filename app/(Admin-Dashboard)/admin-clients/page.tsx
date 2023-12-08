@@ -1,7 +1,15 @@
 import React from 'react';
+import AdminClientNav from '../../../components/admin/clients/AdminClientNav';
+import AdminClientContainer from '../../../components/admin/clients/AdminClientContainer';
 
 const ClientsAdmin = () => {
-	return <div>ClientsAdmin</div>;
+	return (
+		<section className="w-full h-full flex flex-col gap-y-6 md:gap-y-9 lg:gap-y-16">
+			<AdminClientNav />
+
+			<AdminClientContainer />
+		</section>
+	);
 };
 
 export default ClientsAdmin;

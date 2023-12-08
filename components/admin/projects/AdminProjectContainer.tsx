@@ -9,7 +9,7 @@ import CustomPagination from '../Pagination';
 import ReactPaginate from 'react-paginate';
 
 const AdminProjectContainer = () => {
-	const [currentPage, setCurrentPage] = useState(1);
+	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
 	const itemsPerPage = 6;
 

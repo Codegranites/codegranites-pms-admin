@@ -21,7 +21,7 @@ const AdminMobileSidebar = () => {
 	// remove the / from the pathname
 	useEffect(() => {
 		const currentPath = pathname?.replace(/^\/([^\/]+).*$/, '$1');
-		console.log(currentPath);
+
 		setActiveLink(currentPath.trim());
 	}, [pathname]);
 
@@ -37,7 +37,9 @@ const AdminMobileSidebar = () => {
 			<section
 				className={cn(
 					'py-6 md:hidden  px-4 flex flex-col w-full max-w-[270px] justify-between items-start bg-white/90 backdrop-blur-lg fixed left-0 top-0 z-50 h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none !overflow-y-auto',
-					showMobileMenu ? 'translate-x-0 duration-700 opacity-100' : '-translate-x-full duration-300'
+					showMobileMenu
+						? 'translate-x-0 duration-700 opacity-100'
+						: '-translate-x-full duration-300 pointer-events-none'
 				)}
 			>
 				<div className="w-full  h-[53px]">
