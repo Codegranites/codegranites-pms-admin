@@ -120,7 +120,7 @@ function HistoryComponent() {
 													<td className="pl-4 p-2 py-4">
 														<span className="table-numbering">{index + 1}</span>
 													</td>
-													<td className="p-2">
+													<td className="p-2 w-1/4">
 														<div className="flex flex-col text-left">
 															<h4>{item.title}</h4>
 															<p className="whitespace-nowrap text-ellipsis overflow-hidden">{item.description}</p>
