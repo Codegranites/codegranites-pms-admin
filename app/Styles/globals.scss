@@ -9,6 +9,12 @@
 	scroll-behavior: smooth;
 }
 
+@layer components {
+	.table-numbering {
+		@apply grid place-content-center bg-[#E8E8E8] rounded-full p-1 h-8 w-8;
+	}
+}
+
 .max-container {
 	max-width: 1440px;
 	margin: 0 auto;
