@@ -168,9 +168,7 @@ function SuperAdminTransaction() {
 									return (
 										<tr key={item.id} className="border-t border-t-[#CAC4D0]">
 											<td className="pl-20 p-2 py-4">
-												<span className="grid place-content-center bg-[#E8E8E8] rounded-full p-1 h-8 w-8">
-													{index + 1}
-												</span>
+												<span className="table-numbering">{index + 1}</span>
 											</td>
 											<td className="p-2 w-2/5 py-4 text-left">{item.title}</td>
 											<td className="p-2 py-4">₦{item.Amount}</td>
