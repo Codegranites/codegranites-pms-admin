@@ -23,14 +23,14 @@ const AdminNavbar = () => {
 						projectTitle
 							? pathName.replace('projects', 'project')
 							: clientName
-							  ? pathName.replace('clients', 'client')
+							  ? pathName.replace('clients', 'client profile')
 							  : pathName
 					}
 				>
 					{projectTitle
 						? pathName.replace('projects', 'project')
 						: clientName
-						  ? pathName.replace('clients', 'client')
+						  ? pathName.replace('clients', 'client profile')
 						  : pathName}
 				</h2>
 				{projectTitle && (
