@@ -15,6 +15,8 @@ interface StateContextProps {
 	openPaymentModal: boolean;
 	setOpenPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
 	setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+	isRemoveClientModal: boolean;
+	setIsRemoveClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 	user: User;
 }
 
@@ -32,6 +34,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	// Add Your State(s) Here
 	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
+	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
@@ -49,7 +52,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (showMobileMenu || openPaymentModal) {
+		if (showMobileMenu || openPaymentModal || isRemoveClientModal) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
@@ -58,6 +61,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			if (e.key === 'Escape') {
 				setShowMobileMenu(false);
 				setOpenPaymentModal(false);
+				setIsRemoveClientModal(false);
 			}
 		};
 
@@ -66,11 +70,20 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [showMobileMenu, openPaymentModal]);
+	}, [showMobileMenu, openPaymentModal, isRemoveClientModal]);
 
 	const value = useMemo(
-		() => ({ showMobileMenu, setShowMobileMenu, currentPath, user, openPaymentModal, setOpenPaymentModal }),
-		[showMobileMenu, currentPath, user, openPaymentModal]
+		() => ({
+			showMobileMenu,
+			setShowMobileMenu,
+			currentPath,
+			user,
+			openPaymentModal,
+			setOpenPaymentModal,
+			isRemoveClientModal,
+			setIsRemoveClientModal
+		}),
+		[showMobileMenu, currentPath, user, openPaymentModal, isRemoveClientModal]
 	);
 
 	return <StateContext.Provider value={value}>{children}</StateContext.Provider>;

@@ -109,6 +109,10 @@ module.exports = {
         slideDown: "slideDown 1s 0.2s ease forwards",
         slideNavUp: "slideDown 1s 0.2s ease forwards",
       },
+      fontFamily: {
+        Worksans: ["Work Sans", "sans-serif"],
+        tommy: ["MADE TOMMY Outline", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
