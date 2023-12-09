@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import DeleteWorkSpace from '../../../components/admin/modals/delete';
+import DeleteWorkSpace from '../../../components/admin/modals/deleteAccount';
 import Button from '@ui/Button';
 import useDisclosure from '../../../hooks/useDisclosure';
 
