@@ -22,3 +22,9 @@ export interface AuthLayoutProps {
 	isTopRightBlobShown?: boolean;
 	isBottomLeftPadlockShown?: boolean;
 }
+
+export interface DeleteModalProps {
+	onDelete: () => void;
+	isOpen: boolean;
+	onClose: () => void;
+}

@@ -58,7 +58,7 @@ function Modal({
 									{/* Close button */}
 									{isCloseIconPresent ? (
 										<div className="absolute right-3 top-2">
-											<Button onClick={closeModal} className={closeBtnClass}>
+											<Button onClick={closeModal} className="bg-transparent hover:bg-transparent">
 												<CloseCircle size="24" color="#555555" />
 											</Button>
 										</div>
