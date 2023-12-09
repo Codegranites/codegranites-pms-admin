@@ -15,3 +15,16 @@ export interface SEOProps {
 	image: string;
 	url: string;
 }
+
+export interface AuthLayoutProps {
+	children: React.ReactNode;
+	authRightImage?: React.ReactNode;
+	isTopRightBlobShown?: boolean;
+	isBottomLeftPadlockShown?: boolean;
+}
+
+export interface DeleteModalProps {
+	onDelete: () => void;
+	isOpen: boolean;
+	onClose: () => void;
+}
