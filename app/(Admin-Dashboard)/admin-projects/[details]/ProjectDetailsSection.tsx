@@ -5,9 +5,17 @@ import MakePaymentModal from './MakePaymentModal';
 import { useStateCtx } from '../../../../context/StateContext';
 import { Edit2, More, Trash } from 'iconsax-react';
 import RemoveProjectModal from './RemoveProjectModal';
+import EditProjectModal from './EditProjectModal';
 
 const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
-	const { openPaymentModal, setOpenPaymentModal, isRemoveProjectModal, setIsRemoveProjectModal } = useStateCtx();
+	const {
+		openPaymentModal,
+		setOpenPaymentModal,
+		isRemoveProjectModal,
+		setIsRemoveProjectModal,
+		editProjectModal,
+		setEditProjectModal
+	} = useStateCtx();
 	const [isDotMenu, setIsDotMenu] = useState(false);
 
 	useEffect(() => {
@@ -31,6 +39,7 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 		<>
 			<RemoveProjectModal project={project} openModal={isRemoveProjectModal} setOpenModal={setIsRemoveProjectModal} />
 			<MakePaymentModal project={project} openModal={openPaymentModal} setOpenModal={setOpenPaymentModal} />
+			<EditProjectModal project={project} />
 			<div className="flex flex-col w-full sm:px-3 py-6 mb-6 sm:border border-[#e1e1e1] sm:rounded-xl h-full relative">
 				{/* Details */}
 				<div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] ">
@@ -68,7 +77,10 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 					)}
 				>
 					<button
-						onClick={() => setIsDotMenu(!isDotMenu)}
+						onClick={() => {
+							setEditProjectModal(true);
+							setIsDotMenu(!isDotMenu);
+						}}
 						type="button"
 						tabIndex={0}
 						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2"

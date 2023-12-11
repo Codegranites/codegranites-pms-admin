@@ -56,7 +56,7 @@ const ChangeStatusModal = () => {
 			<div
 				aria-hidden
 				className={cn(
-					' fixed min-h-screen w-full bg-black/30 top-0 left-0  transition-all duration-300 z-[99]',
+					' fixed min-h-screen w-full bg-black/30 top-0 left-0  transition-all duration-300 z-[99] backdrop-blur-sm',
 					changeStatusModal ? 'opacity-40' : 'opacity-0 pointer-events-none'
 				)}
 				onClick={() => setChangeStatusModal(false)}

@@ -27,6 +27,11 @@ interface StateContextProps {
 	setChangeStatusModal: React.Dispatch<React.SetStateAction<boolean>>;
 	viewMilestoneModal: boolean;
 	setViewMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
+	createMilestoneModal: boolean;
+	setCreateMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
+	editProjectModal: boolean;
+	setEditProjectModal: React.Dispatch<React.SetStateAction<boolean>>;
+
 	user: User;
 }
 
@@ -52,6 +57,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [isEditMiletoneModal, setIsEditMiletoneModal] = useState(false);
 	const [changeStatusModal, setChangeStatusModal] = useState(false);
 	const [viewMilestoneModal, setViewMilestoneModal] = useState(false);
+	const [createMilestoneModal, setCreateMilestoneModal] = useState(false);
+	const [editProjectModal, setEditProjectModal] = useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
@@ -77,7 +84,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			isProjectMiletoneModal ||
 			isEditMiletoneModal ||
 			changeStatusModal ||
-			viewMilestoneModal
+			viewMilestoneModal ||
+			createMilestoneModal ||
+			editProjectModal
 		) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -93,6 +102,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setIsEditMiletoneModal(false);
 				setChangeStatusModal(false);
 				setViewMilestoneModal(false);
+				setCreateMilestoneModal(false);
+				setEditProjectModal(false);
 			}
 		};
 
@@ -109,7 +120,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		isProjectMiletoneModal,
 		isEditMiletoneModal,
 		changeStatusModal,
-		viewMilestoneModal
+		viewMilestoneModal,
+		createMilestoneModal,
+		editProjectModal
 	]);
 
 	const value = useMemo(
@@ -131,7 +144,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			changeStatusModal,
 			setChangeStatusModal,
 			viewMilestoneModal,
-			setViewMilestoneModal
+			setViewMilestoneModal,
+			createMilestoneModal,
+			setCreateMilestoneModal,
+			editProjectModal,
+			setEditProjectModal
 		}),
 		[
 			showMobileMenu,
@@ -143,7 +160,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			isProjectMiletoneModal,
 			isEditMiletoneModal,
 			changeStatusModal,
-			viewMilestoneModal
+			viewMilestoneModal,
+			createMilestoneModal,
+			editProjectModal
 		]
 	);
 

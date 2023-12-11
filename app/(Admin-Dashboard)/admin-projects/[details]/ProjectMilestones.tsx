@@ -6,11 +6,13 @@ import LoadingSpinner from '../../../../components/loaders/LoadingSpinner';
 import { Add } from 'iconsax-react';
 import cn from '../../../../utils/util';
 import { useStateCtx } from '../../../../context/StateContext';
+import CreateMilestoneModal from './CreateMilestoneModal';
 
 const ProjectMilestones = () => {
-	const { changeStatusModal, isEditMiletoneModal } = useStateCtx();
+	const { changeStatusModal, isEditMiletoneModal, createMilestoneModal, setCreateMilestoneModal, viewMilestoneModal } =
+		useStateCtx();
 	const [isMenu, setIsMenu] = useState(false);
-	const noSticky = changeStatusModal || isEditMiletoneModal;
+	const noSticky = changeStatusModal || isEditMiletoneModal || createMilestoneModal || viewMilestoneModal;
 
 	useEffect(() => {
 		if (isMenu) {
@@ -73,7 +75,10 @@ const ProjectMilestones = () => {
 				)}
 			>
 				<button
-					onClick={() => setIsMenu(!isMenu)}
+					onClick={() => {
+						setCreateMilestoneModal(true);
+						setIsMenu(!isMenu);
+					}}
 					type="button"
 					tabIndex={0}
 					className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2"
@@ -82,6 +87,8 @@ const ProjectMilestones = () => {
 					<span>Add Milestone</span>
 				</button>
 			</div>
+			{/* Create Milestone Modal */}
+			<CreateMilestoneModal />
 
 			{PROJECT_MILESTONES.length > 0 ? (
 				<Suspense fallback={<LoadingSpinner />}>
