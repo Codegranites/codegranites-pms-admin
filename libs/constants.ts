@@ -13,6 +13,7 @@ import {
 	Profile2User,
 	ArchiveBook
 } from 'iconsax-react';
+import { SettingsProps } from '../types';
 
 type SidebarAdminProps = {
 	id?: number;
@@ -141,3 +142,31 @@ export const SIDEBAR_MOD_LINKS: SidebarAdminProps[] = [
 
 export const TYPESidebarLinks = SIDEBAR_ADMIN_LINKS.map((link) => link.link);
 export const TYPESidebarLinksMod = SIDEBAR_MOD_LINKS.map((link) => link.link);
+
+export const Settingsnav: SettingsProps[] = [
+	{
+		id: 1,
+		name: 'Profile',
+		path: '/Profile'
+	},
+	{
+		id: 2,
+		name: 'Account preferences',
+		path: '/Account-preferences'
+	},
+	{
+		id: 3,
+		name: 'Security',
+		path: '/settings/preferences'
+	},
+	{
+		id: 4,
+		name: 'Workspace',
+		path: '/Notifications'
+	},
+	{
+		id: 5,
+		name: 'Notifications',
+		path: '/settings/notifications'
+	}
+];
