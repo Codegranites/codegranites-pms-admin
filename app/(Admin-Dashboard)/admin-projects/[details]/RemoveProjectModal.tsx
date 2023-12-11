@@ -1,23 +1,16 @@
 'use client';
 
 import { X } from 'lucide-react';
-import cn, { formatPrice } from '../../../../utils/util';
-import { useState } from 'react';
-import { AdminClientCardProps } from '../../../../libs/clients';
+import cn from '../../../../utils/util';
+import { ProjectCardProps } from '../../../../libs/projects';
 
 interface MakePaymentModalProps {
 	openModal: boolean;
 	setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
-	client?: AdminClientCardProps;
+	project?: ProjectCardProps;
 }
-
-type PaymentProps = {
-	id?: number;
-	label: string;
-};
-
-const RemoveClientModal = ({ openModal, setOpenModal, client }: MakePaymentModalProps) => {
-	const clientName = client?.name;
+const RemoveProjectModal = ({ openModal, setOpenModal, project }: MakePaymentModalProps) => {
+	const projectName = project?.title;
 
 	return (
 		<>
@@ -34,14 +27,14 @@ const RemoveClientModal = ({ openModal, setOpenModal, client }: MakePaymentModal
 				role="dialog"
 				aria-labelledby="remove-client"
 				className={cn(
-					'py-6   flex flex-col w-[360px] h-[300px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[400px] justify-between items-center bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					'py-6   flex flex-col w-[360px] h-[330px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[400px] justify-between items-center bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
 					openModal
 						? '-translate-x-1/2 duration-700 opacity-100 rounded-xl md:rounded-2xl'
 						: '-translate-x-full duration-300 pointer-events-none'
 				)}
 			>
 				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-					<h3 className="text-lg md:text-2xl font-medium text-header">Remove {clientName ?? 'Client'}</h3>
+					<h3 className="sm:text-lg md:text-2xl font-medium text-header">Delete {projectName ?? 'Project'}</h3>
 					<button
 						type="button"
 						tabIndex={0}
@@ -56,8 +49,8 @@ const RemoveClientModal = ({ openModal, setOpenModal, client }: MakePaymentModal
 				<div className="flex w-full max-w-[546px] h-full  pt-8 sm:pt-16 items-center flex-col gap-y-8 ">
 					<p className="text-center text-sm md:text-base px-4">
 						Are you sure you want to permanently remove{' '}
-						{clientName ? <span className="font-semibold">{clientName}</span> : 'this client'} from the CodeGranites
-						workspace? Remember this action cannot be reversed{' '}
+						{projectName ? <span className="font-semibold">{projectName}</span> : 'this project'} from your catalogue?
+						Remember this action cannot be reversed{' '}
 					</p>
 					<div className="flex w-full gap-x-4 justify-center sm:justify-between sm:px-8 [&>*]:font-semibold">
 						<button
@@ -89,4 +82,4 @@ const RemoveClientModal = ({ openModal, setOpenModal, client }: MakePaymentModal
 	);
 };
 
-export default RemoveClientModal;
+export default RemoveProjectModal;

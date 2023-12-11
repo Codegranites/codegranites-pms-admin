@@ -1,18 +1,96 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cn, { formatPrice } from '../../../../utils/util';
 import { ProjectCardProps } from '../../../../libs/projects';
 import MakePaymentModal from './MakePaymentModal';
 import { useStateCtx } from '../../../../context/StateContext';
+import { Edit2, More, Trash } from 'iconsax-react';
+import RemoveProjectModal from './RemoveProjectModal';
 
 const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
-	const { openPaymentModal, setOpenPaymentModal } = useStateCtx();
+	const { openPaymentModal, setOpenPaymentModal, isRemoveProjectModal, setIsRemoveProjectModal } = useStateCtx();
+	const [isDotMenu, setIsDotMenu] = useState(false);
+
+	useEffect(() => {
+		if (isDotMenu) {
+			document.body.style.overflow = 'hidden';
+		} else {
+			document.body.style.overflow = 'auto';
+		}
+
+		const handleKeyUp = (e: KeyboardEvent) => {
+			if (e.key === 'Escape') {
+				setIsDotMenu(false);
+			}
+		};
+
+		document.addEventListener('keyup', handleKeyUp);
+		return () => document.removeEventListener('keyup', handleKeyUp);
+	}, [isDotMenu]);
 
 	return (
 		<>
+			<RemoveProjectModal project={project} openModal={isRemoveProjectModal} setOpenModal={setIsRemoveProjectModal} />
 			<MakePaymentModal project={project} openModal={openPaymentModal} setOpenModal={setOpenPaymentModal} />
-			<div className="flex flex-col w-full sm:px-3 py-6 mb-6 sm:border border-[#e1e1e1] sm:rounded-xl h-full">
+			<div className="flex flex-col w-full sm:px-3 py-6 mb-6 sm:border border-[#e1e1e1] sm:rounded-xl h-full relative">
 				{/* Details */}
-				<h3 className="text-lg font-semibold text-header border-b border-[#e1e1e1] pb-2">Project Details</h3>
+				<div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] ">
+					<h3 className="text-lg font-semibold text-header ">Project Details</h3>
+					<button
+						type="button"
+						id="dot-menu"
+						tabIndex={0}
+						aria-haspopup
+						aria-expanded={isDotMenu}
+						onClick={() => setIsDotMenu((prev) => !prev)}
+						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rotate-90"
+					>
+						<More />
+					</button>
+				</div>
+				{/* DOT Menu */}
+				<div
+					className={cn(
+						'fixed min-h-screen w-full bg-black/0 top-0 left-0 z-[99] transition-all duration-300',
+						isDotMenu ? 'opacity-100' : 'opacity-0 pointer-events-none'
+					)}
+					onClick={() => setIsDotMenu(false)}
+				/>
+				<div
+					role="menu"
+					aria-orientation="vertical"
+					aria-labelledby="dot-menu"
+					className={cn(
+						'flex w-[190px] h-[106px] flex-col px-4 py-2 absolute right-2 top-[3.5rem] rounded-lg justify-center gap-y-4 border border-gray-200 backdrop-blur-xl bg-white/80 transition-all duration-300 z-[999]',
+						{
+							'opacity-100': isDotMenu,
+							'opacity-0 pointer-events-none': !isDotMenu
+						}
+					)}
+				>
+					<button
+						onClick={() => setIsDotMenu(!isDotMenu)}
+						type="button"
+						tabIndex={0}
+						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2"
+					>
+						<Edit2 size={18} />
+						<span>Edit Project</span>
+					</button>
+
+					<button
+						onClick={() => {
+							setIsRemoveProjectModal(true);
+							setIsDotMenu(!isDotMenu);
+						}}
+						type="button"
+						tabIndex={0}
+						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2"
+					>
+						<Trash size={18} />
+						<span>Delete Project</span>
+					</button>
+				</div>
+
 				<div className="flex w-full flex-col py-5 gap-y-3 lg:gap-y-4">
 					<p className="text-sm xl:text-base text-header flex flex-wrap items-center gap-x-1">
 						Project Title:
