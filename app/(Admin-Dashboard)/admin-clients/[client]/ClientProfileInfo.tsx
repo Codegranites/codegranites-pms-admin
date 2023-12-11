@@ -32,7 +32,7 @@ const ClientProfileInfo = ({ client }: { client?: AdminClientCardProps }) => {
 						className={cn('rounded-xl opacity-0', {
 							'opacity-100': !imgLoading
 						})}
-						onLoadingComplete={() => {
+						onLoad={() => {
 							window?.setTimeout(() => {
 								setImgLoading(false);
 								localStorage.setItem('imgLoaded', 'true');

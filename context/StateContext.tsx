@@ -17,6 +17,16 @@ interface StateContextProps {
 	setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 	isRemoveClientModal: boolean;
 	setIsRemoveClientModal: React.Dispatch<React.SetStateAction<boolean>>;
+	isRemoveProjectModal: boolean;
+	setIsRemoveProjectModal: React.Dispatch<React.SetStateAction<boolean>>;
+	isProjectMiletoneModal: boolean;
+	setIsProjectMiletoneModal: React.Dispatch<React.SetStateAction<boolean>>;
+	isEditMiletoneModal: boolean;
+	setIsEditMiletoneModal: React.Dispatch<React.SetStateAction<boolean>>;
+	changeStatusModal: boolean;
+	setChangeStatusModal: React.Dispatch<React.SetStateAction<boolean>>;
+	viewMilestoneModal: boolean;
+	setViewMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
 	user: User;
 }
 
@@ -33,8 +43,15 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, []);
 	// Add Your State(s) Here
 	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+
+	// Track Modals State
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
+	const [isRemoveProjectModal, setIsRemoveProjectModal] = useState(false);
+	const [isProjectMiletoneModal, setIsProjectMiletoneModal] = useState(false);
+	const [isEditMiletoneModal, setIsEditMiletoneModal] = useState(false);
+	const [changeStatusModal, setChangeStatusModal] = useState(false);
+	const [viewMilestoneModal, setViewMilestoneModal] = useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
@@ -52,7 +69,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (showMobileMenu || openPaymentModal || isRemoveClientModal) {
+		if (
+			showMobileMenu ||
+			openPaymentModal ||
+			isRemoveClientModal ||
+			isRemoveProjectModal ||
+			isProjectMiletoneModal ||
+			isEditMiletoneModal ||
+			changeStatusModal ||
+			viewMilestoneModal
+		) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
@@ -62,6 +88,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setShowMobileMenu(false);
 				setOpenPaymentModal(false);
 				setIsRemoveClientModal(false);
+				setIsRemoveProjectModal(false);
+				setIsProjectMiletoneModal(false);
+				setIsEditMiletoneModal(false);
+				setChangeStatusModal(false);
+				setViewMilestoneModal(false);
 			}
 		};
 
@@ -70,7 +101,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			document.removeEventListener('keydown', handleKeyDown);
 		};
-	}, [showMobileMenu, openPaymentModal, isRemoveClientModal]);
+	}, [
+		showMobileMenu,
+		openPaymentModal,
+		isRemoveClientModal,
+		isRemoveProjectModal,
+		isProjectMiletoneModal,
+		isEditMiletoneModal,
+		changeStatusModal,
+		viewMilestoneModal
+	]);
 
 	const value = useMemo(
 		() => ({
@@ -81,9 +121,30 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			openPaymentModal,
 			setOpenPaymentModal,
 			isRemoveClientModal,
-			setIsRemoveClientModal
+			setIsRemoveClientModal,
+			isRemoveProjectModal,
+			setIsRemoveProjectModal,
+			isProjectMiletoneModal,
+			setIsProjectMiletoneModal,
+			isEditMiletoneModal,
+			setIsEditMiletoneModal,
+			changeStatusModal,
+			setChangeStatusModal,
+			viewMilestoneModal,
+			setViewMilestoneModal
 		}),
-		[showMobileMenu, currentPath, user, openPaymentModal, isRemoveClientModal]
+		[
+			showMobileMenu,
+			currentPath,
+			user,
+			openPaymentModal,
+			isRemoveClientModal,
+			isRemoveProjectModal,
+			isProjectMiletoneModal,
+			isEditMiletoneModal,
+			changeStatusModal,
+			viewMilestoneModal
+		]
 	);
 
 	return <StateContext.Provider value={value}>{children}</StateContext.Provider>;

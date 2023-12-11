@@ -35,8 +35,8 @@ const AdminClientContainer = () => {
 						<span className="text-header font-semibold">All Clients</span>
 					</h3>
 				</div>
-				<section className=" min-[1162px]:py-[43px] min-[1162px]:px-[70px] sm:p-7 w-full h-full sm:border border-gray-200">
-					<div className="w-full min-h-[941px] grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-4 lg:gap-x-6 xl:gap-x-8  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8">
+				<section className=" min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200">
+					<div className="w-full min-h-[941px] grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4">
 						{subset.map((project) => (
 							<ClientCardAdmin key={project.id} {...project} />
 						))}

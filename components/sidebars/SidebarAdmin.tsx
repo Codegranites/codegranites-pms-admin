@@ -55,7 +55,7 @@ const SidebarAdmin = () => {
 					>
 						<link.icon size={24} aria-hidden variant={activeLink === link.link ? 'Bold' : 'Outline'} />
 
-						<span className=" max-[1140px]:hidden group-hover:block w-[185px]">{link.label}</span>
+						<span className=" max-[1139px]:hidden group-hover:block w-[185px]">{link.label}</span>
 					</Link>
 				))}
 
@@ -82,7 +82,7 @@ const SidebarAdmin = () => {
 					onClick={() => setActiveLink('admin-settings')}
 				>
 					<Setting2 size={24} aria-hidden variant={activeLink === 'settings' ? 'Bold' : 'Outline'} />
-					<span className=" max-[1140px]:hidden group-hover:block">Settings</span>
+					<span className=" max-[1139px]:hidden group-hover:block">Settings</span>
 				</Link>
 
 				{/* User Profile */}
@@ -110,7 +110,7 @@ const SidebarAdmin = () => {
 						<Image src={user.image} alt="user" width={60} height={60} />
 						<span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
 					</div>
-					<div className="flex flex-col  max-[1140px]:hidden group-hover:w-full group-hover:flex">
+					<div className="flex flex-col  max-[1139px]:hidden group-hover:w-full group-hover:flex">
 						<span className="text-[#090909] text-base">{user.name}</span>
 						<span className="text-[#3a3a3a] text-sm" title={user.email}>
 							{user.email.length > 17 ? user.email.slice(0, 17) + '...' : user.email}
