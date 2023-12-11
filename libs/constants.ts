@@ -147,26 +147,26 @@ export const Settingsnav: SettingsProps[] = [
 	{
 		id: 1,
 		name: 'Profile',
-		path: '/Profile'
+		path: '/profile'
 	},
 	{
 		id: 2,
 		name: 'Account preferences',
-		path: '/Account-preferences'
+		path: '/account-preferences'
 	},
 	{
 		id: 3,
 		name: 'Security',
-		path: '/settings/preferences'
+		path: '/security'
 	},
 	{
 		id: 4,
 		name: 'Workspace',
-		path: '/Notifications'
+		path: '/workspace'
 	},
 	{
 		id: 5,
 		name: 'Notifications',
-		path: '/settings/notifications'
+		path: '/notifications-settings'
 	}
 ];

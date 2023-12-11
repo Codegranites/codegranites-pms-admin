@@ -1,5 +1,6 @@
 import GotoTop from '../../components/GotoTop';
 import AdminNavbar from '../../components/navs/AdminNavbar';
+import SettingNav from '../../components/sidebars/Settings';
 
 import SidebarAdmin from '../../components/sidebars/SidebarAdmin';
 

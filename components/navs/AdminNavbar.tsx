@@ -5,12 +5,14 @@ import cn from '../../utils/util';
 import AdminMobileSidebar from '../sidebars/AdminMobileSidebar';
 import { handleMouseEnter } from '../../utils/text-effect';
 import { useSearchParams } from 'next/navigation';
+import { ChevronRight } from 'lucide-react';
 
 const AdminNavbar = () => {
 	const { currentPath, showMobileMenu, setShowMobileMenu } = useStateCtx();
 	const searchParams = useSearchParams();
 	const projectTitle = searchParams.get('project_title');
 	const clientName = searchParams.get('client_name');
+	const settingTab = searchParams.get('setting_tab');
 	const pathName = currentPath.replace('admin-', '');
 
 	return (
@@ -46,6 +48,17 @@ const AdminNavbar = () => {
 						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
 						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
 							{clientName.replace(/_/g, ' ')}
+						</h3>
+					</>
+				)}
+				{settingTab && (
+					<>
+						<span className="text-3xl sm:text-4xl text-gray-700 sm:hidden">
+							<ChevronRight />
+						</span>
+						<span className="text-3xl sm:text-4xl text-gray-700 max-sm:hidden">•</span>
+						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+							{settingTab.replace(/-/g, ' ')}
 						</h3>
 					</>
 				)}
