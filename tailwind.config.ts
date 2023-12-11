@@ -32,6 +32,7 @@ module.exports = {
         success: "#008031",
         "success-hover": "#8acba3",
         error: "#FF0000",
+        active: "#EAEEF2"
       },
       keyframes: {
         "accordion-down": {
