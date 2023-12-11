@@ -63,7 +63,7 @@ const SidebarAdmin = () => {
 			</ul>
 			<div className="flex flex-col w-full gap-y-6 xl:gap-y-8 pt-4 items-center">
 				<Link
-					href="/admin-settings"
+					href="/admin-settings/profile?setting_tab=profile"
 					role="button"
 					tabIndex={0}
 					aria-label="Settings"
@@ -75,7 +75,7 @@ const SidebarAdmin = () => {
 					}}
 					className={cn(
 						'flex group-hover:w-full min-[1140px]:w-full min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
-						activeLink === 'settings'
+						activeLink === 'admin-settings'
 							? 'bg-primary-light text-white rounded outline-none'
 							: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
 					)}

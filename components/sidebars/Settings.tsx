@@ -5,23 +5,22 @@ import { useEffect, useState } from 'react';
 import cn from '../../utils/util';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 
 const SettingNav = () => {
 	const [activeLink, setActiveLink] = useState('');
-	const pathname = usePathname();
-	const currentPath = pathname?.replace('/', '');
+	const searchParams = useSearchParams().get('setting_tab');
 
 	useEffect(() => {
-		setActiveLink(currentPath);
-	}, [currentPath]);
-
+		setActiveLink(searchParams || 'profile');
+	}, [searchParams]);
 	return (
-		<section className="w-[96px] lg:w-[270px] sm:hover:w-[270px] hover:p-4 transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none justify-between">
-			<ul className="flex flex-col gap-y-4 -pt-8">
+		<section className="w-[270px]  transition-all duration-300 py-4 lg:p-4 flex flex-col gap-y-4 items-center lg:items-start fixed h-screen min-[1139px]:left-[270px] max-[1139px]:-ml-[26px] top-[50px] z-30 sm:top-[70px] md:top-[90px] overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden  select-none justify-between">
+			<ul className="flex flex-col gap-y-4 w-full">
 				{Settingsnav.map((link) => (
 					<Link
-						href={`/${link.path}`}
+						href={`/admin-settings${link.path}?setting_tab=${link.path.replace('/', '')}`}
+						aria-current={activeLink === link.name ? 'page' : undefined}
 						key={link.id}
 						onKeyUp={(e) => {
 							if (e.key === 'Enter' || e.key === ' ') {
@@ -32,18 +31,16 @@ const SettingNav = () => {
 						tabIndex={0}
 						aria-label={link.name}
 						className={cn(
-							'flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer ',
-							activeLink === link.name
-								? 'bg-primary-light text-white rounded outline-none'
+							'w-full flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer ',
+							activeLink === link.path.replace('/', '')
+								? 'bg-[#eaeef2] text-header rounded outline-none'
 								: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
 						)}
-						onClick={() => setActiveLink(link.name)}
+						onClick={() => setActiveLink(link.path.replace('/', ''))}
 					>
-						<span className="max-lg:hidden group-hover:block w-[185px]">{link.name}</span>
+						{link.name}
 					</Link>
 				))}
-
-				<span className="bg-[#8e8e8e] w-full max-w-[245px] h-[1px] " />
 			</ul>
 		</section>
 	);
