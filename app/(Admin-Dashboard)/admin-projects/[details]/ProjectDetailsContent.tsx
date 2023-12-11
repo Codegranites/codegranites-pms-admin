@@ -10,12 +10,15 @@ import Link from 'next/link';
 import { DocumentDownload, Play, Share } from 'iconsax-react';
 import ProjectComments from './ProjectComments';
 import ProjectMilestones from './ProjectMilestones';
+import NotFound from '../../../../components/admin/NotFound';
 
 const ProjectDetailsContent = ({ id }: { id?: string }) => {
-	const project = PROJECTS.find((project) => project.id === Number(id));
-
 	const router = useRouter();
 	const [docsNum, setDocsNum] = useState(5);
+	if (!id) {
+		return <NotFound text="Project Not Found" />;
+	}
+	const project = PROJECTS.find((project) => project.id === Number(id));
 
 	// Mock docs
 	const docs = [1, 2, 3, 4, 5, 6, 7, 8, 9];
