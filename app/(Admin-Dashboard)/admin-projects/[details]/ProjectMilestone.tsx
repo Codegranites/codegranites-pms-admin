@@ -6,9 +6,17 @@ import ChangeStatusModal from './ChangeStatusModal';
 import { useStateCtx } from '../../../../context/StateContext';
 import { useRouter } from 'next/navigation';
 import EditMilestoneModal from './EditMilestoneModal';
+import ViewMilestoneDetailsModal from './ViewMilestoneDetailsModal';
 
 const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
-	const { changeStatusModal, setChangeStatusModal, isEditMiletoneModal, setIsEditMiletoneModal } = useStateCtx();
+	const {
+		changeStatusModal,
+		setChangeStatusModal,
+		isEditMiletoneModal,
+		setIsEditMiletoneModal,
+		viewMilestoneModal,
+		setViewMilestoneModal
+	} = useStateCtx();
 	const [isMenu, setIsMenu] = useState(false);
 	const lastItemRef = useRef<HTMLButtonElement>(null);
 	const router = useRouter();
@@ -33,28 +41,51 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 
 	return (
 		<>
-			<div className="w-full flex flex-col border-b border-[#e1e1e1] relative">
-				{changeStatusModal && <ChangeStatusModal />}
-				{isEditMiletoneModal && <EditMilestoneModal />}
-
-				<div className="flex w-full items-center justify-between">
-					<div className="flex items-center gap-x-1">
+			<ChangeStatusModal />
+			<EditMilestoneModal />
+			<ViewMilestoneDetailsModal />
+			<div className="w-full flex justify-between items-start border-b border-[#e1e1e1] relative">
+				<div
+					className="flex flex-col w-full items-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light"
+					tabIndex={0}
+					role="button"
+					aria-haspopup
+					aria-expanded={viewMilestoneModal}
+					onClick={() => {
+						window?.localStorage.setItem('milestoneId', id!);
+						setViewMilestoneModal(true);
+					}}
+				>
+					<div className="flex  items-center gap-x-1">
 						<span className="w-2 h-2 rounded-full bg-primary" />
 						<p className="text-sm 2xl:text-base font-medium">{title}</p>
 					</div>
-					<button
-						type="button"
-						tabIndex={0}
-						id="project-milestone"
-						aria-label="More"
-						aria-haspopup
-						aria-expanded={isMenu}
-						onClick={() => setIsMenu((prev) => !prev)}
-						className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6  flex items-center justify-center"
-					>
-						<More />
-					</button>
+					<p>
+						<span className="text-xs 2xl:text-sm mr-1">Status</span>(
+						<span
+							className={cn('font-medium capitalize text-sm', {
+								'text-[#eea300] ': status === 'in-progress',
+								'text-[#008d36] ': status === 'completed',
+								'text-primary-light ': status === 'pending'
+							})}
+						>
+							{status.replace('-', ' ')}
+						</span>
+						)
+					</p>
 				</div>
+				<button
+					type="button"
+					tabIndex={0}
+					id="project-milestone"
+					aria-label="More"
+					aria-haspopup
+					onClick={() => setIsMenu((prev) => !prev)}
+					aria-expanded={isMenu}
+					className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6  flex items-center justify-center"
+				>
+					<More />
+				</button>
 
 				{/* DOT Menu */}
 				<div
@@ -116,20 +147,6 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 						<span>Change Status</span>
 					</button>
 				</div>
-
-				<p>
-					<span className="text-xs 2xl:text-sm mr-1">Status</span>(
-					<span
-						className={cn('font-medium capitalize text-sm', {
-							'text-[#eea300] ': status === 'in-progress',
-							'text-[#008d36] ': status === 'completed',
-							'text-primary-light ': status === 'pending'
-						})}
-					>
-						{status.replace('-', ' ')}
-					</span>
-					)
-				</p>
 			</div>
 		</>
 	);
