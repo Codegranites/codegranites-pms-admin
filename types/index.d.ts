@@ -28,3 +28,9 @@ export interface DeleteModalProps {
 	isOpen: boolean;
 	onClose: () => void;
 }
+
+export type SettingsProps = {
+	id?: number;
+	name: string;
+	path: string;
+};
