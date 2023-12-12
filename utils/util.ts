@@ -9,7 +9,7 @@ export default function cn(...classes: ClassValue[]) {
 export function formatPrice(
 	price: number | string,
 	options: {
-		currency?: 'USD' | 'EUR' | 'GBP' | 'BDT';
+		currency?: 'USD' | 'EUR' | 'GBP' | 'NGN';
 		notation?: Intl.NumberFormatOptions['notation'];
 	} = {}
 ) {
@@ -24,3 +24,13 @@ export function formatPrice(
 	}).format(numericPrice);
 	return newPrice;
 }
+
+export const encryptString = (str: string): string => {
+	const buffer = Buffer.from(str);
+	return buffer.toString('base64');
+};
+
+export const decryptString = (str: string): string => {
+	const buffer = Buffer.from(str, 'base64');
+	return buffer.toString();
+};

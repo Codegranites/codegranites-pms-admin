@@ -90,12 +90,12 @@ module.exports = {
         },
         rotate3d: {
           "0%": {
-            transform: "rotateY(0)",
+            transform: "rotateX(0)",
           },
-          "50%": { opacity: "0.5" },
+          "50%": { opacity: "0.5",scale:'2' },
 
           "100%": {
-            transform: "rotateY(360deg)",
+            transform: "rotateX(360deg)",
           },
         },
       },
@@ -106,7 +106,7 @@ module.exports = {
         slideUp: "slideUp 1s 0.2s ease forwards",
         loadspin: "loadspin 1.2s linear infinite",
         pulsing: "pulsing 1.5s ease infinite",
-        rotate3d: "rotate3d 2s 1s linear infinite",
+        rotate3d: "rotate3d 10s 1s ease infinite",
         slideDown: "slideDown 1s 0.2s ease forwards",
         slideNavUp: "slideDown 1s 0.2s ease forwards",
       },

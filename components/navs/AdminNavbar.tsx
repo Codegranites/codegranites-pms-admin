@@ -1,7 +1,7 @@
 'use client';
 import { Add, HambergerMenu } from 'iconsax-react';
 import { useStateCtx } from '../../context/StateContext';
-import cn from '../../utils/util';
+import cn, { decryptString } from '../../utils/util';
 import AdminMobileSidebar from '../sidebars/AdminMobileSidebar';
 import { handleMouseEnter } from '../../utils/text-effect';
 import { useSearchParams } from 'next/navigation';
@@ -12,6 +12,8 @@ const AdminNavbar = () => {
 	const searchParams = useSearchParams();
 	const projectTitle = searchParams.get('project_title');
 	const clientName = searchParams.get('client_name');
+	const decrptedTitle = decryptString(projectTitle ?? '');
+	const decrptedName = decryptString(clientName ?? '');
 	const settingTab = searchParams.get('setting_tab');
 	const pathName = currentPath.replace('admin-', '');
 
@@ -22,32 +24,32 @@ const AdminNavbar = () => {
 					onMouseEnter={handleMouseEnter}
 					className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
 					data-value={
-						projectTitle
+						decrptedTitle
 							? pathName.replace('projects', 'project')
-							: clientName
+							: decrptedName
 							  ? pathName.replace('clients', 'client profile')
 							  : pathName
 					}
 				>
-					{projectTitle
+					{decrptedTitle
 						? pathName.replace('projects', 'project')
-						: clientName
+						: decrptedName
 						  ? pathName.replace('clients', 'client profile')
 						  : pathName}
 				</h2>
-				{projectTitle && (
+				{decrptedTitle && (
 					<>
 						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
 						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-							{projectTitle.replace(/_/g, ' ')}
+							{decrptedTitle}
 						</h3>
 					</>
 				)}
-				{clientName && (
+				{decrptedName && (
 					<>
 						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
 						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-							{clientName.replace(/_/g, ' ')}
+							{decrptedName}
 						</h3>
 					</>
 				)}
