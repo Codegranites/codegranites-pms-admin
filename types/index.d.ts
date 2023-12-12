@@ -34,3 +34,33 @@ export type SettingsProps = {
 	name: string;
 	path: string;
 };
+
+export type LanguageProps = {
+	id?: number;
+	label: string;
+	value: string;
+};
+
+// Password interface
+export interface PasswordPopoverProps {
+	password: string;
+	children: React.ReactNode;
+}
+
+export interface PasswordRequirementProps {
+	meets: boolean;
+	label: string;
+}
+
+export interface ProgressBarProps {
+	color: string;
+	value: number;
+}
+
+export interface Notification {
+	id: number;
+	type: string;
+	message: string;
+	date: string;
+	time: string;
+}
