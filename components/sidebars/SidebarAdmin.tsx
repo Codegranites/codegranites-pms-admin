@@ -28,9 +28,9 @@ const SidebarAdmin = () => {
 
 	return (
 		<section className="bg-white z-50 w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
-			<div className=" max-[1140px]:w-full group-hover:w-full h-[53px]">
+			<Link href="/" className=" max-[1140px]:w-full group-hover:w-full h-[53px]">
 				<Image src="/logo.png" alt="Logo" width={155} height={53} />
-			</div>
+			</Link>
 			<ul className="flex flex-col gap-y-4 pt-8">
 				{SIDEBAR_ADMIN_LINKS.map((link) => (
 					<Link
@@ -110,7 +110,7 @@ const SidebarAdmin = () => {
 						<Image src={user.image} alt="user" width={60} height={60} />
 						<span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
 					</div>
-					<div className="flex flex-col  max-[1139px]:hidden group-hover:w-full group-hover:flex">
+					<div className="flex flex-col  max-[1139px]:hidden w-full group-hover:w-full group-hover:flex">
 						<span className="text-[#090909] text-base">{user.name}</span>
 						<span className="text-[#3a3a3a] text-sm" title={user.email}>
 							{user.email.length > 17 ? user.email.slice(0, 17) + '...' : user.email}
