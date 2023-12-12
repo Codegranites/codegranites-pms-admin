@@ -64,7 +64,24 @@
 }
 
 // ======MISCELLANEOUS=========
+@keyframes rotate3d {
+	0% {
+		transform: rotateX(0);
+	}
+	50% {
+		opacity: 0.7;
+		scale: 2;
+	}
+	100% {
+		transform: rotateX(360deg);
+	}
+}
 
+.rotate-3d {
+	animation: rotate3d 3s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+	transform-style: preserve-3d;
+	transform-origin: center;
+}
 .transform-3d {
 	transform-style: preserve-3d;
 	transform: translate3d(0, 0, -140px) rotateX(121deg);
