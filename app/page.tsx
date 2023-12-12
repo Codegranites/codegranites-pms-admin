@@ -14,7 +14,7 @@ export default function Home() {
 					Admin Dashboard
 				</Link>
 				<h1
-					className="-translate-y-[120px] absolute sm:relative transition-all duration-1000 delay-500 sm:-translate-y-0 sm:inline sm:text-3xl md:text-5xl xl:text-7xl"
+					className="-translate-y-[120px] absolute sm:relative transition-all duration-1000 sm:delay-500 sm:-translate-y-0 sm:inline sm:text-3xl md:text-5xl xl:text-7xl"
 					data-value="Hello World!"
 					onMouseEnter={handleMouseEnter}
 				>
