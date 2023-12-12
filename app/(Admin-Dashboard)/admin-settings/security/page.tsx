@@ -3,7 +3,7 @@ import ResetPassword from '../../../../components/settings/resetPassword';
 
 const SecuritySettings = () => {
 	return (
-		<div className="min-h-screen justify-center items-center">
+		<div className=" justify-center items-center">
 			<ResetPassword />
 		</div>
 	);
