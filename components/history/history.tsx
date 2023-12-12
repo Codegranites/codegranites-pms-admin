@@ -11,7 +11,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -20,7 +20,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -29,7 +29,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -38,7 +38,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -47,7 +47,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -56,7 +56,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	},
 	{
@@ -65,7 +65,7 @@ const projects = [
 		description: 'Project Description',
 		project_owner: 'John Doe',
 		start_date: '11th Nov. 2023',
-		due_date: '11th Dec. 2023',
+		end_date: '11th Dec. 2023',
 		status: 'Completed'
 	}
 ];
@@ -106,7 +106,7 @@ function HistoryComponent() {
 								</td>
 								<td className="p-2">{item.project_owner}</td>
 								<td className="p-2">{item.start_date}</td>
-								<td className="p-2">{item.due_date}</td>
+								<td className="p-2">{item.end_date}</td>
 								<td className="p-2 pr-4">
 									<div className="rounded-full py-2 px-3 mx-auto w-fit bg-[#80BD92] text-white">{item.status}</div>
 								</td>

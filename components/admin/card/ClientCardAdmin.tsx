@@ -4,10 +4,12 @@ import Link from 'next/link';
 import React, { useRef } from 'react';
 import { AdminClientCardProps } from '../../../libs/clients';
 import useInView from '../../../hooks/useInView';
+import { encryptString } from '../../../utils/util';
 
 const ClientCardAdmin = ({ image, name, email, job_title, number_projects, id }: AdminClientCardProps) => {
 	const clientCardRef = useRef<HTMLDivElement>(null);
 	const isInView = useInView(clientCardRef);
+	const encryptedName = encryptString(name!);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		const { currentTarget: target } = e;
@@ -52,7 +54,7 @@ const ClientCardAdmin = ({ image, name, email, job_title, number_projects, id }:
 				</div>
 				<div className="flex w-full justify-end items-center gap-x-3 max-[450px]:mt-2 max-[350px]:justify-center">
 					<Link
-						href={`/admin-clients/client?client_name=${name.replace(' ', '_')}&client_id=${id}`}
+						href={`/admin-clients/client?client_name=${encryptedName}&client_id=${id}`}
 						type="button"
 						tabIndex={0}
 						className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
