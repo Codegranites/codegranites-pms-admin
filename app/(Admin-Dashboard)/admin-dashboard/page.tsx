@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 	// 	setIsModalOpen(false);
 	// };
 	return (
-		<div className='min-[1140px]:px-9 px-3 pt-8'>
+		<div className="min-[1140px]:px-9 px-3 pt-8">
 			<DashNav />
 			{/* <Button onClick={() => setIsModalOpen(true)} size={'md'}>
 				2fa

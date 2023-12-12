@@ -3,7 +3,7 @@ import SuperAdminTransaction from '../../../components/super-admin-transaction/s
 
 const TransactionsAdmin = () => {
 	return (
-		<div className='min-[1140px]:px-9 px-3 pt-8'>
+		<div className="min-[1140px]:px-9 px-3 pt-8">
 			<SuperAdminTransaction />
 		</div>
 	);
