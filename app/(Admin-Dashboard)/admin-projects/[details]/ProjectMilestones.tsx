@@ -91,13 +91,13 @@ const ProjectMilestones = () => {
 			<CreateMilestoneModal />
 
 			{PROJECT_MILESTONES.length > 0 ? (
-				<Suspense fallback={<LoadingSpinner />}>
-					<div className="flex py-4 w-full flex-col gap-y-4">
-						{PROJECT_MILESTONES.map((milestone) => (
+				<div className="flex  w-full flex-col gap-y-4 pt-2">
+					{PROJECT_MILESTONES.map((milestone) => (
+						<Suspense key={milestone.id} fallback={<LoadingSpinner />}>
 							<ProjectMilestone key={milestone.id} {...milestone} />
-						))}
-					</div>
-				</Suspense>
+						</Suspense>
+					))}
+				</div>
 			) : (
 				<div className="flex w-full max-w-[298px] flex-col gap-y-6 items-center mx-auto py-8 text-sm text-header">
 					<p>

@@ -5,9 +5,15 @@ import { ProjectCardProps } from '../../../libs/projects';
 import useInView from '../../../hooks/useInView';
 import cn from '../../../utils/util';
 
-const ProjectCardAdmin = ({ status, title, project_owner, due_date, id }: ProjectCardProps) => {
+const ProjectCardAdmin = ({ status, title, project_owner, end_date, id }: ProjectCardProps) => {
 	const projectCardRef = React.useRef<HTMLDivElement>(null);
 	const isInView = useInView(projectCardRef);
+
+	const encryptString = (str: string): string => {
+		const buffer = Buffer.from(str);
+		return buffer.toString('base64');
+	};
+	const encryptTitle = encryptString(title!);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
 		const { currentTarget: target } = e;
@@ -66,10 +72,10 @@ const ProjectCardAdmin = ({ status, title, project_owner, due_date, id }: Projec
 					</Link>
 				</p>
 				<p className="text-sm text-header">
-					Project end date: <strong>{due_date}</strong>
+					Project end date: <strong>{end_date}</strong>
 				</p>
 				<Link
-					href={`/admin-projects/details?id=${id}&project_title=${title.toLowerCase().trim().replace(/ /g, '_')}`}
+					href={`/admin-projects/details?id=${id}&project_title=${encryptTitle}`}
 					type="button"
 					tabIndex={0}
 					className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"

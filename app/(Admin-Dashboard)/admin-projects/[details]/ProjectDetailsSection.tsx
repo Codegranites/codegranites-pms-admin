@@ -148,7 +148,7 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 					</p>
 					<p className="text-sm xl:text-base text-header flex items-center gap-x-1">
 						Project End Date:
-						<span className="font-medium">{project?.due_date}</span>
+						<span className="font-medium">{project?.end_date}</span>
 					</p>
 				</div>
 				<div className="flex flex-col sm:rounded-xl mb-7 bg-[#f6f6f6] gap-y-3 lg:gap-y-4 p-4">
