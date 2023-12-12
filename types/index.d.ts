@@ -34,3 +34,9 @@ export type SettingsProps = {
 	name: string;
 	path: string;
 };
+
+export type LanguageProps = {
+	id?: number;
+	label: string;
+	value: string;
+};
