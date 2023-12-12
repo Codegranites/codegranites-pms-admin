@@ -1,10 +1,10 @@
 import React from 'react';
-import NotificationPage from '../../../../components/settings/notification';
+import NotificationPreferencesPage from '../../../../components/settings/notificationPreference';
 
 const NotificationSettings = () => {
 	return (
 		<div>
-			<NotificationPage />
+			<NotificationPreferencesPage />
 		</div>
 	);
 };
