@@ -4,6 +4,9 @@ import { Add, ArrowDown2, ArrowRight2, AttachSquare, MessageEdit, Trash } from '
 
 import React, { useState } from 'react';
 import { ProblemsDataProps } from '../../../app/(Admin-Dashboard)/problem-statements/page';
+import EditProblemStatement from './EditProblemStatement';
+import AttachNewFile from './AttachNewFile';
+import DeleteProblem from './DeleteProblem';
 
 interface ProblemsProps {
 	openNewIdeaModal: () => void;
@@ -12,6 +15,10 @@ interface ProblemsProps {
 
 const Problems: React.FC<ProblemsProps> = ({ openNewIdeaModal, problemData }) => {
 	const [openProblem, setOpenProblem] = useState<number | null>(null);
+	const [openEditProblem, setOpenEditProblem] = useState<boolean>(false);
+	const [openDeleteProblem, setOpenDeleteProblem] = useState<boolean>(false);
+	const [openAttachFile, setOpenAttachFile] = useState<boolean>(false);
+
 	function handleProblemOpen(id: number) {
 		setOpenProblem((prevIndex) => (prevIndex === id ? null : id));
 	}
@@ -31,14 +38,14 @@ const Problems: React.FC<ProblemsProps> = ({ openNewIdeaModal, problemData }) =>
 					problemData?.map((problem) => (
 						<li key={problem.id} className="transition-all duration-500">
 							<div
-								className={`flex items-center justify-between pl-6 pr-12 py-4 border-b text-sm leading-6 font-medium 
-                ${openProblem === problem.id && 'bg-[#EAEEF2]'}`}
+								className={`flex items-center justify-between pl-6 pr-12 py-4 border-b text-sm leading-6 font-medium hover:bg-[#EAEEF2]
+                				${openProblem === problem.id && 'bg-[#EAEEF2]'}`}
 							>
 								<div className="flex items-center gap-x-2">
 									<ArrowRight2
 										size={24}
 										onClick={() => handleProblemOpen(problem.id)}
-										className={`${openProblem === problem.id ? 'rotate-90' : ''}`}
+										className={`${openProblem === problem.id ? 'rotate-90' : ''} cursor-pointer`}
 									/>
 									<p>{problem.title}</p>
 									<p className="font-normal">
@@ -49,16 +56,24 @@ const Problems: React.FC<ProblemsProps> = ({ openNewIdeaModal, problemData }) =>
 								</div>
 								<div>{problem.createdAt}</div>
 
-								<div className="flex items-center gap-x-3">
-									<button className="flex items-center gap-x-2 text-primary-light">
-										<MessageEdit />
-										<span>Edit</span>
-									</button>
-									<button className="flex items-center gap-x-2 text-[#FF3333]">
-										<Trash color={'#FF3333'} variant="Bold" />
-										<span>Delete</span>
-									</button>
-								</div>
+								{openProblem !== problem.id && (
+									<div className="flex items-center gap-x-3">
+										<button
+											onClick={() => setOpenEditProblem(true)}
+											className="flex items-center gap-x-2 text-primary-light"
+										>
+											<MessageEdit />
+											<span>Edit</span>
+										</button>
+										<button
+											onClick={() => setOpenDeleteProblem(true)}
+											className="flex items-center gap-x-2 text-[#FF3333]"
+										>
+											<Trash color={'#FF3333'} variant="Bold" />
+											<span>Delete</span>
+										</button>
+									</div>
+								)}
 							</div>
 
 							{openProblem === problem.id && (
@@ -76,18 +91,27 @@ const Problems: React.FC<ProblemsProps> = ({ openNewIdeaModal, problemData }) =>
 										</div>
 
 										<div className="flex items-center gap-x-3">
-											<button className='flex items-center gap-x-2 border border-["#E1E1E1] px-[9px] rounded-lg mr-10 text-xs'>
+											<button
+												onClick={() => setOpenAttachFile(true)}
+												className='flex items-center gap-x-2 border border-["#E1E1E1] px-[9px] rounded-lg mr-10 text-xs'
+											>
 												<AttachSquare color={'#292D32'} />
 												<p className="text-[#33A45E] text-left">
 													Attach <br />
 													new files
 												</p>
 											</button>
-											<button className="flex items-center gap-x-2 text-primary-light">
+											<button
+												onClick={() => setOpenEditProblem(true)}
+												className="flex items-center gap-x-2 text-primary-light"
+											>
 												<MessageEdit />
 												<span>Edit</span>
 											</button>
-											<button className="flex items-center gap-x-2 text-[#FF3333]">
+											<button
+												onClick={() => setOpenDeleteProblem(true)}
+												className="flex items-center gap-x-2 text-[#FF3333]"
+											>
 												<Trash color={'#FF3333'} variant="Bold" />
 												<span>Delete</span>
 											</button>
@@ -95,6 +119,23 @@ const Problems: React.FC<ProblemsProps> = ({ openNewIdeaModal, problemData }) =>
 									</div>
 									<p className="py-4 text-justify">{problem.description}</p>
 								</div>
+							)}
+
+							{openEditProblem && (
+								<EditProblemStatement
+									title={problem.title}
+									description={problem.description}
+									isOpen={openEditProblem}
+									onClose={() => setOpenEditProblem(false)}
+								/>
+							)}
+
+							{openAttachFile && (
+								<AttachNewFile title={problem.title} isOpen={openAttachFile} onClose={() => setOpenAttachFile(false)} />
+							)}
+
+							{openDeleteProblem && (
+								<DeleteProblem isOpen={openDeleteProblem} onClose={() => setOpenDeleteProblem(false)} />
 							)}
 						</li>
 					))}

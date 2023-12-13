@@ -5,8 +5,8 @@ import React from 'react';
 
 export default function NewIdeaModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
 	return (
-		<Modal closeOnOverlayClick={true} isOpen={isOpen} closeModal={onClose} size="lg" title="problem statement">
-			<form action="" className="text-base leading-[22px] flex flex-col gap-y-7">
+		<Modal closeOnOverlayClick={true} isOpen={isOpen} closeModal={onClose} size="sm" title="Problem Statement">
+			<form action="" className="text-base leading-[22px] flex flex-col gap-y-7 pt-8">
 				<div className="flex flex-col gap-y-2">
 					<label htmlFor="title" className="font-semibold">
 						Title
@@ -24,7 +24,7 @@ export default function NewIdeaModal({ isOpen, onClose }: { isOpen: boolean; onC
 						Description
 					</label>
 					<textarea
-						rows={10}
+						rows={7}
 						// columns={20}
 						className="text-sm p-4 resize-none border border-[#E1E1E1] rounded-lg outline-none ring-0"
 						placeholder="Please describe what you want in detail"
