@@ -3,7 +3,7 @@ import { client1, client2, client3, client4, client5, client6 } from '../public'
 
 export type AdminClientCardProps = {
 	id?: number;
-	image: string | StaticImageData | undefined | Blob;
+	image: string | StaticImageData;
 	name: string;
 	job_title: string;
 	email: string;
