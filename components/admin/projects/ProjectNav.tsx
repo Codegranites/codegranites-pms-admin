@@ -6,23 +6,22 @@ import {
 	SelectContent,
 	SelectGroup,
 	SelectItem,
-	SelectLabel,
 	SelectTrigger,
 	SelectValue
 } from '../../../components/ui/select';
 
-import { Add, ArrowDown2, ArrowUp2, Filter, SearchNormal } from 'iconsax-react';
-import { FilterIcon, ListFilter } from 'lucide-react';
-import { useState } from 'react';
-import Button from '@ui/Button';
-import CreateProject from '../../super-admin-project/modal/create-project';
+import { SearchNormal } from 'iconsax-react';
+import { ListFilter, X } from 'lucide-react';
+import CreateProjectModal from './CreateProjectModal';
+import { useStateCtx } from '../../../context/StateContext';
+import cn from '../../../utils/util';
 
 type SelectProps = {
 	id?: number;
 	label: string;
 	value: string;
 };
-const selectFilters: SelectProps[] = [
+const selectProjectFilters: SelectProps[] = [
 	{
 		id: 0,
 		label: 'All Projects',
@@ -36,7 +35,7 @@ const selectFilters: SelectProps[] = [
 	{
 		id: 2,
 		label: 'In Progress',
-		value: 'inProgress'
+		value: 'in-progress'
 	},
 	{
 		id: 3,
@@ -46,20 +45,34 @@ const selectFilters: SelectProps[] = [
 ];
 
 const ProjectNav = () => {
-	const [selectedValue, setSelectedValue] = useState(selectFilters[0].value);
-	const [searchTerm, setSearchTerm] = useState('');
+	const { setProjectSearchTerm, projectSearchTerm, setSelectedProjectFilter, selectedProjectFilter } = useStateCtx();
 
 	return (
 		<div className="w-full md:h-[56px] flex justify-between min-[450px]:gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
-			<div className="flex w-full max-w-1/2">
+			<div className="flex w-full max-w-1/2 relative items-center">
 				<Input
-					onChange={(e) => setSearchTerm(e.target.value)}
-					value={searchTerm}
+					onChange={(e) => setProjectSearchTerm(e.target.value)}
+					value={projectSearchTerm}
 					leftIcon={<SearchNormal size={18} color="#535353" />}
 					type="text"
-					placeHolder="Search for projects..."
+					placeHolder="Search via project titles..."
 					className="w-full"
 				/>
+
+				<button
+					type="button"
+					tabIndex={0}
+					aria-label="Clear search"
+					onClick={() => setProjectSearchTerm('')}
+					className={cn(
+						'absolute right-2 transition-opacity duration-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full',
+						{
+							'opacity-0 duration-300': !projectSearchTerm
+						}
+					)}
+				>
+					<X size={18} color="#535353" />
+				</button>
 			</div>
 			<div className="flex w-full sm:max-w-1/2 justify-between gap-x-2 ">
 				<div className="flex items-center gap-x-1 text-[#535353] w-full ">
@@ -67,13 +80,13 @@ const ProjectNav = () => {
 					<ListFilter color="#282828 sm:hidden" size={18} />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
 
-					<Select onValueChange={(value) => setSelectedValue(value)} defaultValue="all">
+					<Select onValueChange={(value) => setSelectedProjectFilter(value)} defaultValue="all">
 						<SelectTrigger className="w-[150px] select-none h-full py-3">
-							<SelectValue placeholder={selectFilters[0].label} />
+							<SelectValue placeholder={'All Projects'} />
 						</SelectTrigger>
 						<SelectContent className="backdrop-blur-xl bg-white/80">
 							<SelectGroup>
-								{selectFilters.map((filter) => (
+								{selectProjectFilters.map((filter) => (
 									<SelectItem key={filter.id} value={filter.value} className="hover:bg-[#becbd7]">
 										{filter.label}
 									</SelectItem>
@@ -83,7 +96,7 @@ const ProjectNav = () => {
 					</Select>
 				</div>
 
-				<CreateProject />
+				<CreateProjectModal />
 			</div>
 		</div>
 	);

@@ -1,151 +1,354 @@
 'use client';
 
-import Modal from '@ui/Modal';
-import Image from 'next/image';
-import React, { useState } from 'react';
-import { Add, ArrowDown2, ArrowRight, ArrowRight2, ArrowRight3, ArrowUp2 } from 'iconsax-react';
-import { Input } from '@ui/Input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/SelectInput';
-import Button from '@ui/Button';
+import { X } from 'lucide-react';
+
+import { useEffect, useState } from 'react';
+
+import { Add } from 'iconsax-react';
+import { ProjectCardProps } from '../../../libs/projects';
 import { useStateCtx } from '../../../context/StateContext';
 
-function NewClient() {
-	const [open, setOpen] = useState<boolean>(false);
-	const [isDdOpen, setIsDdOpen] = useState<boolean>(false);
-	const [selectedValue, setSelectedValue] = useState<string>('');
-	const { user } = useStateCtx();
+import cn from '../../../utils/util';
+import { AdminClientCardProps } from '../../../libs/clients';
+import Image from 'next/image';
 
-	const closeModal = () => {
-		setOpen(false);
+type FormProps = {
+	id?: number;
+	image: File | Blob | undefined;
+	name: string;
+	job_title: string;
+	email: string;
+	phone: string;
+	company_name: string;
+	number_projects?: number;
+	gender: string;
+	country: string;
+	city: string;
+	address: string;
+	bio?: string;
+	website?: string;
+	projects?: string[];
+};
+
+const NewClientModal = () => {
+	const { createClientModal, setCreateClientModal } = useStateCtx();
+
+	const [formData, setFormData] = useState<FormProps>({
+		name: '',
+		job_title: '',
+		email: '',
+		phone: '',
+		company_name: '',
+		website: '',
+		bio: '',
+		image: undefined,
+		gender: '',
+		address: '',
+		city: '',
+		country: '',
+		projects: []
+	});
+
+	const isDisabled =
+		!formData.name ||
+		!formData.job_title ||
+		!formData.email ||
+		!formData.phone ||
+		!formData.company_name ||
+		!formData.website ||
+		!formData.bio ||
+		!formData.image ||
+		!formData.gender ||
+		!formData.address ||
+		!formData.city ||
+		!formData.country;
+
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		setCreateClientModal(false);
 	};
+
+	useEffect(() => {
+		const readLocal = localStorage.getItem('create-client');
+		if (readLocal) {
+			setFormData(JSON.parse(readLocal));
+		}
+	}, []);
+
+	useEffect(() => {
+		if (!(formData.name.length > 3) || !(formData.bio!.length > 3)) return;
+
+		localStorage.setItem('create-client', JSON.stringify(formData));
+	}, [formData]);
+	console.log(formData);
+
 	return (
 		<>
 			<button
-				onClick={() => setOpen(true)}
+				onClick={() => setCreateClientModal(true)}
+				tabIndex={0}
+				aria-label="Create Client"
+				aria-haspopup
+				aria-expanded={createClientModal}
+				id="create-client"
 				type="button"
-				className="flex w-full max-w-[200px]  items-center sm:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center"
+				className="flex w-full sm:w-[214px] lg:w-full lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 			>
 				<Add size={24} />
 				Add Client
 			</button>
-			<Modal isOpen={open} closeModal={closeModal} title="" closeBtnClass="bg-transparent" size="lg">
-				<div className="max-h-[550px] px-4 overflow-scroll">
-					<div className="relative flex items-center mb-6 text-header">
-						<div className=" flex items-center gap-2 text-base">
-							<Image src={user?.image} alt="user" width={32} height={32} />
-							<span className="text-header">{user.name}</span>
-							<ArrowRight2 />
-							<span className="text-lg font-medium">New Project</span>
-						</div>
-					</div>
-					<form action="" className="text-[#1C1C1C] space-y-4">
-						<div>
-							<label htmlFor="project-name" className="text-base font-semibold">
-								Project Title
-							</label>
-							<Input
-								onChange={(e) => {
-									console.log(e.target.value);
-								}}
-								id="project-name"
-								type="text"
-								intent={'primary'}
-								disabled={false}
-								placeHolder="Enter Project Name"
-								className="w-full border"
-							/>
-						</div>
-						<div>
-							<label htmlFor="project-description" className="text-base font-semibold">
-								Project Title
-							</label>
-							<textarea
-								id="project-description"
-								placeholder="Please describe your project (optional)"
-								className="rounded-lg w-full block h-40 outline-none p-4 border border-[#E1E1E1] resize-none"
-							/>
-						</div>
-						<div>
-							<label htmlFor="project-owner" className="text-base font-semibold">
-								Project Owner
-							</label>
-							<Input
-								onChange={(e) => {
-									console.log(e.target.value);
-								}}
-								id="project-owner"
-								type="text"
-								intent={'primary'}
-								disabled={false}
-								placeHolder="Enter Project Owner's Name"
-								className="w-full border"
-							/>
-						</div>
-						<div>
-							<label htmlFor="project-due-date" className="text-base font-semibold">
-								Due Date
-							</label>
-							<Input
-								onChange={(e) => {
-									console.log(e.target.value);
-								}}
-								id="project-due-date"
-								type="date"
-								intent={'primary'}
-								disabled={false}
-								placeHolder="DD/YY/YYYY"
-								className="w-full border"
-							/>
-						</div>
-						<div>
-							<label className="text-base font-semibold">Project Status</label>
-							<Select
-								onOpenChange={() => setIsDdOpen(!isDdOpen)}
-								onValueChange={(value: any) => setSelectedValue(value)}
-							>
-								<SelectTrigger
-									rightIcon={
-										isDdOpen ? (
-											<ArrowUp2 />
-										) : selectedValue.length === 0 ? (
-											<ArrowDown2 />
-										) : (
-											<span className="text-primary">{selectedValue}</span>
-										)
-									}
-									className="w-full h-12 outline-none focus:outline-none"
+			<div
+				aria-hidden
+				className={cn(
+					' fixed min-h-screen w-full bg-black/40 backdrop-blur-sm top-0 left-0  transition-all duration-300 z-[99]',
+					createClientModal ? 'opacity-100' : 'opacity-0 pointer-events-none'
+				)}
+				onClick={() => setCreateClientModal(false)}
+			/>
+
+			<div
+				role="dialog"
+				aria-labelledby="create-client"
+				aria-modal
+				className={cn(
+					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-auto max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg top-10 fixed sm:top-1/2 left-1/2  sm:-translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					createClientModal
+						? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
+						: '-translate-x-full duration-300 pointer-events-none'
+				)}
+			>
+				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
+					<h3 className="text-lg md:text-2xl font-medium text-header">Add Client</h3>
+					<button
+						type="button"
+						tabIndex={0}
+						aria-label="Close"
+						onClick={() => setCreateClientModal(false)}
+						className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+					>
+						<X size={24} />
+					</button>
+				</div>
+				<section className="w-full h-full overflow-y-auto sidebar-scroll pt-4">
+					<form
+						onSubmit={handleSubmit}
+						className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
+					>
+						<div className="flex w-[300px] h-[300px] max-md:w-full max-md:justify-center ">
+							{formData.image ? (
+								<div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
+									<Image
+										width={300}
+										height={300}
+										src={URL.createObjectURL(formData.image!)}
+										alt="Client"
+										className="w-full h-full object-cover rounded-lg transition-all duration-300 hover:duration-700 hover:scale-150"
+									/>
+									{/* @ts-ignore */}
+									<span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium">
+										{/* @ts-ignore */}
+										{formData.image?.name.length > 20
+											? // @ts-ignore
+											  formData.image?.name.slice(0, 20) + '...'
+											: // @ts-ignore
+											  formData.image?.name}
+									</span>
+									<button
+										type="button"
+										tabIndex={0}
+										aria-label="Remove image"
+										onClick={() => setFormData({ ...formData, image: undefined })}
+										className="text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full bg-white/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center"
+										title="Remove image"
+									>
+										<X size={18} />
+									</button>
+								</div>
+							) : (
+								<div
+									className={cn('flex w-full h-full items-center justify-center bg-[#f6f6f6] px-8', {
+										hidden: formData.image
+									})}
 								>
-									<SelectValue placeholder="Project Status" />
-								</SelectTrigger>
-								<SelectContent>
-									<SelectItem value="pending">
-										<span className="bg-[#B493A3] text-black rounded-full block py-1 px-3">Pending</span>
-									</SelectItem>
-									<SelectItem value="completed">
-										<span className="bg-green-500 text-black rounded-full block py-1 px-3">Completed</span>
-									</SelectItem>
-									<SelectItem value="progress">
-										<span className="bg-yellow-500 text-black rounded-full block py-1 px-3">In progress</span>
-									</SelectItem>
-								</SelectContent>
-							</Select>
+									<label
+										htmlFor="client-image"
+										className="cursor-pointer flex flex-col items-center justify-center gap-y-3"
+									>
+										<button
+											role="span"
+											type="button"
+											className="w-12 h-12 rounded-full bg-white flex items-center justify-center pointer-events-none"
+											tabIndex={-1}
+											aria-hidden
+										>
+											<Add size={24} color="#535353" />
+										</button>
+										<span className="text-xs sm:text-sm w-full text-center text-[#535353]">Upload Profile photo</span>
+									</label>
+									<input
+										type="file"
+										accept="image/*"
+										id="client-image"
+										name="image"
+										className="hidden"
+										onChange={(e) => {
+											const file = e.target.files && e.target.files[0];
+											setFormData({ ...formData, [e.target.name]: file });
+										}}
+									/>
+								</div>
+							)}
 						</div>
-						<div className="flex gap-2 pt-6">
-							<Button intent={null} className="border border-primary-dark rounded-lg whitespace-nowrap">
-								<Add /> Attach Docs
-							</Button>
-							<Button intent={null} className="border border-primary-dark rounded-lg whitespace-nowrap">
-								<Add /> Add Prototype
-							</Button>
-							<Button intent="secondary" className="ml-auto rounded-lg whitespace-nowrap">
-								Create Project
-							</Button>
+						<div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
+							{/* Client name */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="client-name" className="font-medium">
+									Client name
+								</label>
+								<input
+									type="text"
+									placeholder="Enter name..."
+									id="client-name"
+									name="name"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.name}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Client Title */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="job_title" className="font-medium">
+									Job Title
+								</label>
+								<input
+									type="text"
+									placeholder="e.g CEO..."
+									id="job_title"
+									name="job_title"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.job_title}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Client Email */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="email" className="font-medium">
+									Email address
+								</label>
+								<input
+									type="email"
+									required
+									placeholder="Enter email..."
+									id="email"
+									name="email"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.email}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Name */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="company_name" className="font-medium">
+									Company name
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="e.g Apple..."
+									id="company_name"
+									name="company_name"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.company_name}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Website */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="website" className="font-medium">
+									Company website
+								</label>
+								<input
+									type="website"
+									required
+									placeholder="Enter website..."
+									id="website"
+									name="website"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.website}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Address */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="address" className="font-medium">
+									Company address
+								</label>
+								<input
+									type="address"
+									required
+									placeholder="Enter address..."
+									id="address"
+									name="address"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.address}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6">
+								<button
+									type="button"
+									tabIndex={0}
+									aria-label="Cancel"
+									onClick={() => {
+										window?.localStorage.removeItem('create-client');
+										setFormData({
+											name: '',
+											job_title: '',
+											email: '',
+											phone: '',
+											company_name: '',
+											website: '',
+											bio: '',
+											image: undefined,
+											gender: '',
+											address: '',
+											city: '',
+											country: '',
+											projects: []
+										});
+										setCreateClientModal(false);
+									}}
+									className={cn(
+										'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+									)}
+								>
+									Cancel
+								</button>
+
+								<button
+									type="submit"
+									tabIndex={0}
+									disabled={isDisabled}
+									aria-label="Remove"
+									className={cn(
+										'rounded-lg bg-primary-light text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light'
+									)}
+								>
+									Save Changes
+								</button>
+							</div>
 						</div>
 					</form>
-				</div>
-			</Modal>
+				</section>
+			</div>
 		</>
 	);
-}
+};
 
-export default NewClient;
+export default NewClientModal;

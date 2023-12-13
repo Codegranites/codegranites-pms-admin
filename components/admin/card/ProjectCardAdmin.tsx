@@ -4,10 +4,12 @@ import React from 'react';
 import { ProjectCardProps } from '../../../libs/projects';
 import useInView from '../../../hooks/useInView';
 import cn from '../../../utils/util';
+import { useStateCtx } from '../../../context/StateContext';
 
 const ProjectCardAdmin = ({ status, title, project_owner, end_date, id }: ProjectCardProps) => {
 	const projectCardRef = React.useRef<HTMLDivElement>(null);
 	const isInView = useInView(projectCardRef);
+	const { projectSearchTerm } = useStateCtx();
 
 	const encryptString = (str: string): string => {
 		const buffer = Buffer.from(str);
@@ -40,7 +42,20 @@ const ProjectCardAdmin = ({ status, title, project_owner, end_date, id }: Projec
 			<div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white min-[1310px]:p-4 max-[1140px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
 				<Folder2 variant="Bold" />
 				<p className="text-sm text-header">
-					Project Title: <strong>{title}</strong>
+					Project Title:{' '}
+					<strong>
+						<span
+							dangerouslySetInnerHTML={{
+								__html: title.replace(
+									new RegExp(`(${projectSearchTerm})`, 'gi'),
+									(match, group) =>
+										`<span style="color: black; background-color: ${
+											group.toLowerCase() === projectSearchTerm.toLowerCase() ? 'yellow' : 'inherit'
+										}">${match}</span>`
+								)
+							}}
+						/>
+					</strong>
 				</p>
 				<p className="text-sm text-header flex items-center gap-x-1 xl:gap-x-2">
 					Project Status:{' '}

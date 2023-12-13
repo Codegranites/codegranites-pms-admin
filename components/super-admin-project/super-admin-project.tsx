@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import CreateProject from './modal/create-project';
+import CreateProjectModal from '../admin/projects/CreateProjectModal';
 
 function SuperAdminProject() {
 	return (
@@ -22,7 +23,7 @@ function SuperAdminProject() {
 					<Image src="/assets/empty.png" fill alt="Empty Project Illustration" />
 				</div>
 				<span className="mb-6">You have no project yet</span>
-				<CreateProject />
+				<CreateProjectModal />
 			</div>
 		</section>
 	);
