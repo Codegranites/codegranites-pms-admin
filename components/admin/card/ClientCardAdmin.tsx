@@ -5,10 +5,12 @@ import React, { useRef } from 'react';
 import { AdminClientCardProps } from '../../../libs/clients';
 import useInView from '../../../hooks/useInView';
 import { encryptString } from '../../../utils/util';
+import { useStateCtx } from '../../../context/StateContext';
 
 const ClientCardAdmin = ({ image, name, email, job_title, number_projects, id }: AdminClientCardProps) => {
 	const clientCardRef = useRef<HTMLDivElement>(null);
 	const isInView = useInView(clientCardRef);
+	const { clientSearchTerm } = useStateCtx();
 	const encryptedName = encryptString(name!);
 
 	const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -41,7 +43,19 @@ const ClientCardAdmin = ({ image, name, email, job_title, number_projects, id }:
 						<Image src={image} alt="client" height={150} width={150} className="rounded-xl" />
 					</div>
 					<div className="flex flex-col gap-y-2 max-[350px]:items-center">
-						<h3 className="text-base lg:text-lg font-semibold text-header">{name}</h3>
+						<h3 className="text-base lg:text-lg font-semibold text-header">
+							<span
+								dangerouslySetInnerHTML={{
+									__html: name.replace(
+										new RegExp(`(${clientSearchTerm})`, 'gi'),
+										(match, group) =>
+											`<span style="color: black; background-color: ${
+												group.toLowerCase() === clientSearchTerm.toLowerCase() ? 'yellow' : 'inherit'
+											}">${match}</span>`
+									)
+								}}
+							/>
+						</h3>
 						<p className="text-sm">{job_title}</p>
 						<span className="text-xs">Email: {email}</span>
 						<p className="font-medium">

@@ -5,7 +5,7 @@ import { PROJECT_COUNTERS } from '../../../libs/projects';
 
 const AdminCounterCardContainer = () => {
 	return (
-		<div className="w-full flex flex-nowrap justify-evenly gap-4 max-[410px]:gap-1 py-6">
+		<div className="w-full grid grid-cols-2 sm:grid-cols-4 gap-4  py-6">
 			{PROJECT_COUNTERS.map((counter) => (
 				<CounterCard key={counter.label} count={counter.count} label={counter.label} />
 			))}

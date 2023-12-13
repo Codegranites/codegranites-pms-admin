@@ -64,7 +64,7 @@
 }
 
 // ======MISCELLANEOUS=========
-@keyframes rotate3d {
+@keyframes animate3d {
 	0% {
 		transform: rotateX(0);
 	}
@@ -78,7 +78,7 @@
 }
 
 .rotate-3d {
-	animation: rotate3d 3s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
+	animation: animate3d 3s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite;
 	transform-style: preserve-3d;
 	transform-origin: center;
 }

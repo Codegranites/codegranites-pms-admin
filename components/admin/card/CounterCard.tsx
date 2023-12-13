@@ -15,7 +15,7 @@ const CounterCard = ({ count, label }: ProjectCounterProps) => {
 	return (
 		<div
 			onMouseMove={handleMouseMove}
-			className="relative max-[410px]:min-w-[70px] w-full sm:max-w-[214px] sm:h-[148px] flex justify-center items-center border border-gray-300 rounded-xl sm:rounded-2xl admin-card sm:p-[1px] select-none"
+			className="relative max-[410px]:min-w-[70px] w-full sm:max-w-[214px] sm:h-[148px] flex justify-center items-center border border-gray-300 rounded-md sm:rounded-2xl admin-card min-[500px]:p-[1px] select-none"
 		>
 			<div className="card-border" />
 			<div className="card-content  w-full h-full flex justify-center items-center flex-col gap-y-2 py-2 sm:gap-y-4 bg-white p-1">

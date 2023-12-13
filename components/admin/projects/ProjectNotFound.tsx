@@ -1,20 +1,20 @@
 import Image from 'next/image';
 import React from 'react';
 
-const NotFound = ({ text }: { text: string }) => {
+const ProjectNotFound = ({ text }: { text: string }) => {
 	return (
-		<>
-			<div className="w-full text-center  md:pt-20 ">
+		<div className="w-full flex flex-col gap-y-6">
+			<div className="w-full text-center   ">
 				<p>{text}</p>
 				<p>OR</p>
 				<p>Something Went wrong</p>
 			</div>
 
-			<div className="flex w-full justify-center flex-col items-center perspective overflow-hidden pt-10">
+			<div className="flex w-full justify-center flex-col items-center  overflow-hidden pt-4">
 				<div className=" relative font-tommy  font-bold text-primary-light max-w-[300px] w-full  h-[120px] max-[500px]:max-w-[250px] max-[400px]:max-w-[200px] lg:-left-[5rem]  max-lg:bottom-6">
-					<div className="flex absolute justify-center w-full h-[100px] bottom-0 perspective">
+					<div className="flex absolute justify-center w-full h-[100px] bottom-0 perspective ">
 						<span className="font-tommy absolute left-0 text-5xl -bottom-6 scale-y-125">?</span>
-						<span className="font-tommy absolute -top-6 sm:-top-12 text-[100px] sm:text-[128px] scale-y-125 text-primary animate-rotate3d ">
+						<span className="font-tommy absolute -top-6 sm:-top-11 text-[100px] sm:text-[128px] scale-y-125 text-primary animate-rotate3d ">
 							?
 						</span>
 						<span className="font-tommy absolute right-0  text-5xl -bottom-8 scale-y-125">?</span>
@@ -33,8 +33,8 @@ const NotFound = ({ text }: { text: string }) => {
 					</div>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
-export default NotFound;
+export default ProjectNotFound;

@@ -3,11 +3,11 @@ import { client1, client2, client3, client4, client5, client6 } from '../public'
 
 export type AdminClientCardProps = {
 	id?: number;
-	image: string | StaticImageData;
+	image: string | StaticImageData | undefined | Blob;
 	name: string;
 	job_title: string;
 	email: string;
-	number_projects: number;
+	number_projects?: number;
 	gender?: string;
 	country?: string;
 	phone?: string;
@@ -15,6 +15,8 @@ export type AdminClientCardProps = {
 	address?: string;
 	client_id?: string;
 	bio?: string;
+	website?: string;
+	projects?: string[];
 };
 
 export const ADMIN_CLIENTS: AdminClientCardProps[] = [
