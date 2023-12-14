@@ -11,6 +11,7 @@ import { useStateCtx } from '../../../context/StateContext';
 import cn from '../../../utils/util';
 import { AdminClientCardProps } from '../../../libs/clients';
 import Image from 'next/image';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
 
 type FormProps = {
 	id?: number;
@@ -25,10 +26,16 @@ type FormProps = {
 	country: string;
 	city: string;
 	address: string;
-	bio?: string;
 	website?: string;
 	projects?: string[];
+	bio?: string;
 };
+
+const genders: { value: string; label: string }[] = [
+	{ value: 'gender', label: 'Select gender' },
+	{ value: 'male', label: 'Male' },
+	{ value: 'female', label: 'Female' }
+];
 
 const NewClientModal = () => {
 	const { createClientModal, setCreateClientModal } = useStateCtx();
@@ -40,13 +47,13 @@ const NewClientModal = () => {
 		phone: '',
 		company_name: '',
 		website: '',
-		bio: '',
 		image: undefined,
-		gender: '',
+		gender: 'gender',
 		address: '',
 		city: '',
 		country: '',
-		projects: []
+		projects: [],
+		bio: ''
 	});
 
 	const isDisabled =
@@ -58,7 +65,7 @@ const NewClientModal = () => {
 		!formData.website ||
 		!formData.bio ||
 		!formData.image ||
-		!formData.gender ||
+		formData.gender === 'gender' ||
 		!formData.address ||
 		!formData.city ||
 		!formData.country;
@@ -300,7 +307,68 @@ const NewClientModal = () => {
 								/>
 							</div>
 
-							<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6">
+							{/* Select Gender */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="gender" className="font-medium">
+									Gender
+								</label>
+								<select
+									name="gender"
+									tabIndex={0}
+									required
+									className="w-full rounded-md border border-gray-200  select-none md:py-4 py-2 px-2 md:px-4  outline-none  capitalize focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4 "
+									id="gender"
+									value={formData.gender}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								>
+									{genders.map((gender) => (
+										<option
+											key={gender.value}
+											value={gender.value}
+											className="hover:bg-[#becbd7]"
+											disabled={gender.value === 'gender'}
+										>
+											{gender.label}
+										</option>
+									))}
+								</select>
+							</div>
+
+							{/* Company CITY */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="city" className="font-medium">
+									City
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Enter city..."
+									id="city"
+									name="city"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.city}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Country */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="country" className="font-medium">
+									Nationality
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Enter country..."
+									id="country"
+									name="country"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.country}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 mt-6">
 								<button
 									type="button"
 									tabIndex={0}
