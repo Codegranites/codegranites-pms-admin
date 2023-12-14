@@ -15,7 +15,7 @@ const AdminNavbar = () => {
 	const decrptedTitle = decryptString(projectTitle ?? '');
 	const decrptedName = decryptString(clientName ?? '');
 	const settingTab = searchParams.get('setting_tab');
-	const pathName = currentPath.replace('admin-', '');
+	const pathName = currentPath.replace('admin-', '').replace('-', ' ');
 
 	return (
 		<header className="lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
