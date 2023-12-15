@@ -33,7 +33,7 @@ const ForgotPassword: React.FC = () => {
 				<div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
 					<div className="mobile container px-3 ">
 						{/* overlay */}
-						<div className="relative mt-20 md:mt-2 py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
+						<div className="relative mt-20 md:-mt-10 py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
 							<h1 className="text-center font-[600]  text-[28px]">Forgot Password</h1>
 							<span className="block text-center font-[400] text-[14px] mt-2 ">Fill the field below</span>
 
@@ -70,7 +70,7 @@ const ForgotPassword: React.FC = () => {
 					{/* Desktop image by right */}
 					<div className="hidden md:block h-full w-full ">
 						<Image
-							src="/MacBookPro3.svg"
+							src="/MacBookPro0.svg"
 							alt="sign in Desktop"
 							width={140}
 							height={100}
