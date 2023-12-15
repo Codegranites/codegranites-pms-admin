@@ -4,9 +4,16 @@ import './Styles/globals.scss';
 import Navbar from '../components/navs/AdminNavbar';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
 import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
+import nProgress from 'nprogress';
+import router from 'next/navigation';
+import './Styles/nprogress.css';
+// import { Router } from 'next/router';
+
+// router.events.on('routeChangeStart', nProgress.start);
+// router.events.on('routeChangeError', nProgress.done);
+// router.events.on('routeChangeComplete', nProgress.done);
 
 const workSans = Work_Sans({
 	subsets: ['latin'],

@@ -7,6 +7,7 @@ import { Add, SearchNormal } from 'iconsax-react';
 import { useState } from 'react';
 import Button from '@ui/Button';
 import CreateProject from '../../super-admin-project/modal/create-project';
+import CreateProjectModal from '../../admin/projects/CreateProjectModal';
 
 const DashNav = () => {
 	const [searchTerm, setSearchTerm] = useState('');
@@ -22,14 +23,15 @@ const DashNav = () => {
 					placeHolder="Search for projects..."
 					className="w-[413px] h-[56px]"
 				/>
-				
-				<Button
+
+				{/* <Button
 					intent={'primary'}
 					className="text-white bg-primary-light w-[200px] h-[56px]"
 					leftIcon={<Add size="32" color="#ffffff" />}
 				>
 					New project
-				</Button>
+				</Button> */}
+				<CreateProjectModal />
 				<Button
 					intent={'secondary'}
 					className="text-black bg-transparent w-[200px] items-center h-[56px]"
