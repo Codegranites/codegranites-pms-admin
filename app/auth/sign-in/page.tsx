@@ -80,7 +80,7 @@ const SignIn = () => {
 								</PasswordPopover>
 
 								<span className="mb-4 mt-1 text-xs text-right">
-									forgot password? <Link href="">Reset</Link>{' '}
+									forgot password? <Link href="/auth/forgot-password">Reset</Link>
 								</span>
 
 								<Button className="w-full rounded-md my-3" type="submit">
