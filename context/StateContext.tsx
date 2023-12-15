@@ -31,6 +31,19 @@ interface StateContextProps {
 	setCreateMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
 	editProjectModal: boolean;
 	setEditProjectModal: React.Dispatch<React.SetStateAction<boolean>>;
+	createProjectModal: boolean;
+	setCreateProjectModal: React.Dispatch<React.SetStateAction<boolean>>;
+
+	selectedProjectFilter: string;
+	setSelectedProjectFilter: React.Dispatch<React.SetStateAction<string>>;
+	projectSearchTerm: string;
+	setProjectSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+	selectedClientFilter: string;
+	setSelectedClientFilter: React.Dispatch<React.SetStateAction<string>>;
+	clientSearchTerm: string;
+	setClientSearchTerm: React.Dispatch<React.SetStateAction<string>>;
+	createClientModal: boolean;
+	setCreateClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 
 	user: User;
 }
@@ -47,9 +60,13 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		};
 	}, []);
 	// Add Your State(s) Here
-	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+	const [selectedProjectFilter, setSelectedProjectFilter] = useState('all');
+	const [projectSearchTerm, setProjectSearchTerm] = useState('');
+	const [selectedClientFilter, setSelectedClientFilter] = useState('all-clients');
+	const [clientSearchTerm, setClientSearchTerm] = useState('');
 
 	// Track Modals State
+	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
 	const [isRemoveProjectModal, setIsRemoveProjectModal] = useState(false);
@@ -59,6 +76,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [viewMilestoneModal, setViewMilestoneModal] = useState(false);
 	const [createMilestoneModal, setCreateMilestoneModal] = useState(false);
 	const [editProjectModal, setEditProjectModal] = useState(false);
+	const [createProjectModal, setCreateProjectModal] = useState(false);
+	const [createClientModal, setCreateClientModal] = useState(false);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
@@ -86,7 +105,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			changeStatusModal ||
 			viewMilestoneModal ||
 			createMilestoneModal ||
-			editProjectModal
+			editProjectModal ||
+			createProjectModal ||
+			createClientModal
 		) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -104,13 +125,15 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setViewMilestoneModal(false);
 				setCreateMilestoneModal(false);
 				setEditProjectModal(false);
+				setCreateProjectModal(false);
+				setCreateClientModal(false);
 			}
 		};
 
-		document.addEventListener('keydown', handleKeyDown);
+		document.addEventListener('keyup', handleKeyDown);
 
 		return () => {
-			document.removeEventListener('keydown', handleKeyDown);
+			document.removeEventListener('keyup', handleKeyDown);
 		};
 	}, [
 		showMobileMenu,
@@ -122,7 +145,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		changeStatusModal,
 		viewMilestoneModal,
 		createMilestoneModal,
-		editProjectModal
+		editProjectModal,
+		createProjectModal,
+		createClientModal
 	]);
 
 	const value = useMemo(
@@ -148,7 +173,22 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			createMilestoneModal,
 			setCreateMilestoneModal,
 			editProjectModal,
-			setEditProjectModal
+			setEditProjectModal,
+			createProjectModal,
+			setCreateProjectModal,
+
+			selectedProjectFilter,
+			setSelectedProjectFilter,
+			projectSearchTerm,
+			setProjectSearchTerm,
+
+			selectedClientFilter,
+			setSelectedClientFilter,
+			clientSearchTerm,
+			setClientSearchTerm,
+
+			createClientModal,
+			setCreateClientModal
 		}),
 		[
 			showMobileMenu,
@@ -162,7 +202,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			changeStatusModal,
 			viewMilestoneModal,
 			createMilestoneModal,
-			editProjectModal
+			editProjectModal,
+			createProjectModal,
+
+			selectedProjectFilter,
+			projectSearchTerm,
+
+			selectedClientFilter,
+			clientSearchTerm,
+
+			createClientModal
 		]
 	);
 

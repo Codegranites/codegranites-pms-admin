@@ -4,7 +4,7 @@ import AdminClientContainer from '../../../components/admin/clients/AdminClientC
 
 const ClientsAdmin = () => {
 	return (
-		<section className="w-full h-full flex flex-col gap-y-6 md:gap-y-9 lg:gap-y-16">
+		<section className="w-full h-full min-[1140px]:px-9 px-3 pt-8 flex flex-col gap-y-6 md:gap-y-9 lg:gap-y-16">
 			<AdminClientNav />
 
 			<AdminClientContainer />

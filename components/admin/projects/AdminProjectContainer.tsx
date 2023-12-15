@@ -1,39 +1,110 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
 import ProjectCardAdmin from '../card/ProjectCardAdmin';
-import { PROJECTS } from '../../../libs/projects';
+import { PROJECTS, ProjectCardProps } from '../../../libs/projects';
 import SuperAdminProject from '../../super-admin-project/super-admin-project';
 import AdminCounterCardContainer from './AdminCounterCardContainer';
 import { useEffect, useState } from 'react';
 import CustomPagination from '../Pagination';
 import ReactPaginate from 'react-paginate';
+import { useStateCtx } from '../../../context/StateContext';
+import NotFound from '../NotFound';
+import ProjectNotFound from './ProjectNotFound';
+import cn from '../../../utils/util';
 
 const AdminProjectContainer = () => {
+	const { projectSearchTerm, selectedProjectFilter } = useStateCtx();
 	const [currentPage, setCurrentPage] = useState(0);
 	const [totalPages, setTotalPages] = useState(0);
+	const [filteredProjects, setFilteredProjects] = useState([] as ProjectCardProps[]);
 	const itemsPerPage = 6;
+	useEffect(() => {
+		const searchTerm = projectSearchTerm && projectSearchTerm.trim().toLowerCase();
+		const filtered = PROJECTS.filter((project) => {
+			if (
+				(!(searchTerm.length > 2) && selectedProjectFilter === 'all') ||
+				(searchTerm.length > 2 && selectedProjectFilter === 'all' && project.title.toLowerCase().includes(searchTerm))
+			) {
+				return true;
+			}
+			if (searchTerm.length > 2 && selectedProjectFilter === project.status) {
+				if (!project.title.toLowerCase().includes(searchTerm)) {
+					return false;
+				}
+			}
+			if (selectedProjectFilter && !(project.status === selectedProjectFilter)) {
+				return false;
+			}
+			return true;
+		});
+
+		setFilteredProjects(filtered);
+		const suggestions = PROJECTS.map((project) => project.title).filter((title) =>
+			title.toLowerCase().includes(searchTerm)
+		);
+
+		// Log or use the suggestions as needed
+		console.log('Search Suggestions:', suggestions);
+	}, [selectedProjectFilter, projectSearchTerm]);
 
 	const startIndex = currentPage * itemsPerPage;
 	const endIndex = startIndex + itemsPerPage;
-	const subset = PROJECTS.slice(startIndex, endIndex);
+	const subset = filteredProjects.slice(startIndex, endIndex);
 
 	const handlePageChange = ({ selected }: { selected: number }) => {
 		setCurrentPage(selected);
 		window?.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 	useEffect(() => {
-		setTotalPages(Math.ceil(PROJECTS.length / 6));
-	}, []);
+		setTotalPages(Math.ceil(filteredProjects.length / 6));
+	}, [filteredProjects, selectedProjectFilter, projectSearchTerm]);
 
 	return PROJECTS.length > 0 ? (
 		<section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen">
 			<AdminCounterCardContainer />
-			<section className="rounded-2xl min-[1162px]:py-[43px] min-[1162px]:px-[70px] sm:p-7 w-full h-full sm:border border-gray-300">
-				<div className="w-full min-h-[941px] grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-4 lg:gap-x-6 xl:gap-x-8  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8">
+			<div
+				className={cn('font-medium flex items-center gap-x-1', {
+					hidden: projectSearchTerm.length < 3
+				})}
+			>
+				<span
+					className={cn('text-lg font-semibold text-gray-400', {
+						'text-primary-light': subset.length > 0
+					})}
+				>
+					{subset.length}
+				</span>
+				<p className={cn('font-medium')}>
+					{subset.length > 0 ? 'Search Result for' : subset.length > 1 ? 'Search Results for' : 'No Results for'}{' '}
+					<b>&quot;{projectSearchTerm}&quot;</b>
+				</p>
+			</div>
+			<section
+				className={cn(
+					'rounded-2xl min-[1162px]:py-[43px] min-[1162px]:px-[70px] sm:p-7 w-full h-full sm:border border-gray-300 ',
+					{
+						'grid place-items-center': subset.length === 0
+					}
+				)}
+			>
+				<div
+					className={cn(
+						' w-full min-h-[941px] grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-4 lg:gap-x-6 xl:gap-x-8  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8',
+						{
+							hidden: subset.length === 0
+						}
+					)}
+				>
 					{subset.map((project) => (
 						<ProjectCardAdmin key={project.id} {...project} />
 					))}
 				</div>
+				{subset.length === 0 && (
+					<div className=" w-full flex justify-center  h-full ">
+						<ProjectNotFound text="No projects found" />
+					</div>
+				)}
 				<div className="flex w-full justify-end">
 					<ReactPaginate
 						breakLabel="..."
