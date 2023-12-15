@@ -5,6 +5,7 @@ import { handleMouseEnter } from '../utils/text-effect';
 
 export default function Home() {
 	return (
+
 		<main className="flex min-h-screen max-container flex-col items-center lg:p-24">
 			<div className=" w-full flex justify-between items-center pt-4 px-4 relative">
 				<Link

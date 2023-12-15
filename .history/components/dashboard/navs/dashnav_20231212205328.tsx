@@ -22,7 +22,8 @@ const DashNav = () => {
 					placeHolder="Search for projects..."
 					className="w-[413px] h-[56px]"
 				/>
-				
+
+				<h1> Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil voluptatibus consequatur ullam voluptates atque harum iste nisi nam beatae esse. Quis fuga nesciunt numquam neque. Similique dolorem quo explicabo! Numquam.</h1>
 				<Button
 					intent={'primary'}
 					className="text-white bg-primary-light w-[200px] h-[56px]"

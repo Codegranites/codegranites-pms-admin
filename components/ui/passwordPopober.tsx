@@ -82,9 +82,7 @@ const PasswordPopover: React.FC<PasswordPopoverProps> = ({ password, children })
 						<button
 							className="rounded-full h-[25px] w-[25px] inline-flex items-center justify-center text-gray-700 absolute top-2 right-2 hover:bg-gray-300"
 							onClick={() => setPopoverVisible(false)}
-						>
-							{''}
-						</button>
+						></button>
 					</div>
 				</div>
 			)}
