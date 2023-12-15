@@ -2,7 +2,7 @@
 
 import { X } from 'lucide-react';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Add } from 'iconsax-react';
 import { ProjectCardProps } from '../../../libs/projects';
@@ -12,6 +12,7 @@ import cn from '../../../utils/util';
 import { AdminClientCardProps } from '../../../libs/clients';
 import Image from 'next/image';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
+import WordCounter from '../card/WordCounter';
 
 type FormProps = {
 	id?: number;
@@ -27,7 +28,7 @@ type FormProps = {
 	city: string;
 	address: string;
 	website?: string;
-	projects?: string[];
+	project?: string;
 	bio?: string;
 };
 
@@ -37,26 +38,31 @@ const genders: { value: string; label: string }[] = [
 	{ value: 'female', label: 'Female' }
 ];
 
+const MAX_DESC_LEN = 600;
+
 const NewClientModal = () => {
 	const { createClientModal, setCreateClientModal } = useStateCtx();
+	const [addInput, setAddInput] = useState([1]);
+	const scrollRef = useRef<HTMLDivElement | null>(null);
 
 	const [formData, setFormData] = useState<FormProps>({
+		image: undefined,
 		name: '',
 		job_title: '',
 		email: '',
 		phone: '',
 		company_name: '',
 		website: '',
-		image: undefined,
 		gender: 'gender',
 		address: '',
 		city: '',
 		country: '',
-		projects: [],
+		project: '',
 		bio: ''
 	});
 
 	const isDisabled =
+		!formData.image ||
 		!formData.name ||
 		!formData.job_title ||
 		!formData.email ||
@@ -64,7 +70,6 @@ const NewClientModal = () => {
 		!formData.company_name ||
 		!formData.website ||
 		!formData.bio ||
-		!formData.image ||
 		formData.gender === 'gender' ||
 		!formData.address ||
 		!formData.city ||
@@ -81,11 +86,16 @@ const NewClientModal = () => {
 			setFormData(JSON.parse(readLocal));
 		}
 	}, []);
+	useEffect(() => {
+		if (!createClientModal) return;
+		window.scrollTo(0, scrollRef.current?.offsetTop!);
+	}, [createClientModal]);
 
 	useEffect(() => {
 		if (!(formData.name.length > 3) || !(formData.bio!.length > 3)) return;
+		const newForm = { ...formData, image: undefined };
 
-		localStorage.setItem('create-client', JSON.stringify(formData));
+		localStorage.setItem('create-client', JSON.stringify(newForm));
 	}, [formData]);
 	console.log(formData);
 
@@ -141,7 +151,8 @@ const NewClientModal = () => {
 						onSubmit={handleSubmit}
 						className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
 					>
-						<div className="flex w-[300px] h-[300px] max-md:w-full max-md:justify-center ">
+						{/* Client Image */}
+						<div ref={scrollRef} className="flex w-[300px] h-[300px] max-md:w-full max-md:justify-center ">
 							{formData.image ? (
 								<div className="flex flex-col gap-y-2 h-full w-full relative overflow-hidden rounded-lg">
 									<Image
@@ -165,7 +176,7 @@ const NewClientModal = () => {
 										tabIndex={0}
 										aria-label="Remove image"
 										onClick={() => setFormData({ ...formData, image: undefined })}
-										className="text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full bg-white/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center"
+										className="text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full bg-white/60 backdrop-blur-sm absolute top-1 right-1 w-8 h-8 flex items-center justify-center hover:text-red-500 hover:bg-white/80 hover:brightness-150 transition-all duration-700 hover:duration-200"
 										title="Remove image"
 									>
 										<X size={18} />
@@ -253,6 +264,29 @@ const NewClientModal = () => {
 									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
 									value={formData.email}
 									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Client Phone */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="phone" className="font-medium">
+									Phone number
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Enter phone..."
+									id="phone"
+									name="phone"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.phone}
+									onChange={(e) => {
+										const inputVal = e.target.value;
+										const isValid = /^\+?\d*$/.test(inputVal);
+										if (isValid) {
+											setFormData({ ...formData, [e.target.name]: inputVal });
+										}
+									}}
 								/>
 							</div>
 
@@ -368,6 +402,38 @@ const NewClientModal = () => {
 								/>
 							</div>
 
+							{/* Project Title*/}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="project" className="font-medium">
+									Project title
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Project title..."
+									id="project"
+									name="project"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.project}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+							{/* Project Bio */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="bio" className="font-medium">
+									Project bio
+								</label>
+								<textarea
+									placeholder="Enter bio..."
+									id="bio"
+									name="bio"
+									maxLength={MAX_DESC_LEN}
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
+									value={formData.bio}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+								<WordCounter word={formData.bio} length={MAX_DESC_LEN} />
+							</div>
 							<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 mt-6">
 								<button
 									type="button"
@@ -388,7 +454,7 @@ const NewClientModal = () => {
 											address: '',
 											city: '',
 											country: '',
-											projects: []
+											project: ''
 										});
 										setCreateClientModal(false);
 									}}
