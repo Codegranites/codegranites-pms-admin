@@ -5,10 +5,14 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Add } from 'iconsax-react';
+import { ProjectCardProps } from '../../../libs/projects';
 import { useStateCtx } from '../../../context/StateContext';
 
 import cn from '../../../utils/util';
+import { AdminClientCardProps } from '../../../libs/clients';
 import Image from 'next/image';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@radix-ui/react-select';
+import WordCounter from '../card/WordCounter';
 
 type FormProps = {
 	id?: number;
@@ -17,13 +21,26 @@ type FormProps = {
 	job_title: string;
 	email: string;
 	phone: string;
-
+	company_name: string;
 	number_projects?: number;
-
+	gender: string;
+	country: string;
+	city: string;
+	address: string;
+	website?: string;
 	project?: string;
+	bio?: string;
 };
 
-const NewClientModal = () => {
+const genders: { value: string; label: string }[] = [
+	{ value: 'gender', label: 'Select gender' },
+	{ value: 'male', label: 'Male' },
+	{ value: 'female', label: 'Female' }
+];
+
+const MAX_DESC_LEN = 600;
+
+const DraftNewClientModal = () => {
 	const { createClientModal, setCreateClientModal } = useStateCtx();
 	const [addInput, setAddInput] = useState([1]);
 	const scrollRef = useRef<HTMLDivElement | null>(null);
@@ -34,10 +51,29 @@ const NewClientModal = () => {
 		job_title: '',
 		email: '',
 		phone: '',
-		project: ''
+		company_name: '',
+		website: '',
+		gender: 'gender',
+		address: '',
+		city: '',
+		country: '',
+		project: '',
+		bio: ''
 	});
 
-	const isDisabled = !formData.image || !formData.name || !formData.job_title || !formData.email || !formData.phone;
+	const isDisabled =
+		!formData.image ||
+		!formData.name ||
+		!formData.job_title ||
+		!formData.email ||
+		!formData.phone ||
+		!formData.company_name ||
+		!formData.website ||
+		!formData.bio ||
+		formData.gender === 'gender' ||
+		!formData.address ||
+		!formData.city ||
+		!formData.country;
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -56,7 +92,7 @@ const NewClientModal = () => {
 	}, [createClientModal]);
 
 	useEffect(() => {
-		if (!(formData.name.length > 3)) return;
+		if (!(formData.name.length > 3) || !(formData.bio!.length > 3)) return;
 		const newForm = { ...formData, image: undefined };
 
 		localStorage.setItem('create-client', JSON.stringify(newForm));
@@ -254,6 +290,118 @@ const NewClientModal = () => {
 								/>
 							</div>
 
+							{/* Company Name */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="company_name" className="font-medium">
+									Company name
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="e.g Apple..."
+									id="company_name"
+									name="company_name"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.company_name}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Website */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="website" className="font-medium">
+									Company website
+								</label>
+								<input
+									type="website"
+									required
+									placeholder="Enter website..."
+									id="website"
+									name="website"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.website}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Address */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="address" className="font-medium">
+									Company address
+								</label>
+								<input
+									type="address"
+									required
+									placeholder="Enter address..."
+									id="address"
+									name="address"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.address}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Select Gender */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="gender" className="font-medium">
+									Gender
+								</label>
+								<select
+									name="gender"
+									tabIndex={0}
+									required
+									className="w-full rounded-md border border-gray-200  select-none md:py-4 py-2 px-2 md:px-4  outline-none  capitalize focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4 "
+									id="gender"
+									value={formData.gender}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								>
+									{genders.map((gender) => (
+										<option
+											key={gender.value}
+											value={gender.value}
+											className="hover:bg-[#becbd7]"
+											disabled={gender.value === 'gender'}
+										>
+											{gender.label}
+										</option>
+									))}
+								</select>
+							</div>
+
+							{/* Company CITY */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="city" className="font-medium">
+									City
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Enter city..."
+									id="city"
+									name="city"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.city}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
+							{/* Company Country */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="country" className="font-medium">
+									Nationality
+								</label>
+								<input
+									type="text"
+									required
+									placeholder="Enter country..."
+									id="country"
+									name="country"
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+									value={formData.country}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+							</div>
+
 							{/* Project Title*/}
 							<div className="flex flex-col  gap-y-2 w-full">
 								<label htmlFor="project" className="font-medium">
@@ -270,7 +418,22 @@ const NewClientModal = () => {
 									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
 								/>
 							</div>
-
+							{/* Project Bio */}
+							<div className="flex flex-col  gap-y-2 w-full">
+								<label htmlFor="bio" className="font-medium">
+									Project bio
+								</label>
+								<textarea
+									placeholder="Enter bio..."
+									id="bio"
+									name="bio"
+									maxLength={MAX_DESC_LEN}
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
+									value={formData.bio}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+								<WordCounter word={formData.bio} length={MAX_DESC_LEN} />
+							</div>
 							<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 mt-6">
 								<button
 									type="button"
@@ -283,9 +446,14 @@ const NewClientModal = () => {
 											job_title: '',
 											email: '',
 											phone: '',
-
+											company_name: '',
+											website: '',
+											bio: '',
 											image: undefined,
-
+											gender: '',
+											address: '',
+											city: '',
+											country: '',
 											project: ''
 										});
 										setCreateClientModal(false);
@@ -317,4 +485,4 @@ const NewClientModal = () => {
 	);
 };
 
-export default NewClientModal;
+export default DraftNewClientModal;
