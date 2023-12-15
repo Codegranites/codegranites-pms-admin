@@ -12,7 +12,7 @@ import { FiUser } from 'react-icons/fi';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next/navigation';
 
-import { EmailVerificationModal } from './EmailVerificationModal';
+import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
 
 const SignUp = () => {
 	// const initialPassword = 'jamestest2354';
@@ -57,7 +57,7 @@ const SignUp = () => {
 				{/* Email Verification Modal */}
 				<EmailVerificationModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} />
 
-				<div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
+				<div className="desktop mt-10 block md:flex md:justify-center md:items-center h-full relative ">
 					<div className="mobile container px-3 ">
 						{/* overlay */}
 						<div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:bg-transparent">
@@ -132,10 +132,6 @@ const SignUp = () => {
 										className="mt-1 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
 									/>
 								</PasswordPopover>
-
-								<span className="mb-4 mt-1 text-xs text-right">
-									forgot password? <Link href="">Reset</Link>{' '}
-								</span>
 
 								<Button className="w-full rounded-md my-3" type="submit">
 									Sign up

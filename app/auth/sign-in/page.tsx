@@ -79,7 +79,7 @@ const SignIn = () => {
 								/>
 
 								<span className="mb-4 mt-1 text-xs text-right">
-									forgot password? <Link href="">Reset</Link>{' '}
+									forgot password? <Link href="/auth/forgot-password">Reset</Link>
 								</span>
 
 								<Button className="w-full rounded-md my-3" type="submit">
@@ -117,7 +117,7 @@ const SignIn = () => {
 					{/* Desktop image by right */}
 					<div className="hidden md:block h-full w-full ">
 						<Image
-							src="/MacBookPro3.svg"
+							src="/MacBookPro1.svg"
 							alt="sign in Desktop"
 							width={140}
 							height={100}

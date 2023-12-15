@@ -93,7 +93,7 @@ const GetStarted = () => {
 					{/* Desktop image by right */}
 					<div className="hidden md:block h-full w-full ">
 						<Image
-							src="/MacBookPro3.svg"
+							src="/MacBookPro2.svg"
 							alt="sign in Desktop"
 							width={140}
 							height={100}
