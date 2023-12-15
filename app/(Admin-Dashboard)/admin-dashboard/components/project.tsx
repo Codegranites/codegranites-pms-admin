@@ -26,16 +26,9 @@ const Project = () => {
 			</div>
 			<Image src="/dashboard/project.svg" alt="empty project" width={450} height={350} />
 			<span className="text-black font-medium mt-5 mb-5 text-xl">You have to projects yet!</span>
-			<Button
-				leftIcon={<Add size="32" color="#fff" />}
-				intent={'secondary'}
-				size={'md'}
-				className="mt-5 w-45 mb-9 h-18"
-				onClick={openModal}
-			>
-				New project
-			</Button>
-			{isModalOpen && <CreateProjectModal />}
+			<div className="flex min-w-[214px]">
+				<CreateProjectModal />
+			</div>
 		</section>
 	);
 };
