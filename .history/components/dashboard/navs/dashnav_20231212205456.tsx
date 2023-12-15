@@ -23,6 +23,7 @@ const DashNav = () => {
 					className="w-[413px] h-[56px]"
 				/>
 				
+				<h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis enim dicta nesciunt error inventore minima, eligendi laboriosam magnam nostrum porro reprehenderit fugit explicabo in saepe placeat necessitatibus aperiam sequi adipisci?</h1>
 				<Button
 					intent={'primary'}
 					className="text-white bg-primary-light w-[200px] h-[56px]"

@@ -22,6 +22,7 @@ const DashNav = () => {
 					placeHolder="Search for projects..."
 					className="w-[413px] h-[56px]"
 				/>
+
 				
 				<Button
 					intent={'primary'}

@@ -11,7 +11,6 @@ export default function Home() {
 				Admin Dashboard
 			</Link>
 			
-			Hello World !!
 			<Link
 				href="/dashboard"
 				className="border border-primary rounded-xl px-4 py-2 text-primary hover:bg-primary hover:text-white transition-colors duration-700 hover:duration-300 font-medium"

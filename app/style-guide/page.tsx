@@ -332,7 +332,7 @@ function StyleGuide() {
 						}}
 					/>
 
-					{/* Inout */}
+					{/* Input */}
 					<Input
 						onChange={(e) => {
 							console.log(e.target.value);
