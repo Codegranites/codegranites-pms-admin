@@ -3,7 +3,7 @@
 import { Input } from '@ui/Input';
 import Button from '@ui/Button';
 import PasswordPopover from '@ui/passwordPopober';
-import { Eye, EyeSlash } from 'iconsax-react';
+import { Eye, EyeSlash, Call } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -18,6 +18,7 @@ const SignUp = () => {
 	// const initialPassword = 'jamestest2354';
 	const [password, setPassoword] = useState('');
 	const [fullName, setFullName] = useState('');
+	const [phoneNumber, setPhoneNumber] = useState('');
 	const [businessEmail, setBusinessEmail] = useState('');
 	const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
 	const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); // New state for the modal
@@ -90,6 +91,21 @@ const SignUp = () => {
 									onChange={(e) => setBusinessEmail(e.target.value)}
 									placeHolder="Enter Business Email Address"
 									rightIcon={<MdOutlineMail color="#777" />}
+									required
+									className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
+								/>
+
+								<label htmlFor="Business Email" className="font-bold">
+									Phone Number
+								</label>
+								<Input
+									type="Number"
+									id="Phone Number"
+									name="Phone Number"
+									value={phoneNumber}
+									onChange={(e) => setPhoneNumber(e.target.value)}
+									placeHolder="Enter Phone Number"
+									rightIcon={<Call size="20" color="#777777" />}
 									required
 									className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
 								/>

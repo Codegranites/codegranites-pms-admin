@@ -7,7 +7,7 @@ export type AdminClientCardProps = {
 	name: string;
 	job_title: string;
 	email: string;
-	number_projects: number;
+	number_projects?: number;
 	gender?: string;
 	country?: string;
 	phone?: string;
@@ -15,6 +15,8 @@ export type AdminClientCardProps = {
 	address?: string;
 	client_id?: string;
 	bio?: string;
+	website?: string;
+	projects?: string[];
 };
 
 export const ADMIN_CLIENTS: AdminClientCardProps[] = [

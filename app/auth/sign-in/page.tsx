@@ -59,25 +59,24 @@ const SignIn = () => {
 								<label htmlFor="Password" className="font-bold mt-4">
 									Password
 								</label>
-								<PasswordPopover password={password}>
-									<Input
-										type={defaultInpTypeNew}
-										id="password"
-										name="Password"
-										value={password}
-										onChange={(e) => setPassoword(e.target.value)}
-										placeHolder="Enter Password"
-										required
-										rightIcon={
-											defaultInpTypeNew === 'text' ? (
-												<Eye color="#777" onClick={() => setDefaultInpTypeNew('password')} />
-											) : (
-												<EyeSlash color="#777" onClick={() => setDefaultInpTypeNew('text')} />
-											)
-										}
-										className="mt-1 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
-									/>
-								</PasswordPopover>
+
+								<Input
+									type={defaultInpTypeNew}
+									id="password"
+									name="Password"
+									value={password}
+									onChange={(e) => setPassoword(e.target.value)}
+									placeHolder="Enter Password"
+									required
+									rightIcon={
+										defaultInpTypeNew === 'text' ? (
+											<Eye color="#777" onClick={() => setDefaultInpTypeNew('password')} />
+										) : (
+											<EyeSlash color="#777" onClick={() => setDefaultInpTypeNew('text')} />
+										)
+									}
+									className="mt-1 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
+								/>
 
 								<span className="mb-4 mt-1 text-xs text-right">
 									forgot password? <Link href="/auth/forgot-password">Reset</Link>

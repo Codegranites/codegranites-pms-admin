@@ -10,7 +10,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 			<SidebarAdmin />
 			<section className="w-full relative  md:pl-[96px] min-[1140px]:pl-[270px]">
 				<AdminNavbar />
-				<div className="flex w-full pt-8 flex-col h-full relative min-[1140px]:px-9 px-3 max-container">{children}</div>
+				<div className="flex w-full flex-col h-full relative max-container">{children}</div>
 			</section>
 
 			<GotoTop />

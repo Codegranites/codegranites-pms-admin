@@ -52,7 +52,7 @@ function Modal({
 									className={`relative w-full ${sizes[size]} bg-white and p-4 font-nunito font-light transform overflow-hidden text-sm rounded-[12px] text-left align-middle shadow-xl transition-all`}
 								>
 									{title && (
-										<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+										<Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900 text-center">
 											{title}
 										</Dialog.Title>
 									)}

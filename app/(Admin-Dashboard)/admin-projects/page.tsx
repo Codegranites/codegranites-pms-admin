@@ -3,7 +3,7 @@ import AdminProjectContainer from '../../../components/admin/projects/AdminProje
 
 const ProjectsAdmin = () => {
 	return (
-		<section className="w-full h-full flex flex-col gap-y-6">
+		<section className="w-full h-full flex flex-col gap-y-6 min-[1140px]:px-9 px-3 pt-8">
 			<ProjectNav />
 
 			<AdminProjectContainer />
