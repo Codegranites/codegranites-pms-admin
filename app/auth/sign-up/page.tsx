@@ -57,7 +57,7 @@ const SignUp = () => {
 				{/* Email Verification Modal */}
 				<EmailVerificationModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} />
 
-				<div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
+				<div className="desktop mt-10 block md:flex md:justify-center md:items-center h-full relative ">
 					<div className="mobile container px-3 ">
 						{/* overlay */}
 						<div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:bg-transparent">
