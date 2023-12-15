@@ -4,10 +4,16 @@ import React, { useState } from 'react';
 import { DocumentFilter, Briefcase, Add } from 'iconsax-react';
 import Image from 'next/image';
 import Button from '@ui/Button';
+import CreateProjectModal from '../../../../components/admin/projects/CreateProjectModal';
 
 const Project = () => {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
 	return (
-		<section className="flex flex-col  mb-6 sm:border  border-r-[#e1e1e1] h-full py-12 relative items-center justify-center">
+		<section className="flex flex-col  mb-6 sm:border  border-r-[#e1e1e1] h-full py-6 relative items-center justify-center">
 			<div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b border-[#e1e1e1] h-[56px] relative text-xl  text-black font-medium">
 				<div className="flex gap-2 items-center justify-center">
 					<Briefcase size="32" color="#000" />
@@ -19,15 +25,17 @@ const Project = () => {
 				</Button>
 			</div>
 			<Image src="/dashboard/project.svg" alt="empty project" width={450} height={350} />
-			<span className="text-black font-medium text-xl">You have to projects yet!</span>
+			<span className="text-black font-medium mt-5 mb-5 text-xl">You have to projects yet!</span>
 			<Button
 				leftIcon={<Add size="32" color="#fff" />}
 				intent={'secondary'}
 				size={'md'}
 				className="mt-5 w-45 mb-9 h-18"
+				onClick={openModal}
 			>
 				New project
 			</Button>
+			{isModalOpen && <CreateProjectModal />}
 		</section>
 	);
 };

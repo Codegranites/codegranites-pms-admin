@@ -15,7 +15,7 @@ const Transction = () => {
 				</div>
 				<Button
 					className="flex gap-2 items-center justify-center bg-transparent text-black hover:bg-transparent"
-					href=""
+					href="/admin-transactions"
 				>
 					<span>View All</span>
 					<ArrowRight2 size="32" color="#000" />
