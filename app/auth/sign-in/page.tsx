@@ -10,12 +10,20 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
+import { useRouter } from 'next/navigation';
 
 const SignIn = () => {
 	// const initialPassword = 'jamestest2354';
 	const [password, setPassoword] = useState('');
 	const [businessEmail, setBusinessEmail] = useState('');
 	const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
+
+	const router = useRouter();
+
+	const handleLoggedIn = (e: React.FormEvent) => {
+		e.preventDefault();
+		router.push('/auth/get-started');
+	};
 
 	return (
 		<>
@@ -32,7 +40,7 @@ const SignIn = () => {
 								Great to have you back with us again
 							</span>
 
-							<form action="" className="flex flex-col mt-4 z-10">
+							<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleLoggedIn}>
 								<label htmlFor="Business Email" className="font-bold">
 									Business Email
 								</label>
@@ -75,7 +83,9 @@ const SignIn = () => {
 									forgot password? <Link href="">Reset</Link>{' '}
 								</span>
 
-								<Button className="w-full rounded-md my-3">Log in</Button>
+								<Button className="w-full rounded-md my-3" type="submit">
+									Log in
+								</Button>
 							</form>
 
 							<div className="seperator flex items-center space-x-2 my-2">
@@ -87,9 +97,12 @@ const SignIn = () => {
 							<Link href="">
 								<Button
 									className=" text-black w-full my-3 border-[#C7C7C7] 
-								border rounded-md bg-[#fff] py-1 "
+								border rounded-md bg-[#fff] py-1"
+									leftIcon={
+										<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />
+									}
 								>
-									Contine with Google
+									Continue with Google
 								</Button>
 							</Link>
 						</div>

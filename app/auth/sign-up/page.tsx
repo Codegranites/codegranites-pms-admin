@@ -2,16 +2,17 @@
 
 import { Input } from '@ui/Input';
 import Button from '@ui/Button';
-import { Google } from 'iconsax-react';
 import PasswordPopover from '@ui/passwordPopober';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { FiUser } from 'react-icons/fi';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next/navigation';
+
+import { EmailVerificationModal } from './EmailVerificationModal';
 
 const SignUp = () => {
 	// const initialPassword = 'jamestest2354';
@@ -19,12 +20,31 @@ const SignUp = () => {
 	const [fullName, setFullName] = useState('');
 	const [businessEmail, setBusinessEmail] = useState('');
 	const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
+	const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); // New state for the modal
 
 	const router = useRouter();
 
-	const handleButtonClick = () => {
-		// handles push to button onClick
-		router.push('/auth/get-started');
+	const handleEmailVerification = (e: React.FormEvent) => {
+		e.preventDefault();
+
+		// Open the email verification modal
+		setIsVerificationModalOpen(true);
+
+		console.log('=============================');
+		console.log('fullname: ' + fullName);
+		console.log('businessEmail: ' + businessEmail);
+		console.log('password: ' + password);
+		console.log('=============================');
+
+		// clean-up
+		setFullName('');
+		setBusinessEmail('');
+		setPassoword('');
+	};
+
+	const closeModal = () => {
+		// Close the email verification modal
+		setIsVerificationModalOpen(false);
 	};
 
 	return (
@@ -33,6 +53,9 @@ const SignUp = () => {
 				{/* header component  */}
 				<Header_for_many />
 
+				{/* Email Verification Modal */}
+				<EmailVerificationModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} />
+
 				<div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
 					<div className="mobile container px-3 ">
 						{/* overlay */}
@@ -40,7 +63,7 @@ const SignUp = () => {
 							<h1 className="text-center font-[600]  text-[28px]">Let us know you better</h1>
 							<span className="block text-center font-[400] text-[14px] mt-2 ">Begin your journey</span>
 
-							<form action="" className="flex flex-col mt-4 z-10">
+							<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleEmailVerification(e)}>
 								<label htmlFor="Business Email" className="font-bold">
 									FullName
 								</label>
@@ -98,7 +121,7 @@ const SignUp = () => {
 									forgot password? <Link href="">Reset</Link>{' '}
 								</span>
 
-								<Button className="w-full rounded-md my-3" href="/auth/get-started">
+								<Button className="w-full rounded-md my-3" type="submit">
 									Sign up
 								</Button>
 							</form>
@@ -111,7 +134,9 @@ const SignUp = () => {
 
 							<Button
 								className=" text-black w-full my-3 border-[#C7C7C7] border rounded-md bg-[#fff] py-1 "
-								onClick={handleButtonClick}
+								leftIcon={
+									<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />
+								}
 							>
 								Contine with Google
 							</Button>
@@ -125,6 +150,7 @@ const SignUp = () => {
 						</span>
 					</div>
 
+					{/* This can be taken and indepenedet */}
 					{/* Desktop image by right */}
 					<div className="hidden md:block h-full w-full ">
 						<Image
@@ -132,7 +158,7 @@ const SignUp = () => {
 							alt="sign in Desktop"
 							width={140}
 							height={100}
-							className=" hidden md:block h-full w-full"
+							className="hidden md:block h-full w-full"
 						/>
 					</div>
 				</div>

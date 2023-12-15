@@ -72,9 +72,11 @@ const GetStarted = () => {
 							<Link href="">
 								<Button
 									className=" text-black w-full my-3 border-[#C7C7C7] 
-							border rounded-md bg-[#fff] py-1 "
+							border rounded-md bg-[#fff] py-1"
+									leftIcon={
+										<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />
+									}
 								>
-									<Image src="/Mobile/google.svg" alt="google icon" width={20} height={20} className=" hidden" />
 									Contine with Google
 								</Button>
 							</Link>

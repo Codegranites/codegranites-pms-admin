@@ -15,6 +15,7 @@ function Modal({
 	isOpen,
 	closeModal,
 	closeOnOverlayClick = false,
+	className,
 	children,
 	title,
 	size = 'sm',
@@ -63,7 +64,8 @@ function Modal({
 											</Button>
 										</div>
 									) : null}
-									{children}
+
+									<div className={className}>{children}</div>
 								</Dialog.Panel>
 							</Transition.Child>
 						</div>
