@@ -62,39 +62,6 @@
 		z-index: 1;
 	}
 }
-.open-modal-scale {
-	animation: modal-scale 0.3s ease forwards;
-	transform: scale(0);
-	opacity: 0;
-
-	--tw-translate-x: -50%;
-	--tw-translate-y: -50%;
-	@keyframes modal-scale {
-		to {
-			opacity: 1;
-			transform: scale(1) translate(var(--tw-translate-x), var(--tw-translate-y));
-		}
-	}
-}
-
-.open-modal {
-	animation: open-modal 1s 0.3s ease forwards;
-
-	@keyframes open-modal {
-		to {
-			display: flex;
-		}
-	}
-}
-.hide-modal {
-	animation: hide-modal 1s 0.3s linear forwards;
-
-	@keyframes hide-modal {
-		to {
-			display: none;
-		}
-	}
-}
 
 // ======MISCELLANEOUS=========
 @keyframes animate3d {
