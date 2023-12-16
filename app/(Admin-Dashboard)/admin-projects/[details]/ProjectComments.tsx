@@ -44,6 +44,9 @@ const ProjectComments = () => {
 			author: user?.name
 		});
 	};
+	useEffect(() => {
+		localStorage.removeItem('comments');
+	}, []);
 
 	useEffect(() => {
 		const intervalId = setInterval(() => {
