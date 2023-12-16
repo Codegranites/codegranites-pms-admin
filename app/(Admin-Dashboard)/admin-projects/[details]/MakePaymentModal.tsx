@@ -36,14 +36,16 @@ const MakePaymentModal = ({ openModal, setOpenModal, project }: MakePaymentModal
 
 	return (
 		<>
-			<div
-				aria-hidden
-				className={cn(
-					' fixed min-h-screen w-full bg-black/40 backdrop-blur-sm top-0 left-0  transition-all duration-300 z-[99]',
-					openModal ? 'opacity-100' : 'opacity-0 pointer-events-none'
-				)}
-				onClick={() => setOpenModal(false)}
-			/>
+			{openModal && (
+				<div
+					aria-hidden
+					className={cn(
+						' fixed min-h-screen w-full bg-black/40 backdrop-blur-sm top-0 left-0  transition-all duration-300 z-[99]',
+						openModal ? 'opacity-100' : 'opacity-0 pointer-events-none'
+					)}
+					onClick={() => setOpenModal(false)}
+				/>
+			)}
 
 			<div
 				role="dialog"
@@ -51,8 +53,8 @@ const MakePaymentModal = ({ openModal, setOpenModal, project }: MakePaymentModal
 				className={cn(
 					'py-6   flex flex-col w-[360px] h-[350px] min-[450px]:h-[380px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[459px] justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none ',
 					openModal
-						? 'scale-100 duration-700 opacity-100 rounded-xl md:rounded-2xl'
-						: 'scale-0 duration-300 pointer-events-none'
+						? 'scale-100 duration-500 opacity-100 rounded-xl md:rounded-2xl'
+						: 'scale-0 duration-200 pointer-events-none'
 				)}
 			>
 				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
