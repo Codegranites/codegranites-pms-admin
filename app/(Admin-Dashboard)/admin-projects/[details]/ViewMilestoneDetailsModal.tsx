@@ -23,14 +23,16 @@ const ViewMilestoneDetailsModal = () => {
 
 	return (
 		<>
-			<div
-				aria-hidden
-				className={cn(
-					' fixed min-h-screen w-full bg-black/30  top-0 left-0  transition-all duration-300 z-[99] backdrop-blur-sm',
-					viewMilestoneModal ? 'opacity-30' : 'opacity-0 pointer-events-none'
-				)}
-				onClick={() => setViewMilestoneModal(false)}
-			/>
+			{viewMilestoneModal && (
+				<div
+					aria-hidden
+					className={cn(
+						' fixed min-h-screen w-full bg-black/30  top-0 left-0  transition-all duration-300 z-[99] backdrop-blur-sm',
+						viewMilestoneModal ? 'opacity-30' : 'opacity-0 pointer-events-none'
+					)}
+					onClick={() => setViewMilestoneModal(false)}
+				/>
+			)}
 
 			{viewMilestoneModal && (
 				<div
