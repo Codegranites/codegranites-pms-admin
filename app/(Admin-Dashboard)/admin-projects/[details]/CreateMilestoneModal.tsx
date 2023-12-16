@@ -69,7 +69,7 @@ const CreateMilestoneModal = () => {
 			<div
 				aria-hidden
 				className={cn(
-					' fixed min-h-screen w-full bg-black/60 top-0 left-0  transition-all duration-300 z-[99] backdrop-blur-sm',
+					' fixed min-h-screen w-full bg-black/40 top-0 left-0  transition-all duration-300 z-[99] backdrop-blur-sm',
 					createMilestoneModal ? 'opacity-100' : 'opacity-0 pointer-events-none'
 				)}
 				onClick={() => setCreateMilestoneModal(false)}
