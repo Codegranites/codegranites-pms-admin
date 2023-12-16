@@ -40,9 +40,6 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 
 	return (
 		<>
-			<ChangeStatusModal />
-			<EditMilestoneModal />
-			<ViewMilestoneDetailsModal />
 			<div className="w-full flex justify-between items-start border-b border-[#e1e1e1] relative hover:bg-black/10 transition-all duration-300 py-1">
 				<div
 					className="flex flex-col w-full items-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light "
