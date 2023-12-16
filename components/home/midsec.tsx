@@ -51,7 +51,7 @@ const Midsec = () => {
 						<Image
 							src="/dashboardmob.svg"
 							alt="hero image"
-							width={380}
+							width={500}
 							height={500}
 							priority
 							className="w-full h-full object-cover"
