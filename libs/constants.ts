@@ -173,7 +173,7 @@ export const Settingsnav: SettingsProps[] = [
 
 export const NAV_LINKS: NavbarLinkProps[] = [
 	{ id: 1, link: '', label: 'home' },
-	{ id: 2, link: 'dashboard', label: 'client'},
+	{ id: 2, link: 'dashboard', label: 'client' },
 	{ id: 3, link: 'style-guide', label: 'style-guide' },
 	{ id: 4, link: 'admin-dashboard', label: ' Admin' }
 ];

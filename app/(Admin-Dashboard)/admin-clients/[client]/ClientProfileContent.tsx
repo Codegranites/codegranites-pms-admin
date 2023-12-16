@@ -38,7 +38,7 @@ const ClientProfileContent = ({ client_id, client_name }: { client_id?: string; 
 					aria-label="Go Back"
 					onClick={() => router.back()}
 					type="button"
-					className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1"
+					className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4"
 				>
 					<ChevronLeft aria-hidden />
 					<span>Back</span>

@@ -111,11 +111,11 @@ const AdminClientContainer = () => {
 							<ProjectNotFound text="No client(s) found" />
 						</div>
 					)}
-					<div className="flex w-full justify-end">
+					<div className="flex w-full justify-end mt-6">
 						<ReactPaginate
 							breakLabel="..."
-							nextLabel="Next &rarr;"
-							previousLabel="&larr; Previous"
+							nextLabel="Next "
+							previousLabel=" Previous"
 							previousAriaLabel="Previous"
 							nextAriaLabel="Next"
 							pageCount={totalPages}
