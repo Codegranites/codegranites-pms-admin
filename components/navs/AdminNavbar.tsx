@@ -8,7 +8,8 @@ import { useSearchParams } from 'next/navigation';
 import { ChevronRight } from 'lucide-react';
 
 const AdminNavbar = () => {
-	const { currentPath, showMobileMenu, setShowMobileMenu } = useStateCtx();
+	const { currentPath, showMobileMenu, setShowMobileMenu, user } = useStateCtx();
+	const firstName = user.name?.split(' ')[0];
 	const searchParams = useSearchParams();
 	const projectTitle = searchParams.get('project_title');
 	const clientName = searchParams.get('client_name');
@@ -19,52 +20,60 @@ const AdminNavbar = () => {
 
 	return (
 		<header className="lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
-			<div className="flex gap-x-2 sm:gap-x-4 items-center">
-				<h2
-					onMouseEnter={handleMouseEnter}
-					className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
-					data-value={
-						decrptedTitle
+			{pathName === 'dashboard' ? (
+				<div className="flex gap-x-2 sm:gap-x-4 items-center">
+					<h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  ">
+						Welcome back! {firstName ?? 'User'}
+					</h2>
+				</div>
+			) : (
+				<div className="flex gap-x-2 sm:gap-x-4 items-center">
+					<h2
+						onMouseEnter={handleMouseEnter}
+						className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
+						data-value={
+							decrptedTitle
+								? pathName.replace('projects', 'project')
+								: decrptedName
+								  ? pathName.replace('clients', 'client profile')
+								  : pathName
+						}
+					>
+						{decrptedTitle
 							? pathName.replace('projects', 'project')
 							: decrptedName
 							  ? pathName.replace('clients', 'client profile')
-							  : pathName
-					}
-				>
-					{decrptedTitle
-						? pathName.replace('projects', 'project')
-						: decrptedName
-						  ? pathName.replace('clients', 'client profile')
-						  : pathName}
-				</h2>
-				{decrptedTitle && (
-					<>
-						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
-						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-							{decrptedTitle}
-						</h3>
-					</>
-				)}
-				{decrptedName && (
-					<>
-						<span className="text-3xl sm:text-4xl text-gray-700">•</span>
-						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-							{decrptedName}
-						</h3>
-					</>
-				)}
-				{settingTab && (
-					<>
-						<span className="text-3xl sm:text-4xl text-gray-700 sm:hidden">
-							<ChevronRight />
-						</span>
-						<span className="text-3xl sm:text-4xl text-gray-700 max-sm:hidden">•</span>
-						<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-							{settingTab.replace(/-/g, ' ')}
-						</h3>
-					</>
-				)}
-			</div>
+							  : pathName}
+					</h2>
+					{decrptedTitle && (
+						<>
+							<span className="text-3xl sm:text-4xl text-gray-700">•</span>
+							<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+								{decrptedTitle}
+							</h3>
+						</>
+					)}
+					{decrptedName && (
+						<>
+							<span className="text-3xl sm:text-4xl text-gray-700">•</span>
+							<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+								{decrptedName}
+							</h3>
+						</>
+					)}
+					{settingTab && (
+						<>
+							<span className="text-3xl sm:text-4xl text-gray-700 sm:hidden">
+								<ChevronRight />
+							</span>
+							<span className="text-3xl sm:text-4xl text-gray-700 max-sm:hidden">•</span>
+							<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+								{settingTab.replace(/-/g, ' ')}
+							</h3>
+						</>
+					)}
+				</div>
+			)}
 			<button
 				tabIndex={0}
 				aria-haspopup

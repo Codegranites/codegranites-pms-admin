@@ -29,12 +29,7 @@ export const SIDEBAR_ADMIN_LINKS: SidebarAdminProps[] = [
 		icon: Category,
 		link: 'admin-dashboard'
 	},
-	{
-		id: 2,
-		label: 'Workspaces',
-		icon: DocumentCode,
-		link: 'admin-workspaces'
-	},
+
 	{
 		id: 3,
 		label: 'Problem Statements',
@@ -65,12 +60,7 @@ export const SIDEBAR_ADMIN_LINKS: SidebarAdminProps[] = [
 		icon: MessageText,
 		link: 'admin-messages'
 	},
-	{
-		id: 8,
-		label: 'Admins',
-		icon: Personalcard,
-		link: 'admin-admins'
-	},
+
 	{
 		id: 9,
 		label: 'Notifications',

@@ -354,7 +354,7 @@ const CreateProjectModal = () => {
 							</button>
 						</div>
 
-						<div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 my-4 max-sm:gap-x-5">
+						<div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 py-6 max-sm:gap-x-5">
 							<button
 								type="button"
 								tabIndex={0}
