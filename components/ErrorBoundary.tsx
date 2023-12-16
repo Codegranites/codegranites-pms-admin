@@ -1,7 +1,6 @@
 
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 
-
 interface ErrorBoundaryProps {
   children: ReactNode;
   onLogError?: (error: Error, errorInfo: ErrorInfo) => void;
@@ -39,11 +38,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   render(): ReactNode {
     if (this.state.hasError) {
       return (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md relative" role="alert">
           <p className="font-bold">Something went wrong.</p>
           <button
             onClick={this.handleTryAgainClick}
-            className="bg-primary-100 hover:bg-secondary-100 text-white font-bold py-2 px-4 rounded mt-2"
+            className="bg-primary-dark hover:bg-primary-light text-white font-bold py-2 px-4 rounded-md mt-2"
           >
             Try Again
           </button>
