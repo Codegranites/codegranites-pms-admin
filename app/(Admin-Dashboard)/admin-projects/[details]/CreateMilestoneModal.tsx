@@ -81,12 +81,12 @@ const CreateMilestoneModal = () => {
 				className={cn(
 					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[650px] md:h-[720px] lg:h-[750px] md:w-[682px]  justify-between items-start bg-white backdrop-blur-lg top-10 fixed sm:top-1/2 left-1/2  sm:-translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
 					createMilestoneModal
-						? '-translate-x-1/2 duration-700 opacity-100 rounded-xl md:rounded-2xl'
+						? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
 						: '-translate-x-full duration-300 pointer-events-none'
 				)}
 			>
 				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-					<h3 className="text-lg md:text-2xl font-medium text-header">Create New Milestone</h3>
+					<h3 className="sm:text-lg md:text-2xl font-medium text-header">Create New Milestone</h3>
 					<button
 						type="button"
 						tabIndex={0}
@@ -110,7 +110,7 @@ const CreateMilestoneModal = () => {
 					className="flex w-full flex-col gap-y-4 lg:gap-y-6 py-4 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
 				>
 					<div className="flex flex-col  gap-y-2 w-full">
-						<label htmlFor="description" className="font-medium">
+						<label htmlFor="description" className="text-sm sm:text-base font-medium">
 							Milestone Title
 						</label>
 						<input
@@ -125,7 +125,7 @@ const CreateMilestoneModal = () => {
 					</div>
 
 					<div className="flex flex-col  gap-y-2 w-full">
-						<label htmlFor="description" className="font-medium">
+						<label htmlFor="description" className="text-sm sm:text-base font-medium">
 							Add Description
 						</label>
 						<textarea

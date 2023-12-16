@@ -42,9 +42,9 @@ const AdminMobileSidebar = () => {
 						: '-translate-x-full duration-300 pointer-events-none'
 				)}
 			>
-				<div className="w-full  h-[53px]">
+				<Link href="/" className="w-full  h-[53px]">
 					<Image src="/logo.png" alt="Logo" width={155} height={53} />
-				</div>
+				</Link>
 				<ul className="flex flex-col gap-y-4 py-8">
 					{SIDEBAR_ADMIN_LINKS.map((link) => (
 						<Link

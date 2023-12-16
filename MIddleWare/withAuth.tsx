@@ -13,7 +13,7 @@ const withAuth = <P extends {}>(WrappedComponent: React.ComponentType<P>) => {
 			if (!isLoggedIn) {
 				router.push('/auth/login');
 			}
-		}, []);
+		}, [router]);
 
 		return <WrappedComponent {...props} />;
 	};
