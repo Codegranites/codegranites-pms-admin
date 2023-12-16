@@ -26,8 +26,8 @@ const CreateProjectModal = () => {
 		project_manager: '',
 		start_date: '',
 		end_date: '',
-		total_cost: 0,
-		initial_payment: 0,
+		total_cost: undefined,
+		initial_payment: undefined,
 		status: 'pending',
 		currency: 'USD'
 	});
@@ -93,20 +93,23 @@ const CreateProjectModal = () => {
 				aria-labelledby="create-project"
 				aria-modal
 				className={cn(
-					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-auto max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg top-10 fixed sm:top-1/2 left-1/2  sm:-translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					'pt-2 pb-6 sm:py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
 					createProjectModal
 						? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
 						: '-translate-x-full duration-300 pointer-events-none'
 				)}
 			>
-				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-					<div className="flex items-center gap-x-2">
+				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-2 sm:pb-4  px-2 sm:px-4 md:pl-8 ">
+					<div className="flex items-center gap-x-1 sm:gap-x-2">
 						<Image src={user?.image!} alt="User Image" width={40} height={40} className="rounded-full" />
 						<span>{user?.name}</span>
-						<span className="text-header">
+						<span className="text-header hidden sm:inline">
 							<ChevronRight size={24} />
 						</span>
-						<h3 className="text-lg md:text-2xl font-medium text-header">New Project</h3>
+						<span className="text-header sm:hidden">
+							<ChevronRight size={18} />
+						</span>{' '}
+						<h3 className="sm:text-lg md:text-2xl font-medium text-header">New Project</h3>
 					</div>
 					<button
 						type="button"
@@ -118,14 +121,14 @@ const CreateProjectModal = () => {
 						<X size={24} />
 					</button>
 				</div>
-				<section className="w-full h-full overflow-y-auto sidebar-scroll pt-4">
+				<section className="w-full h-full overflow-x-hidden overflow-y-auto hide-scroll pt-2 sm:pt-4">
 					<form
 						onSubmit={handleSubmit}
-						className="flex w-full flex-col gap-y-4 lg:gap-y-6 py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
+						className="flex w-full flex-col max-sm:gap-y-6 gap-y-4 lg:gap-y-6 py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
 					>
 						{/* Project Title */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-title" className="font-medium">
+							<label htmlFor="project-title" className="text-sm sm:text-base font-medium">
 								Project Title
 							</label>
 							<input
@@ -141,23 +144,25 @@ const CreateProjectModal = () => {
 
 						{/* Project Description */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="description" className="font-medium">
+							<label htmlFor="description" className="text-sm sm:text-base font-medium">
 								Project Description
 							</label>
-							<textarea
-								placeholder="Project description..."
-								id="description"
-								name="description"
-								maxLength={MAX_DESC_LEN}
-								className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
-								value={formData.description}
-								onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
-							/>
-							<WordCounter word={formData.description} length={MAX_DESC_LEN} />
+							<div className="flex w-full flex-col">
+								<textarea
+									placeholder="Project description..."
+									id="description"
+									name="description"
+									maxLength={MAX_DESC_LEN}
+									className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
+									value={formData.description}
+									onChange={(e) => setFormData({ ...formData, [e.target.name]: e.target.value })}
+								/>
+								<WordCounter word={formData.description} length={MAX_DESC_LEN} />
+							</div>
 						</div>
 						{/* Project Owner */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-owner" className="font-medium">
+							<label htmlFor="project-owner" className="text-sm sm:text-base font-medium">
 								Project Owner
 							</label>
 							<input
@@ -172,7 +177,7 @@ const CreateProjectModal = () => {
 						</div>
 						{/* Project Manager */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-manager" className="font-medium">
+							<label htmlFor="project-manager" className="text-sm sm:text-base font-medium">
 								Project Manager
 							</label>
 							<input
@@ -189,7 +194,7 @@ const CreateProjectModal = () => {
 						{/* Project Dates */}
 						<div className="flex w-full items-center gap-x-2 md:gap-x-4">
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="start-date" className="font-medium">
+								<label htmlFor="start-date" className="text-sm sm:text-base font-medium">
 									Start date
 								</label>
 								<input
@@ -204,7 +209,7 @@ const CreateProjectModal = () => {
 							</div>
 
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="end-date" className="font-medium">
+								<label htmlFor="end-date" className="text-sm sm:text-base font-medium">
 									End date
 								</label>
 								<input
@@ -221,14 +226,14 @@ const CreateProjectModal = () => {
 
 						{/* Project Total Cost */}
 						<div className="flex flex-col  gap-y-2 w-full relative">
-							<label htmlFor="total_cost" className="font-medium">
+							<label htmlFor="total_cost" className="text-sm sm:text-base font-medium">
 								Total cost of project
 							</label>
 							<div className="flex relative w-full items-center  ">
 								<span className="absolute left-3 md:left-4 ">{currenySymbol}</span>
 								<input
 									type="number"
-									placeholder="Project total cost..."
+									placeholder="0"
 									id="total_cost"
 									name="total_cost"
 									className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
@@ -260,14 +265,14 @@ const CreateProjectModal = () => {
 						{/* Project Cost[Initial Final] Payment */}
 						<div className="flex w-full items-center gap-x-2 md:gap-x-4">
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="initial_payment" className="font-medium">
+								<label htmlFor="initial_payment" className="text-sm sm:text-base font-medium">
 									Initial Payment
 								</label>
 								<div className="flex relative w-full items-center  ">
 									<span className="absolute left-3 md:left-4 ">{currenySymbol}</span>
 									<input
 										type="number"
-										placeholder="Project total cost..."
+										placeholder="0"
 										id="initial_payment"
 										name="initial_payment"
 										className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
@@ -278,14 +283,14 @@ const CreateProjectModal = () => {
 							</div>
 
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="final_payment" className="font-medium">
+								<label htmlFor="final_payment" className="text-sm sm:text-base font-medium">
 									Final Payment
 								</label>
 								<div className="flex relative w-full items-center  ">
 									<span className="absolute left-3 md:left-4 ">{currenySymbol}</span>
 									<input
 										type="number"
-										placeholder="Project Final payment."
+										placeholder="0"
 										id="final_payment"
 										name="final_payment"
 										className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
@@ -298,7 +303,7 @@ const CreateProjectModal = () => {
 
 						{/* Project Status */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-status" className="font-medium">
+							<label htmlFor="project-status" className="text-sm sm:text-base font-medium">
 								Project Status
 							</label>
 							<select
@@ -328,11 +333,11 @@ const CreateProjectModal = () => {
 								aria-label="Attach Docs"
 								onClick={() => setCreateProjectModal(false)}
 								className={cn(
-									'flex items-center gap-x-3 justify-center  rounded-lg border border-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+									'flex items-center gap-x-1 sm:gap-x-3 px-2 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px]  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
 								)}
 							>
 								<Add size={24} />
-								<span className="font-medium">Attach Docs</span>
+								<span className="text-sm sm:text-base font-medium">Attach Docs</span>
 							</button>
 
 							<button
@@ -341,15 +346,15 @@ const CreateProjectModal = () => {
 								aria-label="Add Prototype"
 								onClick={() => setCreateProjectModal(false)}
 								className={cn(
-									'flex items-center gap-x-3 justify-center  rounded-lg border border-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+									'flex items-center gap-x-1 sm:gap-x-3 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
 								)}
 							>
 								<Add size={24} />
-								<span className="font-medium">Add Prototype</span>
+								<span className="text-sm sm:text-base font-medium">Add Prototype</span>
 							</button>
 						</div>
 
-						<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6">
+						<div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 my-4 max-sm:gap-x-5">
 							<button
 								type="button"
 								tabIndex={0}

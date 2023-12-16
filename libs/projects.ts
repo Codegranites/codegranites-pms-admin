@@ -12,8 +12,8 @@ export type ProjectCardProps = {
 	end_date: string;
 	start_date?: string;
 	description?: string;
-	total_cost?: number;
-	initial_payment?: number;
+	total_cost?: number | undefined;
+	initial_payment?: number | undefined;
 	currency?: string;
 };
 

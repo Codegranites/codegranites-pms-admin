@@ -138,7 +138,6 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 							setChangeStatusModal(true);
 							setIsMenu(!isMenu);
 						}}
-						ref={lastItemRef}
 						type="button"
 						tabIndex={0}
 						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300"

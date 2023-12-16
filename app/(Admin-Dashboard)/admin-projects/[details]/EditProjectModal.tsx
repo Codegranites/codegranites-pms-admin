@@ -62,11 +62,11 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 				onClick={() => setEditProjectModal(false)}
 			/>
 
-			<div
+			<section
 				role="dialog"
 				aria-labelledby="make-payment"
 				className={cn(
-					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-auto max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg top-10 fixed sm:top-1/2 left-1/2  sm:-translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					'pt-2 pb-6 sm:py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none',
 					editProjectModal
 						? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
 						: '-translate-x-full duration-300 pointer-events-none'
@@ -84,14 +84,14 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						<X size={24} />
 					</button>
 				</div>
-				<section className="w-full h-full overflow-y-auto sidebar-scroll pt-4">
+				<section className="w-full h-full overflow-x-hidden overflow-y-auto hide-scroll pt-2 sm:pt-4">
 					<form
 						onSubmit={handleSubmit}
-						className="flex w-full flex-col gap-y-4 lg:gap-y-6 py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
+						className="flex w-full flex-col max-sm:gap-y-6 gap-y-4 lg:gap-y-6 py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
 					>
 						{/* Project Title */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-title" className="font-medium">
+							<label htmlFor="project-title" className="text-sm sm:text-base font-medium">
 								Project Title
 							</label>
 							<input
@@ -107,7 +107,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 
 						{/* Project Description */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="description" className="font-medium">
+							<label htmlFor="description" className="text-sm sm:text-base font-medium">
 								Project Description
 							</label>
 							<textarea
@@ -123,7 +123,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						</div>
 						{/* Project Owner */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-owner" className="font-medium">
+							<label htmlFor="project-owner" className="text-sm sm:text-base font-medium">
 								Project Owner
 							</label>
 							<input
@@ -138,7 +138,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						</div>
 						{/* Project Manager */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-manager" className="font-medium">
+							<label htmlFor="project-manager" className="text-sm sm:text-base font-medium">
 								Project Manager
 							</label>
 							<input
@@ -155,7 +155,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						{/* Project Dates */}
 						<div className="flex w-full items-center gap-x-2 md:gap-x-4">
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="start-date" className="font-medium">
+								<label htmlFor="start-date" className="text-sm sm:text-base font-medium">
 									Start date
 								</label>
 								<input
@@ -170,7 +170,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 							</div>
 
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="end-date" className="font-medium">
+								<label htmlFor="end-date" className="text-sm sm:text-base font-medium">
 									End date
 								</label>
 								<input
@@ -187,7 +187,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 
 						{/* Project Total Cost */}
 						<div className="flex flex-col  gap-y-2 w-full relative">
-							<label htmlFor="total_cost" className="font-medium">
+							<label htmlFor="total_cost" className="text-sm sm:text-base font-medium">
 								Total cost of project
 							</label>
 							<div className="flex relative w-full items-center  ">
@@ -226,7 +226,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						{/* Project Cost[Initial Final] Payment */}
 						<div className="flex w-full items-center gap-x-2 md:gap-x-4">
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="initial_payment" className="font-medium">
+								<label htmlFor="initial_payment" className="text-sm sm:text-base font-medium">
 									Initial Payment
 								</label>
 								<div className="flex relative w-full items-center  ">
@@ -244,7 +244,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 							</div>
 
 							<div className="flex flex-col  gap-y-2 w-full">
-								<label htmlFor="final_payment" className="font-medium">
+								<label htmlFor="final_payment" className="text-sm sm:text-base font-medium">
 									Final Payment
 								</label>
 								<div className="flex relative w-full items-center  ">
@@ -264,7 +264,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 
 						{/* Project Status */}
 						<div className="flex flex-col  gap-y-2 w-full">
-							<label htmlFor="project-status" className="font-medium">
+							<label htmlFor="project-status" className="text-sm sm:text-base font-medium">
 								Project Status
 							</label>
 							<select
@@ -294,11 +294,11 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 								aria-label="Attach Docs"
 								onClick={() => setEditProjectModal(false)}
 								className={cn(
-									'flex items-center gap-x-3 justify-center  rounded-lg border border-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+									'flex items-center gap-x-1 sm:gap-x-3 px-2 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px]  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
 								)}
 							>
 								<Add size={24} />
-								<span className="font-medium">Attach Docs</span>
+								<span className="text-sm sm:text-base font-medium">Attach Docs</span>
 							</button>
 
 							<button
@@ -307,15 +307,15 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 								aria-label="Add Prototype"
 								onClick={() => setEditProjectModal(false)}
 								className={cn(
-									'flex items-center gap-x-3 justify-center  rounded-lg border border-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+									'flex items-center gap-x-1 sm:gap-x-3 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
 								)}
 							>
 								<Add size={24} />
-								<span className="font-medium">Add Prototype</span>
+								<span className="text-sm sm:text-base font-medium">Add Prototype</span>
 							</button>
 						</div>
 
-						<div className="flex w-full justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6">
+						<div className="flex w-full justify-center sm:justify-end items-center gap-x-2 sm:gap-x-3 md:gap-x-6 my-4 max-sm:gap-x-5">
 							<button
 								type="button"
 								tabIndex={0}
@@ -342,7 +342,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 						</div>
 					</form>
 				</section>
-			</div>
+			</section>
 		</>
 	);
 };
