@@ -31,7 +31,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
 					aria-label="Go Back"
 					onClick={() => router.back()}
 					type="button"
-					className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1"
+					className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4"
 				>
 					<ChevronLeft aria-hidden />
 					<span>Back</span>
@@ -44,7 +44,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
 					<div className="flex flex-col w-full py-3 sm:p-3  sm:rounded-xl sm:border max-sm:border-t border-[#e1e1e1] h-full">
 						<h3 className="text-lg font-semibold text-header  pb-4">Project Documents</h3>
 						<div className="flex flex-col h-full max-h-[250px] overflow-y-auto sidebar-scroll w-full">
-							<div className="flex flex-col gap-y-4">
+							<div className="flex flex-col gap-y-4 px-1">
 								{docs.slice(0, docsNum).map((num) => (
 									<ProjectDoc key={num} />
 								))}
