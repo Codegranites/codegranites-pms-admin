@@ -47,11 +47,11 @@ const Midsec = () => {
 					<div className="items-center justify-center hidden sm:block">
 						<Image src="/dashboardfull.svg" alt={''} width={800} height={600} />
 					</div>
-					<div className="items-center justify-center max-h-[650px] sm:hidden">
+					<div className="items-center justify-center sm:hidden">
 						<Image
 							src="/dashboardmob.svg"
 							alt="hero image"
-							width={380}
+							width={500}
 							height={500}
 							priority
 							className="w-full h-full object-cover"
