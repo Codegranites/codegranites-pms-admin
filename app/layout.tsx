@@ -8,6 +8,9 @@ import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
 import nProgress from 'nprogress';
 import router from 'next/navigation';
+import ErrorBoundary from '../components/ErrorBoundary';
+
+
 import './Styles/nprogress.css';
 // import { Router } from 'next/router';
 
@@ -42,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				pauseOnHover
 				theme="light"
 			/>
+			<ErrorBoundary>
 			<StateContextProvider>
 				<body className={workSans.className}>
 					{/* <Navbar /> */}
@@ -51,6 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<GotoTop />
 				</body>
 			</StateContextProvider>
+				</ErrorBoundary>
 		</html>
 	);
 }
