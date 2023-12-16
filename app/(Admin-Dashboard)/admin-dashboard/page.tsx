@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import DashNav from '../../../components/dashboard/navs/dashnav';
 import Project from './components/project';
-import Transction from './components/transaction';
+import Transaction from './components/transaction';
 import History from './components/history';
 
 const AdminDashboard = () => {
@@ -12,13 +12,13 @@ const AdminDashboard = () => {
 			<div className="px-8 w-full ">
 				<DashNav />
 			</div>
-			<div className="flex-col flex lg:flex-row  w-full sm:px-3 mt-8 py-6 mb-6 justify-start h-full">
-				<div className="lg:w-[60%] w-full h-full">
+			<div className="flex-col flex lg:flex-row flex-1  w-full sm:px-3 mt-8 py-6 mb-6  h-full ">
+				<div className="lg:w-[60%] w-full h-full flex-1">
 					<Project />
 				</div>
-				<div className="flex-col lg:w-[40%] w-full h-full">
+				<div className="flex-col lg:w-[40%] w-full h-full flex-1">
 					<History />
-					<Transction />
+					<Transaction />
 				</div>
 			</div>
 		</section>

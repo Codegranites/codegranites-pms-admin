@@ -13,20 +13,20 @@ const Project = () => {
 		setIsModalOpen(true);
 	};
 	return (
-		<section className="flex flex-col  mb-6 sm:border  border-r-[#e1e1e1] h-full py-6 relative items-center justify-center">
-			<div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b border-[#e1e1e1] h-[56px] relative text-xl  text-black font-medium">
+		<section className="flex flex-col   sm:border  border-r-[#e1e1e1] h-full py-6 relative items-center justify-center lg:pb-[163px]">
+			<div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header font-medium">
 				<div className="flex gap-2 items-center justify-center">
-					<Briefcase size="32" color="#000" />
+					<Briefcase size="32" color="#535353" />
 					<span>Available Projects</span>
 				</div>
-				<Button className="flex gap-2 bg-transparent hover-transparent text-black items-center justify-center">
-					<DocumentFilter size="32" color="#000" />
+				{/* <Button className="flex gap-2 bg-transparent hover-transparent text-header focus-within:text-white hover:text-white items-center justify-center transition-colors duration-300">
+					<DocumentFilter size="32" />
 					<span>Filter</span>
-				</Button>
+				</Button> */}
 			</div>
 			<Image src="/dashboard/project.svg" alt="empty project" width={450} height={350} />
-			<span className="text-black font-medium mt-5 mb-5 text-xl">You have to projects yet!</span>
-			<div className="flex min-w-[214px]">
+			<p className="text-header sm:font-medium mt-5 mb-5 sm:text-xl">You have to projects yet!</p>
+			<div className="flex w-full justify-center">
 				<CreateProjectModal />
 			</div>
 		</section>
