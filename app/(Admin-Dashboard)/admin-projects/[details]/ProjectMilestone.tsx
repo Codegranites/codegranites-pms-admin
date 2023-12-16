@@ -18,13 +18,12 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 		setViewMilestoneModal
 	} = useStateCtx();
 	const [isMenu, setIsMenu] = useState(false);
-	const lastItemRef = useRef<HTMLButtonElement>(null);
+
 	const router = useRouter();
 
 	useEffect(() => {
 		if (isMenu) {
 			document.body.style.overflow = 'hidden';
-			lastItemRef.current && window.scrollTo(0, lastItemRef.current?.offsetTop);
 		} else {
 			document.body.style.overflow = 'auto';
 		}
