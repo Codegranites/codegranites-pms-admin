@@ -65,3 +65,39 @@ export interface Notification {
 	date: string;
 	time: string;
 }
+
+export type NavbarLinkProps = {
+	id?: number;
+	link: string;
+	label: string;
+};
+
+export type FooterLinkProps = {
+	company: NavbarLinkProps[];
+	help: NavbarLinkProps[];
+	emails: { id?: number; email: string }[];
+};
+
+export interface ContactFormProps {
+	firstname: string;
+	lastname: string;
+	email: string;
+	phonenumber: string;
+	companyname: string;
+	subject: string;
+	message: string;
+}
+
+export interface ApiResponse {
+	message: any;
+	status: number;
+	data: any;
+	response?: any;
+}
+
+export type CardProps = {
+	id?: number;
+	title: string;
+	description: string;
+	icon: string;
+};
