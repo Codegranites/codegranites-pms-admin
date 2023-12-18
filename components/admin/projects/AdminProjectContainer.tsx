@@ -45,7 +45,7 @@ const AdminProjectContainer = () => {
 		);
 
 		// Log or use the suggestions as needed
-		console.log('Search Suggestions:', suggestions);
+		// console.log('Search Suggestions:', suggestions);
 	}, [selectedProjectFilter, projectSearchTerm]);
 
 	const startIndex = currentPage * itemsPerPage;

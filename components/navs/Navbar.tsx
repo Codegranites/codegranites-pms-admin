@@ -11,9 +11,10 @@ import { FaBars } from 'react-icons/fa';
 import MobileNav from './MobileNav';
 import { useStateCtx } from '../../context/StateContext';
 import useWindowHeight from '../../hooks/useDimension';
+import { Notification, SearchNormal, SearchNormal1 } from 'iconsax-react';
 
 const Navbar = () => {
-	const { showMobileMenu, setShowMobileMenu } = useStateCtx();
+	const { showMobileMenu, setShowMobileMenu, user } = useStateCtx();
 	const searchParams = useSearchParams().get('path');
 	const scrollHeight = useWindowHeight();
 
@@ -61,14 +62,29 @@ const Navbar = () => {
 					</Link>
 				))}
 			</div>
-			<div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light">
-				<button type="button">
-					<Link href="/auth/sign-in">Login</Link>
-				</button>
-				<button type="button">
-					<Link href="/auth/get-started">Get started</Link>
-				</button>
-			</div>
+
+			{user ? (
+				<div className="hidden lg:flex gap-x-3 xl:gap-x-5  [&>button]:font-medium [&>button]:text-header">
+					<button type="button">
+						<SearchNormal1 size={24} />
+					</button>
+					<button type="button">
+						<Notification size={24} />
+					</button>
+					<button type="button">
+						<Image src={user.image!} alt="user" width={32} height={32} />
+					</button>
+				</div>
+			) : (
+				<div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light">
+					<button type="button">
+						<Link href="/auth/sign-in">Login</Link>
+					</button>
+					<button type="button">
+						<Link href="/auth/get-started">Get started</Link>
+					</button>
+				</div>
+			)}
 			<div
 				tabIndex={0}
 				className="lg:hidden text-2xl cursor-pointer focus:border border-primary focus:p-1 focus:rounded-md"

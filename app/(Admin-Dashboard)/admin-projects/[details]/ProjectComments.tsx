@@ -86,7 +86,7 @@ const ProjectComments = () => {
 					))}
 				</div>
 			) : (
-				<p>There are no comments yet for this project</p>
+				<p className="w-full text-center">There are no comments yet for this project</p>
 			)}
 
 			<div className="flex items-start gap-x-2 max-lg:w-full max-lg:justify-center">

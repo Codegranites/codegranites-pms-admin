@@ -10,7 +10,7 @@ import {
 	SelectValue
 } from '../../../components/ui/select';
 
-import { SearchNormal } from 'iconsax-react';
+import { Add, SearchNormal } from 'iconsax-react';
 import { ListFilter } from 'lucide-react';
 import { useState } from 'react';
 import NewClient from './NewClient';
@@ -38,7 +38,14 @@ const selectFilters: SelectProps[] = [
 ];
 
 const AdminClientNav = () => {
-	const { setClientSearchTerm, clientSearchTerm, setSelectedClientFilter, selectedClientFilter } = useStateCtx();
+	const {
+		setClientSearchTerm,
+		clientSearchTerm,
+		setSelectedClientFilter,
+		selectedClientFilter,
+		createClientModal,
+		setCreateClientModal
+	} = useStateCtx();
 
 	return (
 		<div className="w-full md:h-[56px] flex justify-between min-[450px]:gap-x-4 items-center flex-col md:flex-row gap-y-4 sm:pt-4">
@@ -87,7 +94,19 @@ const AdminClientNav = () => {
 						</SelectContent>
 					</Select>
 				</div>
-
+				<button
+					onClick={() => setCreateClientModal(true)}
+					tabIndex={0}
+					aria-label="Create Client"
+					aria-haspopup
+					aria-expanded={createClientModal}
+					id="create-client"
+					type="button"
+					className="flex w-full sm:w-[214px] lg:w-full  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+				>
+					<Add size={24} />
+					Add Client
+				</button>
 				<NewClientModal />
 			</div>
 		</div>

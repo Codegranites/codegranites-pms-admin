@@ -60,13 +60,31 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		};
 	}, []);
 	// Add Your State(s) Here
-	const [selectedProjectFilter, setSelectedProjectFilter] = useState('all');
+	const [selectedProjectFilter, setSelectedProjectFilter] = useState('');
 	const [projectSearchTerm, setProjectSearchTerm] = useState('');
 	const [selectedClientFilter, setSelectedClientFilter] = useState('all-clients');
 	const [clientSearchTerm, setClientSearchTerm] = useState('');
 
+	useEffect(() => {
+		const projectFilter = localStorage.getItem('project-filter');
+		if (!projectFilter) {
+			setSelectedProjectFilter('all');
+			return;
+		}
+		if (projectFilter) {
+			setSelectedProjectFilter(projectFilter);
+			return;
+		}
+	}, []);
+
+	useEffect(() => {
+		if (selectedProjectFilter === '') return;
+
+		localStorage.setItem('project-filter', selectedProjectFilter);
+	}, [selectedProjectFilter]);
+
 	// Track Modals State
-	const [showMobileMenu, setShowMobileMenu] = React.useState(false);
+	const [showMobileMenu, setShowMobileMenu] = useState(false);
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
 	const [isRemoveProjectModal, setIsRemoveProjectModal] = useState(false);

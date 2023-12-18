@@ -66,19 +66,6 @@ const CreateProjectModal = () => {
 
 	return (
 		<>
-			<button
-				onClick={() => setCreateProjectModal(true)}
-				tabIndex={0}
-				aria-label="Create Project"
-				aria-haspopup
-				aria-expanded={createProjectModal}
-				id="create-project"
-				type="button"
-				className="flex w-full max-w-[170px] min-h-[56px] sm:w-[214px] lg:w-full lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-			>
-				<Add size={24} />
-				New Project
-			</button>
 			<div
 				aria-hidden
 				className={cn(

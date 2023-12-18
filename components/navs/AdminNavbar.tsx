@@ -17,6 +17,7 @@ const AdminNavbar = () => {
 	const decrptedName = decryptString(clientName ?? '');
 	const settingTab = searchParams.get('setting_tab');
 	const pathName = currentPath.replace('admin-', '').replace('-', ' ');
+	const titleLen = 27;
 
 	return (
 		<header className="lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
@@ -47,9 +48,9 @@ const AdminNavbar = () => {
 					</h2>
 					{decrptedTitle && (
 						<>
-							<span className="text-3xl sm:text-4xl text-gray-700">•</span>
-							<h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
-								{decrptedTitle}
+							<span className="text-2xl sm:text-4xl text-gray-700">•</span>
+							<h3 className="max-[390px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize min-[390px]:font-medium text-gray-700  ">
+								{decrptedTitle.length > titleLen ? `${decrptedTitle.slice(0, titleLen)}...` : decrptedTitle}
 							</h3>
 						</>
 					)}
