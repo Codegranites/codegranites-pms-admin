@@ -12,7 +12,7 @@ export default function Home() {
 		<>
 			<Navbar />
 			<Hero />
-			<main className="max-container w-full flex flex-col">
+			<main className="max-container w-full flex flex-col min-h-screen">
 				<MIdsec />
 			</main>
 			<Footer />

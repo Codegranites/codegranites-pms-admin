@@ -35,16 +35,17 @@ const Midsec = () => {
 				</p>
 			</div>
 			<div
-				ref={sliderRef}
 				className={cn(
-					'flex-col md:flex-row  flex w-full  md:justify-between mt-8 px-2 sm:px-4 lg:px-8 rounded-lg py-2 lg:py-4 items-center  min-[900px]:gap-5 gap-3 overflow-hidden',
-					{
-						'opacity-100 translate-y-0 delay-1000 duration-1000': isInView2,
-						'opacity-0 translate-y-36': !isInView2
-					}
+					'flex-col md:flex-row  flex w-full  md:justify-between mt-8 px-2 sm:px-4 lg:px-8 rounded-lg py-2 lg:py-4 items-center  min-[900px]:gap-5 gap-3 overflow-hidden'
 				)}
 			>
-				<div className="w-full  h-full lg:min-h-[750px] flex items-center justify-center max-md:jusc relative ">
+				<div
+					ref={sliderRef}
+					className={cn('w-full  h-full lg:min-h-[750px] flex items-center justify-center max-md:jusc relative ', {
+						'opacity-100 translate-y-0 delay-1000 duration-1000': isInView2,
+						'opacity-0 translate-y-36': !isInView2
+					})}
+				>
 					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
 						<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
 					</div>

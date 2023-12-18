@@ -12,8 +12,6 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 				<AdminNavbar />
 				<div className="flex w-full flex-col h-full relative max-container">{children}</div>
 			</section>
-
-			<GotoTop />
 		</>
 	);
 }
