@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import cn from '../../utils/util';
 import useInView from '../../hooks/useInView';
 import { handleMouseEnter } from '../../utils/text-effect';
@@ -12,6 +12,7 @@ const Midsec = () => {
 	const sliderRef = React.useRef<HTMLDivElement>(null);
 	const isInView = useInView(sliderRef);
 	const isInView2 = useInView(MidsecRef);
+	const [imgLoaded, setImgLoaded] = useState(false);
 
 	return (
 		<section className="my-8 max-md:pt-12 lg:my-20 w-full flex flex-col items-center">
@@ -46,18 +47,22 @@ const Midsec = () => {
 						'opacity-0 translate-y-36': !isInView2
 					})}
 				>
-					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
-						<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
-					</div>
+					{imgLoaded && (
+						<>
+							<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
+								<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
+							</div>
 
-					<div className="relative flex items-center justify-start -mr-20">
-						<Orbit />
-					</div>
-					<div className="relative flex items-center justify-end -ml-20">
-						<Orbit />
-					</div>
+							<div className="relative flex items-center justify-start -mr-16 min-[400px]:-mr-20">
+								<Orbit />
+							</div>
+							<div className="relative flex items-center justify-end -ml-16 min-[400px]:-ml-20">
+								<Orbit />
+							</div>
+						</>
+					)}
 
-					<div className=" absolute z-10 justify-center items-center  h-full w-full flex sm:hidden ">
+					<div className=" absolute z-10 justify-center items-center  h-full w-full flex sm:hidden px-4 max-[400px]:scale-75">
 						<Image
 							src="/dashboardmob.svg"
 							alt="hero image"
@@ -65,6 +70,7 @@ const Midsec = () => {
 							height={300}
 							priority
 							className=" object-cover"
+							onLoad={() => setImgLoaded(true)}
 						/>
 					</div>
 				</div>
