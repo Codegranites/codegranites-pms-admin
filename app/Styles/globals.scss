@@ -63,6 +63,51 @@
 	}
 }
 
+// ORBITS
+
+.orbit {
+	animation: orbit 15s linear infinite;
+
+	@keyframes orbit {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}
+.orbit-md {
+	animation: orbit-md 10s linear infinite;
+	transform: translateX(50%);
+	@keyframes orbit-md {
+		0% {
+			transform: translateX(-50%) rotate(0deg);
+			left: 50%;
+		}
+		100% {
+			transform: rotate(360deg);
+			transform: translateX(-50%) rotate(360deg);
+			left: 50%;
+		}
+	}
+}
+.orbit-sm {
+	animation: orbit-sm 4s linear infinite;
+	transform: translateX(50%);
+	@keyframes orbit-sm {
+		0% {
+			transform: translateX(-50%) rotate(0deg);
+			left: 50%;
+		}
+		100% {
+			transform: rotate(360deg);
+			transform: translateX(-50%) rotate(360deg);
+			left: 50%;
+		}
+	}
+}
+
 // ======MISCELLANEOUS=========
 @keyframes animate3d {
 	0% {

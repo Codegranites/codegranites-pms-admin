@@ -5,6 +5,7 @@ import React from 'react';
 import cn from '../../utils/util';
 import useInView from '../../hooks/useInView';
 import { handleMouseEnter } from '../../utils/text-effect';
+import Orbit from './Orbit';
 
 const Midsec = () => {
 	const MidsecRef = React.useRef<HTMLDivElement>(null);
@@ -36,25 +37,33 @@ const Midsec = () => {
 			<div
 				ref={sliderRef}
 				className={cn(
-					'flex-col md:flex-row  flex w-full  md:justify-between mt-8 px-2 sm:px-4 lg:px-8 rounded-lg py-2 lg:py-4 items-center  min-[900px]:gap-5 gap-3',
+					'flex-col md:flex-row  flex w-full  md:justify-between mt-8 px-2 sm:px-4 lg:px-8 rounded-lg py-2 lg:py-4 items-center  min-[900px]:gap-5 gap-3 overflow-hidden',
 					{
 						'opacity-100 translate-y-0 delay-1000 duration-1000': isInView2,
 						'opacity-0 translate-y-36': !isInView2
 					}
 				)}
 			>
-				<div className="w-full  h-full flex items-center justify-center max-md:jusc">
-					<div className="items-center justify-center hidden sm:block">
-						<Image src="/dashboardfull.svg" alt={''} width={800} height={600} />
+				<div className="w-full  h-full lg:min-h-[750px] flex items-center justify-center max-md:jusc relative ">
+					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
+						<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
 					</div>
-					<div className="items-center justify-center sm:hidden">
+
+					<div className="relative flex items-center justify-start -mr-20">
+						<Orbit />
+					</div>
+					<div className="relative flex items-center justify-end -ml-20">
+						<Orbit />
+					</div>
+
+					<div className=" absolute z-10 justify-center items-center  h-full w-full flex sm:hidden ">
 						<Image
 							src="/dashboardmob.svg"
 							alt="hero image"
 							width={500}
-							height={500}
+							height={300}
 							priority
-							className="w-full h-full object-cover"
+							className=" object-cover"
 						/>
 					</div>
 				</div>
