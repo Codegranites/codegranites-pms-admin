@@ -10,7 +10,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 
 const SignIn = () => {
 	// const initialPassword = 'jamestest2354';

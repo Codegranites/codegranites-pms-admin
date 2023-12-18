@@ -3,7 +3,7 @@
 import { ChevronLeft } from 'lucide-react';
 import NotFound from '../../../../components/admin/NotFound';
 import { ADMIN_CLIENTS } from '../../../../libs/clients';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import { Suspense, useEffect, useState } from 'react';
 import LoadingSpinner from '../../../../components/loaders/LoadingSpinner';
 import ClientProfileInfo from './ClientProfileInfo';

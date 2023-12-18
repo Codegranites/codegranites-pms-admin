@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { Header_for_many } from '../../../../components/auth/Header';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import { PasswordVerificationSucessModal } from '../../../../components/auth/PasswordResetSuccessModal';
 
 const ResetPassword = () => {
