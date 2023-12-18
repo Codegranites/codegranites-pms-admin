@@ -3,7 +3,7 @@
 import ProjectCardAdmin from '../card/ProjectCardAdmin';
 
 import SuperAdminProject from '../../super-admin-project/super-admin-project';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { People } from 'iconsax-react';
 import ClientCardAdmin from '../card/ClientCardAdmin';
@@ -11,6 +11,7 @@ import { ADMIN_CLIENTS, AdminClientCardProps } from '../../../libs/clients';
 import { useStateCtx } from '../../../context/StateContext';
 import cn from '../../../utils/util';
 import ProjectNotFound from '../projects/ProjectNotFound';
+import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
 
 const AdminClientContainer = () => {
 	const { clientSearchTerm, selectedClientFilter } = useStateCtx();
@@ -103,7 +104,9 @@ const AdminClientContainer = () => {
 						)}
 					>
 						{subset.map((project) => (
-							<ClientCardAdmin key={project.id} {...project} />
+							<Suspense key={project.id} fallback={<AdminCardSkelon />}>
+								<ClientCardAdmin {...project} />
+							</Suspense>
 						))}
 					</div>
 					{subset.length === 0 && (

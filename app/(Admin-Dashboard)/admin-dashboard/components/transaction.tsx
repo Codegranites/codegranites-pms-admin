@@ -1,13 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
 import { ArrowRight2, WalletMoney } from 'iconsax-react';
 import Button from '@ui/Button';
 import Image from 'next/image';
 
 const Transaction = () => {
 	return (
-		<section className="flex flex-col w-full py-6 sm:border  border-r-[#e1e1e1] h-full items-center justify-center lg:pb-16">
+		<section className="flex flex-col w-full   sm:border-r-[#e1e1e1] h-full items-center justify-center lg:pb-16">
 			<div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b  border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header font-medium">
 				<div className="flex gap-2 items-center justify-center">
 					<WalletMoney size="32" color="#535353" />

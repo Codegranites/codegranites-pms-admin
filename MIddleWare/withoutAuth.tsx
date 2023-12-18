@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import isLoggedin from './isLoggedin';
 
 const withoutAuth = <P extends {}>(WrappedComponent: React.ComponentType<P>) => {

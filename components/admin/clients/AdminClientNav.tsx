@@ -79,7 +79,7 @@ const AdminClientNav = () => {
 					<ListFilter color="#282828 sm:hidden" size={18} />
 					<span className="hidden sm:inline-block w-[57px] text-sm">Filter by</span>
 
-					<Select onValueChange={(value) => setSelectedClientFilter(value)} defaultValue="all-clients">
+					<Select onValueChange={(value) => setSelectedClientFilter(value)} value={selectedClientFilter}>
 						<SelectTrigger className="w-[150px] select-none h-full py-3">
 							<SelectValue placeholder={selectedClientFilter} />
 						</SelectTrigger>

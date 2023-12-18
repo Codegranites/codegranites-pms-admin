@@ -6,7 +6,8 @@ import { useState, useEffect } from 'react';
 import cn from '../../utils/util';
 import { Logout, LogoutCurve, Setting2 } from 'iconsax-react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 
 // Mock-Data for user profile
 const user = {

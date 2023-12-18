@@ -4,7 +4,7 @@ import { type ProjectMilestoneProps } from './milestones';
 import { Edit2, More, Status, Trash } from 'iconsax-react';
 import ChangeStatusModal from './ChangeStatusModal';
 import { useStateCtx } from '../../../../context/StateContext';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import EditMilestoneModal from './EditMilestoneModal';
 import ViewMilestoneDetailsModal from './ViewMilestoneDetailsModal';
 

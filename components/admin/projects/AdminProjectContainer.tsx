@@ -5,13 +5,14 @@ import ProjectCardAdmin from '../card/ProjectCardAdmin';
 import { PROJECTS, ProjectCardProps } from '../../../libs/projects';
 import SuperAdminProject from '../../super-admin-project/super-admin-project';
 import AdminCounterCardContainer from './AdminCounterCardContainer';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import CustomPagination from '../Pagination';
 import ReactPaginate from 'react-paginate';
 import { useStateCtx } from '../../../context/StateContext';
 import NotFound from '../NotFound';
 import ProjectNotFound from './ProjectNotFound';
 import cn from '../../../utils/util';
+import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
 
 const AdminProjectContainer = () => {
 	const { projectSearchTerm, selectedProjectFilter } = useStateCtx();
@@ -97,7 +98,9 @@ const AdminProjectContainer = () => {
 					)}
 				>
 					{subset.map((project) => (
-						<ProjectCardAdmin key={project.id} {...project} />
+						<Suspense key={project.id} fallback={<AdminCardSkelon />}>
+							<ProjectCardAdmin {...project} />
+						</Suspense>
 					))}
 				</div>
 				{subset.length === 0 && (

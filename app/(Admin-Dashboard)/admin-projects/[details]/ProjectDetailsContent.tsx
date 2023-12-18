@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { PROJECTS } from '../../../../libs/projects';
 import { ChevronLeft } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 import ProjectDoc from './ProjectDoc';
 import ProjectDetailsSection from './ProjectDetailsSection';
 import Link from 'next/link';
