@@ -53,7 +53,7 @@ const DashNav = () => {
 							aria-expanded={createClientModal}
 							id="create-client"
 							type="button"
-							className="flex w-full sm:w-[214px] lg:w-full h-full lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  text-primary border border-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+							className="flex w-full sm:w-[214px] max-md:min-h-[56px] lg:w-full h-full lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  text-primary border border-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 						>
 							<Add size={24} />
 							Add Client
