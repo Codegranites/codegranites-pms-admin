@@ -44,6 +44,8 @@ interface StateContextProps {
 	setClientSearchTerm: React.Dispatch<React.SetStateAction<string>>;
 	createClientModal: boolean;
 	setCreateClientModal: React.Dispatch<React.SetStateAction<boolean>>;
+	deleteMilestoneModal: boolean;
+	setDeleteMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
 
 	user: User;
 }
@@ -88,6 +90,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
 	const [isRemoveProjectModal, setIsRemoveProjectModal] = useState(false);
+	const [deleteMilestoneModal, setDeleteMilestoneModal] = useState(false);
 	const [isProjectMiletoneModal, setIsProjectMiletoneModal] = useState(false);
 	const [isEditMiletoneModal, setIsEditMiletoneModal] = useState(false);
 	const [changeStatusModal, setChangeStatusModal] = useState(false);
@@ -125,7 +128,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			createMilestoneModal ||
 			editProjectModal ||
 			createProjectModal ||
-			createClientModal
+			createClientModal ||
+			deleteMilestoneModal
 		) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -145,6 +149,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setEditProjectModal(false);
 				setCreateProjectModal(false);
 				setCreateClientModal(false);
+				setDeleteMilestoneModal(false);
 			}
 		};
 
@@ -165,7 +170,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		createMilestoneModal,
 		editProjectModal,
 		createProjectModal,
-		createClientModal
+		createClientModal,
+		deleteMilestoneModal
 	]);
 
 	const value = useMemo(
@@ -206,7 +212,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			setClientSearchTerm,
 
 			createClientModal,
-			setCreateClientModal
+			setCreateClientModal,
+
+			deleteMilestoneModal,
+			setDeleteMilestoneModal
 		}),
 		[
 			showMobileMenu,
@@ -229,7 +238,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			selectedClientFilter,
 			clientSearchTerm,
 
-			createClientModal
+			createClientModal,
+
+			deleteMilestoneModal
 		]
 	);
 
