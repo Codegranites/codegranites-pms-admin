@@ -10,12 +10,20 @@ import CreateMilestoneModal from './CreateMilestoneModal';
 import ChangeStatusModal from './ChangeStatusModal';
 import EditMilestoneModal from './EditMilestoneModal';
 import ViewMilestoneDetailsModal from './ViewMilestoneDetailsModal';
+import DeleteMilestoneModal from './DeleteMilestoneModal';
 
 const ProjectMilestones = () => {
-	const { changeStatusModal, isEditMiletoneModal, createMilestoneModal, setCreateMilestoneModal, viewMilestoneModal } =
-		useStateCtx();
+	const {
+		changeStatusModal,
+		isEditMiletoneModal,
+		createMilestoneModal,
+		setCreateMilestoneModal,
+		viewMilestoneModal,
+		deleteMilestoneModal
+	} = useStateCtx();
 	const [isMenu, setIsMenu] = useState(false);
-	const noSticky = changeStatusModal || isEditMiletoneModal || createMilestoneModal || viewMilestoneModal;
+	const noSticky =
+		changeStatusModal || isEditMiletoneModal || createMilestoneModal || viewMilestoneModal || deleteMilestoneModal;
 
 	useEffect(() => {
 		if (isMenu) {
@@ -46,6 +54,7 @@ const ProjectMilestones = () => {
 			<ChangeStatusModal />
 			<EditMilestoneModal />
 			<ViewMilestoneDetailsModal />
+			<DeleteMilestoneModal />
 			<div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] ">
 				<h3 className="text-lg font-semibold text-header ">Project Milestones</h3>
 				<button

@@ -1,20 +1,18 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from '../../../../utils/util';
 import { type ProjectMilestoneProps } from './milestones';
 import { Edit2, More, Status, Trash } from 'iconsax-react';
-import ChangeStatusModal from './ChangeStatusModal';
 import { useStateCtx } from '../../../../context/StateContext';
 import { useRouter } from 'next-nprogress-bar';
-import EditMilestoneModal from './EditMilestoneModal';
-import ViewMilestoneDetailsModal from './ViewMilestoneDetailsModal';
 
 const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 	const {
-		changeStatusModal,
-		setChangeStatusModal,
-		isEditMiletoneModal,
-		setIsEditMiletoneModal,
 		viewMilestoneModal,
+
+		setDeleteMilestoneModal,
+		setChangeStatusModal,
+
+		setIsEditMiletoneModal,
 		setViewMilestoneModal
 	} = useStateCtx();
 	const [isMenu, setIsMenu] = useState(false);
@@ -118,7 +116,12 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 					</button>
 
 					<button
-						onClick={() => setIsMenu(!isMenu)}
+						onClick={() => {
+							window?.localStorage.setItem('milestoneId', id!);
+
+							setDeleteMilestoneModal(true);
+							setIsMenu(!isMenu);
+						}}
 						type="button"
 						tabIndex={0}
 						className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300"
