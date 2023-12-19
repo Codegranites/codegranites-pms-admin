@@ -40,7 +40,7 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 			<RemoveProjectModal project={project} openModal={isRemoveProjectModal} setOpenModal={setIsRemoveProjectModal} />
 			<MakePaymentModal project={project} openModal={openPaymentModal} setOpenModal={setOpenPaymentModal} />
 			<EditProjectModal project={project} />
-			<div className="flex flex-col w-full sm:px-3 py-6 mb-6 sm:border border-[#e1e1e1] sm:rounded-xl h-full relative mt-4">
+			<div className="flex flex-col w-full sm:px-3 py-6 mb-6 sm:border border-[#e1e1e1] sm:rounded-xl h-full relative ">
 				{/* Details */}
 				<div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] ">
 					<h3 className="text-lg font-semibold text-header ">Project Details</h3>

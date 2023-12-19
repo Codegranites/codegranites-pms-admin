@@ -37,8 +37,8 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
 					<span>Back</span>
 				</button>
 			</div>
-			<section className="w-full flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-8 xl:gap-12  pb-16 items-center lg:items-start min-h-screen pt-4  relative">
-				<div className="flex w-full flex-col max-w-[687px] gap-y-4 lg:gap-y-6">
+			<section className="w-full flex flex-col lg:flex-row justify-between gap-4 sm:gap-6 lg:gap-8 xl:gap-12  pb-16 items-center lg:items-start min-h-screen pt-4 lg:pl-4  relative">
+				<div className="flex w-full flex-col max-w-[687px] gap-y-4 lg:gap-y-6 ">
 					<ProjectDetailsSection project={project} />
 					{/* Documents */}
 					<div className="flex flex-col w-full py-3 sm:p-3  sm:rounded-xl sm:border max-sm:border-t border-[#e1e1e1] h-full">
