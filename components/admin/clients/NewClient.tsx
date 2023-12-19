@@ -50,10 +50,6 @@ const NewClientModal = () => {
 			setFormData(JSON.parse(readLocal));
 		}
 	}, []);
-	useEffect(() => {
-		if (!createClientModal) return;
-		window.scrollTo(0, scrollRef.current?.offsetTop!);
-	}, [createClientModal]);
 
 	useEffect(() => {
 		if (!(formData.name.length > 3)) return;
@@ -79,7 +75,7 @@ const NewClientModal = () => {
 				aria-labelledby="create-client"
 				aria-modal
 				className={cn(
-					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-auto max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg top-10 fixed sm:top-1/2 left-1/2  sm:-translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg  fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
 					createClientModal
 						? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
 						: '-translate-x-full duration-300 pointer-events-none'
@@ -97,7 +93,7 @@ const NewClientModal = () => {
 						<X size={24} />
 					</button>
 				</div>
-				<section className="w-full h-full overflow-y-auto sidebar-scroll pt-4">
+				<section className="w-full h-full overflow-y-auto hide-scroll pt-4">
 					<form
 						onSubmit={handleSubmit}
 						className="flex w-full flex-col md:flex-row gap-4 gap-y-8 md:gap-8  py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
@@ -135,7 +131,7 @@ const NewClientModal = () => {
 								</div>
 							) : (
 								<div
-									className={cn('flex w-full h-full items-center justify-center bg-[#f6f6f6] px-8', {
+									className={cn('flex w-full h-full min-h-[300px] items-center justify-center bg-[#f6f6f6] px-8', {
 										hidden: formData.image
 									})}
 								>

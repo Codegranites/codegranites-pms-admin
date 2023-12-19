@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import ProjectMilestone from './ProjectMilestone';
 import { PROJECT_MILESTONES } from './milestones';
 import Image from 'next/image';
@@ -45,10 +45,10 @@ const ProjectMilestones = () => {
 	return (
 		<div
 			className={cn(
-				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative  xl:mr-7 2xl:mr-8',
-				{
-					'lg:sticky top-4': !noSticky
-				}
+				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative  xl:mr-7 2xl:mr-8'
+				// {
+				// 	'lg:sticky top-4': !noSticky
+				// }
 			)}
 		>
 			<ChangeStatusModal />
