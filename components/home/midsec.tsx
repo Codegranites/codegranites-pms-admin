@@ -50,7 +50,15 @@ const Midsec = () => {
 					{imgLoaded && (
 						<>
 							<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
-								<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
+								<Image
+									priority
+									loading="eager"
+									src="/dashboardfull.svg"
+									alt={''}
+									width={787}
+									height={572}
+									className=""
+								/>
 							</div>
 
 							<div className="relative flex items-center justify-start -mr-5 min-[400px]:-mr-20">
@@ -65,12 +73,17 @@ const Midsec = () => {
 					<div className="absolute z-10 justify-center items-center  h-full w-full flex sm:hidden min-[400px]:px-4 max-[400px]:w-[221px]">
 						<Image
 							src="/dashboardmob.svg"
+							loading="eager"
 							alt="hero image"
 							width={500}
 							height={300}
 							priority
 							className=" object-cover"
-							onLoad={() => setImgLoaded(true)}
+							onLoad={() => {
+								window?.setTimeout(() => {
+									setImgLoaded(true);
+								}, 1000);
+							}}
 						/>
 					</div>
 				</div>
