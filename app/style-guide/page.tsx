@@ -8,6 +8,7 @@ import { CodeBlock, a11yDark } from 'react-code-blocks';
 import SampleModal from '../../components/SampleModal';
 import useDisclosure from '../../hooks/useDisclosure';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@ui/SelectInput';
+import Link from 'next/link';
 
 function CodegranitesCodeBlock({
 	code,
@@ -140,19 +141,22 @@ function StyleGuide() {
 	return (
 		<div>
 			{/* Navigation */}
-			<ul className="flex flex-wrap md:flex-nowrap gap-6 py-5 px-9">
-				<li className="mr-6 mb-4 md:mb-0">
-					<a className="text-primary hover:text-primary-light" href="#buttons">
-						Buttons
-					</a>
-				</li>
+			<div className="flex w-full justify-between items-center md:pr-3">
+				<ul className="flex flex-wrap md:flex-nowrap gap-6 py-5 px-9">
+					<li className="mr-6 mb-4 md:mb-0">
+						<a className="text-primary hover:text-primary-light" href="#buttons">
+							Buttons
+						</a>
+					</li>
 
-				<li className="mr-6 mb-4 md:mb-0">
-					<a className="text-primary hover:text-primary-light" href="#inputs">
-						Inputs
-					</a>
-				</li>
-			</ul>
+					<li className="mr-6 mb-4 md:mb-0">
+						<a className="text-primary hover:text-primary-light" href="#inputs">
+							Inputs
+						</a>
+					</li>
+				</ul>
+				<Link href="/">&larr; Back to Home</Link>
+			</div>
 
 			{/* Buttons */}
 			<div className="py-0 px-9" id="buttons">

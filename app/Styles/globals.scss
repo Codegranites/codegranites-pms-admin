@@ -66,7 +66,7 @@
 // ORBITS
 
 .orbit {
-	animation: orbit 15s linear infinite;
+	animation: orbit 15s 2s linear infinite;
 
 	@keyframes orbit {
 		0% {
@@ -78,7 +78,7 @@
 	}
 }
 .orbit-md {
-	animation: orbit-md 10s linear infinite;
+	animation: orbit-md 10s 2s linear infinite;
 	transform: translateX(50%);
 	@keyframes orbit-md {
 		0% {
@@ -93,7 +93,7 @@
 	}
 }
 .orbit-sm {
-	animation: orbit-sm 4s linear infinite;
+	animation: orbit-sm 4s 2s linear infinite;
 	transform: translateX(50%);
 	@keyframes orbit-sm {
 		0% {
