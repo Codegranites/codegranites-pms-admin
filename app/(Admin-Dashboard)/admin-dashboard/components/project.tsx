@@ -15,8 +15,8 @@ const Project = () => {
 		setIsModalOpen(true);
 	};
 	return (
-		<section className="flex flex-col   sm:border-r  border-[#e1e1e1] h-full relative items-center  lg:h-[816px]">
-			<div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b border-t border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header font-medium">
+		<section className="flex flex-col   lg:border-r lg:border-l pb-6 lg:pb-0 border-[#e1e1e1] h-full relative items-center  lg:h-[816px]">
+			<div className="flex w-full sm:px-5 items-center justify-between  border-b border-t border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header font-medium">
 				<div className="flex gap-2 items-center justify-center">
 					<Briefcase size="32" color="#535353" />
 					<span>Available Projects</span>

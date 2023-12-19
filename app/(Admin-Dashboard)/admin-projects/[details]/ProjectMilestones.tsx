@@ -37,10 +37,7 @@ const ProjectMilestones = () => {
 	return (
 		<div
 			className={cn(
-				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative ',
-				{
-					'lg:sticky top-4': !noSticky
-				}
+				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative lg:sticky top-4 '
 			)}
 		>
 			<ChangeStatusModal />

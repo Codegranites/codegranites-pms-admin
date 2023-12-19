@@ -103,8 +103,12 @@ const ProjectComments = () => {
 
 					<div className="flex w-full justify-end">
 						<button
+							disabled={!(comment.comment.length > 2)}
+							aria-disabled={!(comment.comment.length > 2)}
+							tabIndex={0}
+							aria-label="comment"
 							type="submit"
-							className="text-sm font-medium mt-2 bg-primary-light text-white h-[48px] hover:bg-primary rounded-lg px-4 transition-all duration-300 flex items-center gap-x-2"
+							className="text-sm font-medium mt-2 bg-primary-light text-white h-[48px] hover:bg-primary rounded-lg px-4 transition-all duration-300 flex items-center gap-x-2 disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:bg-primary-light"
 						>
 							Comment
 							<DirectRight size={18} values="Outline" />

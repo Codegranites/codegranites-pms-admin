@@ -1,10 +1,10 @@
 'use client';
 
 import Image from 'next/image';
-import { SIDEBAR_ADMIN_LINKS, TYPESidebarLinks } from '../../libs/constants';
+import { SIDEBAR_ADMIN_LINKS } from '../../libs/constants';
 import { useState, useEffect } from 'react';
 import cn from '../../utils/util';
-import { Logout, LogoutCurve, Setting2 } from 'iconsax-react';
+import { LogoutCurve, Setting2 } from 'iconsax-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
