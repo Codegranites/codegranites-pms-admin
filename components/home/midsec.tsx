@@ -53,16 +53,16 @@ const Midsec = () => {
 								<Image src="/dashboardfull.svg" alt={''} width={787} height={572} className="" />
 							</div>
 
-							<div className="relative flex items-center justify-start -mr-16 min-[400px]:-mr-20">
+							<div className="relative flex items-center justify-start -mr-5 min-[400px]:-mr-20">
 								<Orbit />
 							</div>
-							<div className="relative flex items-center justify-end -ml-16 min-[400px]:-ml-20">
+							<div className="relative flex items-center justify-end -ml-5 min-[400px]:-ml-20">
 								<Orbit />
 							</div>
 						</>
 					)}
 
-					<div className=" absolute z-10 justify-center items-center  h-full w-full flex sm:hidden px-4 max-[400px]:scale-75">
+					<div className="absolute z-10 justify-center items-center  h-full w-full flex sm:hidden min-[400px]:px-4 max-[400px]:w-[221px]">
 						<Image
 							src="/dashboardmob.svg"
 							alt="hero image"
