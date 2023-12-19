@@ -47,28 +47,37 @@ const Midsec = () => {
 						'opacity-0 translate-y-36': !isInView2
 					})}
 				>
-					{imgLoaded && (
-						<>
-							<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
-								<Image
-									priority
-									loading="eager"
-									src="/dashboardfull.svg"
-									alt={''}
-									width={787}
-									height={572}
-									className=""
-								/>
-							</div>
+					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
+						<Image
+							priority
+							loading="eager"
+							src="/dashboardfull.svg"
+							alt={''}
+							width={787}
+							height={572}
+							className=""
+							onLoad={() => {
+								window?.setTimeout(() => {
+									setImgLoaded(true);
+								}, 2000);
+							}}
+						/>
+					</div>
 
-							<div className="relative flex items-center justify-start -mr-5 min-[400px]:-mr-20">
-								<Orbit />
-							</div>
-							<div className="relative flex items-center justify-end -ml-5 min-[400px]:-ml-20">
-								<Orbit />
-							</div>
-						</>
-					)}
+					<div
+						className={cn('relative flex items-center justify-start -mr-5 min-[400px]:-mr-20 scale-0 ', {
+							'scale-100 transition-all duration-1000': imgLoaded
+						})}
+					>
+						<Orbit />
+					</div>
+					<div
+						className={cn('relative flex items-center justify-end -ml-5 min-[400px]:-ml-20 scale-0 ', {
+							'scale-100 transition-all duration-1000': imgLoaded
+						})}
+					>
+						<Orbit />
+					</div>
 
 					<div className="absolute z-10 justify-center items-center  h-full w-full flex sm:hidden min-[400px]:px-4 max-[400px]:w-[221px]">
 						<Image
@@ -82,7 +91,7 @@ const Midsec = () => {
 							onLoad={() => {
 								window?.setTimeout(() => {
 									setImgLoaded(true);
-								}, 1000);
+								}, 2000);
 							}}
 						/>
 					</div>
