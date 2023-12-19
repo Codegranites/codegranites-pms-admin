@@ -37,7 +37,10 @@ const ProjectMilestones = () => {
 	return (
 		<div
 			className={cn(
-				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative lg:sticky top-4 '
+				'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative  xl:mr-7 2xl:mr-8',
+				{
+					'lg:sticky top-4': !noSticky
+				}
 			)}
 		>
 			<ChangeStatusModal />
@@ -94,7 +97,7 @@ const ProjectMilestones = () => {
 			<CreateMilestoneModal />
 
 			{PROJECT_MILESTONES.length > 0 ? (
-				<div className="flex  w-full flex-col gap-y-4 pt-2">
+				<div className="flex  w-full flex-col gap-y-4 pt-2 overflow-hiden ">
 					{PROJECT_MILESTONES.map((milestone) => (
 						<Suspense key={milestone.id} fallback={<LoadingSpinner />}>
 							<ProjectMilestone key={milestone.id} {...milestone} />
