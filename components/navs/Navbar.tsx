@@ -72,7 +72,7 @@ const Navbar = () => {
 					<button type="button">
 						<Notification size={24} />
 					</button>
-					<button type="button">
+					<button type="button" className="w-8 h-8 border border-primary-light rounded-full">
 						<Image src={user.image!} alt="user" width={32} height={32} />
 					</button>
 				</div>
