@@ -61,11 +61,14 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			image: '/facemoji.png'
 		};
 	}, []);
+
 	// Add Your State(s) Here
 	const [selectedProjectFilter, setSelectedProjectFilter] = useState('');
 	const [projectSearchTerm, setProjectSearchTerm] = useState('');
 	const [selectedClientFilter, setSelectedClientFilter] = useState('all-clients');
 	const [clientSearchTerm, setClientSearchTerm] = useState('');
+
+	const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
 
 	useEffect(() => {
 		const projectFilter = localStorage.getItem('project-filter');
@@ -99,6 +102,37 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [editProjectModal, setEditProjectModal] = useState(false);
 	const [createProjectModal, setCreateProjectModal] = useState(false);
 	const [createClientModal, setCreateClientModal] = useState(false);
+
+	// Sidebar Mobile
+	useEffect(() => {
+		const handleSwipeStart = (e: TouchEvent) => {
+			setHandleSwipe(e.changedTouches[0].screenX);
+		};
+		const handleSwipeEnd = (e: TouchEvent) => {
+			if (handleSwipe !== null) {
+				const swipeDis = e.changedTouches[0].screenX - handleSwipe;
+				const swipeThreshold = 100;
+				console.log(swipeDis);
+
+				if (swipeDis > swipeThreshold) {
+					console.log('Swiped RIGHT');
+					setShowMobileMenu(true);
+				} else if (swipeDis < -swipeThreshold) {
+					setShowMobileMenu(false);
+					console.log('Swiped LEFT');
+				}
+
+				setHandleSwipe(null);
+			}
+		};
+
+		window.addEventListener('touchstart', handleSwipeStart);
+		window.addEventListener('touchend', handleSwipeEnd);
+		return () => {
+			window.removeEventListener('touchstart', handleSwipeStart);
+			window.removeEventListener('touchend', handleSwipeEnd);
+		};
+	}, [handleSwipe]);
 
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
