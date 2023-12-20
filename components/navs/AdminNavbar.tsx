@@ -21,7 +21,14 @@ const AdminNavbar = () => {
 	const titleLen = 27;
 
 	return (
-		<header className="lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none">
+		<header
+			className={cn(
+				'lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between relative select-none ',
+				{
+					'overflow-hidden': showMobileMenu
+				}
+			)}
+		>
 			<div
 				className={cn('flex items-center gap-x-4', {
 					'w-full ': showMobileMenu
