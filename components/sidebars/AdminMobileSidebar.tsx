@@ -31,14 +31,14 @@ const AdminMobileSidebar = () => {
 		<>
 			<div
 				className={cn(
-					'md:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-20 transition-all duration-300',
+					'md:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-20 transition-all duration-300 overflow-hidden',
 					showMobileMenu ? 'opacity-100' : 'opacity-0 pointer-events-none '
 				)}
 				onClick={() => setShowMobileMenu(false)}
 			/>
 			<section
 				className={cn(
-					'py-6 md:hidden  min-[400px]:pl-4 pl-2 flex flex-col w-full max-w-[230px] min-[400px]:max-w-[270px]  items-start bg-white fixed left-0 top-0 z-50 h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none !overflow-y-auto',
+					'py-6 md:hidden  min-[400px]:pl-4 pl-2 flex flex-col w-full max-w-[230px] min-[400px]:max-w-[270px]  items-start bg-white fixed left-0 top-0 z-50 h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none ',
 					showMobileMenu
 						? 'translate-x-0 duration-700 opacity-100'
 						: '-translate-x-full duration-300 pointer-events-none invisible'
