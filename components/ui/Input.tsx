@@ -141,7 +141,7 @@ export function Input({
 				className={twMerge(
 					'w-full outline-none hide-caret',
 					disabled ?? isLoading ? 'cursor-not-allowed' : '',
-					leftIcon && 'pl-1'
+					leftIcon && 'sm:pl-1'
 				)}
 				placeholder={placeHolder ?? 'Placeholder'}
 				disabled={isLoading ?? disabled}
