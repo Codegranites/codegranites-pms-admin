@@ -57,7 +57,6 @@ const NewClientModal = () => {
 
 		localStorage.setItem('create-client', JSON.stringify(newForm));
 	}, [formData]);
-	console.log(formData);
 
 	return (
 		<>
