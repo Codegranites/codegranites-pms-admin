@@ -5,10 +5,6 @@ import { Input } from '@ui/Input';
 import { Add, FolderAdd, SearchNormal, UserAdd } from 'iconsax-react';
 
 import { useState } from 'react';
-import Button from '@ui/Button';
-import CreateProject from '../../super-admin-project/modal/create-project';
-import CreateProjectModal from '../../admin/projects/CreateProjectModal';
-import NewClientModal from '../../admin/clients/NewClient';
 import { useStateCtx } from '../../../context/StateContext';
 
 const DashNav = () => {
@@ -38,7 +34,7 @@ const DashNav = () => {
 					aria-expanded={createProjectModal}
 					id="create-project"
 					type="button"
-					className=" flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+					className=" flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2 bg-primary-light  text-white rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 				>
 					<Add size={24} className="hidden min-[900px]:inline" />
 					<FolderAdd size={18} className=" min-[900px]:hidden" />
@@ -52,7 +48,7 @@ const DashNav = () => {
 					aria-expanded={createClientModal}
 					id="create-client"
 					type="button"
-					className=" flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+					className=" flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
 				>
 					<Add size={24} className="hidden min-[900px]:inline" />
 					<UserAdd size={18} className=" min-[900px]:hidden" />

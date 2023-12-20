@@ -46,6 +46,8 @@ interface StateContextProps {
 	setCreateClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 	deleteMilestoneModal: boolean;
 	setDeleteMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
+	newMessageModal: boolean;
+	setNewMessageModal: React.Dispatch<React.SetStateAction<boolean>>;
 
 	user: User;
 }
@@ -102,24 +104,27 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [editProjectModal, setEditProjectModal] = useState(false);
 	const [createProjectModal, setCreateProjectModal] = useState(false);
 	const [createClientModal, setCreateClientModal] = useState(false);
+	const [newMessageModal, setNewMessageModal] = useState(false);
 
 	// Sidebar Mobile
+	const isMobileDevice = () => {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent);
+	};
+
 	useEffect(() => {
+		if (!isMobileDevice()) return;
 		const handleSwipeStart = (e: TouchEvent) => {
 			setHandleSwipe(e.changedTouches[0].screenX);
 		};
 		const handleSwipeEnd = (e: TouchEvent) => {
 			if (handleSwipe !== null) {
 				const swipeDis = e.changedTouches[0].screenX - handleSwipe;
-				const swipeThreshold = 100;
-				console.log(swipeDis);
+				const swipeThreshold = 70;
 
 				if (swipeDis > swipeThreshold) {
-					console.log('Swiped RIGHT');
 					setShowMobileMenu(true);
 				} else if (swipeDis < -swipeThreshold) {
 					setShowMobileMenu(false);
-					console.log('Swiped LEFT');
 				}
 
 				setHandleSwipe(null);
@@ -163,7 +168,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			editProjectModal ||
 			createProjectModal ||
 			createClientModal ||
-			deleteMilestoneModal
+			deleteMilestoneModal ||
+			newMessageModal
 		) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -184,6 +190,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setCreateProjectModal(false);
 				setCreateClientModal(false);
 				setDeleteMilestoneModal(false);
+				setNewMessageModal(false);
 			}
 		};
 
@@ -205,7 +212,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		editProjectModal,
 		createProjectModal,
 		createClientModal,
-		deleteMilestoneModal
+		deleteMilestoneModal,
+		newMessageModal
 	]);
 
 	const value = useMemo(
@@ -249,7 +257,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			setCreateClientModal,
 
 			deleteMilestoneModal,
-			setDeleteMilestoneModal
+			setDeleteMilestoneModal,
+
+			newMessageModal,
+			setNewMessageModal
 		}),
 		[
 			showMobileMenu,
@@ -274,7 +285,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 			createClientModal,
 
-			deleteMilestoneModal
+			deleteMilestoneModal,
+
+			newMessageModal
 		]
 	);
 
