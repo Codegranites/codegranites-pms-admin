@@ -5,22 +5,7 @@ import cn from '../../../../utils/util';
 import { useMessageCtx } from '../../../../context/MessageContext';
 
 const MessageSection = () => {
-	const { activeMessageTab, setActiveMessageTab, searchMsg, setSearchMsg } = useMessageCtx();
-
-	const filterMsgs = MESSAGES.filter((msg) => {
-		if (activeMessageTab === 'all') {
-			return msg;
-		} else {
-			return msg.status === activeMessageTab;
-		}
-	});
-
-	const filterSearchMsgs = filterMsgs.filter((msg) => {
-		if (!(searchMsg.length > 1)) {
-			return msg;
-		}
-		return msg.author.toLowerCase().includes(searchMsg.toLowerCase());
-	});
+	const { activeMessageTab, setActiveMessageTab, searchMsg, setSearchMsg, filterSearchMsgs } = useMessageCtx();
 
 	return (
 		<section className="w-full hidden lg:flex flex-col justify-center my-6 border border-gray-200 mt-10 2xl:mt-16">

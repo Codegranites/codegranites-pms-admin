@@ -1,12 +1,14 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import { MESSAGES, MessageProps } from '../app/(Admin-Dashboard)/admin-messages/content/messages';
 
 interface MessageContextProps {
 	activeMessageTab: string;
 	setActiveMessageTab: React.Dispatch<React.SetStateAction<string>>;
 	searchMsg: string;
 	setSearchMsg: React.Dispatch<React.SetStateAction<string>>;
+	filterSearchMsgs: MessageProps[];
 }
 
 export const MessageContext = createContext<MessageContextProps>({} as MessageContextProps);
@@ -14,6 +16,20 @@ export const MessageContext = createContext<MessageContextProps>({} as MessageCo
 const MessageContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [activeMessageTab, setActiveMessageTab] = useState('');
 	const [searchMsg, setSearchMsg] = useState('');
+	const filterMsgs = MESSAGES.filter((msg) => {
+		if (activeMessageTab === 'all') {
+			return msg;
+		} else {
+			return msg.status === activeMessageTab;
+		}
+	});
+
+	const filterSearchMsgs = filterMsgs.filter((msg) => {
+		if (!(searchMsg.length > 1)) {
+			return msg;
+		}
+		return msg.author.toLowerCase().includes(searchMsg.toLowerCase());
+	});
 
 	useEffect(() => {
 		const savedTab = localStorage.getItem('message-tab');
@@ -35,9 +51,10 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 			activeMessageTab,
 			setActiveMessageTab,
 			searchMsg,
-			setSearchMsg
+			setSearchMsg,
+			filterSearchMsgs
 		}),
-		[activeMessageTab, searchMsg]
+		[activeMessageTab, searchMsg, filterSearchMsgs]
 	);
 
 	return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>;
