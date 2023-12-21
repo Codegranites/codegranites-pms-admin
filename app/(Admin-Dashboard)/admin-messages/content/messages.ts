@@ -11,17 +11,17 @@ export type MessageProps = {
 export const MESSAGES: MessageProps[] = [
 	{
 		id: 1,
-		author: 'John Doe',
-		message: 'this is the message content',
-		stack: 'App Developement',
+		author: 'Stella Vinx',
+		message: 'this is the message content this is the message content',
+		stack: 'Designer',
 		date: '11, Nov, 2023',
 		time: '12:00pm',
 		status: 'sent'
 	},
 	{
 		id: 2,
-		author: 'John Doe',
-		message: 'this is the message content',
+		author: 'Matthew Lang',
+		message: 'this is the message content this is the message content',
 		stack: 'App Developement',
 		date: '11, Nov, 2023',
 		time: '12:00pm',
@@ -29,17 +29,17 @@ export const MESSAGES: MessageProps[] = [
 	},
 	{
 		id: 3,
-		author: 'John Doe',
-		message: 'this is the message content',
-		stack: 'App Developement',
+		author: 'Llama Smith',
+		message: 'this is the message content this is the message content',
+		stack: 'AI Researcher',
 		date: '11, Nov, 2023',
 		time: '12:00pm',
 		status: 'draft'
 	},
 	{
 		id: 4,
-		author: 'John Doe',
-		message: 'this is the message content',
+		author: 'Avery Ains',
+		message: 'this is the message content this is the message content',
 		stack: 'App Developement',
 		date: '11, Nov, 2023',
 		time: '12:00pm',
@@ -48,7 +48,7 @@ export const MESSAGES: MessageProps[] = [
 	{
 		id: 5,
 		author: 'John Doe',
-		message: 'this is the message content',
+		message: 'this is the message content this is the message content',
 		stack: 'App Developement',
 		date: '11, Nov, 2023',
 		time: '12:00pm',

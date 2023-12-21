@@ -3,6 +3,7 @@ import MessageNav from './content/MessageNav';
 import MessageContextProvider from '../../../context/MessageContext';
 import MessageSection from './content/MessageSection';
 import MobileMessageSection from './content/MobileMessageSection';
+import NewMessageModal from './content/NewMessageModal';
 
 const MessageAdmin = () => {
 	return (
@@ -12,6 +13,7 @@ const MessageAdmin = () => {
 				<MessageSection />
 				<MobileMessageSection />
 			</section>
+			<NewMessageModal />
 		</MessageContextProvider>
 	);
 };

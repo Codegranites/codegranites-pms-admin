@@ -45,9 +45,9 @@ const MessageNav = () => {
 	const { activeMessageTab, setActiveMessageTab, searchMsg, setSearchMsg } = useMessageCtx();
 	const { newMessageModal, setNewMessageModal } = useStateCtx();
 	return (
-		<div className="flex w-full flex-col gap-y-10 px-2">
-			<div className="w-full flex items-center justify-center pt-6 pb-[43px] border-b border-[#e1e1e1]">
-				<ul className="flex items-center gap-x-4 flex-wrap gap-y-5">
+		<div className="flex w-full flex-col gap-y-6 min-[400px]:gap-y-10 px-2">
+			<div className="w-full flex items-center justify-center pt-6 min-[400px]:pb-[43px] pb-7 border-b border-[#e1e1e1]">
+				<ul className="flex items-center gap-x-2 min-[400px]:gap-x-4 flex-wrap gap-y-3 min-[400px]:gap-y-5">
 					{MESSAGE_TABS.map((tab) => (
 						<button
 							type="button"
@@ -84,7 +84,9 @@ const MessageNav = () => {
 					aria-expanded={newMessageModal}
 					id="create-client"
 					type="button"
-					className=" flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+					className={cn(
+						' flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+					)}
 				>
 					<Add size={24} className="hidden min-[900px]:inline" />
 					<MessageAdd1 size={18} className=" min-[900px]:hidden" />
