@@ -13,7 +13,13 @@ import {
 	Profile2User,
 	ArchiveBook
 } from 'iconsax-react';
-import { SettingsProps, NavbarLinkProps, FooterLinkProps } from '../types';
+import { SettingsProps, NavbarLinkProps, FooterLinkProps, FeatProps } from '../types';
+import Guest from '../public/home/guest.svg';
+import Pro from '../public/home/pro.svg';
+import Work from '../public/home/work.svg';
+import Tran from '../public/home/trans.svg';
+import Messs from '../public/home/mess.svg';
+import Sett from '../public/home/sett.svg';
 
 type SidebarAdminProps = {
 	id?: number;
@@ -186,3 +192,48 @@ export const FOOTER_LINKS: FooterLinkProps = {
 		{ id: 3, email: 'Support@codesgranite.com' }
 	]
 };
+
+export const Feat: FeatProps[] = [
+	{
+		id: 1,
+		title: 'Problem Statement',
+		description:
+			'Enhance communication with the Problem Statement feature, allowing clients to articulate concerns and submit them directly to project managers ',
+		icon: Pro
+	},
+	{
+		id: 2,
+		title: 'Work Spaces',
+		description:
+			'Empower collaboration with Workspaces, providing clients the flexibility to seamlessly switch between different project environments',
+		icon: Work
+	},
+	{
+		id: 3,
+		title: 'Guests',
+		description:
+			'This feature enables Moderator admins to effortlessly create and manage additional administrators. Enhance team dynamics and distribute responsibilities effectively',
+		icon: Guest
+	},
+	{
+		id: 4,
+		title: 'Transactions',
+		description:
+			'Track financial insights effortlessly with the Transactions feature, providing both admins and clients a comprehensive overview of all financial activities',
+		icon: Tran
+	},
+	{
+		id: 5,
+		title: 'Messages',
+		description:
+			'Facilitate direct and efficient communication between admins and clients with the Messages feature. Fostering seamless collaboration throughout the project lifecycle',
+		icon: Messs
+	},
+	{
+		id: 6,
+		title: 'Settings',
+		description:
+			'Tailor your CodeGranites experience with the Settings feature, offering both admins and clients the ability to customize their accounts and preferences',
+		icon: Sett
+	}
+];

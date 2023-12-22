@@ -101,3 +101,10 @@ export type CardProps = {
 	description: string;
 	icon: string;
 };
+
+export type FeatProps = {
+	id?: number;
+	title: string;
+	description: string;
+	icon: string;
+};
