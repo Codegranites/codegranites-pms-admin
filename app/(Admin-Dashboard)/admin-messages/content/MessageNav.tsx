@@ -6,6 +6,7 @@ import { useStateCtx } from '../../../../context/StateContext';
 import { Add, MessageAdd1, SearchNormal1 } from 'iconsax-react';
 import { Input } from '@ui/Input';
 import { X } from 'lucide-react';
+import { MESSAGES } from './messages';
 
 type MessageTabProps = {
 	id?: number;
@@ -42,7 +43,8 @@ const MESSAGE_TABS: MessageTabProps[] = [
 ];
 
 const MessageNav = () => {
-	const { activeMessageTab, setActiveMessageTab, searchMsg, setSearchMsg } = useMessageCtx();
+	const { activeMessageTab, setActiveMessageTab, searchMsg, setSearchMsg, filterSearchMsgs, swipeDis, mobileScroll } =
+		useMessageCtx();
 	const { newMessageModal, setNewMessageModal } = useStateCtx();
 	return (
 		<div className="flex w-full flex-col gap-y-6 min-[400px]:gap-y-10 px-2">
@@ -62,9 +64,9 @@ const MessageNav = () => {
 							tabIndex={0}
 							aria-label={tab.tab}
 							className={cn(
-								' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 h-[40px] sm:h-[48px] text-header font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
+								' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 max-[400px]:px-4 h-[40px] sm:h-[48px] text-header sm:font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
 								activeMessageTab === tab.tab
-									? 'bg-[#eaeef2] text-header rounded outline-none'
+									? 'bg-primary-light sm:bg-[#eaeef2] text-white sm:text-header rounded outline-none'
 									: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light border border-gray-300'
 							)}
 							onClick={() => setActiveMessageTab(tab.tab)}
@@ -75,17 +77,21 @@ const MessageNav = () => {
 				</ul>
 			</div>
 
-			<div className="flex w-full justify-between items-center h-[40px] gap-x-2 min-[400px]:gap-x-4 md:h-[56px]">
+			<div
+				className={cn('flex w-full justify-between items-center h-[40px] gap-x-2 min-[400px]:gap-x-4 md:h-[56px]', {
+					hidden: MESSAGES.length === 0
+				})}
+			>
 				<button
 					onClick={() => setNewMessageModal(true)}
 					tabIndex={0}
-					aria-label="Create Client"
+					aria-label="new message"
 					aria-haspopup
 					aria-expanded={newMessageModal}
-					id="create-client"
+					id="new-message"
 					type="button"
 					className={cn(
-						' flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+						' hidden min-[500px]:flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
 					)}
 				>
 					<Add size={24} className="hidden min-[900px]:inline" />
@@ -100,7 +106,7 @@ const MessageNav = () => {
 						value={searchMsg}
 						leftIcon={<SearchNormal1 size={18} color="#535353" />}
 						type="text"
-						placeHolder="Search..."
+						placeHolder="Search name..."
 						className="w-full h-[40px]  min-[900px]:h-[56px] outline-none focus-visible:border focus-visible:border-primary-light"
 					/>
 					<button
@@ -118,6 +124,27 @@ const MessageNav = () => {
 						<X size={18} color="#535353" />
 					</button>
 				</div>
+			</div>
+			<div
+				className={cn('font-medium flex items-center gap-x-1', {
+					hidden: searchMsg?.length < 2
+				})}
+			>
+				<span
+					className={cn('text-lg font-semibold text-gray-400', {
+						'text-primary-light': filterSearchMsgs?.length > 0
+					})}
+				>
+					{filterSearchMsgs?.length}
+				</span>
+				<p className={cn('font-medium')}>
+					{filterSearchMsgs?.length > 0
+						? 'Search Result for'
+						: filterSearchMsgs?.length > 1
+						  ? 'Search Results for'
+						  : 'No Results for'}{' '}
+					<b>&quot;{searchMsg}&quot;</b>
+				</p>
 			</div>
 		</div>
 	);
