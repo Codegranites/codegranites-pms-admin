@@ -21,7 +21,8 @@ export const MESSAGES: MessageProps[] = [
 	{
 		id: 2,
 		author: 'Matthew Lang',
-		message: 'this is the message content this is the message content',
+		message:
+			'this is the message content this is the message content this is the message content this is the message content',
 		stack: 'App Developement',
 		date: '11, Nov, 2023',
 		time: '12:00pm',

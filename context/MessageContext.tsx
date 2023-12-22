@@ -9,6 +9,10 @@ interface MessageContextProps {
 	searchMsg: string;
 	setSearchMsg: React.Dispatch<React.SetStateAction<string>>;
 	filterSearchMsgs: MessageProps[];
+
+	showBtn: boolean;
+	swipeDis: number | null;
+	mobileScroll: number | null;
 }
 
 export const MessageContext = createContext<MessageContextProps>({} as MessageContextProps);
@@ -16,6 +20,10 @@ export const MessageContext = createContext<MessageContextProps>({} as MessageCo
 const MessageContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [activeMessageTab, setActiveMessageTab] = useState('');
 	const [searchMsg, setSearchMsg] = useState('');
+	const [mobileScroll, setMobileScroll] = useState<number | null>(null);
+	const [showBtn, setShowBtn] = useState(false);
+	const [swipeDis, setswipeDis] = useState(0);
+
 	const filterMsgs = MESSAGES.filter((msg) => {
 		if (activeMessageTab === 'all') {
 			return msg;
@@ -30,6 +38,69 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 		}
 		return msg.author.toLowerCase().includes(searchMsg.toLowerCase());
 	});
+
+	const isMobileDevice = () => {
+		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent);
+	};
+
+	useEffect(() => {
+		if (!isMobileDevice()) {
+			setMobileScroll(window.scrollY);
+		}
+
+		const handleScroll = () => {
+			function update() {
+				if (mobileScroll !== null) {
+					const swipedDis = window.scrollY - mobileScroll;
+
+					const swipeThreshold = 20;
+
+					if (swipedDis > 0) {
+						setShowBtn(true);
+						console.log('SHOW');
+					} else if (swipedDis < swipeThreshold) {
+						setShowBtn(false);
+						console.log('HIDE');
+					}
+					setMobileScroll(null);
+				}
+			}
+			window.requestAnimationFrame(update);
+		};
+
+		const handleSwipeMove = (e: TouchEvent) => {
+			setMobileScroll(e.changedTouches[0].screenY);
+
+			function updateMobile() {
+				if (mobileScroll !== null) {
+					const swipedDis = e.changedTouches[0].screenY - mobileScroll;
+					setswipeDis(swipedDis);
+
+					const swipeThreshold = 10;
+
+					if (swipedDis > 0) {
+						setShowBtn(true);
+					} else if (swipedDis < -swipeThreshold) {
+						setShowBtn(false);
+					}
+
+					setMobileScroll(null);
+				}
+			}
+			window.requestAnimationFrame(updateMobile);
+		};
+
+		if (!isMobileDevice()) {
+			window.addEventListener('scroll', handleScroll);
+		} else {
+			window.addEventListener('touchmove', handleSwipeMove);
+		}
+		return () => {
+			window.removeEventListener('touchmove', handleSwipeMove);
+
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, [mobileScroll, swipeDis]);
 
 	useEffect(() => {
 		const savedTab = localStorage.getItem('message-tab');
@@ -52,9 +123,12 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 			setActiveMessageTab,
 			searchMsg,
 			setSearchMsg,
-			filterSearchMsgs
+			filterSearchMsgs,
+			showBtn,
+			swipeDis,
+			mobileScroll
 		}),
-		[activeMessageTab, searchMsg, filterSearchMsgs]
+		[activeMessageTab, searchMsg, filterSearchMsgs, showBtn, swipeDis, mobileScroll]
 	);
 
 	return <MessageContext.Provider value={value}>{children}</MessageContext.Provider>;

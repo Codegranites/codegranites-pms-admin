@@ -45,12 +45,6 @@ const NewMessageModal = () => {
 		}
 	}, []);
 
-	// useEffect(() => {
-	// 	if (!(formData.message.length > 3)) return;
-
-	// 	localStorage.setItem('new-message', JSON.stringify(formData));
-	// }, [formData]);
-
 	return (
 		<>
 			<div
@@ -64,7 +58,7 @@ const NewMessageModal = () => {
 
 			<div
 				role="dialog"
-				aria-labelledby="make-payment"
+				aria-labelledby="new-message"
 				className={cn(
 					'pt-2 min-[376px]:pt-4 sm:py-6   flex flex-col w-[98%]  h-[400px] min-[376px]:h-[422px]  min-[500px]:w-[417px] justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none px-2 sm:px-4 md:px-6 lg:px-8',
 					newMessageModal
