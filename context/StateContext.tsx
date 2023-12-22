@@ -10,11 +10,13 @@ type User = {
 	image: string;
 };
 interface StateContextProps {
-	showMobileMenu: boolean;
 	currentPath: string;
 	openPaymentModal: boolean;
 	setOpenPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
+	showMobileMenu: boolean;
 	setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+	landingMobileMenu: boolean;
+	setLandingMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 	isRemoveClientModal: boolean;
 	setIsRemoveClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 	isRemoveProjectModal: boolean;
@@ -92,6 +94,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 	// Track Modals State
 	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const [landingMobileMenu, setLandingMobileMenu] = useState(false);
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
 	const [isRemoveProjectModal, setIsRemoveProjectModal] = useState(false);
@@ -169,7 +172,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			createProjectModal ||
 			createClientModal ||
 			deleteMilestoneModal ||
-			newMessageModal
+			newMessageModal ||
+			landingMobileMenu
 		) {
 			document.body.style.overflow = 'hidden';
 		} else {
@@ -191,6 +195,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				setCreateClientModal(false);
 				setDeleteMilestoneModal(false);
 				setNewMessageModal(false);
+				setLandingMobileMenu(false);
 			}
 		};
 
@@ -213,13 +218,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		createProjectModal,
 		createClientModal,
 		deleteMilestoneModal,
-		newMessageModal
+		newMessageModal,
+		landingMobileMenu
 	]);
 
 	const value = useMemo(
 		() => ({
 			showMobileMenu,
 			setShowMobileMenu,
+			landingMobileMenu,
+			setLandingMobileMenu,
 			currentPath,
 			user,
 			openPaymentModal,
@@ -264,6 +272,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		}),
 		[
 			showMobileMenu,
+			landingMobileMenu,
 			currentPath,
 			user,
 			openPaymentModal,
