@@ -2,9 +2,9 @@ import useInView from '../../../hooks/useInView';
 import { CardProps } from '../../../types';
 import cn from '../../../utils/util';
 import Image from 'next/image';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-const WorksCard = ({ title, description, icon }: CardProps) => {
+const Card = ({ title, description, icon }: CardProps) => {
 	const workRef = React.useRef<HTMLDivElement>(null);
 	const isInView = useInView(workRef);
 
@@ -42,4 +42,4 @@ const WorksCard = ({ title, description, icon }: CardProps) => {
 	);
 };
 
-export default WorksCard;
+export default Card;
