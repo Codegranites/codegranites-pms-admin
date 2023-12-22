@@ -27,8 +27,8 @@ const MobileMessageSection = () => {
 				id="new-message"
 				type="button"
 				className={cn(
-					'fixed z-50 bottom-10 right-2 flex flex-nowrap  min-[500px]:hidden h-[40px] items-center  bg-primary bg-opacity-80 text-white rounded-lg  duration-500 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary transition-all',
-					showBtn ? 'w-[200px] gap-x-3 ' : 'w-[56px] '
+					'fixed z-50 bottom-10 right-4 flex flex-nowrap  min-[500px]:hidden h-[40px] items-center  bg-primary/80  text-white rounded-lg  duration-500 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary transition-all',
+					showBtn ? 'w-[160px] min-[400px]:w-[200px] gap-x-3 backdrop-blur-md ' : 'w-[56px] '
 				)}
 			>
 				{showBtn ? (

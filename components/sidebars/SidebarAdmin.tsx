@@ -29,7 +29,7 @@ const SidebarAdmin = () => {
 	}, [pathname]);
 
 	return (
-		<section className="bg-white z-50 w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
+		<section className="bg-white z-[9999] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
 			<Link href="/" className=" max-[1140px]:w-full group-hover:w-full h-[53px]">
 				<Image src="/logo.png" alt="Logo" width={155} height={53} />
 			</Link>
