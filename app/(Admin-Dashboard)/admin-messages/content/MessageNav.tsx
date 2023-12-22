@@ -64,7 +64,7 @@ const MessageNav = () => {
 							tabIndex={0}
 							aria-label={tab.tab}
 							className={cn(
-								' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 max-[400px]:px-4 h-[40px] sm:h-[48px] text-header sm:font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
+								' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 max-[370px]:px-4 h-[40px] sm:h-[48px] text-header sm:font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
 								activeMessageTab === tab.tab
 									? 'bg-primary-light sm:bg-[#eaeef2] text-white sm:text-header rounded outline-none'
 									: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light border border-gray-300'

@@ -57,10 +57,10 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 
 					if (swipedDis > 0) {
 						setShowBtn(true);
-						console.log('SHOW');
+						// console.log('SHOW');
 					} else if (swipedDis < swipeThreshold) {
 						setShowBtn(false);
-						console.log('HIDE');
+						// console.log('HIDE');
 					}
 					setMobileScroll(null);
 				}

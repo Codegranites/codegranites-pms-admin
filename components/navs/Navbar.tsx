@@ -15,7 +15,7 @@ import useWindowHeight from '../../hooks/useDimension';
 import { Notification, SearchNormal, SearchNormal1 } from 'iconsax-react';
 
 const Navbar = () => {
-	const { showMobileMenu, setShowMobileMenu, user } = useStateCtx();
+	const { landingMobileMenu, setLandingMobileMenu, user } = useStateCtx();
 	const searchParams = useSearchParams().get('path');
 	const scrollHeight = useWindowHeight();
 
@@ -89,7 +89,7 @@ const Navbar = () => {
 			<div
 				tabIndex={0}
 				className="lg:hidden text-2xl cursor-pointer focus:border border-primary focus:p-1 focus:rounded-md"
-				onClick={() => setShowMobileMenu(true)}
+				onClick={() => setLandingMobileMenu(true)}
 			>
 				<FaBars />
 			</div>
