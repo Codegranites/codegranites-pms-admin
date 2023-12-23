@@ -281,7 +281,8 @@ const CreateProjectModal = () => {
 										id="final_payment"
 										name="final_payment"
 										className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
-										value={Number(formData.total_cost) - Number(formData.initial_payment)}
+										value={String(Number(formData.total_cost) - Number(formData.initial_payment))}
+										readOnly
 										disabled
 									/>
 								</div>
