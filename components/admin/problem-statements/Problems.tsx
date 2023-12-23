@@ -3,7 +3,7 @@ import Button from '@ui/Button';
 import { Add, ArrowDown2, ArrowRight2, AttachSquare, MessageEdit, Trash } from 'iconsax-react';
 
 import React, { useState } from 'react';
-import { ProblemsDataProps } from '../../../app/(Admin-Dashboard)/problem-statements/page';
+import { ProblemsDataProps } from '../../../app/(Admin-Dashboard)/admin-problem-statements/page';
 import EditProblemStatement from './EditProblemStatement';
 import AttachNewFile from './AttachNewFile';
 import DeleteProblem from './DeleteProblem';

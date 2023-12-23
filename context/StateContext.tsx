@@ -50,7 +50,7 @@ interface StateContextProps {
 	setDeleteMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
 	newMessageModal: boolean;
 	setNewMessageModal: React.Dispatch<React.SetStateAction<boolean>>;
-
+	anyModalOpen: boolean;
 	user: User;
 }
 
@@ -109,13 +109,35 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [createClientModal, setCreateClientModal] = useState(false);
 	const [newMessageModal, setNewMessageModal] = useState(false);
 
+	// AdminNav
+	const [currentPath, setCurrentPath] = useState('');
+	const pathname = usePathname();
+
+	// Modals State
+	const anyModalOpen =
+		showMobileMenu ||
+		openPaymentModal ||
+		isRemoveClientModal ||
+		isRemoveProjectModal ||
+		isProjectMiletoneModal ||
+		isEditMiletoneModal ||
+		changeStatusModal ||
+		viewMilestoneModal ||
+		createMilestoneModal ||
+		editProjectModal ||
+		createProjectModal ||
+		createClientModal ||
+		deleteMilestoneModal ||
+		newMessageModal ||
+		landingMobileMenu;
+
 	// Sidebar Mobile
 	const isMobileDevice = () => {
 		return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator?.userAgent);
 	};
 
 	useEffect(() => {
-		if (!isMobileDevice()) return;
+		if (!isMobileDevice() || !pathname.startsWith('/admin') || anyModalOpen) return;
 		const handleSwipeStart = (e: TouchEvent) => {
 			setHandleSwipe(e.changedTouches[0].screenX);
 		};
@@ -140,11 +162,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			window.removeEventListener('touchstart', handleSwipeStart);
 			window.removeEventListener('touchend', handleSwipeEnd);
 		};
-	}, [handleSwipe]);
-
-	// AdminNav
-	const [currentPath, setCurrentPath] = useState('');
-	const pathname = usePathname();
+	}, [handleSwipe, pathname, anyModalOpen]);
 
 	useEffect(() => {
 		if (pathname.startsWith('/admin-')) {
@@ -158,23 +176,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (
-			showMobileMenu ||
-			openPaymentModal ||
-			isRemoveClientModal ||
-			isRemoveProjectModal ||
-			isProjectMiletoneModal ||
-			isEditMiletoneModal ||
-			changeStatusModal ||
-			viewMilestoneModal ||
-			createMilestoneModal ||
-			editProjectModal ||
-			createProjectModal ||
-			createClientModal ||
-			deleteMilestoneModal ||
-			newMessageModal ||
-			landingMobileMenu
-		) {
+		if (anyModalOpen) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
@@ -204,23 +206,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			document.removeEventListener('keyup', handleKeyDown);
 		};
-	}, [
-		showMobileMenu,
-		openPaymentModal,
-		isRemoveClientModal,
-		isRemoveProjectModal,
-		isProjectMiletoneModal,
-		isEditMiletoneModal,
-		changeStatusModal,
-		viewMilestoneModal,
-		createMilestoneModal,
-		editProjectModal,
-		createProjectModal,
-		createClientModal,
-		deleteMilestoneModal,
-		newMessageModal,
-		landingMobileMenu
-	]);
+	}, [anyModalOpen]);
 
 	const value = useMemo(
 		() => ({
@@ -268,9 +254,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			setDeleteMilestoneModal,
 
 			newMessageModal,
-			setNewMessageModal
+			setNewMessageModal,
+			anyModalOpen
 		}),
 		[
+			anyModalOpen,
 			showMobileMenu,
 			landingMobileMenu,
 			currentPath,
