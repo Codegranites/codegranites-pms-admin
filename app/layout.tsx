@@ -7,6 +7,7 @@ import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
 import Providers from './Providers';
 import './Styles/nprogress.css';
+import { SessionProvider } from '../context/sessionProvider';
 
 const workSans = Work_Sans({
 	subsets: ['latin'],
@@ -23,14 +24,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en" className={workSans.variable}>
-			<StateContextProvider>
-				<body className={workSans.className}>
-					{/* <Navbar /> */}
-					<Providers>{children}</Providers>
+			<SessionProvider>
+				<StateContextProvider>
+					<body className={workSans.className}>
+						<Providers>{children}</Providers>
 
-					<GotoTop />
-				</body>
-			</StateContextProvider>
+						<GotoTop />
+					</body>
+				</StateContextProvider>
+			</SessionProvider>
 		</html>
 	);
 }

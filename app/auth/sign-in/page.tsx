@@ -2,8 +2,7 @@
 
 import { Input } from '@ui/Input';
 import Button from '@ui/Button';
-import { Google } from 'iconsax-react';
-import PasswordPopover from '@ui/passwordPopober';
+import { loginUser } from '../../../api/authApi';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,24 +10,42 @@ import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
+import { useSession } from '../../../context/sessionProvider';
 
 const SignIn = () => {
-	// const initialPassword = 'jamestest2354';
-	const [password, setPassoword] = useState('');
-	const [businessEmail, setBusinessEmail] = useState('');
+	const { login } = useSession();
+	const [isLoading, setIsLoading] = useState(false);
 	const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
 
-	const router = useRouter();
+	const [formData, setFormData] = useState({
+		email: '',
+		password: ''
+	});
 
-	const handleLoggedIn = (e: React.FormEvent) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
+
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
-		router.push('/auth/get-started');
+
+		try {
+			setIsLoading(true);
+			const response = await loginUser(formData);
+			setFormData({
+				email: '',
+				password: ''
+			});
+		} catch (error) {
+			console.error('Login error:', error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
 		<>
 			<section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
-				{/* header component  */}
 				<Header_for_many />
 
 				<div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
@@ -38,19 +55,19 @@ const SignIn = () => {
 							<h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
 							<span className="block text-center font-[400] text-[14px] mt-2 ">Great to have you back with us again</span>
 
-							<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleLoggedIn}>
+							<form action="" className="flex flex-col mt-4 z-10" onSubmit={handleSubmit}>
 								<label htmlFor="Business Email" className="font-bold">
 									Business Email
 								</label>
 								<Input
 									type="email"
 									id="businessEmail"
-									name="businessEmail"
-									value={businessEmail}
-									onChange={(e) => setBusinessEmail(e.target.value)}
+									name="email"
+									value={formData.email}
+									onChange={handleChange}
+									required
 									placeHolder="Enter Business Email Address"
 									rightIcon={<MdOutlineMail color="#777" />}
-									required
 									className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
 								/>
 
@@ -61,9 +78,9 @@ const SignIn = () => {
 								<Input
 									type={defaultInpTypeNew}
 									id="password"
-									name="Password"
-									value={password}
-									onChange={(e) => setPassoword(e.target.value)}
+									name="password"
+									value={formData.password}
+									onChange={handleChange}
 									placeHolder="Enter Password"
 									required
 									rightIcon={
@@ -80,7 +97,7 @@ const SignIn = () => {
 									forgot password? <Link href="/auth/forgot-password">Reset</Link>
 								</span>
 
-								<Button className="w-full rounded-md my-3" type="submit">
+								<Button className="w-full rounded-md my-3" type="submit" isLoading={isLoading} spinnerColor="#fff">
 									Log in
 								</Button>
 							</form>
