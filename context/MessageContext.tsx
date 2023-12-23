@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { MESSAGES, MessageProps } from '../app/(Admin-Dashboard)/admin-messages/content/messages';
+import { useStateCtx } from './StateContext';
 
 interface MessageContextProps {
 	activeMessageTab: string;
@@ -19,6 +20,7 @@ export const MessageContext = createContext<MessageContextProps>({} as MessageCo
 
 const MessageContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [activeMessageTab, setActiveMessageTab] = useState('');
+	const { anyModalOpen } = useStateCtx();
 	const [searchMsg, setSearchMsg] = useState('');
 	const [mobileScroll, setMobileScroll] = useState<number | null>(null);
 	const [showBtn, setShowBtn] = useState(false);
@@ -44,6 +46,7 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 	};
 
 	useEffect(() => {
+		if (anyModalOpen) return;
 		if (!isMobileDevice()) {
 			setMobileScroll(window.scrollY);
 		}
@@ -100,7 +103,7 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 
 			window.removeEventListener('scroll', handleScroll);
 		};
-	}, [mobileScroll, swipeDis]);
+	}, [mobileScroll, swipeDis, anyModalOpen]);
 
 	useEffect(() => {
 		const savedTab = localStorage.getItem('message-tab');

@@ -44,7 +44,7 @@ const AdminMobileSidebar = () => {
 						: '-translate-x-full duration-300 pointer-events-none invisible'
 				)}
 			>
-				<Link href="/" className="w-full  h-[53px]">
+				<Link href="/" className="w-full  h-[53px]" onClick={() => setShowMobileMenu(false)}>
 					<Image src="/logo.png" alt="Logo" width={155} height={53} />
 				</Link>
 				<ul className="flex flex-col gap-y-3 min-[400px]:gap-y-4 py-8 mt-6">

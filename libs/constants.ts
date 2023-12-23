@@ -40,7 +40,7 @@ export const SIDEBAR_ADMIN_LINKS: SidebarAdminProps[] = [
 		id: 3,
 		label: 'Problem Statements',
 		icon: MessageQuestion,
-		link: 'problem-statements'
+		link: 'admin-problem-statements'
 	},
 	{
 		id: 4,
@@ -78,7 +78,7 @@ export const SIDEBAR_ADMIN_LINKS: SidebarAdminProps[] = [
 		id: 10,
 		label: 'Invite',
 		icon: AddCircle,
-		link: 'invite'
+		link: 'admin-invite'
 	}
 ];
 
