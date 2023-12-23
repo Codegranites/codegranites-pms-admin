@@ -26,9 +26,7 @@ const AdminClientContainer = () => {
 		const filtered = ADMIN_CLIENTS.filter((client) => {
 			if (
 				(!(searchTerm.length > 1) && selectedClientFilter === 'all-clients') ||
-				(searchTerm.length > 1 &&
-					selectedClientFilter === 'all-clients' &&
-					client.name.toLowerCase().includes(searchTerm))
+				(searchTerm.length > 1 && selectedClientFilter === 'all-clients' && client.name.toLowerCase().includes(searchTerm))
 			) {
 				return true;
 			}

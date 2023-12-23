@@ -54,9 +54,9 @@ const SubscribeFooter = () => {
 			<div className="hidden lg:flex flex-col gap-y-3 mt-10">
 				<p className="font-medium text-lg text-color-600 ">About Us</p>
 				<p className="text-sm text-color-normal">
-					Innovators in digital solutions, blending creativity with expertise to elevate ideas and empower innovation.
-					Your trusted partner for cutting-edge software development, where challenges become opportunities and visions
-					become reality.
+					Innovators in digital solutions, blending creativity with expertise to elevate ideas and empower innovation. Your
+					trusted partner for cutting-edge software development, where challenges become opportunities and visions become
+					reality.
 				</p>
 			</div>
 		</div>

@@ -74,9 +74,7 @@ const ProjectCardAdmin = ({ status, title, project_owner, end_date, id }: Projec
 							})}
 						/>
 					</span>{' '}
-					<span
-						className={cn('text-[11px] xl:text-sm max-lg:text-sm', { 'max-[1158px]-[11px]': status === 'in-progress' })}
-					>
+					<span className={cn('text-[11px] xl:text-sm max-lg:text-sm', { 'max-[1158px]-[11px]': status === 'in-progress' })}>
 						({status})
 					</span>
 				</p>

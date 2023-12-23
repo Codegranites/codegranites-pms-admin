@@ -141,15 +141,12 @@ const EditMilestoneModal = () => {
 							{STATUSES.map((status) => (
 								<p
 									key={status.id}
-									className={cn(
-										'text-center text-sm md:text-base flex items-center gap-x-2 transition-all duration-300',
-										{
-											' font-medium': status.label === formData.status,
-											'text-[#eea300] ': status.label === 'in-progress',
-											'text-[#008d36] ': status.label === 'completed',
-											'text-primary-light ': status.label === 'pending'
-										}
-									)}
+									className={cn('text-center text-sm md:text-base flex items-center gap-x-2 transition-all duration-300', {
+										' font-medium': status.label === formData.status,
+										'text-[#eea300] ': status.label === 'in-progress',
+										'text-[#008d36] ': status.label === 'completed',
+										'text-primary-light ': status.label === 'pending'
+									})}
 								>
 									<button
 										onClick={() => setFormData({ ...formData, status: status.label })}

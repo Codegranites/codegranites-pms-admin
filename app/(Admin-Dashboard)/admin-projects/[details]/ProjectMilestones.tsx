@@ -116,8 +116,8 @@ const ProjectMilestones = () => {
 			) : (
 				<div className="flex w-full max-w-[298px] flex-col gap-y-6 items-center mx-auto py-8 text-sm text-header">
 					<p>
-						No milestones have been created for this project yet, The project&apos;s milestones will appear here once
-						they have been created.
+						No milestones have been created for this project yet, The project&apos;s milestones will appear here once they
+						have been created.
 					</p>
 
 					<Image src="/assets/empty-box.png" alt="Empty box" width={300} height={300} />

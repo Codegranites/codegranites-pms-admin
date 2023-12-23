@@ -13,10 +13,7 @@ const History = () => {
 					<Bookmark size="32" color="#535353" />
 					<span>History</span>
 				</div>
-				<Button
-					className="flex gap-2 items-center justify-center bg-transparent text-header hover:bg-transparent"
-					href=""
-				>
+				<Button className="flex gap-2 items-center justify-center bg-transparent text-header hover:bg-transparent" href="">
 					<span>View All</span>
 					<ArrowRight2 size="32" color="#535353" />
 				</Button>

@@ -114,11 +114,7 @@ const NewMessageModal = () => {
 							<span className="absolute z-10 bg-blue-700/80 text-white rounded-md text-xs px-2 py-1 -top-7 -right-[1.1rem] before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rotate-45 before:bg-gradient-to-tl from-blue-700 to-blue-700/20 opacity-0 group-hover/expand:opacity-100 transition-all duration-500 group-hover/expand:duration-200 pointer-events-none">
 								{isMaximize ? 'normal' : 'expand'}
 							</span>
-							{isMaximize ? (
-								<span className="w-6 h-6 rounded-md border-2 border-header flex ml-[2px]" />
-							) : (
-								<Minus size={24} />
-							)}
+							{isMaximize ? <span className="w-6 h-6 rounded-md border-2 border-header flex ml-[2px]" /> : <Minus size={24} />}
 						</button>
 
 						{/* CLOSE || CLEAR */}
@@ -177,9 +173,7 @@ const NewMessageModal = () => {
 						/>
 					</div>
 					<div className="flex items-center  w-full relative">
-						<span className={cn('absolute left-2 sm:left-3 text-header', isMaximize ? 'sm:font-medium' : '')}>
-							Subject:
-						</span>
+						<span className={cn('absolute left-2 sm:left-3 text-header', isMaximize ? 'sm:font-medium' : '')}>Subject:</span>
 						<input
 							type="text"
 							placeholder="subject..."

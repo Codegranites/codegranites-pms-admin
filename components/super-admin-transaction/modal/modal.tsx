@@ -78,10 +78,7 @@ function CreateTransaction({ btnClass }: { btnClass?: string }) {
 						</div>
 						<div>
 							<label className="text-base font-semibold">Payment Type</label>
-							<Select
-								onOpenChange={() => setIsDdOpen(!isDdOpen)}
-								onValueChange={(value: any) => setSelectedValue(value)}
-							>
+							<Select onOpenChange={() => setIsDdOpen(!isDdOpen)} onValueChange={(value: any) => setSelectedValue(value)}>
 								<SelectTrigger
 									rightIcon={
 										isDdOpen ? (

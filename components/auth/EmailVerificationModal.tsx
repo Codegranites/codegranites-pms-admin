@@ -31,9 +31,7 @@ export const EmailVerificationModal: React.FC<EmailVerificationModalProps> = ({
 			/>
 			<div className="text-center">
 				<h2 className="text-xl text-[#000000] font-bold mt-10 mb-1 md:text-2xl md:mb-3">Check your Email</h2>
-				<p className="mb-4 font-medium text-xl">
-					We just sent you an Email, open your Email app to verify your identity
-				</p>
+				<p className="mb-4 font-medium text-xl">We just sent you an Email, open your Email app to verify your identity</p>
 			</div>
 		</Modal>
 	);

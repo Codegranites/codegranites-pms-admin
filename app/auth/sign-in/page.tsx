@@ -36,9 +36,7 @@ const SignIn = () => {
 						{/* overlay */}
 						<div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
 							<h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
-							<span className="block text-center font-[400] text-[14px] mt-2 ">
-								Great to have you back with us again
-							</span>
+							<span className="block text-center font-[400] text-[14px] mt-2 ">Great to have you back with us again</span>
 
 							<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleLoggedIn}>
 								<label htmlFor="Business Email" className="font-bold">
@@ -97,9 +95,7 @@ const SignIn = () => {
 								<Button
 									className=" text-black w-full my-3 border-[#C7C7C7] 
 								border rounded-md bg-[#fff] py-1"
-									leftIcon={
-										<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />
-									}
+									leftIcon={<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />}
 								>
 									Continue with Google
 								</Button>

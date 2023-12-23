@@ -12,8 +12,8 @@ function ErrorPage() {
 				<Image src="/denied.svg" alt="Denied" width={200} height={200} />
 				<h2 className="mb-6 text-black font-bold mt-5 lg:text-6xl text-3xl">Access Denied!</h2>
 				<p className="max-w-[996px] text-center text-xl mb-5">
-					You don&apos;t have permissions to access this page. Contact an administrator to get permissions or go to the
-					home page and browse other pages
+					You don&apos;t have permissions to access this page. Contact an administrator to get permissions or go to the home
+					page and browse other pages
 				</p>
 				<Button
 					intent={'primary'}

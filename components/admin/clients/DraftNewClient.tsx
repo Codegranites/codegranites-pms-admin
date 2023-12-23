@@ -188,10 +188,7 @@ const DraftNewClientModal = () => {
 										hidden: formData.image
 									})}
 								>
-									<label
-										htmlFor="client-image"
-										className="cursor-pointer flex flex-col items-center justify-center gap-y-3"
-									>
+									<label htmlFor="client-image" className="cursor-pointer flex flex-col items-center justify-center gap-y-3">
 										<button
 											role="span"
 											type="button"

@@ -108,3 +108,10 @@ export type FeatProps = {
 	description: string;
 	icon: string;
 };
+
+export interface SignUpData {
+	fullName: string;
+	email: string;
+	phoneNumber: string;
+	password: string;
+}
