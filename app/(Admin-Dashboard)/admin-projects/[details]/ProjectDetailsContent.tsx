@@ -8,9 +8,10 @@ import ProjectDoc from './ProjectDoc';
 import ProjectDetailsSection from './ProjectDetailsSection';
 import Link from 'next/link';
 import { DocumentDownload, Play, Share } from 'iconsax-react';
-import ProjectComments from './ProjectComments';
+
 import ProjectMilestones from './ProjectMilestones';
 import NotFound from '../../../../components/admin/NotFound';
+import ProjectComments from './ProjectComments';
 
 const ProjectDetailsContent = ({ id }: { id?: string }) => {
 	const router = useRouter();
@@ -102,7 +103,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
 						</div>
 					</div>
 					<div className="hidden lg:flex">
-						<ProjectComments />
+						<ProjectComments projectId={String(id)} />
 					</div>
 				</div>
 
@@ -111,7 +112,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
 
 				{/* Comments section for small screens */}
 				<div className="w-full px-1 min-[400px]:px-2 lg:hidden">
-					<ProjectComments />
+					<ProjectComments projectId={String(id)} />
 				</div>
 			</section>
 		</>

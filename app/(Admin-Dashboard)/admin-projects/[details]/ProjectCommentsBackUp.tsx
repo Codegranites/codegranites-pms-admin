@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import { FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useStateCtx } from '../../../../context/StateContext';
 import Image from 'next/image';
 import { DirectRight } from 'iconsax-react';
@@ -13,14 +13,8 @@ interface Comment {
 	time: number | null;
 	author: string;
 }
-interface Comments {
-	[projectId: string]: {
-		project_id: string;
-		comments: Comment[];
-	};
-}
 
-const ProjectComments = ({ projectId }: { projectId: string }) => {
+const ProjectCommentsBackUp = () => {
 	const { user } = useStateCtx();
 
 	const [comment, setComment] = useState({
@@ -29,36 +23,20 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
 		time: null,
 		author: user?.name
 	});
-	const [comments, setComments] = useState<Comments>({
-		[projectId]: {
-			project_id: projectId,
-			comments: []
-		}
-	});
+	const [comments, setComments] = useState<Comment[]>([]);
 
 	const handleComment = (e: FormEvent) => {
 		e.preventDefault();
 
-		setComments((prevComments) => {
-			const existingComments = prevComments[projectId] || { project_id: projectId, comments: [] };
-
-			return {
-				...prevComments,
-				[projectId]: {
-					...existingComments,
-					comments: [
-						...existingComments.comments,
-						{
-							id: generateId(),
-							comment: comment.comment,
-							time: new Date().getTime() / 1000,
-							author: user?.name
-						}
-					]
-				}
-			};
-		});
-
+		setComments((prevComment) => [
+			...prevComment,
+			{
+				id: generateId(),
+				comment: comment.comment,
+				time: new Date().getTime() / 1000,
+				author: user?.name
+			}
+		]);
 		setComment({
 			id: '',
 			comment: '',
@@ -68,26 +46,14 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
 	};
 
 	useEffect(() => {
-		if (!comments[projectId]?.comments.length) return;
-		// Force a re-render by updating the state
 		const intervalId = setInterval(() => {
-			setComments((prevComments) => {
-				const existingComments = prevComments[projectId] || { project_id: projectId, comments: [] };
-				return {
-					...prevComments,
-					[projectId]: {
-						...existingComments,
-						comments: [...existingComments.comments]
-					}
-				};
-			});
+			// Force a re-render by updating the state
+			setComments((prevComments) => [...prevComments]);
 		}, 1000);
 
 		return () => clearInterval(intervalId);
-	}, [comments[projectId]?.comments]);
-
+	}, []);
 	// get comments from local storage
-
 	useEffect(() => {
 		const storedComments = localStorage.getItem('comments');
 		if (storedComments) {
@@ -97,16 +63,16 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
 
 	useEffect(() => {
 		// save comments to local storage
-		if (!comments[projectId]?.comments.length) return;
+		if (!comments || !comments.length) return;
 		localStorage.setItem('comments', JSON.stringify(comments));
 	}, [comments]);
 
 	return (
 		<div className="border-t border-[#e1e1e1] py-6 lg:py-8 mt-4 flex w-full flex-col gap-y-5 lg:gap-y-8 max-lg:items-center px-1">
 			<h3 className="text-xl font-medium sm:text-3xl text-header max-lg:w-full text-center">Comments</h3>
-			{comments[projectId]?.project_id === projectId && comments[projectId]?.comments.length > 0 ? (
+			{comments.length > 0 ? (
 				<div className="flex w-full max-w-[600px] py-6 flex-col">
-					{comments[projectId]?.comments.map((comment) => (
+					{comments.map((comment) => (
 						<div className="flex items-start gap-x-2 py-2 w-full border-b border-[#e1e1e1]" key={comment.id}>
 							<Image src={user.image} alt="profile" width={40} height={40} className="rounded-full" />
 							<div className="flex flex-col w-full">
@@ -154,4 +120,4 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
 	);
 };
 
-export default ProjectComments;
+export default ProjectCommentsBackUp;

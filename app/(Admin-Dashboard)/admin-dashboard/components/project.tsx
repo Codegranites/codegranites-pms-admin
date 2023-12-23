@@ -27,7 +27,7 @@ const Project = () => {
 				</Button> */}
 			</div>
 			<Image src="/dashboard/project.svg" alt="empty project" width={450} height={350} />
-			<p className="text-header sm:font-medium mt-5 mb-5 sm:text-xl">You have to projects yet!</p>
+			<p className="text-header sm:font-medium mt-5 mb-5 sm:text-xl">You have no projects yet!</p>
 			<div className="flex w-full justify-center">
 				<button
 					onClick={() => setCreateProjectModal(true)}
