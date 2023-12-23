@@ -32,9 +32,7 @@ export const PasswordVerificationSucessModal: React.FC<EmailVerificationModalPro
 			/>
 			<div className="text-center">
 				<h2 className="text-xl text-[#000000] font-bold mt-10 mb-1 md:text-2xl md:mb-3">Sucessful !</h2>
-				<p className="w-70 mx-auto mb-4 md:w-60">
-					Your password has been reset click the button to return to log in page
-				</p>
+				<p className="w-70 mx-auto mb-4 md:w-60">Your password has been reset click the button to return to log in page</p>
 
 				<Link href="/auth/sign-in">
 					<Button className="w-full rounded-md my-2" type="submit">

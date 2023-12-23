@@ -59,11 +59,7 @@ const Hero = () => {
 						Achieve Milestones with Confidence. Sign Up Today for a Smarter Approach to Project Success
 					</p>
 					<div className="mt-3 lg:mt-6 w-full justify-center flex gap-x-5 lg:gap-x-10 [&>button]:border-white [&>button]:border [&>button]:px-4 [&>button]:lg:px-12 [&>button]:py-2 [&>button]:lg:py-4 [&>button]:rounded-md [&>button:last-child]:bg-white [&>button:last-child]:text-primary [&>button]:font-medium [&>button]:lg:font-semibold [&>button]:text-white [&>button]:max-[390px]:text-sm max-[350px]:flex-col gap-y-3">
-						<Button
-							href="/auth/get-started"
-							size="lg"
-							className="bg-white py-6 text-lg px-12 text-primary hover:bg-white"
-						>
+						<Button href="/auth/get-started" size="lg" className="bg-white py-6 text-lg px-12 text-primary hover:bg-white">
 							{' '}
 							GetStarted{' '}
 						</Button>

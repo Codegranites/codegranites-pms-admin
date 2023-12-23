@@ -148,11 +148,7 @@ function SuperAdminTransaction() {
 									</td>
 									<td className="p-2 w-2/5 py-4 text-left">{item.title}</td>
 									<td className="p-2 py-4">₦{item.Amount}</td>
-									<td
-										className={`p-2 py-4 capitalize ${
-											item.payment_type === 'final' ? 'text-[#008D36]' : 'text-[#665D3A]'
-										}`}
-									>
+									<td className={`p-2 py-4 capitalize ${item.payment_type === 'final' ? 'text-[#008D36]' : 'text-[#665D3A]'}`}>
 										{item.payment_type}
 									</td>
 									<td className="p-2 py-4 pr-20">{item.date}</td>

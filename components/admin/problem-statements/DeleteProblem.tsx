@@ -20,11 +20,7 @@ export default function DeleteProblem({ isOpen, onClose }: { isOpen: boolean; on
 					<Button onClick={onClose} type="button" className="rounded-lg w-full">
 						Cancel
 					</Button>
-					<Button
-						type="button"
-						leftIcon={<Trash variant="Bold" size={24} />}
-						className="rounded-lg bg-[#FF3333] w-full"
-					>
+					<Button type="button" leftIcon={<Trash variant="Bold" size={24} />} className="rounded-lg bg-[#FF3333] w-full">
 						Delete
 					</Button>
 				</div>

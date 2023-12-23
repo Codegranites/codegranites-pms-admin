@@ -38,7 +38,6 @@ const ResetPassword = () => {
 				{/* header component  */}
 				<Header_for_many />
 
-				{/* Email Verification Modal */}
 				{/* <PasswordVerificationSucessModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} /> */}
 
 				{isVerificationModalOpen ? (
@@ -49,9 +48,7 @@ const ResetPassword = () => {
 							{/* overlay */}
 							<div className="relative mt-20 py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
 								<h1 className="text-center font-[600]  text-[28px]">Reset your password</h1>
-								<span className="block text-center font-[400] text-[14px] mt-2 ">
-									Enter a new password for your account
-								</span>
+								<span className="block text-center font-[400] text-[14px] mt-2 ">Enter a new password for your account</span>
 
 								<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleLoggedIn(e)}>
 									<label htmlFor="Business Email" className="font-bold">

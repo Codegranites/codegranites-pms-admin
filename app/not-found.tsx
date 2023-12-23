@@ -12,8 +12,8 @@ function ErrorPage() {
 				<Image src="/404.svg" width={600} height={350} alt="404 Error" />
 				<h2 className="mb-6 text-black font-bold lg:text-6xl text-3xl">Oops!</h2>
 				<p className="max-w-[996px] text-center text-xl mb-5">
-					We are sorry - we can&apos;t seem to find the page you are looking for. We might have moved or deleted the
-					page you are looking for, or you might have typed in the wrong URL into the address bar.
+					We are sorry - we can&apos;t seem to find the page you are looking for. We might have moved or deleted the page you
+					are looking for, or you might have typed in the wrong URL into the address bar.
 				</p>
 				<Button
 					intent={'primary'}

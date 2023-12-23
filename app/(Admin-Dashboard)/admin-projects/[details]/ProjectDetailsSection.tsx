@@ -130,9 +130,7 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 								})}
 							/>
 						</span>{' '}
-						<span className={cn('text-sm 2xl:text-base font-medium capitalize')}>
-							({project?.status.replace('-', ' ')})
-						</span>
+						<span className={cn('text-sm 2xl:text-base font-medium capitalize')}>({project?.status.replace('-', ' ')})</span>
 					</p>
 					<p className="text-sm xl:text-base text-header flex items-center gap-x-1">
 						Project Owner:
@@ -161,9 +159,7 @@ const ProjectDetailsSection = ({ project }: { project?: ProjectCardProps }) => {
 					<div className="flex flex-wrap w-full items-center justify-between gap-3">
 						<p className="text-sm xl:text-base text-header flex items-center gap-x-1">
 							Final Payment:{' '}
-							<span className="font-semibold">
-								{formatPrice(project?.total_cost! - project?.initial_payment! ?? 0)}
-							</span>
+							<span className="font-semibold">{formatPrice(project?.total_cost! - project?.initial_payment! ?? 0)}</span>
 						</p>
 
 						<button

@@ -73,9 +73,7 @@ const ClientProfileContent = ({ client_id, client_name }: { client_id?: string; 
 						className="text-[#b50000] flex items-center gap-x-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 px-1"
 					>
 						<Trash size={18} aria-hidden />
-						<span>
-							Remove {client?.name ? <span className="font-medium">{client?.name}</span> : 'client'} from workspace
-						</span>
+						<span>Remove {client?.name ? <span className="font-medium">{client?.name}</span> : 'client'} from workspace</span>
 					</button>
 				</div>
 			</Suspense>

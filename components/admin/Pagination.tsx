@@ -11,9 +11,7 @@ const CustomPagination = ({ totalPages, currentPage, onPageChange }: Props) => {
 			{pages.map((page) => (
 				<button
 					key={page}
-					className={`px-3 py-2 rounded-md ${
-						currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'
-					}`}
+					className={`px-3 py-2 rounded-md ${currentPage === page ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
 					onClick={() => onPageChange(page - 1)}
 				>
 					{page}

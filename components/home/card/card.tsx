@@ -24,7 +24,7 @@ const Card = ({ title, description, icon }: CardProps) => {
 			ref={workRef}
 			onMouseMove={handleMouseMove}
 			className={cn(
-				'relative w-full h-[380px] bg-card sm:w-[369px] flex justify-center items-center p-[2px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none work-card',
+				'relative w-full h-[380px] bg-card sm:w-[369px] flex justify-center items-center p-[2px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
 				isInView ? 'opacity-100 translate-y-0 delay-200 duration-1000' : ' opacity-0 translate-y-36'
 			)}
 		>

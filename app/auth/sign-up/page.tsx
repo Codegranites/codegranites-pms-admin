@@ -6,41 +6,55 @@ import PasswordPopover from '@ui/passwordPopober';
 import { Eye, EyeSlash, Call } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { FiUser } from 'react-icons/fi';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
+import { SignUpData } from '../../../types';
+import { signUpUser } from '../../../api/authApi';
 
 import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
 
-const SignUp = () => {
-	// const initialPassword = 'jamestest2354';
-	const [password, setPassoword] = useState('');
-	const [fullName, setFullName] = useState('');
-	const [phoneNumber, setPhoneNumber] = useState('');
-	const [businessEmail, setBusinessEmail] = useState('');
-	const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
-	const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); // New state for the modal
+const SignUp: React.FC = () => {
+	const [formData, setFormData] = useState<SignUpData>({
+		fullName: '',
+		email: '',
+		phoneNumber: '',
+		password: ''
+	});
 
-	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
+	const [defaultInpType, setDefaultInpType] = useState<'password' | 'text'>('password');
+	const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
 
-	const handleEmailVerification = (e: React.FormEvent) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = e.target;
+		setFormData((prevData) => ({
+			...prevData,
+			[name]: value
+		}));
+	};
+
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 
-		// Open the email verification modal
-		setIsVerificationModalOpen(true);
+		try {
+			setIsLoading(true);
 
-		console.log('=============================');
-		console.log('fullname: ' + fullName);
-		console.log('businessEmail: ' + businessEmail);
-		console.log('password: ' + password);
-		console.log('=============================');
+			await signUpUser({
+				fullName: formData.fullName,
+				email: formData.email,
+				phoneNumber: formData.phoneNumber,
+				password: formData.password
+			});
 
-		// clean-up
-		setFullName('');
-		setBusinessEmail('');
-		setPassoword('');
+			setIsVerificationModalOpen(true);
+		} catch (error) {
+			console.error('Registration failed:', error);
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	const closeModal = () => {
@@ -64,16 +78,16 @@ const SignUp = () => {
 							<h1 className="text-center font-[600]  text-[28px]">Let us know you better</h1>
 							<span className="block text-center font-[400] text-[14px] mt-2 ">Begin your journey</span>
 
-							<form action="" className="flex flex-col mt-4 z-10" onSubmit={(e) => handleEmailVerification(e)}>
+							<form action="" className="flex flex-col mt-4 z-10" onSubmit={handleSubmit}>
 								<label htmlFor="Business Email" className="font-bold">
 									FullName
 								</label>
 								<Input
-									type="text"
 									id="fulName"
-									name="fulName"
-									value={fullName}
-									onChange={(e) => setFullName(e.target.value)}
+									type="text"
+									name="fullName"
+									value={formData.fullName}
+									onChange={handleChange}
 									placeHolder="Enter Full Name"
 									rightIcon={<FiUser color="#777" />}
 									required
@@ -84,11 +98,11 @@ const SignUp = () => {
 									Business Email
 								</label>
 								<Input
-									type="email"
 									id="businessEmail"
-									name="businessEmail"
-									value={businessEmail}
-									onChange={(e) => setBusinessEmail(e.target.value)}
+									type="email"
+									name="email"
+									value={formData.email}
+									onChange={handleChange}
 									placeHolder="Enter Business Email Address"
 									rightIcon={<MdOutlineMail color="#777" />}
 									required
@@ -99,11 +113,11 @@ const SignUp = () => {
 									Phone Number
 								</label>
 								<Input
-									type="Number"
 									id="Phone Number"
-									name="Phone Number"
-									value={phoneNumber}
-									onChange={(e) => setPhoneNumber(e.target.value)}
+									type="text"
+									name="phoneNumber"
+									value={formData.phoneNumber}
+									onChange={handleChange}
 									placeHolder="Enter Phone Number"
 									rightIcon={<Call size="20" color="#777777" />}
 									required
@@ -113,27 +127,27 @@ const SignUp = () => {
 								<label htmlFor="Password" className="font-bold mt-1">
 									Password
 								</label>
-								<PasswordPopover password={password}>
+								<PasswordPopover password={formData.password}>
 									<Input
-										type={defaultInpTypeNew}
+										type={defaultInpType}
 										id="password"
-										name="Password"
-										value={password}
-										onChange={(e) => setPassoword(e.target.value)}
+										name="password"
+										value={formData.password}
+										onChange={handleChange}
 										placeHolder="Enter Password"
 										required
 										rightIcon={
-											defaultInpTypeNew === 'text' ? (
-												<Eye color="#777" onClick={() => setDefaultInpTypeNew('password')} />
+											defaultInpType === 'text' ? (
+												<Eye color="#777" onClick={() => setDefaultInpType('password')} />
 											) : (
-												<EyeSlash color="#777" onClick={() => setDefaultInpTypeNew('text')} />
+												<EyeSlash color="#777" onClick={() => setDefaultInpType('text')} />
 											)
 										}
 										className="mt-1 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
 									/>
 								</PasswordPopover>
 
-								<Button className="w-full rounded-md my-3" type="submit">
+								<Button className="w-full rounded-md my-3" type="submit" isLoading={isLoading} spinnerColor="#fff">
 									Sign up
 								</Button>
 							</form>
@@ -146,9 +160,7 @@ const SignUp = () => {
 
 							<Button
 								className=" text-black w-full my-3 border-[#C7C7C7] border rounded-md bg-[#fff] py-1 "
-								leftIcon={
-									<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />
-								}
+								leftIcon={<Image src="/Mobile/google.svg" alt="google_logo_icon" width={20} height={20} className="mb-1" />}
 							>
 								Contine with Google
 							</Button>

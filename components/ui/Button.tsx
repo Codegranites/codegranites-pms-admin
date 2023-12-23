@@ -78,10 +78,7 @@ const Button: React.FC<ButtonProps> = ({
 					height={spinnerSize ?? '20'}
 					viewBox="0 0 24 24"
 					xmlns="http://www.w3.org/2000/svg"
-					className={twMerge(
-						' animate-spin transition delay-[0.2s] ',
-						isLoading ? 'opacity-1 visible' : 'opacity-0 hidden'
-					)}
+					className={twMerge(' animate-spin transition delay-[0.2s] ', isLoading ? 'opacity-1 visible' : 'opacity-0 hidden')}
 				>
 					<path
 						fill={spinnerColor ?? '#fff'}
