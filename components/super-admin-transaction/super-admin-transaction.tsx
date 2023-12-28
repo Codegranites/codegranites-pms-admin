@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Button from './buttons';
@@ -103,7 +102,7 @@ const transactions = [
 	}
 ];
 
-function SuperAdminTransaction() {
+const SuperAdminTransaction = () => {
 	const [transactionsList, setTransactionsList] = useState<Transaction[]>(transactions);
 	const [activeTab, setActiveTab] = useState<filter>('all');
 
@@ -113,13 +112,32 @@ function SuperAdminTransaction() {
 		);
 		setActiveTab(filter);
 	};
+
 	return (
-		<div className="pb-20">
-			<div className="flex gap-3 pb-12">
-				<Button changeFilter={changeFilter} tab={FILTER.ALL} name="All Transactions" activeTab={activeTab} />
-				<Button changeFilter={changeFilter} tab={FILTER.INITIAL} name="Initial Payments" activeTab={activeTab} />
-				<Button changeFilter={changeFilter} tab={FILTER.FINAL} name="Final Payments" activeTab={activeTab} />
-				<CreateTransaction btnClass="ml-auto" />
+		<div className="pb-4 lg:pb-8">
+			<div className="flex lg:flex-row gap-2 lg:gap-3 pb-4 lg:pb-12 overflow-x-scroll">
+				<Button
+					className="text-xs lg:text-lg"
+					changeFilter={changeFilter}
+					tab={FILTER.ALL}
+					name="All Transactions"
+					activeTab={activeTab}
+				/>
+				<Button
+					className="text-xs lg:text-lg"
+					changeFilter={changeFilter}
+					tab={FILTER.INITIAL}
+					name="Initial Payments"
+					activeTab={activeTab}
+				/>
+				<Button
+					className="text-xs lg:text-lg"
+					changeFilter={changeFilter}
+					tab={FILTER.FINAL}
+					name="Final Payments"
+					activeTab={activeTab}
+				/>
+				<CreateTransaction btnClass="mt-0 lg:mt-3 lg:mt-0 lg:ml-auto" />
 			</div>
 			<Container
 				isEmpty={transactionsList.length > 0}
@@ -129,37 +147,37 @@ function SuperAdminTransaction() {
 				emptyText="No transactions have been made yet!"
 				Create={CreateTransaction}
 			>
-				<table className="w-full text-header text-center">
-					<thead>
-						<tr>
-							<th className="pl-20 p-2 py-4 font-medium"></th>
-							<th className="p-2 py-4 text-left w-2/5 font-medium">Project Name</th>
-							<th className="p-2 py-4 font-medium">Amount</th>
-							<th className="p-2 py-4 font-medium">Payment Type</th>
-							<th className="p-2 py-4 pr-20 font-medium">Date</th>
-						</tr>
-					</thead>
-					<tbody>
-						{transactionsList.map((item, index) => {
-							return (
+				<div className="overflow-x-auto text-xs lg:text-lg">
+					<table className="w-full text-header text-center">
+						<thead>
+							<tr>
+								<th className="pl-4 lg:pl-20 p-2 py-4 font-medium"></th>
+								<th className="p-2 py-4 text-left lg:w-2/5 font-medium">Project Name</th>
+								<th className="p-2 py-4 font-medium">Amount</th>
+								<th className="p-2 py-4 font-medium">Payment Type</th>
+								<th className="p-2 py-4 pr-4 lg:pr-20 font-medium">Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							{transactionsList.map((item, index) => (
 								<tr key={item.id} className="border-t border-t-[#CAC4D0]">
-									<td className="pl-20 p-2 py-4">
+									<td className="pl-4 lg:pl-20 p-2 py-4">
 										<span className="table-numbering">{index + 1}</span>
 									</td>
-									<td className="p-2 w-2/5 py-4 text-left">{item.title}</td>
+									<td className="p-2 lg:w-2/5 py-4 text-left">{item.title}</td>
 									<td className="p-2 py-4">₦{item.Amount}</td>
 									<td className={`p-2 py-4 capitalize ${item.payment_type === 'final' ? 'text-[#008D36]' : 'text-[#665D3A]'}`}>
 										{item.payment_type}
 									</td>
-									<td className="p-2 py-4 pr-20">{item.date}</td>
+									<td className="p-2 py-4 pr-4 lg:pr-20 truncate">{item.date}</td>
 								</tr>
-							);
-						})}
-					</tbody>
-				</table>
+							))}
+						</tbody>
+					</table>
+				</div>
 			</Container>
 		</div>
 	);
-}
+};
 
 export default SuperAdminTransaction;
