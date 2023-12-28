@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -17,21 +13,11 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "plugins": [{ "name": "next" }],
     "paths": {
-      "@/*": [
-        "./"
-      ],
-      "@ui/*": [
-        "./components/ui/*"
-      ],
-      "@modules/*": [
-        "./modules/*"
-      ]
+      "@/*": ["./"],
+      "@ui/*": ["./components/ui/*"],
+      "@modules/*": ["./modules/*"]
     }
   },
   "include": [
@@ -41,7 +27,5 @@
     ".next/types/**/*.ts",
     "app/(Admin-Dashboard)/admin-admins"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

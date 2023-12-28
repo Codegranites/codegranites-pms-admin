@@ -7,14 +7,15 @@ interface Props {
 	tab: filter;
 	changeFilter: (tab: filter) => void;
 	activeTab: filter;
+	className?: string;
 }
 
-function FilterButtons({ name, tab, changeFilter, activeTab }: Props) {
+function FilterButtons({ name, tab, changeFilter, activeTab, className }: Props) {
 	return (
 		<Button
 			onClick={() => changeFilter(tab)}
 			intent={activeTab === tab ? 'secondary' : null}
-			className={`rounded-lg ${activeTab !== tab && 'border-primary border'}`}
+			className={`${className}  rounded-lg ${activeTab !== tab && 'border-primary border'}`}
 		>
 			{name}
 		</Button>

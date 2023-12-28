@@ -37,7 +37,10 @@ function Container({ children, isEmpty, title, Icon, emptyIllustration, emptyTex
 							)}
 						</div>
 					) : (
-						<div className="p-14">
+						/* tweaked the padding for small devices by adding 
+						lg:p-14 instead of p-14 which will affect both screen.
+						*/
+						<div className="lg:px-14">
 							<div className="border rounded-2xl border-[#CAC4D0]">{children}</div>
 						</div>
 					)}
