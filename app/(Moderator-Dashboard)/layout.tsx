@@ -6,9 +6,9 @@ export default function ModeratorLayout({ children }: { children: React.ReactNod
 	return (
 		<>
 			<SidebarMod />
-			<section className="w-full relative pl-[96px] lg:pl-[270px]">
+			<section className="w-full relative  md:pl-[96px] min-[1140px]:pl-[270px]">
 				<ModeratorNavbar />
-				<div className="flex w-full pt-8 flex-col h-full relative lg:px-9">{children}</div>
+				<div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">{children}</div>
 			</section>
 		</>
 	);
