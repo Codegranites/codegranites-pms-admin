@@ -6,8 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
 import Providers from './Providers';
-import './Styles/nprogress.css';
+
 import { SessionProvider } from '../context/sessionProvider';
+import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 
 const workSans = Work_Sans({
 	subsets: ['latin'],
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 				<StateContextProvider>
 					<body className={workSans.className}>
 						<Providers>{children}</Providers>
-
+						<SwipeIndicator />
 						<GotoTop />
 					</body>
 				</StateContextProvider>

@@ -12,6 +12,7 @@ import cn from '../../utils/util';
 import { LogoutCurve, Setting2 } from 'iconsax-react';
 import { SIDEBAR_ADMIN_LINKS, SIDEBAR_MOD_LINKS } from '../../libs/constants';
 import { useRouter } from 'next-nprogress-bar';
+import SwipeIndicator from './SwipeIndicator';
 
 const ModMobileSidebar = () => {
 	const { modShowMobileMenu, setModShowMobileMenu, user } = useStateCtx();
@@ -36,6 +37,7 @@ const ModMobileSidebar = () => {
 				)}
 				onClick={() => setModShowMobileMenu(false)}
 			/>
+
 			<section
 				className={cn(
 					'py-6 md:hidden  min-[400px]:pl-4 pl-2 flex flex-col w-full max-w-[230px] min-[400px]:max-w-[270px]  items-start bg-white fixed left-0 top-0 z-[999] h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none ',

@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 
 // Add Your Props here
 type User = {
@@ -58,6 +59,8 @@ interface StateContextProps {
 	setDeleteMilestoneModal: React.Dispatch<React.SetStateAction<boolean>>;
 	newMessageModal: boolean;
 	setNewMessageModal: React.Dispatch<React.SetStateAction<boolean>>;
+	swipeIndicator: boolean;
+	setSwipeIndicator: React.Dispatch<React.SetStateAction<boolean>>;
 	anyModalOpen: boolean;
 	user: User;
 }
@@ -118,6 +121,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [createClientModal, setCreateClientModal] = useState(false);
 	const [newMessageModal, setNewMessageModal] = useState(false);
 
+	// Miscellaneous
+	const [swipeIndicator, setSwipeIndicator] = useState(false);
+
 	// AdminNav
 	const [currentPath, setCurrentPath] = useState('');
 	const pathname = usePathname();
@@ -138,7 +144,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		deleteMilestoneModal ||
 		newMessageModal ||
 		landingMobileMenu;
-	const anyMobileMenuOpen = adminShowMobileMenu || modShowMobileMenu;
+	const anyMobileSidebarOpen = adminShowMobileMenu || modShowMobileMenu;
 
 	// Sidebar Mobile
 	const isMobileDevice = () => {
@@ -146,7 +152,21 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	useEffect(() => {
-		if (!isMobileDevice() || pathname.startsWith('/admin-') || anyModalOpen || !anyMobileMenuOpen) return;
+		if (!isMobileDevice()) return;
+		const isSwiped = localStorage.getItem('swiped');
+		if (isSwiped) {
+			setSwipeIndicator(false);
+			return;
+		}
+		if (anyMobileSidebarOpen) {
+			setSwipeIndicator(true);
+		} else {
+			setSwipeIndicator(false);
+		}
+	}, [anyMobileSidebarOpen]);
+
+	useEffect(() => {
+		if (!isMobileDevice() || pathname.startsWith('/admin-') || anyModalOpen || !anyMobileSidebarOpen) return;
 		const handleSwipeStart = (e: TouchEvent) => {
 			setHandleSwipe(e.changedTouches[0].screenX);
 		};
@@ -155,12 +175,12 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				const swipeDis = e.changedTouches[0].screenX - handleSwipe;
 				const swipeThreshold = 70;
 
-				if (swipeDis > swipeThreshold) {
-					console.log('swipe right');
-				} else if (swipeDis < -swipeThreshold) {
-					console.log('swipe left');
+				if (swipeDis < -swipeThreshold) {
+					localStorage.setItem('swiped', 'true');
+
 					setAdminShowMobileMenu(false);
 					setModShowMobileMenu(false);
+					return;
 				}
 
 				setHandleSwipe(null);
@@ -173,7 +193,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			window.removeEventListener('touchstart', handleSwipeStart);
 			window.removeEventListener('touchend', handleSwipeEnd);
 		};
-	}, [handleSwipe, pathname, anyModalOpen, anyMobileMenuOpen]);
+	}, [handleSwipe, pathname, anyModalOpen, anyMobileSidebarOpen]);
 
 	useEffect(() => {
 		if (pathname.startsWith('/admin-')) {
@@ -269,6 +289,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 			newMessageModal,
 			setNewMessageModal,
+			swipeIndicator,
+			setSwipeIndicator,
 			anyModalOpen
 		}),
 		[
@@ -299,7 +321,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 			deleteMilestoneModal,
 
-			newMessageModal
+			newMessageModal,
+			swipeIndicator
 		]
 	);
 
