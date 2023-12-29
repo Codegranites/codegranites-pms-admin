@@ -10,11 +10,11 @@ import { useEffect, useState } from 'react';
 import { useStateCtx } from '../../context/StateContext';
 import cn from '../../utils/util';
 import { LogoutCurve, Setting2 } from 'iconsax-react';
-import { SIDEBAR_ADMIN_LINKS } from '../../libs/constants';
+import { SIDEBAR_ADMIN_LINKS, SIDEBAR_MOD_LINKS } from '../../libs/constants';
 import { useRouter } from 'next-nprogress-bar';
 
-const AdminMobileSidebar = () => {
-	const { adminShowMobileMenu, setAdminShowMobileMenu, user } = useStateCtx();
+const ModMobileSidebar = () => {
+	const { modShowMobileMenu, setModShowMobileMenu, user } = useStateCtx();
 	const router = useRouter();
 
 	const [activeLink, setActiveLink] = useState('');
@@ -32,23 +32,23 @@ const AdminMobileSidebar = () => {
 			<div
 				className={cn(
 					'md:hidden fixed min-h-screen w-full bg-black/50 top-0 left-0 z-[99] transition-all duration-300 overflow-hidden',
-					adminShowMobileMenu ? 'opacity-100' : 'opacity-0 pointer-events-none '
+					modShowMobileMenu ? 'opacity-100' : 'opacity-0 pointer-events-none '
 				)}
-				onClick={() => setAdminShowMobileMenu(false)}
+				onClick={() => setModShowMobileMenu(false)}
 			/>
 			<section
 				className={cn(
 					'py-6 md:hidden  min-[400px]:pl-4 pl-2 flex flex-col w-full max-w-[230px] min-[400px]:max-w-[270px]  items-start bg-white fixed left-0 top-0 z-[999] h-screen transition-all opacity-0 sidebar-scroll overflow-x-hidden group select-none ',
-					adminShowMobileMenu
+					modShowMobileMenu
 						? 'translate-x-0 duration-700 opacity-100'
 						: '-translate-x-full duration-300 pointer-events-none invisible'
 				)}
 			>
-				<Link href="/" className="w-full  h-[53px]" onClick={() => setAdminShowMobileMenu(false)}>
+				<Link href="/" className="w-full  h-[53px]" onClick={() => setModShowMobileMenu(false)}>
 					<Image src="/logo.png" alt="Logo" width={155} height={53} />
 				</Link>
 				<ul className="flex flex-col gap-y-3 min-[400px]:gap-y-4 py-8 mt-6">
-					{SIDEBAR_ADMIN_LINKS.map((link) => (
+					{SIDEBAR_MOD_LINKS.map((link) => (
 						<Link
 							href={`/${link.link}`}
 							aria-current={activeLink === link.link ? 'page' : undefined}
@@ -56,7 +56,7 @@ const AdminMobileSidebar = () => {
 							onKeyUp={(e) => {
 								if (e.key === 'Enter' || e.key === ' ') {
 									setActiveLink(link.link);
-									setAdminShowMobileMenu(false);
+									setModShowMobileMenu(false);
 									return;
 								}
 							}}
@@ -70,7 +70,7 @@ const AdminMobileSidebar = () => {
 							)}
 							onClick={() => {
 								setActiveLink(link.link);
-								setAdminShowMobileMenu(false);
+								setModShowMobileMenu(false);
 							}}
 						>
 							<link.icon size={18} aria-hidden variant={activeLink === link.link ? 'Bold' : 'Outline'} />
@@ -80,14 +80,14 @@ const AdminMobileSidebar = () => {
 					))}
 
 					<Link
-						href="/admin-settings"
+						href="/settings"
 						role="button"
 						tabIndex={0}
 						aria-label="Settings"
 						onKeyUp={(e) => {
 							if (e.key === 'Enter' || e.key === ' ') {
-								setActiveLink('admin-settings');
-								setAdminShowMobileMenu(false);
+								setActiveLink('settings');
+								setModShowMobileMenu(false);
 								return;
 							}
 						}}
@@ -98,8 +98,8 @@ const AdminMobileSidebar = () => {
 								: 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
 						)}
 						onClick={() => {
-							setActiveLink('admin-settings');
-							setAdminShowMobileMenu(false);
+							setActiveLink('settings');
+							setModShowMobileMenu(false);
 						}}
 					>
 						<Setting2 size={18} aria-hidden variant={activeLink === 'settings' ? 'Bold' : 'Outline'} />
@@ -130,4 +130,4 @@ const AdminMobileSidebar = () => {
 	);
 };
 
-export default AdminMobileSidebar;
+export default ModMobileSidebar;

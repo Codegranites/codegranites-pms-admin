@@ -9,7 +9,7 @@ import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 
 const AdminNavbar = () => {
-	const { currentPath, showMobileMenu, setShowMobileMenu, user } = useStateCtx();
+	const { currentPath, adminShowMobileMenu, setAdminShowMobileMenu, user } = useStateCtx();
 	const firstName = user.name?.split(' ')[0];
 	const searchParams = useSearchParams();
 	const projectTitle = searchParams.get('project_title');
@@ -25,29 +25,29 @@ const AdminNavbar = () => {
 			className={cn(
 				'lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between fixed md:relative max-md:top-0 max-md:left-0 max-md:z-[99] select-none bg-white/80 backdrop-blur-lg w-full',
 				{
-					'md:overflow-hidden': showMobileMenu
+					'md:overflow-hidden': adminShowMobileMenu
 				}
 			)}
 		>
 			<div
 				className={cn('flex items-center gap-x-4', {
-					'w-full ': showMobileMenu
+					'w-full ': adminShowMobileMenu
 				})}
 			>
 				<button
 					tabIndex={0}
 					aria-haspopup
-					aria-expanded={showMobileMenu}
+					aria-expanded={adminShowMobileMenu}
 					type="button"
 					className={cn(
 						'md:hidden rounded-full focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light',
 						{
-							'rotate-45 absolute right-1 top-1 z-[9999] text-white': showMobileMenu
+							'rotate-45 absolute right-1 top-1 z-[9999] text-white': adminShowMobileMenu
 						}
 					)}
-					onClick={() => setShowMobileMenu(!showMobileMenu)}
+					onClick={() => setAdminShowMobileMenu(!adminShowMobileMenu)}
 				>
-					{showMobileMenu ? <Add size={60} /> : <HambergerMenu size={32} />}
+					{adminShowMobileMenu ? <Add size={60} /> : <HambergerMenu size={32} />}
 				</button>
 				{pathName === 'dashboard' ? (
 					<div className="flex gap-x-2 sm:gap-x-4 items-center">

@@ -13,10 +13,18 @@ interface StateContextProps {
 	currentPath: string;
 	openPaymentModal: boolean;
 	setOpenPaymentModal: React.Dispatch<React.SetStateAction<boolean>>;
-	showMobileMenu: boolean;
-	setShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+
+	// Mobile sidebar props
+	adminShowMobileMenu: boolean;
+	setAdminShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+	modShowMobileMenu: boolean;
+	setModShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+
+	// Landing Page props
 	landingMobileMenu: boolean;
 	setLandingMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+
+	// Admin Dashboard props
 	isRemoveClientModal: boolean;
 	setIsRemoveClientModal: React.Dispatch<React.SetStateAction<boolean>>;
 	isRemoveProjectModal: boolean;
@@ -93,7 +101,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [selectedProjectFilter]);
 
 	// Track Modals State
-	const [showMobileMenu, setShowMobileMenu] = useState(false);
+	const [adminShowMobileMenu, setAdminShowMobileMenu] = useState(false);
+	const [modShowMobileMenu, setModShowMobileMenu] = useState(false);
 	const [landingMobileMenu, setLandingMobileMenu] = useState(false);
 	const [openPaymentModal, setOpenPaymentModal] = useState(false);
 	const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
@@ -115,7 +124,6 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 	// Modals State
 	const anyModalOpen =
-		showMobileMenu ||
 		openPaymentModal ||
 		isRemoveClientModal ||
 		isRemoveProjectModal ||
@@ -130,6 +138,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		deleteMilestoneModal ||
 		newMessageModal ||
 		landingMobileMenu;
+	const anyMobileMenuOpen = adminShowMobileMenu || modShowMobileMenu;
 
 	// Sidebar Mobile
 	const isMobileDevice = () => {
@@ -137,7 +146,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	};
 
 	useEffect(() => {
-		if (!isMobileDevice() || !pathname.startsWith('/admin') || anyModalOpen) return;
+		if (!isMobileDevice() || pathname.startsWith('/admin-') || anyModalOpen || !anyMobileMenuOpen) return;
 		const handleSwipeStart = (e: TouchEvent) => {
 			setHandleSwipe(e.changedTouches[0].screenX);
 		};
@@ -147,9 +156,11 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 				const swipeThreshold = 70;
 
 				if (swipeDis > swipeThreshold) {
-					setShowMobileMenu(true);
+					console.log('swipe right');
 				} else if (swipeDis < -swipeThreshold) {
-					setShowMobileMenu(false);
+					console.log('swipe left');
+					setAdminShowMobileMenu(false);
+					setModShowMobileMenu(false);
 				}
 
 				setHandleSwipe(null);
@@ -162,7 +173,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			window.removeEventListener('touchstart', handleSwipeStart);
 			window.removeEventListener('touchend', handleSwipeEnd);
 		};
-	}, [handleSwipe, pathname, anyModalOpen]);
+	}, [handleSwipe, pathname, anyModalOpen, anyMobileMenuOpen]);
 
 	useEffect(() => {
 		if (pathname.startsWith('/admin-')) {
@@ -183,7 +194,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		}
 		const handleKeyDown = (e: KeyboardEvent) => {
 			if (e.key === 'Escape') {
-				setShowMobileMenu(false);
+				setAdminShowMobileMenu(false);
+				setModShowMobileMenu(false);
 				setOpenPaymentModal(false);
 				setIsRemoveClientModal(false);
 				setIsRemoveProjectModal(false);
@@ -210,8 +222,10 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 	const value = useMemo(
 		() => ({
-			showMobileMenu,
-			setShowMobileMenu,
+			adminShowMobileMenu,
+			setAdminShowMobileMenu,
+			modShowMobileMenu,
+			setModShowMobileMenu,
 			landingMobileMenu,
 			setLandingMobileMenu,
 			currentPath,
@@ -259,7 +273,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		}),
 		[
 			anyModalOpen,
-			showMobileMenu,
+			adminShowMobileMenu,
+			modShowMobileMenu,
 			landingMobileMenu,
 			currentPath,
 			user,
