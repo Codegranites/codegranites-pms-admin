@@ -206,7 +206,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [pathname]);
 
 	useEffect(() => {
-		if (anyModalOpen) {
+		if (anyModalOpen || anyMobileSidebarOpen) {
 			document.body.style.overflow = 'hidden';
 		} else {
 			document.body.style.overflow = 'auto';
@@ -237,7 +237,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 		return () => {
 			document.removeEventListener('keyup', handleKeyDown);
 		};
-	}, [anyModalOpen]);
+	}, [anyModalOpen, anyMobileSidebarOpen]);
 
 	const value = useMemo(
 		() => ({
