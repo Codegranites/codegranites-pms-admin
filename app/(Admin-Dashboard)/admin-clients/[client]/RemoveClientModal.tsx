@@ -34,10 +34,10 @@ const RemoveClientModal = ({ openModal, setOpenModal, client }: MakePaymentModal
 				role="dialog"
 				aria-labelledby="remove-client"
 				className={cn(
-					'py-6   flex flex-col w-[360px] h-[300px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[400px] justify-between items-center bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+					'py-6   flex flex-col w-[360px] h-[300px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[400px] justify-between items-center bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none -translate-x-1/2',
 					openModal
-						? '-translate-x-1/2 duration-700 opacity-100 rounded-xl md:rounded-2xl'
-						: '-translate-x-full duration-300 pointer-events-none'
+						? 'scale-100  duration-700 opacity-100 rounded-xl md:rounded-2xl'
+						: 'scale-0 translate-y-full duration-300 pointer-events-none'
 				)}
 			>
 				<div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">

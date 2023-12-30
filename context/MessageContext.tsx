@@ -23,7 +23,7 @@ const MessageContextProvider = ({ children }: { children: React.ReactNode }) => 
 	const { anyModalOpen } = useStateCtx();
 	const [searchMsg, setSearchMsg] = useState('');
 	const [mobileScroll, setMobileScroll] = useState<number | null>(null);
-	const [showBtn, setShowBtn] = useState(false);
+	const [showBtn, setShowBtn] = useState(true);
 	const [swipeDis, setswipeDis] = useState(0);
 
 	const filterMsgs = MESSAGES.filter((msg) => {
