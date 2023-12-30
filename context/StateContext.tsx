@@ -166,7 +166,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, [anyMobileSidebarOpen]);
 
 	useEffect(() => {
-		if (!isMobileDevice() || pathname.startsWith('/admin-') || anyModalOpen || !anyMobileSidebarOpen) return;
+		if (!isMobileDevice() || pathname === '/' || anyModalOpen || !anyMobileSidebarOpen) return;
 		const handleSwipeStart = (e: TouchEvent) => {
 			setHandleSwipe(e.changedTouches[0].screenX);
 		};
@@ -177,10 +177,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
 				if (swipeDis < -swipeThreshold) {
 					localStorage.setItem('swiped', 'true');
-
+					console.log('first');
 					setAdminShowMobileMenu(false);
 					setModShowMobileMenu(false);
-					return;
 				}
 
 				setHandleSwipe(null);
