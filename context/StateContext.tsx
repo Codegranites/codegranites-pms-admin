@@ -61,6 +61,8 @@ interface StateContextProps {
 	setNewMessageModal: React.Dispatch<React.SetStateAction<boolean>>;
 	swipeIndicator: boolean;
 	setSwipeIndicator: React.Dispatch<React.SetStateAction<boolean>>;
+	pageLoaded: boolean;
+	setPageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
 	anyModalOpen: boolean;
 	user: User;
 }
@@ -84,6 +86,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [clientSearchTerm, setClientSearchTerm] = useState('');
 
 	const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
+	const [pageLoaded, setPageLoaded] = useState(false);
+
+	useEffect(() => {
+		const handleLoad = () => {
+			setTimeout(() => {
+				setPageLoaded(true);
+			}, 1000);
+		};
+		document.readyState === 'complete' && handleLoad();
+	}, []);
 
 	useEffect(() => {
 		const projectFilter = localStorage.getItem('project-filter');
@@ -290,7 +302,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			setNewMessageModal,
 			swipeIndicator,
 			setSwipeIndicator,
-			anyModalOpen
+			anyModalOpen,
+			pageLoaded,
+			setPageLoaded
 		}),
 		[
 			anyModalOpen,
@@ -321,7 +335,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 			deleteMilestoneModal,
 
 			newMessageModal,
-			swipeIndicator
+			swipeIndicator,
+			pageLoaded
 		]
 	);
 
