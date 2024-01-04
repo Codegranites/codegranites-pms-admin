@@ -86,16 +86,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [clientSearchTerm, setClientSearchTerm] = useState('');
 
 	const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
-	const [pageLoaded, setPageLoaded] = useState(false);
+	const [pageLoaded, setPageLoaded] = useState(true);
 
-	useEffect(() => {
-		const handleLoad = () => {
-			setTimeout(() => {
-				setPageLoaded(true);
-			}, 1000);
-		};
-		document.readyState === 'complete' && handleLoad();
-	}, []);
+	console.log(pageLoaded);
 
 	useEffect(() => {
 		const projectFilter = localStorage.getItem('project-filter');
