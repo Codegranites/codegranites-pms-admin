@@ -1,11 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import cn from '../../utils/util';
 import useInView from '../../hooks/useInView';
 import { handleMouseEnter } from '../../utils/text-effect';
 import Orbit from './Orbit';
+import LoadingSpinner from '../loaders/LoadingSpinner';
 
 const Midsec = () => {
 	const MidsecRef = React.useRef<HTMLDivElement>(null);
@@ -47,19 +48,21 @@ const Midsec = () => {
 						'opacity-0 translate-y-36': !isInView2
 					})}
 				>
-					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex ">
+					<div className=" absolute z-10 justify-center items-center min-h-[572px] h-full w-full hidden sm:flex max-w-[800px]">
 						<Image
 							priority
 							loading="eager"
-							src="/dashboardfull.svg"
-							alt={''}
-							width={787}
-							height={572}
+							src="/dashboardfull.png"
+							alt={'dashboard preview'}
+							width={1000}
+							height={700}
 							className=""
+							quality={100}
+							draggable={false}
 							onLoad={() => {
 								window?.setTimeout(() => {
 									setImgLoaded(true);
-								}, 2000);
+								}, 1000);
 							}}
 						/>
 					</div>
@@ -81,17 +84,19 @@ const Midsec = () => {
 
 					<div className="absolute z-10 justify-center items-center  h-full w-full flex sm:hidden min-[400px]:px-4 max-[400px]:w-[221px]">
 						<Image
-							src="/dashboardmob.svg"
+							src="/dashboardfull.png"
 							loading="eager"
 							alt="hero image"
 							width={500}
 							height={300}
 							priority
+							quality={100}
+							draggable={false}
 							className=" object-cover"
 							onLoad={() => {
 								window?.setTimeout(() => {
 									setImgLoaded(true);
-								}, 2000);
+								}, 1000);
 							}}
 						/>
 					</div>

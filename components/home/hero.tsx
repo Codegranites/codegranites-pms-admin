@@ -1,13 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-'use client';
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import React from 'react';
 import Button from '@ui/Button';
+import LoadingSpinner from '../loaders/LoadingSpinner';
 
 const TypewriterComponent = dynamic(() => import('typewriter-effect'), {
-	ssr: false
+	ssr: false,
+	loading: () => <LoadingSpinner color="border-white" />
 });
 
 const Hero = () => {
@@ -15,7 +16,7 @@ const Hero = () => {
 		<section className="relative h-[500px] sm:h-[720px] w-full">
 			<div className="w-full h-full max-h-[720px] hidden sm:block absolute top-0 left-0">
 				<Image
-					src="/landing-bg.png"
+					src="/landing-bg.webp"
 					alt="hero image"
 					width={1440}
 					height={720}
@@ -25,7 +26,7 @@ const Hero = () => {
 			</div>
 			<div className="w-full h-full max-h-[650px] sm:hidden absolute top-0 left-0">
 				<Image
-					src="/landing-mobile.png"
+					src="/landing-mobile.webp"
 					alt="hero image"
 					width={380}
 					height={500}
