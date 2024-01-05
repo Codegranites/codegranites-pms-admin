@@ -14,7 +14,7 @@ const TypewriterComponent = dynamic(() => import('typewriter-effect'), {
 const Hero = () => {
 	return (
 		<section className="relative h-[500px] sm:h-[720px] w-full">
-			<div className="w-full h-full max-h-[720px] hidden sm:block absolute top-0 left-0">
+			<div className="w-full h-full max-h-[720px] hidden sm:block absolute top-0 left-0 bg-black">
 				<Image
 					src="/landing-bg.webp"
 					alt="hero image"
@@ -24,7 +24,7 @@ const Hero = () => {
 					className="w-full h-full object-cover"
 				/>
 			</div>
-			<div className="w-full h-full max-h-[650px] sm:hidden absolute top-0 left-0">
+			<div className="w-full h-full max-h-[650px] sm:hidden absolute top-0 left-0 bg-black">
 				<Image
 					src="/landing-mobile.webp"
 					alt="hero image"
