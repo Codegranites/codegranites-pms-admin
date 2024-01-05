@@ -1,17 +1,17 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import Navbar from '../navs/Navbar';
-import SplashScreen from '../SplashScreen';
+
 import Midsec from './midsec';
 import Feats from './feat';
 import Footer from '../footer/Footer';
 import Hero from './hero';
+import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 
-// const Hero = dynamic(() => import('./hero'), {
-// 	ssr: false,
-// 	loading: () => <SplashScreen />
-// });
+const Navbar = dynamic(() => import('../navs/Navbar'), {
+	ssr: false,
+	loading: () => <SkeletonNavbar />
+});
 
 export default function LandingPage() {
 	return (

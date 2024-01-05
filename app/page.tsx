@@ -2,7 +2,7 @@ import SplashScreen from '../components/SplashScreen';
 import dynamic from 'next/dynamic';
 
 const LandingPage = dynamic(() => import('../components/home/LandingPage'), {
-	ssr: true,
+	ssr: false,
 	loading: () => <SplashScreen />
 });
 

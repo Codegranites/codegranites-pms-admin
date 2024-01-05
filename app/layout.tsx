@@ -9,6 +9,7 @@ import Providers from './Providers';
 
 import { SessionProvider } from '../context/sessionProvider';
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
+import Head from 'next/head';
 
 const workSans = Work_Sans({
 	subsets: ['latin'],
