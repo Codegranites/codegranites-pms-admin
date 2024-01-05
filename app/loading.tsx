@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import SplashScreen from '../components/SplashScreen';
 
 const Loading = () => {
