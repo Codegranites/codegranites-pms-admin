@@ -103,6 +103,29 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 	}, []);
 
 	useEffect(() => {
+		let timeoutId: any;
+
+		const showScrollbar = () => {
+			document.documentElement.setAttribute('scrollbar', '');
+			clearTimeout(timeoutId);
+			timeoutId = setTimeout(() => {
+				hideScrollbar();
+			}, 2000);
+		};
+
+		const hideScrollbar = () => {
+			document.documentElement.removeAttribute('scrollbar');
+		};
+
+		window.addEventListener('scroll', showScrollbar);
+
+		return () => {
+			window.removeEventListener('scroll', showScrollbar);
+			clearTimeout(timeoutId);
+		};
+	}, []);
+
+	useEffect(() => {
 		if (selectedProjectFilter === '') return;
 
 		localStorage.setItem('project-filter', selectedProjectFilter);
