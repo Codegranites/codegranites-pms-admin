@@ -41,7 +41,7 @@ export const loginUser = async (props: { email: string; password: string }) => {
 			toast.success('Login successful');
 			const token = loginResponse.data.token;
 			console.log(token);
-			const userId = loginResponse.data.data.userId;
+			const userId = loginResponse.data.data.userId!;
 
 			// if (token && userId) {
 			// 	console.log('User ID:', userId);
