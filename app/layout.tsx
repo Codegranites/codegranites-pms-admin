@@ -12,29 +12,33 @@ import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 import Head from 'next/head';
 
 const workSans = Work_Sans({
-	subsets: ['latin'],
-	display: 'swap',
-	variable: '--font-work-sans'
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-work-sans'
 });
 
 export const metadata: Metadata = {
-	title: 'Code Granites',
-	description: 'Illuminating Ideas and Forging Solutions'
-	// image: ""
+  title: 'Code Granites',
+  description: 'Illuminating Ideas and Forging Solutions'
+  // image: ""
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-	return (
-		<html lang="en" className={workSans.variable}>
-			<SessionProvider>
-				<StateContextProvider>
-					<body className={workSans.className}>
-						<Providers>{children}</Providers>
-						<SwipeIndicator />
-						<GotoTop />
-					</body>
-				</StateContextProvider>
-			</SessionProvider>
-		</html>
-	);
+export default function RootLayout({
+  children
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en" className={workSans.variable}>
+      <SessionProvider>
+        <StateContextProvider>
+          <body className={workSans.className}>
+            <Providers>{children}</Providers>
+            <SwipeIndicator />
+            <GotoTop />
+          </body>
+        </StateContextProvider>
+      </SessionProvider>
+    </html>
+  );
 }

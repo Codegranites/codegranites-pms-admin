@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Invite = () => {
-	return <div>Invite</div>;
+  return <div>Invite</div>;
 };
 
 export default Invite;

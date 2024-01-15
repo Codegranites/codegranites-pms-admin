@@ -9,21 +9,21 @@ import Hero from './hero';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 
 const Navbar = dynamic(() => import('../navs/Navbar'), {
-	ssr: false,
-	loading: () => <SkeletonNavbar />
+  ssr: false,
+  loading: () => <SkeletonNavbar />
 });
 
 export default function LandingPage() {
-	return (
-		<>
-			<Navbar />
-			<Hero />
+  return (
+    <>
+      <Navbar />
+      <Hero />
 
-			<main className="max-container w-full flex flex-col min-h-screen">
-				<Midsec />
-				<Feats />
-			</main>
-			<Footer />
-		</>
-	);
+      <main className="max-container w-full flex flex-col min-h-screen">
+        <Midsec />
+        <Feats />
+      </main>
+      <Footer />
+    </>
+  );
 }

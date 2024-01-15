@@ -4,10 +4,10 @@ import dynamic from 'next/dynamic';
 export const runtime = 'edge';
 
 const LandingPage = dynamic(() => import('../components/home/LandingPage'), {
-	ssr: false,
-	loading: () => <SplashScreen />
+  ssr: false,
+  loading: () => <SplashScreen />
 });
 
 export default function Home() {
-	return <LandingPage />;
+  return <LandingPage />;
 }

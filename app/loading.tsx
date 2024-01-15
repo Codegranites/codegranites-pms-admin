@@ -3,7 +3,7 @@
 import SplashScreen from '../components/SplashScreen';
 
 const Loading = () => {
-	return <SplashScreen />;
+  return <SplashScreen />;
 };
 
 export default Loading;
