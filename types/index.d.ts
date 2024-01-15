@@ -124,3 +124,8 @@ export interface SessionContextProps {
 	login: (token: string, accountId: string, roleId: string, email: string) => void;
 	logout: () => void;
 }
+
+export interface ThemeContextProps {
+  theme: string | null;
+  setTheme: React.Dispatch<React.SetStateAction<string | null>>;
+}
