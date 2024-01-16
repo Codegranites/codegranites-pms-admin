@@ -6,7 +6,7 @@ import React from 'react';
 
 const Card = ({ title, description, icon }: CardProps) => {
   const workRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(workRef);
+  const isInView = useInView({ ref: workRef });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget: target } = e;

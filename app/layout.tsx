@@ -10,6 +10,8 @@ import Providers from './Providers';
 import { SessionProvider } from '../context/sessionProvider';
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 import Head from 'next/head';
+import LenisProvider from '@/components/LenisProvider';
+import ThemeProvider from '@/context/ThemeCtx';
 
 const workSans = Work_Sans({
   subsets: ['latin'],
@@ -32,11 +34,15 @@ export default function RootLayout({
     <html lang="en" className={workSans.variable}>
       <SessionProvider>
         <StateContextProvider>
-          <body className={workSans.className}>
-            <Providers>{children}</Providers>
-            <SwipeIndicator />
-            <GotoTop />
-          </body>
+          <LenisProvider>
+            <ThemeProvider>
+              <body className={workSans.className}>
+                <Providers>{children}</Providers>
+                <SwipeIndicator />
+                <GotoTop />
+              </body>
+            </ThemeProvider>
+          </LenisProvider>
         </StateContextProvider>
       </SessionProvider>
     </html>
