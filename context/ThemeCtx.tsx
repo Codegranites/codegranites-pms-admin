@@ -1,49 +1,84 @@
 'use client';
 
-import React, {
-  ReactNode,
+import {
   createContext,
   useContext,
+  useState,
+  Dispatch,
+  SetStateAction,
   useEffect,
-  useState
+  useMemo,
+  useLayoutEffect
 } from 'react';
-import { ThemeContextProps } from '../types';
 
-export const ThemeContext = createContext<ThemeContextProps | undefined>(
-  undefined
-);
+export type ThemeProps = 'light' | 'dark' | 'system';
+interface ThemeContextProps {
+  theme: ThemeProps;
 
-export const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const isBrowser = typeof window !== 'undefined';
-  const storedTheme = isBrowser ? localStorage.getItem('theme') : null;
-  const [theme, setTheme] = useState<string | null>(storedTheme);
+  setTheme: Dispatch<SetStateAction<ThemeProps>>;
+}
 
-  useEffect(() => {
-    if (isBrowser) {
-      if (theme) {
-        localStorage.setItem('theme', theme);
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
+const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+
+export const useThemeCtx = () => {
+  const context = useContext(ThemeContext);
+
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+
+  return context;
+};
+
+const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
+  const [theme, setTheme] = useState<ThemeProps>('' as ThemeProps);
+
+  useLayoutEffect(() => {
+    if (theme === 'system') {
+      document.documentElement.className = '';
+      localStorage.removeItem('theme');
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.className = 'dark';
       }
+      return;
     }
-  }, [theme, isBrowser]);
+    if (theme === 'light') {
+      document.documentElement.className = 'light';
+      localStorage.setItem('theme', 'light');
+    }
+    if (theme === 'dark') {
+      document.documentElement.className = 'dark';
+      localStorage.setItem('theme', 'dark');
+    }
+  }, [theme]);
+
+  useLayoutEffect(() => {
+    if (
+      !('theme' in localStorage) &&
+      window.matchMedia('(prefers-color-scheme: dark)').matches
+    ) {
+      setTheme('system');
+      document.documentElement.className = 'dark';
+    } else if ('theme' in localStorage) {
+      setTheme(localStorage.getItem('theme') as ThemeProps);
+    }
+  }, []);
+
+  const value = useMemo(() => ({ theme, setTheme }), [theme]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 
-// Custom hook to access the app context
+export default ThemeProvider;
+
+// Custom hook to access the ThemeProps context
 export function useThemeContext() {
   const context = useContext(ThemeContext);
 
   if (!context) {
-    throw new Error('useApp must be used within an ThemeProvider');
+    throw new Error('useThemeContext must be used within an ThemeProvider');
   }
 
   return context;

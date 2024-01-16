@@ -14,7 +14,7 @@ const ProjectCardAdmin = ({
   id
 }: ProjectCardProps) => {
   const projectCardRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(projectCardRef);
+  const isInView = useInView({ ref: projectCardRef });
   const { projectSearchTerm } = useStateCtx();
 
   const encryptString = (str: string): string => {

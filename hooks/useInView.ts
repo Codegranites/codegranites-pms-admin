@@ -2,17 +2,35 @@
 
 import { useEffect, useState, RefObject } from 'react';
 
-export type UseInView = <T extends Element>(ref: RefObject<T>) => boolean;
+interface UseInViewProps {
+  ref: RefObject<HTMLElement>;
+  once?: boolean;
+  isFrames?: boolean;
+}
 
-const useInView: UseInView = ref => {
+const useInView = ({ ref, once = true, isFrames = false }: UseInViewProps) => {
   const [hasAnimated, setHasAnimated] = useState(false);
-
+  const [isViewing, setIsViewing] = useState(false);
   useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated) {
-        setHasAnimated(true);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (once) {
+          if (entry.isIntersecting && !hasAnimated) {
+            setHasAnimated(true);
+          }
+          return;
+        }
+        if (entry && entry) {
+          setIsViewing(entry.isIntersecting);
+          return;
+        }
+      },
+      {
+        // root: ref?.current,
+        // rootMargin: "100px",
+        threshold: isFrames ? 0.8 : undefined
       }
-    });
+    );
 
     const currentRef = ref.current;
     if (currentRef) {
@@ -21,9 +39,9 @@ const useInView: UseInView = ref => {
         observer.unobserve(currentRef);
       };
     }
-  }, [ref, hasAnimated]);
+  }, [ref, hasAnimated, once, isFrames]);
 
-  return hasAnimated;
+  return once ? hasAnimated : isViewing;
 };
 
 export default useInView;
