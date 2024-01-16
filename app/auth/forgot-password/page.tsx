@@ -11,20 +11,40 @@ import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
+import { resetPassword } from '../../../api/authApi';
+import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
+
 const ForgotPassword: React.FC = () => {
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleForgotPassword = (e: React.FormEvent) => {
+  const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-
+    setIsLoading(true);
     if (email) {
-      router.push('/auth/forgot-password/reset-password');
+      const res = await resetPassword({ email });
+      if (res?.status === 200) {
+        setIsVerificationModalOpen(true);
+      }
+      setIsLoading(false);
     }
   };
+
+  const closeModal = () => {
+    // Close the email verification modal
+    setIsVerificationModalOpen(false);
+  };
+
   return (
     <>
+      {/* Email Verification Modal */}
+      <EmailVerificationModal
+        isVerificationModalOpen={isVerificationModalOpen}
+        closeModal={closeModal}
+      />
       <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
         {/* header component  */}
         <Header_for_many />
@@ -60,7 +80,12 @@ const ForgotPassword: React.FC = () => {
                   className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
                 />
 
-                <Button className="w-full rounded-md my-3" type="submit">
+                <Button
+                  isLoading={isLoading}
+                  className="w-full rounded-md my-3"
+                  type="submit"
+                  spinnerColor="#fff"
+                >
                   Reset Password
                 </Button>
               </form>
