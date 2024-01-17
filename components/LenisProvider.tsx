@@ -1,13 +1,13 @@
-'use client';
+// 'use client';
 
-import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
+// import { ReactLenis, useLenis } from '@studio-freight/react-lenis';
 
-function LenisProvider({ children }: { children: React.ReactNode }) {
-  const lenis = useLenis(({ scroll }) => {
-    // called every scroll
-  });
+// function LenisProvider({ children }: { children: React.ReactNode }) {
+//   const lenis = useLenis(({ scroll }) => {
+//     // called every scroll
+//   });
 
-  return <ReactLenis root>{children}</ReactLenis>;
-}
+//   return <ReactLenis root>{children}</ReactLenis>;
+// }
 
-export default LenisProvider;
+// export default LenisProvider;
