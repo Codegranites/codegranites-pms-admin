@@ -6,6 +6,7 @@ import Midsec from './midsec';
 import Feats from './feat';
 import Footer from '../footer/Footer';
 import Hero from './hero';
+import KeyFeat from './KeyFeat';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 
 const Navbar = dynamic(() => import('../navs/Navbar'), {
@@ -18,9 +19,9 @@ export default function LandingPage() {
     <>
       <Navbar />
       <Hero />
-
       <main className="max-container w-full flex flex-col min-h-screen">
         <Midsec />
+        <KeyFeat />
         <Feats />
       </main>
       <Footer />
