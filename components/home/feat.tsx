@@ -32,7 +32,6 @@ const Feats = () => {
         ref={worksRef}
         className={cn(
           'w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-y-10 xl:gap-y-12 2xl:gap-y-16 mt-8 px-4 place-items-center opacity-0 translate-y-48',
-
           isInView ? 'animate-slideUp' : ' '
         )}
       >
