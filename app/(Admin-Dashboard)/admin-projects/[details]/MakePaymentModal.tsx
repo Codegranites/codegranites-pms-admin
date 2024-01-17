@@ -1,9 +1,9 @@
 'use client';
 
 import { X } from 'lucide-react';
-import cn, { formatPrice } from '../../../../utils/util';
+import { cn, formatPrice } from '@/utils/util';
 import { useState } from 'react';
-import { ProjectCardProps } from '../../../../libs/projects';
+import { ProjectCardProps } from '@/libs/projects';
 
 interface MakePaymentModalProps {
   openModal: boolean;

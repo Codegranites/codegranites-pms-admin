@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       intent: {
         primary:
-          'bg-primary hover:bg-primary-light hover focus:bg-primary text-white active:bg-primary disabled:bg-disabled disabled:cursor-not-allowed ',
+          'bg-primary hover:bg-primary-light hover focus:bg-primary text-white active:bg-primary  disabled:cursor-not-allowed ',
         secondary:
           'bg-primary-light text-white hover:bg-white focus:shadow-primary active:bg-priamry-light disabled:bg-disabled border-solid border-[2px] border-primary-light hover:text-primary-light ',
         success:
@@ -104,7 +104,7 @@ const Button: React.FC<ButtonProps> = ({
         )}
       >
         {leftIcon}
-        {children}
+        <span>{children}</span>
         {rightIcon && (
           <span
             style={{

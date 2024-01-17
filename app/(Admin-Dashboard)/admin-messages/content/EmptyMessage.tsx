@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 
 import { useStateCtx } from '../../../../context/StateContext';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { Add } from 'iconsax-react';
 import { useMessageCtx } from '../../../../context/MessageContext';
 import { MESSAGES } from './messages';

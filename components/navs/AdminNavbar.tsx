@@ -1,7 +1,7 @@
 'use client';
 import { Add, HambergerMenu, Notification, SearchNormal1 } from 'iconsax-react';
 import { useStateCtx } from '../../context/StateContext';
-import cn, { decryptString } from '../../utils/util';
+import { cn, decryptString } from '../../utils/util';
 import AdminMobileSidebar from '../sidebars/AdminMobileSidebar';
 import { handleMouseEnter } from '../../utils/text-effect';
 import { useSearchParams } from 'next/navigation';

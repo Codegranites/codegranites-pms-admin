@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 import { useStateCtx } from '../../context/StateContext';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import { LogoutCurve, Setting2 } from 'iconsax-react';
 import { SIDEBAR_ADMIN_LINKS, SIDEBAR_MOD_LINKS } from '../../libs/constants';
 import { useRouter } from 'next-nprogress-bar';

@@ -1,5 +1,5 @@
 import React from 'react';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 
 const WordCounter = ({ word, length }: { word?: string; length: number }) => {
   return (

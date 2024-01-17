@@ -20,34 +20,28 @@ interface ThemeContextProps {
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 
-export const useThemeCtx = () => {
-  const context = useContext(ThemeContext);
-
-  if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
-
-  return context;
-};
-
 const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<ThemeProps>('' as ThemeProps);
 
   useLayoutEffect(() => {
     if (theme === 'system') {
-      document.documentElement.className = '';
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove('light');
       localStorage.removeItem('theme');
       if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.className = 'dark';
+        document.documentElement.classList.remove('light');
+        document.documentElement.classList.add('dark');
       }
       return;
     }
     if (theme === 'light') {
-      document.documentElement.className = 'light';
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
       localStorage.setItem('theme', 'light');
     }
     if (theme === 'dark') {
-      document.documentElement.className = 'dark';
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
       localStorage.setItem('theme', 'dark');
     }
   }, [theme]);
@@ -58,7 +52,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       window.matchMedia('(prefers-color-scheme: dark)').matches
     ) {
       setTheme('system');
-      document.documentElement.className = 'dark';
+      document.documentElement.classList.add('dark');
     } else if ('theme' in localStorage) {
       setTheme(localStorage.getItem('theme') as ThemeProps);
     }

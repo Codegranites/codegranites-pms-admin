@@ -1,15 +1,15 @@
 'use client';
 
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import Button from '@ui/Button';
 import PasswordPopover from '@ui/passwordPopober';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Header_for_many } from '../../../components/auth/Header';
+import { Header_for_many } from '../../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
-import { PasswordVerificationSucessModal } from '../../../components/auth/PasswordResetSuccessModal';
+import { PasswordVerificationSucessModal } from '../../../../components/auth/PasswordResetSuccessModal';
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
@@ -40,6 +40,7 @@ const ResetPassword = () => {
         {/* header component  */}
         <Header_for_many />
 
+        {/* Email Verification Modal */}
         {/* <PasswordVerificationSucessModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} /> */}
 
         {isVerificationModalOpen ? (
@@ -130,7 +131,7 @@ const ResetPassword = () => {
 
               <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
                 What is
-                <Link href="/auth/sign-up" className="ml-1 underline">
+                <Link href="/sign-up" className="ml-1 underline">
                   CodeGranite
                 </Link>
               </span>

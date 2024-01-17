@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { Settingsnav } from '../../libs/constants';
 import { useEffect, useState } from 'react';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';

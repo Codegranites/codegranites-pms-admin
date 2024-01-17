@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import Button from '@ui/Button';
 import { Google } from 'iconsax-react';
 import PasswordPopover from '@ui/passwordPopober';
@@ -95,7 +95,7 @@ const GetStarted = () => {
 
             <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
               Aready have an account?
-              <Link href="/auth/sign-in" className="ml-1 underline">
+              <Link href="/sign-in" className="ml-1 underline">
                 Login
               </Link>
             </span>
