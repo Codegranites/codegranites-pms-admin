@@ -1,6 +1,6 @@
 'use client';
 
-import { Input, SelectInput } from '@/components/ui/FormInput';
+import { Input, SelectInput } from '@/components/ui/Input';
 import Button from '@ui/Button';
 import {
   ArrowDown2,
