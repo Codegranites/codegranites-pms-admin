@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
-import DashNav from '../../../components/dashboard/navs/dashnav';
+import DashNav from '@/components/dashboard/navs/dashnav';
 import Project from './components/project';
 import Transaction from './components/transaction';
 import History from './components/history';
-import NewClientModal from '../../../components/admin/clients/NewClient';
+import NewClientModal from '@/components/admin/clients/NewClient';
 
 const AdminDashboard = () => {
   return (

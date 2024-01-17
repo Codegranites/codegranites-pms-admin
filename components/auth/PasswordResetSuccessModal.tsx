@@ -37,7 +37,7 @@ export const PasswordVerificationSucessModal: React.FC<
           Your password has been reset click the button to return to log in page
         </p>
 
-        <Link href="/auth/sign-in">
+        <Link href="/sign-in">
           <Button className="w-full rounded-md my-2" type="submit">
             Log in
           </Button>

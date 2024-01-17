@@ -9,7 +9,7 @@ import { People } from 'iconsax-react';
 import ClientCardAdmin from '../card/ClientCardAdmin';
 import { ADMIN_CLIENTS, AdminClientCardProps } from '../../../libs/clients';
 import { useStateCtx } from '../../../context/StateContext';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import ProjectNotFound from '../projects/ProjectNotFound';
 import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
 

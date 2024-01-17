@@ -1,6 +1,5 @@
 'use client';
 
-import { Input } from '@ui/Input';
 import Button from '@ui/Button';
 import PasswordPopover from '@ui/passwordPopober';
 import { Eye, EyeSlash, Call } from 'iconsax-react';
@@ -15,6 +14,7 @@ import { SignUpData } from '../../../types';
 import { signUpUser } from '../../../api/authApi';
 
 import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
+import { Input } from '@/components/ui/Input';
 
 const SignUp: React.FC = () => {
   const [formData, setFormData] = useState<SignUpData>({
@@ -200,7 +200,7 @@ const SignUp: React.FC = () => {
 
             <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
               Aready have an account?
-              <Link href="/auth/sign-in" className="ml-1 underline">
+              <Link href="/sign-in" className="ml-1 underline">
                 Login
               </Link>
             </span>

@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { SIDEBAR_MOD_LINKS, TYPESidebarLinksMod } from '../../libs/constants';
 import { useEffect, useState } from 'react';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import { LogoutCurve, Setting2 } from 'iconsax-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

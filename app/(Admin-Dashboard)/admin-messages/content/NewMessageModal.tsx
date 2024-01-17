@@ -1,7 +1,7 @@
 'use client';
 
 import { FolderCheck, Send, X } from 'lucide-react';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { useEffect, useState } from 'react';
 
 import { useStateCtx } from '../../../../context/StateContext';

@@ -1,4 +1,4 @@
-import cn from '../utils/util';
+import { cn } from '../utils/util';
 import { useEffect } from 'react';
 
 const SplashScreen = () => {

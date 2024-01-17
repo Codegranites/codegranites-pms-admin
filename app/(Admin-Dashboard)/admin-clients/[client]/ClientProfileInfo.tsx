@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { AdminClientCardProps } from '../../../../libs/clients';
 import PreviewSkeleton from '../../../../components/skeleton/PreviewSkeleton';
 import Image from 'next/image';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 
 const ClientProfileInfo = ({ client }: { client?: AdminClientCardProps }) => {
   const [imgLoading, setImgLoading] = useState(true);

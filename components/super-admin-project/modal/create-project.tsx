@@ -11,7 +11,7 @@ import {
   ArrowRight3,
   ArrowUp2
 } from 'iconsax-react';
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import {
   Select,
   SelectContent,

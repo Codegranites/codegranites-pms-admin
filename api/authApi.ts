@@ -46,7 +46,7 @@ export const loginUser = async (props: { email: string; password: string }) => {
       console.log(loginResponse);
       console.log('Login successful');
       toast.success('Login successful');
-      const token = loginResponse.data.token;
+      const token = loginResponse.data.token!;
       console.log(token);
       const userId = loginResponse.data.data.userId!;
 
@@ -75,5 +75,22 @@ export const loginUser = async (props: { email: string; password: string }) => {
     throw e?.response?.data || { message: e.message };
   }
 };
+
+export async function resetPassword(props: { email: string }) {
+  try {
+    const resetResponse = await $AuthHttp.post(
+      `/account/${props.email}/send-reset-password-link`,
+      props
+    );
+
+    if (resetResponse.status === 200) {
+      toast.success('Password Reset link successfully sent');
+    }
+    return resetResponse;
+  } catch (error) {
+    toast.error('An error occured');
+    return error;
+  }
+}
 
 // james@#$2D

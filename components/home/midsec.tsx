@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { Suspense, useState } from 'react';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import useInView from '../../hooks/useInView';
 import { handleMouseEnter } from '../../utils/text-effect';
 import Orbit from './Orbit';
@@ -11,8 +11,8 @@ import LoadingSpinner from '../loaders/LoadingSpinner';
 const Midsec = () => {
   const MidsecRef = React.useRef<HTMLDivElement>(null);
   const sliderRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(sliderRef);
-  const isInView2 = useInView(MidsecRef);
+  const isInView = useInView({ ref: sliderRef });
+  const isInView2 = useInView({ ref: MidsecRef });
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (

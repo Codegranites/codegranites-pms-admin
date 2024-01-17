@@ -1,7 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { useEffect, useState } from 'react';
 import { PROJECT_MILESTONES } from './milestones';
 import { useStateCtx } from '../../../../context/StateContext';

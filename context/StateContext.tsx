@@ -95,8 +95,6 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
   const [pageLoaded, setPageLoaded] = useState(true);
 
-  console.log(pageLoaded);
-
   useEffect(() => {
     const projectFilter = localStorage.getItem('project-filter');
     if (!projectFilter) {

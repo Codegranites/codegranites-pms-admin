@@ -4,7 +4,7 @@ import { PROJECT_MILESTONES } from './milestones';
 import Image from 'next/image';
 import LoadingSpinner from '../../../../components/loaders/LoadingSpinner';
 import { Add } from 'iconsax-react';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { useStateCtx } from '../../../../context/StateContext';
 import CreateMilestoneModal from './CreateMilestoneModal';
 import ChangeStatusModal from './ChangeStatusModal';

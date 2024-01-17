@@ -19,6 +19,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         pauseOnHover
         theme="light"
       />
+
       {children}
 
       <ProgressBar

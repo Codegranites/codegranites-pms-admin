@@ -4,7 +4,7 @@
 
 import { useStateCtx } from '../../context/StateContext';
 import { NAV_LINKS } from '../../libs/constants';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -96,10 +96,10 @@ const MobileNav = () => {
           ))}
           <div className="lg:hidden flex flex-col gap-y-5 [&>button]:border-primary-light [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light">
             <button type="button">
-              <Link href="/auth/sign-in">Login</Link>
+              <Link href="/sign-in">Login</Link>
             </button>
             <button type="button">
-              <Link href="/auth/get-started">Get started</Link>
+              <Link href="/get-started">Get started</Link>
             </button>
           </div>
         </div>

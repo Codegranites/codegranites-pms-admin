@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import { ProjectCardProps } from '../../../libs/projects';
 import useInView from '../../../hooks/useInView';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import { useStateCtx } from '../../../context/StateContext';
 
 const ProjectCardAdmin = ({
@@ -14,7 +14,7 @@ const ProjectCardAdmin = ({
   id
 }: ProjectCardProps) => {
   const projectCardRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(projectCardRef);
+  const isInView = useInView({ ref: projectCardRef });
   const { projectSearchTerm } = useStateCtx();
 
   const encryptString = (str: string): string => {

@@ -1,7 +1,7 @@
 'use client';
 
 import { X } from 'lucide-react';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { ProjectCardProps } from '../../../../libs/projects';
 
 interface MakePaymentModalProps {

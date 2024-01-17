@@ -3,7 +3,7 @@
 import { Suspense } from 'react';
 import MessageSkeleton from '../../../../components/skeleton/MessageSkeleton';
 import { useMessageCtx } from '../../../../context/MessageContext';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { Add, MessageAdd1 } from 'iconsax-react';
 import { useStateCtx } from '../../../../context/StateContext';
 

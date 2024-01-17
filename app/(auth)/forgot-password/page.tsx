@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import Button from '@ui/Button';
 import { Google } from 'iconsax-react';
 import PasswordPopover from '@ui/passwordPopober';
@@ -11,20 +11,41 @@ import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
+import { resetPassword } from '../../../api/authApi';
+import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
+
 const ForgotPassword: React.FC = () => {
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
 
-  const handleForgotPassword = (e: React.FormEvent) => {
+  const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (email) {
-      router.push('/auth/forgot-password/reset-password');
+    try {
+      setIsLoading(true);
+      await resetPassword({ email });
+      setIsVerificationModalOpen(true);
+    } catch (error) {
+      console.error('Reset Failed:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
+
+  const closeModal = () => {
+    // Close the email verification modal
+    setIsVerificationModalOpen(false);
+  };
+
   return (
     <>
+      {/* Email Verification Modal */}
+      <EmailVerificationModal
+        isVerificationModalOpen={isVerificationModalOpen}
+        closeModal={closeModal}
+      />
       <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
         {/* header component  */}
         <Header_for_many />
@@ -60,7 +81,12 @@ const ForgotPassword: React.FC = () => {
                   className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
                 />
 
-                <Button className="w-full rounded-md my-3" type="submit">
+                <Button
+                  isLoading={isLoading}
+                  className="w-full rounded-md my-3"
+                  type="submit"
+                  spinnerColor="#fff"
+                >
                   Reset Password
                 </Button>
               </form>
@@ -68,7 +94,7 @@ const ForgotPassword: React.FC = () => {
 
             <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
               What is
-              <Link href="/auth/sign-up" className="ml-1 underline">
+              <Link href="/sign-up" className="ml-1 underline">
                 CodeGranite
               </Link>
             </span>

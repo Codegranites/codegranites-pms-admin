@@ -8,7 +8,7 @@ import { Add } from 'iconsax-react';
 import { ProjectCardProps } from '../../../libs/projects';
 import { useStateCtx } from '../../../context/StateContext';
 
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import { AdminClientCardProps } from '../../../libs/clients';
 import Image from 'next/image';
 import {

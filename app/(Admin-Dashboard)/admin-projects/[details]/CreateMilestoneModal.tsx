@@ -1,12 +1,12 @@
 'use client';
 
 import { X } from 'lucide-react';
-import cn, { formatPrice } from '../../../../utils/util';
+import { cn, formatPrice } from '@/utils/util';
 import { useEffect, useState } from 'react';
-import { ProjectCardProps } from '../../../../libs/projects';
+import { ProjectCardProps } from '@/libs/projects';
 import { PROJECT_MILESTONES, ProjectMilestoneProps } from './milestones';
-import { useStateCtx } from '../../../../context/StateContext';
-import WordCounter from '../../../../components/admin/card/WordCounter';
+import { useStateCtx } from '@/context/StateContext';
+import WordCounter from '@/components/admin/card/WordCounter';
 
 type StatusProps = {
   id?: number;
