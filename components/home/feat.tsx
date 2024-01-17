@@ -10,8 +10,8 @@ import { handleMouseEnter } from '../../utils/text-effect';
 const Feats = () => {
   const worksRef = React.useRef<HTMLDivElement>(null);
   const titleRef = React.useRef<HTMLHeadingElement>(null);
-  const isInView = useInView({ ref: worksRef });
-  const isInView2 = useInView({ ref: titleRef });
+  const isInView = useInView(worksRef);
+  const isInView2 = useInView(titleRef);
 
   return (
     <section className="h-full w-full flex flex-col items-center mb-8 lg:mb-20 mt-8 gap-y-5 lg:gap-y-8 xl:gap-y-12 2xl:gap-y-20">
