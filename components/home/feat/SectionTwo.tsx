@@ -9,7 +9,7 @@ const SectionTwo = () => {
   return (
     <div
       className={cn(
-        'flex item-center space-x-16 justify-center md:justify-between max-w-[1239px] text-header',
+        'hidden md:flex item-center space-x-16 justify-center md:justify-between max-w-[1239px] text-header',
         isInView
           ? 'opacity-100 translate-y-0 delay-300 duration-1000'
           : ' opacity-0 translate-y-36'

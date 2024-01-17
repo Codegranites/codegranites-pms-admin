@@ -9,7 +9,7 @@ const SectionThree = () => {
   return (
     <div
       className={cn(
-        'flex item-center space-x-16 justify-center md:justify-between max-w-[1239px] text-header',
+        'hidden md:flex item-center space-x-16 justify-center md:justify-between max-w-[1239px] text-header',
         isInView
           ? 'opacity-100 translate-y-0 delay-300 duration-1000'
           : ' opacity-0 translate-y-36'
@@ -26,16 +26,15 @@ const SectionThree = () => {
       </div>
       <div className="items-center justify-center self-center">
         <h2 className="text-[28px] leading-[48px] font-semibold mb-4">
-          Projects page
+          Project Milestones
         </h2>
         <p className="max-w-[551px] text-[18px] font-normal">
-          Unleash the power of organized innovation with our Projects Page
-          feature. Navigate your project landscape effortlessly, with a visually
-          intuitive interface that puts control back in your hands. From
-          inception to completion, monitor progress, allocate resources, and
-          celebrate milestones with precision. CodeGranite&apos;s Projects Page
-          redefines project management, making complexity simple and success
-          tangible
+          Chart your course to success with precision using our Project
+          Milestones feature. Experience the thrill of achievement as you
+          effortlessly set, track, and conquer critical project milestones. From
+          ideation to completion, CodeGranites empowers your team to celebrate
+          victories along the journey. Elevate your project experience – where
+          each milestone becomes a stepping stone towards unparalleled success
         </p>
       </div>
     </div>

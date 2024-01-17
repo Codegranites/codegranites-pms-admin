@@ -5,6 +5,7 @@ import { handleMouseEnter } from '../../utils/text-effect';
 import SectionOne from './feat/Sectionone';
 import SectionTwo from './feat/SectionTwo';
 import SectionThree from './feat/SectionThree';
+import Mobile from './feat/Mobile';
 
 const KeyFeat = () => {
   const KeyFeatRef = React.useRef<HTMLDivElement>(null);
@@ -38,6 +39,7 @@ const KeyFeat = () => {
         <SectionOne />
         <SectionTwo />
         <SectionThree />
+        <Mobile />
       </div>
     </section>
   );
