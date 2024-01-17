@@ -11,8 +11,8 @@ import LoadingSpinner from '../loaders/LoadingSpinner';
 const Midsec = () => {
   const MidsecRef = React.useRef<HTMLDivElement>(null);
   const sliderRef = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView({ ref: sliderRef });
-  const isInView2 = useInView({ ref: MidsecRef });
+  const isInView = useInView(sliderRef);
+  const isInView2 = useInView(MidsecRef);
   const [imgLoaded, setImgLoaded] = useState(false);
 
   return (
