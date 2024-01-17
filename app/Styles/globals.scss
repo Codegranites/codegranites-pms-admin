@@ -126,7 +126,7 @@ svg text.text-body,
 svg circle {
   stroke: var(--loader-text-color);
   fill: transparent;
-  animation: anime-stroke 3s infinite alternate;
+  animation: anime-stroke 2s infinite alternate;
 }
 
 @keyframes anime-stroke {
