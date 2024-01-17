@@ -23,8 +23,6 @@ const ForgotPassword: React.FC = () => {
 
   const handleForgotPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-  
  try {
     setIsLoading(true);
     await resetPassword({ email });
@@ -34,6 +32,7 @@ const ForgotPassword: React.FC = () => {
   } finally {
     setIsLoading(false)
  }
+};
 
   const closeModal = () => {
     // Close the email verification modal
