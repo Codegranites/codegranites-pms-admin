@@ -17,7 +17,7 @@ import NewClient from './NewClient';
 import { useStateCtx } from '../../../context/StateContext';
 
 import { X } from 'lucide-react';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import NewClientModal from './NewClient';
 type SelectProps = {
   id?: number;

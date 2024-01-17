@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import React from 'react';
-import { useStateCtx } from '../../context/StateContext';
-import cn from '../../utils/util';
+import { useStateCtx } from '@/context/StateContext';
+import { cn } from '@/utils/util';
 
 const SwipeIndicator = () => {
   const { swipeIndicator, setSwipeIndicator } = useStateCtx();

@@ -11,7 +11,7 @@ import ReactPaginate from 'react-paginate';
 import { useStateCtx } from '../../../context/StateContext';
 import NotFound from '../NotFound';
 import ProjectNotFound from './ProjectNotFound';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
 
 const AdminProjectContainer = () => {

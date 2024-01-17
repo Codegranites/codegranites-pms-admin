@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { Suspense, useState } from 'react';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import useInView from '../../hooks/useInView';
 import { handleMouseEnter } from '../../utils/text-effect';
 import Orbit from './Orbit';

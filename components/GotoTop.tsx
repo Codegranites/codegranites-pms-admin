@@ -2,7 +2,7 @@
 
 import useWindowHeight from '../hooks/useDimension';
 import React from 'react';
-import cn from '../utils/util';
+import { cn } from '../utils/util';
 import { ArrowUp } from 'iconsax-react';
 import { ChevronUp } from 'lucide-react';
 

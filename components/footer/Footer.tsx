@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import SubscribeFooter from './Subscriberfooter';
 import { FOOTER_LINKS } from '../../libs/constants';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import { BsTwitterX } from 'react-icons/bs';
 import Link from 'next/link';
 

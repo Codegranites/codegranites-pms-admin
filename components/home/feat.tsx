@@ -4,7 +4,7 @@ import React from 'react';
 import Card from './card/card';
 import { Feat } from '../../libs/constants';
 import useInView from '../../hooks/useInView';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import { handleMouseEnter } from '../../utils/text-effect';
 
 const Feats = () => {

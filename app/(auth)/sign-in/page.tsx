@@ -2,15 +2,16 @@
 
 import { Input } from '@ui/Input';
 import Button from '@ui/Button';
-import { loginUser } from '../../../api/authApi';
+import { loginUser } from '@/api/authApi';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
-import { Header_for_many } from '../../../components/auth/Header';
+import { Header_for_many } from '@/components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
-import { useSession } from '../../../context/sessionProvider';
+import { useSession } from '@/context/sessionProvider';
+import { Label } from '@/components/ui/label';
 
 const SignIn = () => {
   const { login } = useSession();
@@ -47,8 +48,8 @@ const SignIn = () => {
 
   return (
     <>
-      <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
-        <Header_for_many />
+      <section className="h-screen w-full bg-white">
+        {/* <Header_for_many /> */}
 
         <div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
           <div className="mobile container px-3 ">
@@ -67,9 +68,9 @@ const SignIn = () => {
                 className="flex flex-col mt-4 z-10"
                 onSubmit={handleSubmit}
               >
-                <label htmlFor="Business Email" className="font-bold">
+                <Label htmlFor="Business Email" className="font-bold">
                   Business Email
-                </label>
+                </Label>
                 <Input
                   type="email"
                   id="businessEmail"
@@ -82,9 +83,9 @@ const SignIn = () => {
                   className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
                 />
 
-                <label htmlFor="Password" className="font-bold mt-4">
+                <Label htmlFor="Password" className="font-bold mt-4">
                   Password
-                </label>
+                </Label>
 
                 <Input
                   type={defaultInpTypeNew}

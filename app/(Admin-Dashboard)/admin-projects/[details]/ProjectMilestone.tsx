@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { type ProjectMilestoneProps } from './milestones';
 import { Edit2, More, Status, Trash } from 'iconsax-react';
 import { useStateCtx } from '../../../../context/StateContext';

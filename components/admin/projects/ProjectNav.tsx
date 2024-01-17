@@ -14,7 +14,7 @@ import { Add, SearchNormal } from 'iconsax-react';
 import { ListFilter, X } from 'lucide-react';
 import CreateProjectModal from './CreateProjectModal';
 import { useStateCtx } from '../../../context/StateContext';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 
 type SelectProps = {
   id?: number;

@@ -7,7 +7,7 @@ import MessageSection from './content/MessageSection';
 import MobileMessageSection from './content/MobileMessageSection';
 import NewMessageModal from './content/NewMessageModal';
 import EmptyMessage from './content/EmptyMessage';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 
 const MessageAdmin = () => {
   const { searchMsg, filterSearchMsgs } = useMessageCtx();

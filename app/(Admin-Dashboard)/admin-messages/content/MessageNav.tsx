@@ -1,7 +1,7 @@
 'use client';
 
 import { useMessageCtx } from '../../../../context/MessageContext';
-import cn from '../../../../utils/util';
+import { cn } from '../../../../utils/util';
 import { useStateCtx } from '../../../../context/StateContext';
 import { Add, MessageAdd1, SearchNormal1 } from 'iconsax-react';
 import { Input } from '@ui/Input';

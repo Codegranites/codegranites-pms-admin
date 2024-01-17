@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import cn, { formatPrice } from '../../../../utils/util';
-import { ProjectCardProps } from '../../../../libs/projects';
+import { cn, formatPrice } from '@/utils/util';
+import { ProjectCardProps } from '@/libs/projects';
 import MakePaymentModal from './MakePaymentModal';
-import { useStateCtx } from '../../../../context/StateContext';
+import { useStateCtx } from '@/context/StateContext';
 import { Edit2, More, Trash } from 'iconsax-react';
 import RemoveProjectModal from './RemoveProjectModal';
 import EditProjectModal from './EditProjectModal';

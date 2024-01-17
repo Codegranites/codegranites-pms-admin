@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
+    "@radix-ui/react-label": "^2.0.2",
     "@radix-ui/react-select": "^2.0.0",
     "@studio-freight/react-lenis": "^0.0.43",
     "@types/nprogress": "^0.2.3",

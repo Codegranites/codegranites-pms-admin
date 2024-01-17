@@ -20,7 +20,7 @@ import {
   selectCurrencies,
   selectStatus
 } from '../../../app/(Admin-Dashboard)/admin-projects/[details]/edit-project';
-import cn from '../../../utils/util';
+import { cn } from '../../../utils/util';
 import WordCounter from '../card/WordCounter';
 import Image from 'next/image';
 

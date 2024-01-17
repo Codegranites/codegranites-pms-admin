@@ -4,7 +4,7 @@
 
 import { useStateCtx } from '../../context/StateContext';
 import { NAV_LINKS } from '../../libs/constants';
-import cn from '../../utils/util';
+import { cn } from '../../utils/util';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';

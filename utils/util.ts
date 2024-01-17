@@ -2,9 +2,9 @@ import clsx from 'clsx';
 import { ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
-export default function cn(...classes: ClassValue[]) {
+export const cn = (...classes: ClassValue[]) => {
   return twMerge(clsx(...classes));
-}
+};
 
 export function formatPrice(
   price: number | string,
