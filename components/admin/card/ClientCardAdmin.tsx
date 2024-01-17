@@ -16,7 +16,7 @@ const ClientCardAdmin = ({
   id
 }: AdminClientCardProps) => {
   const clientCardRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView({ ref: clientCardRef });
+  const isInView = useInView(clientCardRef);
   const { clientSearchTerm } = useStateCtx();
   const encryptedName = encryptString(name!);
 
