@@ -34,7 +34,7 @@ export default function RootLayout({
     <html lang="en" className={workSans.variable}>
       <SessionProvider>
         <StateContextProvider>
-          <LenisProvider>
+//          <LenisProvider>
             <ThemeProvider>
               <body className={workSans.className}>
                 <Providers>{children}</Providers>
@@ -42,7 +42,7 @@ export default function RootLayout({
                 <GotoTop />
               </body>
             </ThemeProvider>
-          </LenisProvider>
+//          </LenisProvider>
         </StateContextProvider>
       </SessionProvider>
     </html>
