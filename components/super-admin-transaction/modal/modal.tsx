@@ -5,7 +5,7 @@ import { Add, ArrowDown2, ArrowRight2, ArrowUp2 } from 'iconsax-react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import { useStateCtx } from '../../../context/StateContext';
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import { SelectItem } from '@ui/select';
 import {
   Select,

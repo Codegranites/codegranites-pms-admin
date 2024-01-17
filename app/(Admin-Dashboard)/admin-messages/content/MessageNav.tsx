@@ -4,7 +4,7 @@ import { useMessageCtx } from '../../../../context/MessageContext';
 import { cn } from '../../../../utils/util';
 import { useStateCtx } from '../../../../context/StateContext';
 import { Add, MessageAdd1, SearchNormal1 } from 'iconsax-react';
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import { X } from 'lucide-react';
 import { MESSAGES } from './messages';
 

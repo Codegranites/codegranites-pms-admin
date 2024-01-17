@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Button from '@ui/Button';
 import { toast } from 'react-toastify';
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 
 // Mock user data
 const mockUserData = {

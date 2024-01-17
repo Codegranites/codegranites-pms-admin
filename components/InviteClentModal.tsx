@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Modal from './ui/Modal';
-import { Input } from './ui/Input';
+import { Input } from './ui/FormInput';
 import Button from './ui/Button';
 import Image from 'next/image';
 import { toast } from 'react-toastify';

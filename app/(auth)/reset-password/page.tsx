@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 import Button from '@ui/Button';
 import PasswordPopover from '@ui/passwordPopober';
 import { Eye, EyeSlash } from 'iconsax-react';
@@ -130,7 +130,7 @@ const ResetPassword = () => {
 
               <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
                 What is
-                <Link href="/auth/sign-up" className="ml-1 underline">
+                <Link href="/sign-up" className="ml-1 underline">
                   CodeGranite
                 </Link>
               </span>

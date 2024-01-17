@@ -1,6 +1,6 @@
 'use client';
 
-import { Input } from '@ui/Input';
+import { Input } from '@/components/ui/Input';
 
 import { Add, SearchNormal } from 'iconsax-react';
 
