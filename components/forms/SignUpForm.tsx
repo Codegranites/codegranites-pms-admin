@@ -1,18 +1,13 @@
 'use client';
 
-import { loginUser } from '@/api/authApi';
-import { useSession } from '@/context/sessionProvider';
+import { useState, useTransition } from 'react';
 
-import React, { useState, useTransition } from 'react';
-
-import { MdOutlineMail } from 'react-icons/md';
-import { Eye, EyeSlash } from 'iconsax-react';
+import { Eye, EyeSlash, Sms, User } from 'iconsax-react';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
-import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { LoginSchema } from '@/schemas';
+import { RegisterSchema } from '@/schemas';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import {
@@ -29,7 +24,7 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { login } from '@/actions/login';
 
-const SigninForm = () => {
+const SignUpForm = () => {
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
 
@@ -37,15 +32,17 @@ const SigninForm = () => {
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
     'password' | 'text'
   >('password');
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
+      fullName: '',
       email: '',
+
       password: ''
     }
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     setError('');
     setSuccess('');
 
@@ -77,9 +74,11 @@ const SigninForm = () => {
 
   return (
     <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
-      <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
+      <h1 className="text-center font-[600]  text-[28px]">
+        Let us know you better
+      </h1>
       <span className="block text-center font-[400] text-[14px] mt-2 ">
-        Great to have you back with us again
+        Fil the following to continue
       </span>
       <Form {...form}>
         <form
@@ -87,6 +86,31 @@ const SigninForm = () => {
           className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6 "
           onSubmit={form.handleSubmit(onSubmit)}
         >
+          <FormField
+            control={form.control}
+            name="fullName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold ">FullName</FormLabel>
+                <FormControl>
+                  <div className="flex items-center w-full relative">
+                    <FormInput
+                      disabled={isLoading}
+                      type="text"
+                      {...field}
+                      placeholder="Enter Full Name"
+                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
+                    />
+                    <span className="absolute right-2 ">
+                      <User size={24} color="#777" />
+                    </span>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           <FormField
             control={form.control}
             name="email"
@@ -103,7 +127,7 @@ const SigninForm = () => {
                       className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
                     />
                     <span className="absolute right-2 ">
-                      <MdOutlineMail size={24} color="#777" />
+                      <Sms size={24} color="#777" />
                     </span>
                   </div>
                 </FormControl>
@@ -111,6 +135,7 @@ const SigninForm = () => {
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="password"
@@ -168,7 +193,7 @@ const SigninForm = () => {
               type="submit"
               spinnerColor="#fff"
             >
-              Log in
+              Sign up
             </Button>
             {isLoading && (
               <div className="button--loader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
@@ -205,13 +230,13 @@ const SigninForm = () => {
         </Button>
       </Link>
       <span className="  text-header  mt-5 md:mt-8 text-sm  relative block text-center md:text-black z-10">
-        Don&apos;t have an account?
+        Already have an account?
         <Link href="/sign-up" className="ml-1 underline font-medium">
-          Sign up
+          Log in
         </Link>
       </span>
     </div>
   );
 };
 
-export default SigninForm;
+export default SignUpForm;
