@@ -37,13 +37,13 @@ const SignIn = () => {
         </div>
 
         {/* image_bellow_all */}
-        <div className=" md:hidden z-0">
+        <div className="fixed -bottom-40 md:hidden z-0">
           <Image
             src="/Mobile/mobile_back.png"
             alt="backgroud_ng_for_mobile"
-            width={140}
-            height={50}
-            className="h-[739.363px] w-full max-w-[684.675px]"
+            width={500}
+            height={500}
+            className="h-[739.363px] w-[684.675px]"
           />
         </div>
       </section>
