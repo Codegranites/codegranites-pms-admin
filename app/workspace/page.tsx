@@ -26,7 +26,7 @@ function Workspace() {
   const endIndex = startIndex + WorkSpacePerPage;
   const subset = Workspaces.slice(startIndex, endIndex);
   return (
-    <div>
+    <>
       <SidebarAdmin />
       <section className="w-full relative  md:pl-[96px] min-[1140px]:pl-[270px]">
         <AdminNavbar />
@@ -35,41 +35,40 @@ function Workspace() {
             <RiStackLine size={23} />
             <p className="text-[1rem] text-[#282828]">My work Space</p>
           </div>
-
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem]">
-            {subset.map(space => (
-              <Suspense key={space.id} fallback={<WorkSpaceSkelon />}>
-                <Card key={space.id} {...space} />
-              </Suspense>
-            ))}
-          </div>
-
-          <div className="flex w-full justify-end mt-6">
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel="Next "
-              previousLabel=" Previous"
-              previousAriaLabel="Previous"
-              nextAriaLabel="Next"
-              pageCount={totalPages}
-              // onPageChange={({ selected }) => setCurrentPage(selected)}
-              onPageChange={handlePageChange}
-              pageRangeDisplayed={3}
-              marginPagesDisplayed={2}
-              className="flex items-center justify-center  border border-gray-300 px-4 rounded-md select-none"
-              pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300"
-              previousClassName="pr-2 lg:pr-4 text-[#6B7280] font-medium"
-              nextClassName="pl-2 lg:pl-4 text-[#6B7280] font-medium"
-              pageLinkClassName="text-[#6B7280] w-full h-full flex items-center justify-center"
-              activeClassName="bg-[#becbd7]  font-medium"
-              renderOnZeroPageCount={null}
-              disabledClassName="cursor-not-allowed opacity-70"
-              disabledLinkClassName="cursor-not-allowed opacity-70"
-            />
-          </div>
+          <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5">
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between">
+              {subset.map(space => (
+                <Suspense key={space.id} fallback={<WorkSpaceSkelon />}>
+                  <Card key={space.id} {...space} />
+                </Suspense>
+              ))}
+            </div>
+            <div className="flex w-full md:justify-end justify-center mt-6 md:pr-7">
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel="Next "
+                previousLabel=" Previous"
+                previousAriaLabel="Previous"
+                nextAriaLabel="Next"
+                pageCount={totalPages}
+                onPageChange={handlePageChange}
+                pageRangeDisplayed={3}
+                marginPagesDisplayed={2}
+                className="flex items-center justify-center  border border-gray-300 px-4 rounded-md select-none"
+                pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300"
+                previousClassName="pr-2 lg:pr-4 text-[#6B7280] font-medium"
+                nextClassName="pl-2 lg:pl-4 text-[#6B7280] font-medium"
+                pageLinkClassName="text-[#6B7280] w-full h-full flex items-center justify-center"
+                activeClassName="bg-[#becbd7]  font-medium"
+                renderOnZeroPageCount={null}
+                disabledClassName="cursor-not-allowed opacity-70"
+                disabledLinkClassName="cursor-not-allowed opacity-70"
+              />
+            </div>
+          </section>
         </div>
       </section>
-    </div>
+    </>
   );
 }
 
