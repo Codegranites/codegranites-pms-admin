@@ -134,3 +134,11 @@ export interface ThemeContextProps {
   theme: string | null;
   setTheme: React.Dispatch<React.SetStateAction<string | null>>;
 }
+
+export interface WorkspaceCardProps {
+  id?: number;
+  logo: string;
+  name: string;
+  description: string;
+  projectCount: number;
+}

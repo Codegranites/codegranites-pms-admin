@@ -1,7 +1,5 @@
 'use client';
 
-import ProjectCardAdmin from '../card/ProjectCardAdmin';
-
 import SuperAdminProject from '../../super-admin-project/super-admin-project';
 import { Suspense, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';

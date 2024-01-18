@@ -129,3 +129,36 @@ export const commentsTime = (time: number | Date): string => {
 export const generateId = () => {
   return Math.random().toString(36).substring(2, 9);
 };
+
+/**
+ * Sets a key-value pair in the session storage.
+ * @function SetToSessionStorage
+ * @param {string} key
+ * @param {any} value
+ */
+
+export const SetToSessionStorage = (key: string, value: any): void => {
+  try {
+    const serializedValue = JSON.stringify(value);
+    sessionStorage.setItem(key, serializedValue);
+  } catch (error) {
+    console.error(`Error setting item to session storage: ${error}`);
+  }
+};
+
+/**
+ * Retrieves a value from the session storage based on the provided key.
+ * @function GetFromSessionStorage
+ * @param {string} key
+ * @returns {string | null
+ */
+
+export const GetFromSessionStorage = (key: string): string | null => {
+  try {
+    const storedValue = sessionStorage.getItem(key);
+    return storedValue !== null ? storedValue : null;
+  } catch (error) {
+    console.error(`Error getting item from session storage: ${error}`);
+    return null;
+  }
+};

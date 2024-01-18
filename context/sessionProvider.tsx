@@ -2,6 +2,7 @@
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { SessionContextProps } from '../types';
+import { SetToSessionStorage, GetFromSessionStorage } from '@/utils/util';
 
 const SessionContext = createContext<SessionContextProps | undefined>(
   undefined
@@ -18,6 +19,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
   const [accountId, setAccountId] = useState<string | null>(null);
   const [roleId, setRoleId] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
+  const [WorkspaceID, setWorkspaceId] = useState<string | null>(null);
 
   const login = (
     newToken: string,
@@ -37,6 +39,13 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
     setRoleId(null);
     setEmail(null);
   };
+
+  const WorkspaceId = GetFromSessionStorage('');
+
+  // const setWorkspaceId = SetToSessionStorage('workspace', {
+  //   foo: 'bar',
+  //   baz: 42
+  // });
 
   const contextValue: SessionContextProps = {
     token,
