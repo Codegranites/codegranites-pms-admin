@@ -27,8 +27,8 @@ function Workspace() {
   const subset = Workspaces.slice(startIndex, endIndex);
   return (
     <>
-      <SidebarAdmin />
-      <section className="w-full relative  md:pl-[96px] min-[1140px]:pl-[270px]">
+      {/* <SidebarAdmin /> */}
+      <section className="w-full relative ">
         <AdminNavbar />
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
           <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 border border-b-2 border-l-0 border-r-0">
