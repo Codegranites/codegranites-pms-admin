@@ -43,7 +43,7 @@ function Workspace() {
                 </Suspense>
               ))}
             </div>
-            <div className="flex w-full justify-end mt-6">
+            <div className="flex w-full md:justify-end justify-center mt-6 md:pr-7">
               <ReactPaginate
                 breakLabel="..."
                 nextLabel="Next "

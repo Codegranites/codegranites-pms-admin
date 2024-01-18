@@ -1,7 +1,7 @@
 import React from 'react';
 import useInView from '@/hooks/useInView';
 import { WorkspaceCardProps } from '@/types';
-import { cn } from '@/utils/util';
+import { cn, encryptString } from '@/utils/util';
 import Link from 'next/link';
 import { useSession } from '@/context/sessionProvider';
 
@@ -31,13 +31,22 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
     setWorkspaceId('WorkspaceId', (id ?? '').toString());
   };
 
+  const workspacce1 = (name1: string) => {
+    const words = name1.split(' ');
+    return words.length > 1
+      ? words[0].toLocaleLowerCase()
+      : name1.toLocaleLowerCase;
+  };
+
+  const workspace = workspacce1(name!);
+  console.log(workspace);
+
   return (
     <div
-      // href={`/${name.toLowerCase()}/dashboard`}
       ref={WorkSpaceRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        'w-full  h-full  bg-card sm:w-[300px] flex flex-col justify-start items-start p-[16px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
+        'md:w-[500px] relative h-full sm:w-ful  bg-card  flex flex-col justify-start items-start p-[16px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
         isInView
           ? 'opacity-100 translate-y-0 delay-200 duration-1000'
           : ' opacity-0 translate-y-36'
@@ -62,12 +71,13 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
         </p>
       </div>
       <div>
-        <button
+        <Link
+          href={`/${workspace}/dashboard`}
           className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center justify-center font-medium hover:opacity-70 transition-all duration-300"
           onClick={handleOpenClick}
         >
-          <Link href={`/${name.toLowerCase()}/dashboard`}>Open</Link>
-        </button>
+          Open
+        </Link>
       </div>
     </div>
   );
