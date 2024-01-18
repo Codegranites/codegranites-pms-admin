@@ -84,7 +84,7 @@ const SignUpForm = () => {
                       type="text"
                       {...field}
                       placeholder="Enter Full Name"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
@@ -110,7 +110,7 @@ const SignUpForm = () => {
                       type="email"
                       {...field}
                       placeholder="Enter Business Email Address"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9 "
+                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9 "
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
@@ -136,7 +136,7 @@ const SignUpForm = () => {
                       type="text"
                       {...field}
                       placeholder="Enter Phone Number"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
                       <Phone className="h-full w-full" color="#777" />
@@ -162,7 +162,7 @@ const SignUpForm = () => {
                       type={defaultInpTypeNew}
                       name="password"
                       placeholder="Enter Password"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
