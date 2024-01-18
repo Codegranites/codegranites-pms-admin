@@ -1,8 +1,9 @@
 import React from 'react';
 import useInView from '@/hooks/useInView';
 import { WorkspaceCardProps } from '@/types';
-import { cn, SetToSessionStorage } from '@/utils/util';
-import Button from '@ui/Button';
+import { cn } from '@/utils/util';
+import Link from 'next/link';
+import { useSession } from '@/context/sessionProvider';
 
 const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   id,
@@ -11,6 +12,7 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   description,
   projectCount
 }) => {
+  const { setWorkspaceId } = useSession();
   const WorkSpaceRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView({ ref: WorkSpaceRef });
 
@@ -26,11 +28,12 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   };
 
   const handleOpenClick = () => {
-    SetToSessionStorage('WorkspaceId', (id ?? '').toString());
+    setWorkspaceId('WorkspaceId', (id ?? '').toString());
   };
 
   return (
     <div
+      // href={`/${name.toLowerCase()}/dashboard`}
       ref={WorkSpaceRef}
       onMouseMove={handleMouseMove}
       className={cn(
@@ -59,13 +62,12 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
         </p>
       </div>
       <div>
-        <Button
-          className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
+        <button
+          className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center justify-center font-medium hover:opacity-70 transition-all duration-300"
           onClick={handleOpenClick}
-          href=""
         >
-          Open
-        </Button>
+          <Link href={`/${name.toLowerCase()}/dashboard`}>Open</Link>
+        </button>
       </div>
     </div>
   );
