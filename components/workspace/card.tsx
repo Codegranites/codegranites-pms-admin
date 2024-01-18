@@ -34,7 +34,7 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
       ref={WorkSpaceRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        'w-[700px] h-full  bg-card sm:w-[369px] flex flex-col justify-start items-start p-[16px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
+        'w-full  h-full  bg-card sm:w-[300px] flex flex-col justify-start items-start p-[16px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
         isInView
           ? 'opacity-100 translate-y-0 delay-200 duration-1000'
           : ' opacity-0 translate-y-36'
