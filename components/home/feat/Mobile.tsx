@@ -25,7 +25,15 @@ const SectionOne = () => {
       )}
       ref={CardRef}
     >
-      <div className="items-center justify-center mb-4 text-center">
+      <div
+        className={cn(
+          'items-center justify-center mb-4 text-center',
+          isInView1
+            ? 'opacity-100 translate-y-0 delay-300 duration-1000'
+            : ' opacity-0 translate-y-36'
+        )}
+        ref={worksRef}
+      >
         <h2
           ref={titleRef}
           onMouseEnter={handleMouseEnter}
@@ -48,12 +56,7 @@ const SectionOne = () => {
           detail matters, and relationships flourish effortlessly
         </p>
       </div>
-      <div
-      // ref={worksRef}
-      // className={
-      //   "isInView1 ? 'opacity-100 translate-y-0 delay-300 duration-1000' : ' opacity-0 translate-y-36'"
-      // }
-      >
+      <div>
         <Image
           loading="eager"
           src="/home/SectionOne.svg"
