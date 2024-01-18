@@ -8,6 +8,8 @@ import Footer from '../footer/Footer';
 import Hero from './hero';
 import KeyFeat from './KeyFeat';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
+import Buttom from './Buttom';
+import Carsoel from './carousel/Logocarousel';
 
 const Navbar = dynamic(() => import('../navs/Navbar'), {
   ssr: false,
@@ -24,6 +26,7 @@ export default function LandingPage() {
         <KeyFeat />
         <Feats />
       </main>
+      <Buttom />
       <Footer />
     </>
   );
