@@ -57,24 +57,6 @@ const SigninForm = () => {
     });
   };
 
-  // const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   console.log('click');
-
-  //   try {
-  //     const response = await loginUser(formData);
-  //     setFormData({
-  //       email: '',
-  //       password: ''
-  //     });
-  //   } catch (error) {
-  //     console.error('Login error:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
   return (
     <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
       <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
@@ -189,8 +171,7 @@ const SigninForm = () => {
 
       <Link href="">
         <Button
-          className=" text-black w-full my-3 border-[#C7C7C7] 
-								border rounded-md bg-[#fff] py-1"
+          className=" text-black w-full my-3 border-[#C7C7C7]  hover:text-white transition-colors duration-300	border rounded-md bg-[#fff] py-1"
           leftIcon={
             <Image
               src="/Mobile/google.svg"

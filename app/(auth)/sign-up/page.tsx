@@ -72,16 +72,15 @@ const SignUp: React.FC = () => {
 
         {/* Email Verification Modal */}
         <EmailVerificationModal
-          isVerificationModalOpen={isVerificationModalOpen}
+          isVerificationModalOpen={false}
           closeModal={closeModal}
         />
-        {/* <Header_for_many /> */}
 
         <div className="desktop flex md:justify-between md:gap-x-8 items-center h-full relative max-container px-2 sm:px-4 lg:px-8">
           {/* Form | Signin */}
           <SignUpForm />
           {/* Desktop image by right */}
-          <div className="hidden md:flex h-full w-full rounded-full  items-center max-w-[818px]">
+          <div className="hidden min-[850px]:flex h-full w-full rounded-full  items-center max-w-[818px]">
             <Image
               src="/MacBookPro1.webp"
               alt="sign in Desktop"
@@ -92,13 +91,13 @@ const SignUp: React.FC = () => {
         </div>
 
         {/* image_bellow_all */}
-        <div className="fixed -bottom-40 md:hidden z-0">
+        <div className="fixed right-0 -bottom-40 min-[850px]:hidden z-0 overflow-hidden">
           <Image
             src="/Mobile/mobile_back.png"
             alt="backgroud_ng_for_mobile"
-            width={500}
+            width={700}
             height={500}
-            className="h-[739.363px] w-[684.675px]"
+            className="h-[739.363px] w-[850px] max-sm:w-[684.675px]"
           />
         </div>
       </section>
