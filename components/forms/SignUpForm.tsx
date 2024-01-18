@@ -22,9 +22,12 @@ import { FormInput } from '../ui/FormInput';
 import { cn } from '@/utils/util';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
-import { login } from '@/actions/login';
+import { register } from '@/actions/register';
+import { useRouter } from 'next/navigation';
+import { Phone } from 'lucide-react';
 
 const SignUpForm = () => {
+  const router = useRouter();
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
 
@@ -37,7 +40,7 @@ const SignUpForm = () => {
     defaultValues: {
       fullName: '',
       email: '',
-
+      phoneNumber: '',
       password: ''
     }
   });
@@ -47,34 +50,16 @@ const SignUpForm = () => {
     setSuccess('');
 
     startTransition(() => {
-      login(values).then(data => {
-        setSuccess(data.success);
-        setError(data.error);
+      register(values).then(data => {
+        setSuccess(data?.success);
+        setError(data?.error);
       });
     });
   };
 
-  // const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   console.log('click');
-
-  //   try {
-  //     const response = await loginUser(formData);
-  //     setFormData({
-  //       email: '',
-  //       password: ''
-  //     });
-  //   } catch (error) {
-  //     console.error('Login error:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
-
   return (
-    <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
-      <h1 className="text-center font-[600]  text-[28px]">
+    <div className="relative py-4 min-[850px]:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
+      <h1 className="text-center font-[600] text-2xl  min-[370px]:text-[28px]">
         Let us know you better
       </h1>
       <span className="block text-center font-[400] text-[14px] mt-2 ">
@@ -83,7 +68,7 @@ const SignUpForm = () => {
       <Form {...form}>
         <form
           action=""
-          className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6 "
+          className="flex flex-col mt-4 z-10 gap-y-2 min-[850px]:gap-y-6 "
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
@@ -99,10 +84,11 @@ const SignUpForm = () => {
                       type="text"
                       {...field}
                       placeholder="Enter Full Name"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
+                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
-                    <span className="absolute right-2 ">
-                      <User size={24} color="#777" />
+
+                    <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
+                      <User className="h-full w-full" color="#777" />
                     </span>
                   </div>
                 </FormControl>
@@ -124,10 +110,36 @@ const SignUpForm = () => {
                       type="email"
                       {...field}
                       placeholder="Enter Business Email Address"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
+                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9 "
                     />
-                    <span className="absolute right-2 ">
-                      <Sms size={24} color="#777" />
+
+                    <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
+                      <Sms className="h-full w-full" color="#777" />
+                    </span>
+                  </div>
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="phoneNumber"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold ">Phone Number</FormLabel>
+                <FormControl>
+                  <div className="flex items-center w-full relative">
+                    <FormInput
+                      disabled={isLoading}
+                      type="text"
+                      {...field}
+                      placeholder="Enter Phone Number"
+                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                    />
+                    <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
+                      <Phone className="h-full w-full" color="#777" />
                     </span>
                   </div>
                 </FormControl>
@@ -150,16 +162,19 @@ const SignUpForm = () => {
                       type={defaultInpTypeNew}
                       name="password"
                       placeholder="Enter Password"
-                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
+                      className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
-                    <span className="absolute right-2">
+
+                    <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
                       {defaultInpTypeNew === 'text' ? (
                         <Eye
+                          className="w-full h-full"
                           color="#777"
                           onClick={() => setDefaultInpTypeNew('password')}
                         />
                       ) : (
                         <EyeSlash
+                          className="w-full h-full"
                           color="#777"
                           onClick={() => setDefaultInpTypeNew('text')}
                         />
@@ -167,7 +182,11 @@ const SignUpForm = () => {
                     </span>
                   </div>
                 </FormControl>
-                <span className="mb-4 text-xs ">
+                <button
+                  disabled={isLoading}
+                  type="button"
+                  className="mb-4 text-xs "
+                >
                   Forgot password?{' '}
                   <Link
                     href="/forgot-password"
@@ -175,7 +194,7 @@ const SignUpForm = () => {
                   >
                     Reset
                   </Link>
-                </span>
+                </button>
                 <FormMessage />
               </FormItem>
             )}
@@ -206,35 +225,38 @@ const SignUpForm = () => {
         </form>
       </Form>
 
-      <div className="seperator flex items-center space-x-2 my-2 md:my-10">
+      <div className="seperator flex items-center space-x-2 my-2 min-[850px]:my-10">
         <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
         <h4 className="text-gray/80"> Or</h4>
         <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
       </div>
 
-      <Link href="">
-        <Button
-          className=" text-black w-full my-3 border-[#C7C7C7] 
-								border rounded-md bg-[#fff] py-1"
-          leftIcon={
-            <Image
-              src="/Mobile/google.svg"
-              alt="google_logo_icon"
-              width={20}
-              height={20}
-              className="mb-1"
-            />
-          }
-        >
-          Continue with Google
-        </Button>
-      </Link>
-      <span className="  text-header  mt-5 md:mt-8 text-sm  relative block text-center md:text-black z-10">
+      <Button
+        className=" text-black flex items-center w-full my-3 border-[#C7C7C7] hover:text-white transition-colors duration-300	border rounded-md bg-[#fff] py-1"
+        leftIcon={
+          <Image
+            src="/Mobile/google.svg"
+            alt="google_logo_icon"
+            width={20}
+            height={20}
+          />
+        }
+      >
+        Continue with Google
+      </Button>
+
+      <button
+        disabled={isLoading}
+        className=" w-full text-header  mt-5 md:mt-8 text-sm  relative block text-center md:text-black z-10"
+      >
         Already have an account?
-        <Link href="/sign-up" className="ml-1 underline font-medium">
+        <span
+          onClick={() => router.push('/login')}
+          className="ml-1 underline font-medium"
+        >
           Log in
-        </Link>
-      </span>
+        </span>
+      </button>
     </div>
   );
 };

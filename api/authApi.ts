@@ -12,7 +12,7 @@ export const signUpUser = async (props: {
   password: string;
 }) => {
   try {
-    const res = await $AuthHttp.post('/account/register', props);
+    const res = await $AuthHttp.post('account/register', props);
     if (res?.status === 201) {
       toast.success('Registration successful!');
     }
