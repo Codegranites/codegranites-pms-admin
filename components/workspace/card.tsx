@@ -38,13 +38,13 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
       : name1.toLocaleLowerCase;
   };
 
-  const workspace = workspacce1(name!);
-  console.log(workspace);
+  const workspace = workspacce1(name);
 
   return (
     <div
       ref={WorkSpaceRef}
       onMouseMove={handleMouseMove}
+      onClick={handleOpenClick}
       className={cn(
         'md:w-[500px] relative h-full sm:w-ful  bg-card  flex flex-col justify-start items-start p-[16px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 hover:border-none card',
         isInView
@@ -74,7 +74,6 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
         <Link
           href={`/${workspace}/dashboard`}
           className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center justify-center font-medium hover:opacity-70 transition-all duration-300"
-          onClick={handleOpenClick}
         >
           Open
         </Link>

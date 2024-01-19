@@ -21,3 +21,12 @@ export const RegisterSchema = z.object({
     message: 'Password must be at least 6 characters'
   })
 });
+
+export const CreateWorkSpaceSchema = z.object({
+  name: z.string().min(5, {
+    message: 'Workspace Name is requried'
+  }),
+  description: z.string().min(8, {
+    message: 'Workspace Description must be at least 8 characters'
+  })
+});
