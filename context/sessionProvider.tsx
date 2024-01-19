@@ -46,7 +46,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
     try {
       sessionStorage.setItem(key, value);
     } catch (error) {
-      console.error(`Error setting item to session storage: ${error}`);
+    //  console.error(`Error setting item to session storage: ${error}`);
     }
   };
 
