@@ -2,8 +2,15 @@
 
 import { LoginSchema } from '@/schemas';
 import * as z from 'zod';
+import { AuthError } from 'next-auth';
+import { cookies } from 'next/headers';
+
+import { signIn } from '@/auth';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+const BaseUrl = 'https://pms-backend-rvoy.onrender.com';
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
+  const cookie = cookies();
   const validatedFields = LoginSchema.safeParse(values);
   if (!validatedFields.success) {
     return {
@@ -11,5 +18,58 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     };
   }
 
-  return { success: 'Login successful' };
+  const { email, password } = validatedFields.data;
+
+  try {
+    const data = await fetch(`${BaseUrl}/auth/login`, {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+        credentials: 'include'
+      },
+      body: JSON.stringify({
+        email,
+        password
+      })
+    });
+    console.log(data.status);
+    const res = await data.json();
+    if (data.status === 200 || res.ok) {
+      console.log(res);
+      cookie.set('access_token', res.token, {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/'
+      });
+      return {
+        success: 'Login successful!'
+        // redirect: DEFAULT_LOGIN_REDIRECT
+      };
+    }
+    if (data.status === 400) {
+      return {
+        error: 'Email or Phone number already exist'
+      };
+    }
+    if (data.status === 404) {
+      return {
+        error: 'User not found, sign up instead!'
+      };
+    }
+    if (data.status === 500) {
+      return {
+        error: 'Something went wrong.'
+      };
+    }
+
+    return {
+      error: res.message
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      error: 'Something went wrong.'
+    };
+  }
 };

@@ -1,4 +1,5 @@
 import { auth } from './auth';
+import { cookies } from 'next/headers';
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
@@ -8,19 +9,27 @@ import {
 
 export default auth(req => {
   const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+  const hasCookie = cookies().has('access_token');
+  const isLoggedIn = !!req.auth || hasCookie;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
+
   if (isApiAuthRoute) return null;
 
-  if (isApiAuthRoute) {
+  if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT));
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     }
     return null;
   }
+
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL('/sign-in', nextUrl));
+  }
+
+  return null;
 });
 
 // Optionally, don't invoke Middleware on some paths
