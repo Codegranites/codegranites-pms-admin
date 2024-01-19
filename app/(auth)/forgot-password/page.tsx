@@ -11,7 +11,7 @@ import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
-import { resetPassword } from '../../../api/authApi';
+import { resetPassword } from '@/app/api/authApi';
 import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
 
 const ForgotPassword: React.FC = () => {

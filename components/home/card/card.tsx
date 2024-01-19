@@ -1,5 +1,5 @@
 import useInView from '../../../hooks/useInView';
-import { CardProps } from '../../../types';
+import { CardProps } from '@/types';
 import { cn } from '../../../utils/util';
 import Image from 'next/image';
 import React from 'react';

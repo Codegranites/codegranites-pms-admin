@@ -1,7 +1,7 @@
 import Modal from '@ui/Modal';
 import Button from '@ui/Button';
 import { Trash } from 'iconsax-react';
-import { DeleteModalProps } from '../../../types';
+import { DeleteModalProps } from '@/types';
 
 function DeleteAccount({ isOpen, onClose, onDelete }: DeleteModalProps) {
   return (

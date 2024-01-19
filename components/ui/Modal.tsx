@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { CloseCircle } from 'iconsax-react';
-import { ModalProps } from '../../types';
+import { ModalProps } from '@/types';
 import Button from './Button';
 
 const sizes: Record<'xxl' | 'xl' | 'lg' | 'md' | 'sm', string> = {

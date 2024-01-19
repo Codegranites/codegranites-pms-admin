@@ -1,6 +1,6 @@
 'use client';
 
-import { loginUser } from '@/api/authApi';
+import { loginUser } from '@/app/api/authApi';
 import { useSession } from '@/context/sessionProvider';
 
 import React, { useState, useTransition } from 'react';
