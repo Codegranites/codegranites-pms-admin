@@ -142,7 +142,7 @@ export const SetToSessionStorage = (key: string, value: any): void => {
     const serializedValue = JSON.stringify(value);
     sessionStorage.setItem(key, serializedValue);
   } catch (error) {
-    console.error(`Error setting item to session storage: ${error}`);
+//    console.error(`Error setting item to session storage: ${error}`);
   }
 };
 
@@ -158,7 +158,7 @@ export const GetFromSessionStorage = (key: string): string | null => {
     const storedValue = sessionStorage.getItem(key);
     return storedValue !== null ? storedValue : null;
   } catch (error) {
-    console.error(`Error getting item from session storage: ${error}`);
+//    console.error(`Error getting item from session storage: ${error}`);
     return null;
   }
 };
