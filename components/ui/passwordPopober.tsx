@@ -4,7 +4,7 @@ import {
   PasswordPopoverProps,
   PasswordRequirementProps,
   ProgressBarProps
-} from '../../types';
+} from '@/types';
 
 function PasswordRequirement({ meets, label }: PasswordRequirementProps) {
   return (

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { MdOutlineChevronRight } from 'react-icons/md';
 import { toast } from 'react-toastify';
-import { subscribeToEmail } from '../../api/subscribe';
+import { subscribeToEmail } from '@/app/api/subscribe';
 
 const SubscribeFooter = () => {
   const [email, setEmail] = useState('');

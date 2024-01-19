@@ -12,7 +12,7 @@ import {
 } from '@ui/select';
 import { useState } from 'react';
 import Button from '@ui/Button';
-import { LanguageProps } from '../../types';
+import { LanguageProps } from '@/types';
 import { ThemeProps, useThemeContext } from '@/context/ThemeCtx';
 
 const selectFilters: LanguageProps[] = [

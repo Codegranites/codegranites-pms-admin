@@ -1,7 +1,7 @@
 import Calls from './call';
 import { toast } from 'react-toastify';
-import { ContactFormProps } from '../types';
-import { ApiResponse } from '../types';
+import { ContactFormProps } from '@/types';
+import { ApiResponse } from '@/types';
 
 const BaseUrl = 'https://codegranites-backend.onrender.com/api/email';
 const $Http = Calls(BaseUrl);

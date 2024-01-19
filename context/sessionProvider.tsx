@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { SessionContextProps } from '../types';
+import { SessionContextProps } from '@/types';
 import { GetFromSessionStorage } from '@/utils/util';
 
 const SessionContext = createContext<SessionContextProps | undefined>(

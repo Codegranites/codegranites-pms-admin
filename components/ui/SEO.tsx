@@ -1,7 +1,7 @@
 // components/SEO.tsx
 import Head from 'next/head';
 import React from 'react';
-import { SEOProps } from '../../types';
+import { SEOProps } from '@/types';
 
 const SEO: React.FC<SEOProps> = ({ title, description, image, url }) => {
   return (

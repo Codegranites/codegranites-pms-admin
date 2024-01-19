@@ -1,64 +1,13 @@
 'use client';
 
-import Button from '@ui/Button';
-import PasswordPopover from '@ui/passwordPopober';
-import { Eye, EyeSlash, Call } from 'iconsax-react';
 import Image from 'next/image';
-import Link from 'next/link';
-import React, { useState, ChangeEvent, FormEvent } from 'react';
-import { MdOutlineMail } from 'react-icons/md';
-import { FiUser } from 'react-icons/fi';
-import { Header_for_many } from '../../../components/auth/Header';
-import { useRouter } from 'next-nprogress-bar';
-import { SignUpData } from '../../../types';
-import { signUpUser } from '../../../api/authApi';
+import React, { useState } from 'react';
 
-import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
-import { Input } from '@/components/ui/Input';
+import { EmailVerificationModal } from '@/components/auth/EmailVerificationModal';
 import SignUpForm from '@/components/forms/SignUpForm';
 
 const SignUp: React.FC = () => {
-  const [formData, setFormData] = useState<SignUpData>({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    password: ''
-  });
-
-  const [isLoading, setIsLoading] = useState(false);
-  const [defaultInpType, setDefaultInpType] = useState<'password' | 'text'>(
-    'password'
-  );
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevData => ({
-      ...prevData,
-      [name]: value
-    }));
-  };
-
-  // const handleSubmit = async (e: FormEvent) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     setIsLoading(true);
-
-  //     await signUpUser({
-  //       fullName: formData.fullName,
-  //       email: formData.email,
-  //       phoneNumber: formData.phoneNumber,
-  //       password: formData.password
-  //     });
-
-  //     setIsVerificationModalOpen(true);
-  //   } catch (error) {
-  //     console.error('Registration failed:', error);
-  //   } finally {
-  //     setIsLoading(false);
-  //   }
-  // };
 
   const closeModal = () => {
     // Close the email verification modal

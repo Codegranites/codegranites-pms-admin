@@ -12,7 +12,7 @@ import {
 } from '@ui/select';
 import { useState } from 'react';
 import Button from '@ui/Button';
-import { LanguageProps } from '../../types';
+import { LanguageProps } from '@/types';
 
 const selectFilters: LanguageProps[] = [
   { id: 1, label: 'English', value: 'english' },
