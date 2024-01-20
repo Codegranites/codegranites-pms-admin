@@ -8,15 +8,10 @@ import { LogoutCurve, Setting2 } from 'iconsax-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
-
-// Mock-Data for user profile
-const user = {
-  name: 'Jane Doe',
-  email: 'JohnDoe@gmail.com',
-  image: '/facemoji.png'
-};
+import { useStateCtx } from '@/context/StateContext';
 
 const SidebarMod = () => {
+  const { user } = useStateCtx();
   const [activeLink, setActiveLink] = useState('');
   const router = useRouter();
   const pathname = usePathname();

@@ -1,22 +1,12 @@
-'use client';
-
 import Image from 'next/image';
 import { useState } from 'react';
 import { useSession } from '@/context/sessionProvider';
 import SigninForm from '@/components/forms/SigninForm';
+import { auth } from '@/auth';
 
-const SignIn = () => {
-  const { login } = useSession();
-  const [isLoading, setIsLoading] = useState(false);
-  const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
-    'password' | 'text'
-  >('password');
-
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-
+const SignIn = async () => {
+  const user = await auth();
+  console.log(user);
   return (
     <>
       <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">

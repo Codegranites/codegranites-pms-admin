@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+// @ts-nocheck
 'use client';
 
 import { FormEvent, useEffect, useState } from 'react';

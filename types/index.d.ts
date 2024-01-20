@@ -121,7 +121,7 @@ export interface SessionContextProps {
   accountId: string | null;
   roleId: string | null;
   email: string | null;
-//  WorkspaceId: string | null;
+  //  WorkspaceId: string | null;
   setWorkspaceId: any;
   login: (
     token: string,
@@ -143,4 +143,12 @@ export interface WorkspaceCardProps {
   name: string;
   description: string;
   projectCount: number;
+}
+
+export interface UserDetails {
+  name?: string;
+  email: string;
+  accountId?: string;
+  role?: string;
+  image: string | StaticImport;
 }
