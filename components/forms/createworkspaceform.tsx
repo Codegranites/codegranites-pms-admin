@@ -102,7 +102,7 @@ const CreateWorkSpaceForm = () => {
               type="submit"
               spinnerColor="#fff"
             >
-              Sign up
+              Create Workspace
             </Button>
             {isLoading && (
               <div className="button--loader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
