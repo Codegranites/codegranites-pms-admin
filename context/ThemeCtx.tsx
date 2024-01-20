@@ -25,7 +25,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   useLayoutEffect(() => {
     const t =
-        '%c \ud83d\udc9a Our site is very new. Let us know if you find any issues - Vxrcel \ud83d\udc9a',
+        '%c \ud83d\udc9a LogOut is not functional yet - Vxrcel \ud83d\udc9a',
       n = [
         'font-size: 12px',
         'color: #fffce1',
