@@ -66,3 +66,46 @@ export const createWorkspace = async (
     };
   }
 };
+
+export const getWorkspace = async () => {
+  const authToken = cookies()?.get('access_token');
+  if (!authToken) {
+    return {
+      error: 'Unauthorized. Missing access token.'
+    };
+  }
+
+  const config = {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+      accept: 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
+  };
+
+  try {
+    const res = await $Http.get('/workspace/view', config);
+    if (res.status === 201) {
+      return {
+        success: 'Workspace retrieved successfully',
+        workspace: res.data
+      };
+    } else if (res.status === 401) {
+      return {
+        error: 'Unauthorized. Invalid access token.'
+      };
+    } else if (res.status === 500) {
+      return {
+        error: 'Server error'
+      };
+    } else {
+      return {
+        error: 'Unknown error occurred. Please try again later.'
+      };
+    }
+  } catch (error) {
+    return {
+      error: 'An error occurred while processing the request.'
+    };
+  }
+};
