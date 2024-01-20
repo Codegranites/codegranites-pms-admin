@@ -47,6 +47,11 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         httpOnly: true,
         priority: 'high'
       });
+      cookie.set('user', JSON.stringify(user), {
+        maxAge: 60 * 60 * 24 * 30, // 30 days
+        path: '/',
+        priority: 'high'
+      });
       return {
         success: 'Login successful!',
         redirect: DEFAULT_LOGIN_REDIRECT,

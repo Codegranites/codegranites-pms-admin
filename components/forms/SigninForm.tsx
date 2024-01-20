@@ -54,7 +54,8 @@ const SigninForm = () => {
         setUser({
           ...data.user,
           name: getNameFromEmail(data?.user?.email!),
-          image: '/facemoji.png'
+          image: '/facemoji.png',
+          email: data?.user?.email ?? 'Johndoe@fake.com'
         });
         console.log(data.user);
       });

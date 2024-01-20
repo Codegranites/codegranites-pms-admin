@@ -1,16 +1,19 @@
 'use client';
 
+import { getCookie } from 'cookies-next';
 import { usePathname } from 'next/navigation';
 import React, {
   SetStateAction,
   createContext,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState
 } from 'react';
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 import { UserDetails } from '@/types';
+import { getNameFromEmail } from '@/utils/util';
 
 // Add Your Props here
 type User = {
@@ -104,6 +107,21 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
   const [pageLoaded, setPageLoaded] = useState(true);
+
+  useLayoutEffect(() => {
+    const userFromCookie = getCookie('user');
+    if (userFromCookie) {
+      const parsedUser = JSON.parse(userFromCookie) as UserDetails;
+      setUser({
+        name: getNameFromEmail(parsedUser.email),
+        email: parsedUser.email,
+        accountId: parsedUser.accountId,
+        role: parsedUser.role,
+        image: '/facemoji.png'
+      });
+    }
+    return;
+  }, []);
 
   useEffect(() => {
     const projectFilter = localStorage.getItem('project-filter');
