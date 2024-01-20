@@ -8,6 +8,7 @@ import ReactPaginate from 'react-paginate';
 import Card from '@/components/workspace/card';
 import { Workspaces } from '@/libs/constants';
 import WorkSpaceSkelon from '@/components/skeleton/WorkspaceSkeleton';
+import  CreateaWorkspaceButton from '@/components/workspace/createWorkspace'
 
 function Workspace() {
   const WorkSpacePerPage = 4;
