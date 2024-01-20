@@ -37,13 +37,13 @@ function DrawerSetup() {
   //   return (
   //     <Dialog open={open} onOpenChange={setOpen}>
   //       <DialogTrigger asChild>
-  //         <Button variant="outline">Edit Profile</Button>
+  //         <Button variant="outline">Create Workspace</Button>
   //       </DialogTrigger>
   //       <DialogContent className="sm:max-w-[425px]">
   //         <DialogHeader>
   //           <DialogTitle>Edit profile</DialogTitle>
   //           <DialogDescription>
-  //             Make changes to your profile here. Click save when you are done.
+  //                     {/* It seems you don&apos;t have any workspace at the moment.  */}
   //           </DialogDescription>
   //         </DialogHeader>
   //         <CreateForm />
