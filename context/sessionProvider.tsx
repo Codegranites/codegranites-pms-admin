@@ -42,7 +42,6 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
 //  const WorkspaceId = GetFromSessionStorage('workspace');
   // console.log(WorkspaceId);
 
-const WorkspaceId = {};
 
   const setWorkspaceId = (key: string, value: string): void => {
     try {
@@ -57,7 +56,7 @@ const WorkspaceId = {};
     accountId,
     roleId,
     email,
-    WorkspaceId,
+  //  WorkspaceId,
     setWorkspaceId,
     login,
     logout
