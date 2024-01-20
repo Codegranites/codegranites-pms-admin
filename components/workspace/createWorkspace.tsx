@@ -34,13 +34,12 @@ export default function CreateaWorkspaceButton() {
         Create WorkSpace
       </span>
       <div className="flex flex-col items-center w-full border rounded p-20 bg-white  mb-10 ">
-        <DrawerSetup />
+       <CreateWorks />
       </div>
     </div>
   );
 }
-
-function DrawerSetup() {
+function CreateWorks() {
   const [open, setOpen] = React.useState(false);
   const { isDesktop, isMobile, isTablet } = useMediaQuery();
 
