@@ -2,7 +2,6 @@
 
 import { LoginSchema } from '@/schemas';
 import * as z from 'zod';
-import { AuthError } from 'next-auth';
 import { cookies } from 'next/headers';
 
 import { signIn } from '@/auth';
@@ -60,7 +59,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     }
     if (data.status === 400) {
       return {
-        error: 'Email or Phone number already exist'
+        error: 'Invalid email and password or User does not exist'
       };
     }
     if (data.status === 404) {

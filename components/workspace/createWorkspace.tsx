@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { cn } from '@/utils/util';
+import Modal from '@ui/Modal';
 import useMediaQuery from '@/hooks/use-media-query';
 import Button from '@ui/Button';
 import {
@@ -15,13 +15,24 @@ import {
   DrawerTitle,
   DrawerTrigger
 } from '@/components/ui/drawer';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger
+} from '@/components/ui/dialog';
 import { Input } from '@ui/Input';
 import { Label } from '@ui/label';
+import CreateWorkSpaceForm from '../forms/createworkspaceform';
 
-export default function DrawerDemo() {
+export default function CreateaWorkspaceButton() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <span className="font-bold text-4xl items-start flex mb-6">Drawer</span>
+      <span className="font-bold text-4xl items-start flex mb-6">
+        Create WorkSpace
+      </span>
       <div className="flex flex-col items-center w-full border rounded p-20 bg-white  mb-10 ">
         <DrawerSetup />
       </div>
@@ -31,26 +42,27 @@ export default function DrawerDemo() {
 
 function DrawerSetup() {
   const [open, setOpen] = React.useState(false);
-  const { isDesktop } = useMediaQuery();
+  const { isDesktop, isMobile, isTablet } = useMediaQuery();
 
-  // if (isDesktop) {
-  //   return (
-  //     <Dialog open={open} onOpenChange={setOpen}>
-  //       <DialogTrigger asChild>
-  //         <Button variant="outline">Create Workspace</Button>
-  //       </DialogTrigger>
-  //       <DialogContent className="sm:max-w-[425px]">
-  //         <DialogHeader>
-  //           <DialogTitle>Edit profile</DialogTitle>
-  //           <DialogDescription>
-  //                     {/* It seems you don&apos;t have any workspace at the moment.  */}
-  //           </DialogDescription>
-  //         </DialogHeader>
-  //         <CreateForm />
-  //       </DialogContent>
-  //     </Dialog>
-  //   );
-  // }
+  if (isDesktop) {
+    return (
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogTrigger asChild>
+          <Button intent={'secondary'}>Create Workspace</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Begin your journey</DialogTitle>
+            <DialogDescription>
+              It seems you don&apos;t have any workspace at the moment. Kindly
+              create one with us
+            </DialogDescription>
+          </DialogHeader>
+          <CreateWorkSpaceForm />
+        </DialogContent>
+      </Dialog>
+    );
+  }
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -59,12 +71,15 @@ function DrawerSetup() {
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>Begin your journey</DrawerTitle>
           <DrawerDescription>
-            {/* It seems you don&apos;t have any workspace at the moment.  */}
+            It seems you don&apos;t have any workspace at the moment. Kindly
+            create one with us
           </DrawerDescription>
         </DrawerHeader>
-        <CreateForm className="px-4" />
+        <div className="px-5">
+          <CreateWorkSpaceForm />
+        </div>
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button intent={'secondary'}>Cancel</Button>
@@ -72,21 +87,5 @@ function DrawerSetup() {
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
-  );
-}
-
-function CreateForm({ className }: React.ComponentProps<'form'>) {
-  return (
-    <form className={cn('grid items-start gap-4', className)}>
-      <div className="grid gap-2">
-        <Label htmlFor="email">Email</Label>
-        <Input type="email" id="email" defaultValue="name of workspace" />
-      </div>
-      <div className="grid gap-2">
-        <Label htmlFor="username">Username</Label>
-        <Input id="username" defaultValue="workspace description" />
-      </div>
-      <Button type="submit">Save changes</Button>
-    </form>
   );
 }
