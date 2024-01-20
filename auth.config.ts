@@ -1,7 +1,7 @@
 import type { NextAuthConfig } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { LoginSchema } from './schemas';
-import { getUserByEmail } from './data/user';
+import { getUserByEmail, signinUser } from './data/user';
 
 export default {
   providers: [
@@ -12,13 +12,10 @@ export default {
         if (validatedFields.success) {
           const { email, password } = validatedFields.data;
 
-          const user = await getUserByEmail(email);
-          if (!user || !user.password) return null;
+          const user = await signinUser({ email, password });
+          if (!user) return null;
 
-          const passwordMatch = user.password === password;
-          if (passwordMatch) {
-            return user;
-          }
+          return user;
         }
         return null;
       }

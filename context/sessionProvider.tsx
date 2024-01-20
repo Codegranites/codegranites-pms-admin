@@ -39,15 +39,14 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
     setEmail(null);
   };
 
-//  const WorkspaceId = GetFromSessionStorage('workspace');
+  //  const WorkspaceId = GetFromSessionStorage('workspace');
   // console.log(WorkspaceId);
-
 
   const setWorkspaceId = (key: string, value: string): void => {
     try {
       sessionStorage.setItem(key, value);
     } catch (error) {
-    //  console.error(`Error setting item to session storage: ${error}`);
+      //  console.error(`Error setting item to session storage: ${error}`);
     }
   };
 
@@ -56,7 +55,7 @@ export const SessionProvider: React.FC<SessionProviderProps> = ({
     accountId,
     roleId,
     email,
-  //  WorkspaceId,
+    //  WorkspaceId,
     setWorkspaceId,
     login,
     logout

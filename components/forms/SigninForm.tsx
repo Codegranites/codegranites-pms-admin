@@ -1,15 +1,11 @@
 'use client';
 
-import { loginUser } from '@/app/api/authApi';
-import { useSession } from '@/context/sessionProvider';
-
-import React, { useState, useTransition } from 'react';
+import { useState, useTransition } from 'react';
 
 import { MdOutlineMail } from 'react-icons/md';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
-import { Label } from '@/components/ui/label';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { LoginSchema } from '@/schemas';
@@ -24,12 +20,14 @@ import {
   FormMessage
 } from '../ui/form';
 import { FormInput } from '../ui/FormInput';
-import { cn } from '@/utils/util';
+import { cn, getNameFromEmail } from '@/utils/util';
 import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { login } from '@/actions/login';
+import { useStateCtx } from '@/context/StateContext';
 
 const SigninForm = () => {
+  const { setUser } = useStateCtx();
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
 
@@ -53,6 +51,12 @@ const SigninForm = () => {
       login(values).then(data => {
         setSuccess(data?.success);
         setError(data?.error);
+        setUser({
+          ...data.user,
+          name: getNameFromEmail(data?.user?.email!),
+          image: '/facemoji.png'
+        });
+        console.log(data.user);
       });
     });
   };

@@ -7,12 +7,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import MobileNav from './MobileNav';
 import { useStateCtx } from '../../context/StateContext';
 import useWindowHeight from '../../hooks/useDimension';
 import { Notification, SearchNormal, SearchNormal1 } from 'iconsax-react';
+import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 
 const Navbar = () => {
   const { landingMobileMenu, setLandingMobileMenu, user } = useStateCtx();
@@ -103,8 +104,9 @@ const Navbar = () => {
       >
         <FaBars />
       </div>
-
-      <MobileNav />
+      <Suspense fallback={<SkeletonNavbar />}>
+        <MobileNav />
+      </Suspense>
     </nav>
   );
 };

@@ -2,6 +2,7 @@
 
 import { usePathname } from 'next/navigation';
 import React, {
+  SetStateAction,
   createContext,
   useContext,
   useEffect,
@@ -9,6 +10,7 @@ import React, {
   useState
 } from 'react';
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
+import { UserDetails } from '@/types';
 
 // Add Your Props here
 type User = {
@@ -70,14 +72,15 @@ interface StateContextProps {
   pageLoaded: boolean;
   setPageLoaded: React.Dispatch<React.SetStateAction<boolean>>;
   anyModalOpen: boolean;
-  user: User;
+  user: UserDetails;
+  setUser: React.Dispatch<SetStateAction<UserDetails>>;
 }
 
 export const StateContext = createContext({} as StateContextProps);
 
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   // Mock-Data for user profile
-  const user = useMemo(() => {
+  const mocuser = useMemo(() => {
     return {
       name: 'Jane Doe',
       email: 'JohnDoe@gmail.com',
@@ -86,6 +89,13 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   // Add Your State(s) Here
+  const [user, setUser] = useState<UserDetails>({
+    name: '',
+    email: '',
+    accountId: '',
+    role: '',
+    image: '/facemoji.png'
+  });
   const [selectedProjectFilter, setSelectedProjectFilter] = useState('');
   const [projectSearchTerm, setProjectSearchTerm] = useState('');
   const [selectedClientFilter, setSelectedClientFilter] =
@@ -290,6 +300,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setLandingMobileMenu,
       currentPath,
       user,
+      setUser,
       openPaymentModal,
       setOpenPaymentModal,
       isRemoveClientModal,

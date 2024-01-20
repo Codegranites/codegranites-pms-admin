@@ -7,6 +7,8 @@ import { cookies } from 'next/headers';
 
 import { signIn } from '@/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { jwtDecode } from 'jwt-decode';
+import { UserDetails } from '@/types';
 const BaseUrl = 'https://pms-backend-rvoy.onrender.com';
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
@@ -38,13 +40,17 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     const res = await data.json();
     if (data.status === 200 || res.ok) {
       console.log(res);
+      const user = jwtDecode(res.token) as UserDetails;
       cookie.set('access_token', res.token, {
         maxAge: 60 * 60 * 24 * 30, // 30 days
-        path: '/'
+        path: '/',
+        httpOnly: true,
+        priority: 'high'
       });
       return {
-        success: 'Login successful!'
-        // redirect: DEFAULT_LOGIN_REDIRECT
+        success: 'Login successful!',
+        redirect: DEFAULT_LOGIN_REDIRECT,
+        user
       };
     }
     if (data.status === 400) {

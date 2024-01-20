@@ -38,7 +38,7 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
 
   const handleComment = (e: FormEvent) => {
     e.preventDefault();
-
+    // @ts-ignore
     setComments(prevComments => {
       const existingComments = prevComments[projectId] || {
         project_id: projectId,

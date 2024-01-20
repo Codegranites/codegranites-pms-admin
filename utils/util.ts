@@ -138,11 +138,12 @@ export const generateId = () => {
  */
 
 export const SetToSessionStorage = (key: string, value: any): void => {
+  if (typeof sessionStorage === 'undefined') return;
   try {
     const serializedValue = JSON.stringify(value);
     sessionStorage.setItem(key, serializedValue);
   } catch (error) {
-//    console.error(`Error setting item to session storage: ${error}`);
+    //    console.error(`Error setting item to session storage: ${error}`);
   }
 };
 
@@ -154,11 +155,23 @@ export const SetToSessionStorage = (key: string, value: any): void => {
  */
 
 export const GetFromSessionStorage = (key: string): string | null => {
+  if (typeof sessionStorage === 'undefined') return null;
   try {
-    const storedValue = sessionStorage.getItem(key);
+    const storedValue = sessionStorage?.getItem(key);
     return storedValue !== null ? storedValue : null;
   } catch (error) {
-//    console.error(`Error getting item from session storage: ${error}`);
+    //    console.error(`Error getting item from session storage: ${error}`);
     return null;
   }
+};
+
+/**
+ * Returns the name from an email address.
+ * @function getNameFromEmail
+ * @param {string} email
+ * @returns {string}
+ */
+
+export const getNameFromEmail = (email: string): string => {
+  return email.split('@')[0];
 };

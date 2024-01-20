@@ -8,6 +8,6 @@ const LandingPage = dynamic(() => import('../components/home/LandingPage'), {
   loading: () => <SplashScreen />
 });
 
-export default function Home() {
+export default async function Home() {
   return <LandingPage />;
 }

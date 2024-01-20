@@ -24,6 +24,19 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<ThemeProps>('' as ThemeProps);
 
   useLayoutEffect(() => {
+    const t =
+        '%c \ud83d\udc9a Our site is very new. Let us know if you find any issues - Vxrcel \ud83d\udc9a',
+      n = [
+        'font-size: 12px',
+        'color: #fffce1',
+        'font-family: monospace',
+        'background: #0e100f',
+        'display: inline-block',
+        'padding: 1rem 3rem',
+        'border: 1px solid #fffce1',
+        'border-radius: 4px;'
+      ].join(';');
+    console.log(t, n);
     if (theme === 'system') {
       document.documentElement.classList.remove('dark');
       document.documentElement.classList.remove('light');
