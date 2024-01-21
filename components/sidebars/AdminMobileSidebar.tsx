@@ -119,13 +119,13 @@ const AdminMobileSidebar = () => {
           </Link>
           {/* LogOut */}
           <Link
-            href="/"
+            href="/workspace"
             role="button"
             tabIndex={0}
             aria-label="logout"
             onKeyUp={e => {
               if (e.key === 'Enter' || e.key === ' ') {
-                router.push('/');
+                router.push('/workspace');
                 return;
               }
             }}
@@ -134,7 +134,7 @@ const AdminMobileSidebar = () => {
             )}
           >
             <LogoutCurve size={18} aria-hidden />
-            <span>LogOut</span>
+            <span>Exit Current Workspace</span>
           </Link>
         </ul>
       </section>

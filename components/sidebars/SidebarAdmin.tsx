@@ -16,7 +16,6 @@ const SidebarAdmin = () => {
   const pathname = usePathname();
   const router = useRouter();
 
-  // remove the / from the pathname
   useEffect(() => {
     const currentPath = pathname?.replace(/^\/([^\/]+).*$/, '$1');
 
@@ -99,13 +98,13 @@ const SidebarAdmin = () => {
 
         {/* LogOut */}
         <Link
-          href="/"
+          href="/workspace"
           role="button"
           tabIndex={0}
           aria-label="logout"
           onKeyUp={e => {
             if (e.key === 'Enter' || e.key === ' ') {
-              router.push('/');
+              router.push('/workspace');
               return;
             }
           }}
@@ -114,7 +113,9 @@ const SidebarAdmin = () => {
           )}
         >
           <LogoutCurve size={24} aria-hidden />
-          <span className=" max-[1139px]:hidden group-hover:block">LogOut</span>
+          <span className=" max-[1139px]:hidden group-hover:block">
+            Exit Current Workspace
+          </span>
         </Link>
 
         {/* User Profile */}

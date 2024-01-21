@@ -80,10 +80,9 @@ const CreateWorkSpaceForm = () => {
                 <FormControl>
                   <textarea
                     disabled={isLoading}
-                    // type="email"
                     {...field}
                     placeholder="Enter Workspace Description"
-                    className="w-full text-black h-32 border text-md font-medium rounded-md focus:ring-primary-light focus:border-primary-light p-[10px]  resize-none"
+                    className="w-full text-black md:h-[200px] h-[150px] border text-md font-medium rounded-xl border border-[#e1e1e1] px-4 py-2 sidebar-scroll outline-none focus-visible:border-primary transition-all duration-300  resize-none"
                   />
                 </FormControl>
                 <FormMessage />
