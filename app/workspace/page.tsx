@@ -8,7 +8,7 @@ import ReactPaginate from 'react-paginate';
 import Card from '@/components/workspace/card';
 import { Workspaces } from '@/libs/constants';
 import WorkSpaceSkelon from '@/components/skeleton/WorkspaceSkeleton';
-import  CreateaWorkspaceButton from '@/components/workspace/createWorkspace'
+import CreateaWorkspaceButton from '@/components/workspace/createWorkspace';
 
 function Workspace() {
   const WorkSpacePerPage = 4;
@@ -36,7 +36,7 @@ function Workspace() {
             <RiStackLine size={23} />
             <p className="text-[1rem] text-[#282828]">My work Space</p>
           </div>
-     <CreateaWorkspaceButton />
+          <CreateaWorkspaceButton />
           <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5">
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between">
               {subset.map(space => (
