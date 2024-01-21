@@ -79,12 +79,6 @@ export const SIDEBAR_ADMIN_LINKS: SidebarAdminProps[] = [
     icon: Notification,
 
     link: 'admin-notifications'
-  },
-  {
-    id: 10,
-    label: 'Invite',
-    icon: AddCircle,
-    link: 'admin-invite'
   }
 ];
 
