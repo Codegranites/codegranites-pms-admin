@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { SIDEBAR_ADMIN_LINKS } from '../../libs/constants';
 import { useState, useEffect } from 'react';
-import { cn } from '../../utils/util';
+import { cn, shrinkString } from '../../utils/util';
 import { LogoutCurve, Setting2 } from 'iconsax-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -66,7 +66,7 @@ const SidebarAdmin = () => {
 
         <span className="bg-[#8e8e8e] w-full max-w-[245px] h-[1px] " />
       </ul>
-      <div className="flex flex-col w-full gap-y-6 xl:gap-y-8 pt-4 items-center">
+      <ul className="flex flex-col w-full gap-y-6 xl:gap-y-8 pt-4 items-center">
         <Link
           href="/admin-settings/profile?setting_tab=profile"
           role="button"
@@ -109,12 +109,12 @@ const SidebarAdmin = () => {
             }
           }}
           className={cn(
-            'flex group-hover:w-full min-[1140px]:w-full min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#e80000] font-medium text-base transition-colors duration-300 cursor-pointer hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500'
+            'flex flex-nowrap group-hover:w-full min-[1140px]:w-full  min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#e80000] font-medium text-sm transition-colors duration-300 cursor-pointer hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500'
           )}
         >
           <LogoutCurve size={24} aria-hidden />
           <span className=" max-[1139px]:hidden group-hover:block">
-            Exit Current Workspace
+            Exit current workspace
           </span>
         </Link>
 
@@ -144,15 +144,15 @@ const SidebarAdmin = () => {
             <span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
           </div>
           <div className="flex flex-col  max-[1139px]:hidden w-full group-hover:w-full group-hover:flex">
-            <span className="text-[#090909] text-base">{user.name}</span>
+            <span className="text-[#090909] text-base">
+              {shrinkString({ str: user.name!, len: 17 })}
+            </span>
             <span className="text-[#3a3a3a] text-sm" title={user.email}>
-              {user.email.length > 17
-                ? user.email.slice(0, 17) + '...'
-                : user.email}
+              {shrinkString({ str: user.email, len: 17 })}
             </span>
           </div>
         </Link>
-      </div>
+      </ul>
     </section>
   );
 };

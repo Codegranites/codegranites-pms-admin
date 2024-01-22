@@ -19,6 +19,7 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { CreateWorkSpaceSchema } from '@/schemas';
 import { createWorkspace } from '@/actions/workspace';
+import { Textarea } from '../ui/textarea';
 
 const CreateWorkSpaceForm = () => {
   const [success, setSuccess] = React.useState<string | undefined>('');
@@ -78,11 +79,11 @@ const CreateWorkSpaceForm = () => {
               <FormItem>
                 <FormLabel className="font-semibold ">Business Email</FormLabel>
                 <FormControl>
-                  <textarea
+                  <Textarea
                     disabled={isLoading}
                     {...field}
                     placeholder="Enter Workspace Description"
-                    className="w-full text-black md:h-[200px] h-[150px] border text-md font-medium rounded-xl border border-[#e1e1e1] px-4 py-2 sidebar-scroll outline-none focus-visible:border-primary transition-all duration-300  resize-none"
+                    className="w-full text-black md:h-[200px] h-[150px] border text-md font-medium rounded-xl  border-[#e1e1e1] px-4 py-2 sidebar-scroll outline-none focus-visible:border-primary transition-all duration-300  resize-none"
                   />
                 </FormControl>
                 <FormMessage />

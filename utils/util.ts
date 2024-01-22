@@ -175,3 +175,23 @@ export const GetFromSessionStorage = (key: string): string | null => {
 export const getNameFromEmail = (email: string): string => {
   return email.split('@')[0];
 };
+
+/**
+ * Shrink a string to a specified length(len).
+ * @function shrinkString
+ * @param {string} str
+ * @param {number} len
+ * @returns {string}
+ */
+export const shrinkString = ({
+  str,
+  len
+}: {
+  str: string;
+  len: number;
+}): string => {
+  if (str.length > len) {
+    return str.substring(0, len) + '...';
+  }
+  return str;
+};
