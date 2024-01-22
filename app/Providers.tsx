@@ -3,6 +3,7 @@
 import React from 'react';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { ToastContainer } from 'react-toastify';
+import { SessionProvider } from 'next-auth/react';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -19,8 +20,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         pauseOnHover
         theme="light"
       />
-
-      {children}
+      <SessionProvider>{children}</SessionProvider>
 
       <ProgressBar
         height="4px"

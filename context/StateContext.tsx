@@ -14,6 +14,7 @@ import React, {
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 import { UserDetails } from '@/types';
 import { getNameFromEmail } from '@/utils/util';
+import { useSession } from 'next-auth/react';
 
 // Add Your Props here
 type User = {
@@ -99,6 +100,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     role: '',
     image: '/facemoji.png'
   });
+  const { data: session } = useSession();
   const [selectedProjectFilter, setSelectedProjectFilter] = useState('');
   const [projectSearchTerm, setProjectSearchTerm] = useState('');
   const [selectedClientFilter, setSelectedClientFilter] =
@@ -108,6 +110,16 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [handleSwipe, setHandleSwipe] = useState<number | null>(null);
   const [pageLoaded, setPageLoaded] = useState(true);
 
+  useLayoutEffect(() => {
+    setUser({
+      ...session?.user,
+      name: session?.user?.name ?? 'John doe',
+      image: session?.user?.image ?? '/facemoji.png',
+      email: session?.user?.email ?? 'Johndoe@fake.com'
+    });
+
+    return;
+  }, [session]);
   useLayoutEffect(() => {
     const userFromCookie = getCookie('user');
     if (userFromCookie) {

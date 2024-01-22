@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useEffect, useLayoutEffect, useState, useTransition } from 'react';
 
 import { MdOutlineMail } from 'react-icons/md';
 import { Eye, EyeSlash } from 'iconsax-react';
@@ -25,9 +26,13 @@ import FormError from './FormError';
 import FormSuccess from './FormSuccess';
 import { login } from '@/actions/login';
 import { useStateCtx } from '@/context/StateContext';
+import SocialLogin from '../auth/SocialLogin';
+import { UserDetails } from '@/types';
+import { useSession } from 'next-auth/react';
 
 const SigninForm = () => {
   const { setUser } = useStateCtx();
+
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
 
@@ -51,13 +56,13 @@ const SigninForm = () => {
       login(values).then(data => {
         setSuccess(data?.success);
         setError(data?.error);
-        setUser({
-          ...data.user,
-          name: getNameFromEmail(data?.user?.email!),
-          image: '/facemoji.png',
-          email: data?.user?.email ?? 'Johndoe@fake.com'
-        });
-        console.log(data.user);
+        // setUser({
+        //   ...data.user,
+        //   name: getNameFromEmail(data?.user?.email!),
+        //   image: '/facemoji.png',
+        //   email: data?.user?.email ?? 'Johndoe@fake.com'
+        // });
+        // console.log(data.user);
       });
     });
   };
@@ -174,22 +179,8 @@ const SigninForm = () => {
         <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
       </div>
 
-      <Link href="">
-        <Button
-          className=" text-black w-full my-3 border-[#C7C7C7]  hover:text-white transition-colors duration-300	border rounded-md bg-[#fff] py-1"
-          leftIcon={
-            <Image
-              src="/Mobile/google.svg"
-              alt="google_logo_icon"
-              width={20}
-              height={20}
-              className="mb-1"
-            />
-          }
-        >
-          Continue with Google
-        </Button>
-      </Link>
+      <SocialLogin />
+
       <span className="  text-header  mt-5 md:mt-8 text-sm  relative block text-center md:text-black z-10">
         Don&apos;t have an account?
         <Link href="/sign-up" className="ml-1 underline font-medium">

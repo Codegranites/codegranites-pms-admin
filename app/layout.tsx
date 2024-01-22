@@ -33,17 +33,19 @@ export default function RootLayout({
   return (
     <html lang="en" className={workSans.variable}>
       <SessionProvider>
-        <StateContextProvider>
-          <LenisProvider>
-            <ThemeProvider>
-              <body className={workSans.className}>
-                <Providers>{children}</Providers>
-                <SwipeIndicator />
-                <GotoTop />
-              </body>
-            </ThemeProvider>
-          </LenisProvider>
-        </StateContextProvider>
+        <Providers>
+          <StateContextProvider>
+            <LenisProvider>
+              <ThemeProvider>
+                <body className={workSans.className}>
+                  {children}
+                  <SwipeIndicator />
+                  <GotoTop />
+                </body>
+              </ThemeProvider>
+            </LenisProvider>
+          </StateContextProvider>
+        </Providers>
       </SessionProvider>
     </html>
   );

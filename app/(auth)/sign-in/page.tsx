@@ -3,10 +3,25 @@ import { useState } from 'react';
 import { useSession } from '@/context/sessionProvider';
 import SigninForm from '@/components/forms/SigninForm';
 import { auth } from '@/auth';
+import { setCookie } from 'cookies-next';
+import { UserDetails } from '@/types';
+import { dateToSeconds, generateId } from '@/utils/util';
 
 const SignIn = async () => {
-  const user = await auth();
-  console.log(user);
+  const data = await auth();
+
+  const user = {
+    email: data?.user?.email,
+    name: data?.user?.name,
+    image: data?.user?.image,
+    accountId: generateId(),
+    role: 'client'
+  } as UserDetails;
+  console.log('USERDEETS :', dateToSeconds(data?.expires!));
+  setCookie('user', JSON.stringify(user), {
+    maxAge: dateToSeconds(data?.expires!),
+    path: '/'
+  });
   return (
     <>
       <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">
@@ -14,7 +29,8 @@ const SignIn = async () => {
 
         <div className="desktop flex md:justify-between md:gap-x-8 items-center h-full relative max-container px-2 sm:px-4 lg:px-8">
           {/* Form | Signin */}
-          <SigninForm />
+          {/* @ts-ignore */}
+          <SigninForm user={data?.user} />
           {/* Desktop image by right */}
           <div className="hidden md:flex h-full w-full rounded-full  items-center max-w-[818px]">
             <Image
