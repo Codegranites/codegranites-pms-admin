@@ -35,10 +35,9 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         password
       })
     });
-    console.log(data.status);
+
     const res = await data.json();
     if (data.status === 200 || res.ok) {
-      console.log(res);
       const user = jwtDecode(res.token) as UserDetails;
       cookie.set('access_token', res.token, {
         maxAge: 60 * 60 * 24 * 30, // 30 days

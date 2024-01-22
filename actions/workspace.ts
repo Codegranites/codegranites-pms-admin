@@ -6,7 +6,7 @@ import { cookies } from 'next/headers';
 import * as z from 'zod';
 
 const BaseUrl =
-  process.env.NEXT_PUBLIC_BASEURL || 'https://pms-backend-rvoy.onrender.com';
+  process.env.NEXT_PUBLIC_BASEURL ?? 'https://pms-backend-rvoy.onrender.com';
 
 const $Http = Calls(BaseUrl);
 
@@ -22,6 +22,8 @@ export const createWorkspace = async (
   }
 
   const authToken = cookies()?.get('access_token');
+  console.log(authToken);
+  return;
   if (!authToken) {
     return {
       error: 'Unauthorized. Missing access token.'

@@ -12,7 +12,7 @@ import { NextResponse } from 'next/server';
 export default auth(req => {
   const access_token = cookies().get('access_token');
   const decodedToken = access_token && jwtDecode(access_token.value);
-  console.log(decodedToken);
+  // console.log(decodedToken);
 
   const { nextUrl } = req;
   const hasCookie = cookies().has('access_token');
