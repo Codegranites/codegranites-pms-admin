@@ -23,7 +23,7 @@ export const RegisterSchema = z.object({
 });
 
 export const CreateWorkSpaceSchema = z.object({
-  name: z.string().min(5, {
+  workspaceName: z.string().min(5, {
     message: 'Workspace Name is requried'
   }),
   description: z.string().min(8, {

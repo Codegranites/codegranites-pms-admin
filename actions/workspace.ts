@@ -21,9 +21,8 @@ export const createWorkspace = async (
     };
   }
 
-  const authToken = cookies()?.get('access_token');
-  console.log(authToken);
-  return;
+  const authToken = cookies()?.get('access_token')?.value;
+
   if (!authToken) {
     return {
       error: 'Unauthorized. Missing access token.'
@@ -37,9 +36,24 @@ export const createWorkspace = async (
       Authorization: `Bearer ${authToken}`
     }
   };
+  const { workspaceName, description } = validatedFields.data;
 
   try {
-    const res = await $Http.post('/workspace/create', values, config);
+    const data = await fetch(`${BaseUrl}/workspace/create`, {
+      method: 'POST',
+
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+        credentials: 'include'
+      },
+      body: JSON.stringify({
+        name: workspaceName,
+        description
+      })
+    });
+    const res = await data.json();
+    console.log(res);
     if (res.status === 201) {
       return {
         success: 'Workspace created successfully'
@@ -58,7 +72,7 @@ export const createWorkspace = async (
       };
     } else {
       return {
-        error: 'Unknown error occurred. Please try again later.'
+        error: res.message ?? 'Unknown error occurred. Please try again later.'
       };
     }
   } catch (error) {

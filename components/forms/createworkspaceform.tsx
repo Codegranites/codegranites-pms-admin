@@ -29,7 +29,7 @@ const CreateWorkSpaceForm = () => {
   const form = useForm<z.infer<typeof CreateWorkSpaceSchema>>({
     resolver: zodResolver(CreateWorkSpaceSchema),
     defaultValues: {
-      name: '',
+      workspaceName: '',
       description: ''
     }
   });
@@ -55,7 +55,7 @@ const CreateWorkSpaceForm = () => {
         >
           <FormField
             control={form.control}
-            name="name"
+            name="workspaceName"
             render={({ field }) => (
               <FormItem>
                 <FormLabel className="font-semibold ">Workspace Name</FormLabel>
