@@ -1,6 +1,7 @@
 import { auth } from './auth';
 import { cookies } from 'next/headers';
 import { jwtDecode } from 'jwt-decode';
+import { deleteCookie } from 'cookies-next';
 import {
   DEFAULT_LOGIN_REDIRECT,
   apiAuthPrefix,
@@ -12,11 +13,12 @@ import { NextResponse } from 'next/server';
 export default auth(req => {
   const access_token = cookies().get('access_token');
   const decodedToken = access_token && jwtDecode(access_token.value);
-  console.log(decodedToken);
+  console.log('decodedToken', decodedToken);
 
   const { nextUrl } = req;
   const hasCookie = cookies().has('access_token');
   const isLoggedIn = !!req.auth || hasCookie;
+  console.log('LOGGED IN?: ', isLoggedIn);
 
   const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
   const isPublicRoute = publicRoutes.includes(nextUrl.pathname);

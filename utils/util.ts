@@ -175,3 +175,38 @@ export const GetFromSessionStorage = (key: string): string | null => {
 export const getNameFromEmail = (email: string): string => {
   return email.split('@')[0];
 };
+
+/**
+ * Shrink a string to a specified length(len).
+ * @function shrinkString
+ * @param {string} str
+ * @param {number} len
+ * @returns {string}
+ */
+export const shrinkString = ({
+  str,
+  len
+}: {
+  str: string;
+  len: number;
+}): string => {
+  if (str.length > len) {
+    return str.substring(0, len) + '...';
+  }
+  return str;
+};
+
+interface DateToMilliseconds {
+  (date: string): number;
+}
+
+/**
+ * Converts a date to seconds
+ * @function dateToSeconds
+ * @param {string} date
+ * @returns {number}
+ */
+export const dateToSeconds: DateToMilliseconds = (date: string): number => {
+  const convertedDate = new Date(date);
+  return Math.floor(convertedDate.getTime() / 1000);
+};

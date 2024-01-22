@@ -12,6 +12,13 @@ export const {
   signIn,
   signOut
 } = NextAuth({
-  session: { strategy: 'jwt' },
+  pages: {
+    signIn: '/sign-in'
+  },
+  events: {
+    async signIn({ user }) {
+      console.log('signIn', user);
+    }
+  },
   ...authConfig
 });
