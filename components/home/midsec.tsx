@@ -27,13 +27,13 @@ const Midsec = () => {
         )}
       >
         <h2
-          className="font-bold text-xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-header mb-4"
+          className="font-bold text-xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-header dark:text-gray-50 mb-4"
           data-value="Meet Our Super Dashboard"
           onMouseEnter={handleMouseEnter}
         >
           Meet Our Super Dashboard
         </h2>
-        <p className="w-full text-center text-base sm:text-lg text-[#282828]">
+        <p className="w-full text-center text-base sm:text-lg text-header dark:text-gray-200">
           CodeGranites Super Dashboard is not just a tool; it&apos;s your
           co-pilot in the journey of project mastery. Streamline tasks, amplify
           collaboration, and chart your course to success like never before

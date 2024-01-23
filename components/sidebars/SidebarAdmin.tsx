@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
 import { useStateCtx } from '@/context/StateContext';
+import ThemeButtons from '../ThemeButtons';
 
 const SidebarAdmin = () => {
   const { user } = useStateCtx();
@@ -23,7 +24,7 @@ const SidebarAdmin = () => {
   }, [pathname]);
 
   return (
-    <section className="bg-white dark:bg-primary z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 dark:border-primary-light sidebar-scroll overflow-x-hidden group select-none">
+    <section className="bg-white dark:bg-primary dark:border-primary-light z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200  sidebar-scroll overflow-x-hidden group select-none">
       <Link
         href="/"
         className=" max-[1140px]:w-full group-hover:w-full h-[53px]"
@@ -53,7 +54,7 @@ const SidebarAdmin = () => {
             className={cn(
               'flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] dark:text-gray-400 font-medium text-base transition-colors duration-300 cursor-pointer ',
               activeLink === link.link
-                ? 'bg-primary-light dark:bg-primary-light/75 text-white dark:text-white rounded outline-none'
+                ? 'bg-primary-light dark:bg-primary-light/75 dark:text-white  text-white rounded outline-none'
                 : 'hover:bg-black/10 dark:hover:bg-color-dark/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
             )}
             onClick={() => setActiveLink(link.link)}
@@ -167,6 +168,10 @@ const SidebarAdmin = () => {
             </span>
           </div>
         </Link>
+
+        <div className="w-full opacity-0 min-[1139px]:opacity-100 flex justify-center group-hover:opacity-100 transition-colors duration-300">
+          <ThemeButtons />
+        </div>
       </ul>
     </section>
   );

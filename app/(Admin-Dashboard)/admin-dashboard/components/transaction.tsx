@@ -7,7 +7,7 @@ import Image from 'next/image';
 const Transaction = () => {
   return (
     <section className="flex flex-col w-full   lg:border-r-[#e1e1e1] h-full items-center justify-center lg:pb-16">
-      <div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b lg:border-r border-t  border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header dark:text-gray-200 font-medium">
+      <div className="flex w-full sm:px-5 items-center justify-between mb-6 border-b border-t  border-[#e1e1e1] h-[56px] relative sm:text-xl  text-header dark:text-gray-200 dark:border-primary-light font-medium">
         <div className="flex gap-2 items-center justify-center">
           <WalletMoney size="32" />
           <span>Transactions</span>

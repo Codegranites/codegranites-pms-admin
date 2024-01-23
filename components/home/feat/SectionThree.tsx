@@ -24,11 +24,11 @@ const SectionThree = () => {
           height={411}
         />
       </div>
-      <div className="items-center justify-center self-center">
-        <h2 className="text-[28px] leading-[48px] font-semibold mb-4">
+      <div className="items-center justify-center self-center ">
+        <h2 className="text-[28px] text-header dark:text-gray-50 leading-[48px] font-semibold mb-4">
           Project Milestones
         </h2>
-        <p className="max-w-[551px] text-[18px] font-normal">
+        <p className="max-w-[551px] text-[18px] font-normal text-header dark:text-gray-200">
           Chart your course to success with precision using our Project
           Milestones feature. Experience the thrill of achievement as you
           effortlessly set, track, and conquer critical project milestones. From

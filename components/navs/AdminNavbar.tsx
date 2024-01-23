@@ -63,7 +63,7 @@ const AdminNavbar = () => {
             <h2 className="hidden md:inline sm:text-3xl capitalize font-medium text-header dark:text-gray-200  ">
               Welcome back! {firstName ?? 'User'}
             </h2>
-            <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl md:hidden capitalize font-medium text-header  ">
+            <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl md:hidden capitalize font-medium text-header dark:text-gray-200  ">
               {pathName}
             </h2>
           </div>
