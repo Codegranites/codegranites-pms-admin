@@ -81,13 +81,13 @@ function Profile() {
           </div>
           <div className="flex-col">
             <Button
-              className="border w-[206px] h-[70px] mb-5 bg-transparent text-black hover:text-white transition-colors duration-300"
+              className="border w-[206px] h-[70px] mb-5 bg-transparent text-black hover:text-white transition-colors duration-100 hover:duration-500"
               onClick={handleChangeImage}
             >
               Change Photo
             </Button>
             <Button
-              className="border w-[206px] h-[70px] bg-transparent text-[#FF0000]"
+              className="border w-[206px] h-[70px] bg-transparent text-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:font-medium transition-colors duration-100 hover:duration-500"
               onClick={handleDeleteImage}
             >
               Delete Photo

@@ -121,10 +121,10 @@ const SidebarAdmin = () => {
         {/* User Profile */}
 
         <Link
-          href="/admin-profile"
+          href="/admin-settings/profile?setting_tab=profile"
           className={cn(
             'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300 justify-center mb-4',
-            activeLink === 'admin-profile'
+            activeLink === 'profile'
               ? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
               : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
           )}
@@ -133,11 +133,11 @@ const SidebarAdmin = () => {
           aria-label="Profile"
           onKeyUp={e => {
             if (e.key === 'Enter' || e.key === ' ') {
-              setActiveLink('admin-profile');
+              setActiveLink('profile');
               return;
             }
           }}
-          onClick={() => setActiveLink('admin-profile')}
+          onClick={() => setActiveLink('profile')}
         >
           <div className="relative w-full max-w-[60px] flex justify-center h-[60px] rounded-full ">
             <Image

@@ -19,11 +19,11 @@ const GetStarted = () => {
 
   return (
     <>
-      <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
+      <section className="w-full max-container md:mx-auto h-[100vh] bg-white md:pt-10">
         {/* header component  */}
         <Header_for_many />
 
-        <div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
+        <div className="desktop block md:flex md:justify-center  h-full relative items-center lg:items-start lg:mt-20">
           <div className="mobile container px-3 ">
             {/* overlay */}
             <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:bg-transparent">
@@ -102,13 +102,13 @@ const GetStarted = () => {
           </div>
 
           {/* Desktop image by right */}
-          <div className="hidden md:block h-full w-full ">
+          <div className="hidden md:flex lg:h-full w-full max-w-[1000px] lg:items-start items-center">
             <Image
-              src="/MacBookPro2.svg"
+              src="/MacBookPro2.webp"
               alt="sign in Desktop"
-              width={140}
-              height={100}
-              className=" hidden md:block h-full w-full"
+              width={1000}
+              height={500}
+              className=" hidden md:block "
             />
           </div>
         </div>
