@@ -2,17 +2,17 @@
 'use client';
 
 import ProjectCardAdmin from '../card/ProjectCardAdmin';
-import { PROJECTS, ProjectCardProps } from '../../../libs/projects';
+import { PROJECTS, ProjectCardProps } from '@/libs/projects';
 import SuperAdminProject from '../../super-admin-project/super-admin-project';
 import AdminCounterCardContainer from './AdminCounterCardContainer';
 import { Suspense, useEffect, useState } from 'react';
 import CustomPagination from '../Pagination';
 import ReactPaginate from 'react-paginate';
-import { useStateCtx } from '../../../context/StateContext';
+import { useStateCtx } from '@/context/StateContext';
 import NotFound from '../NotFound';
 import ProjectNotFound from './ProjectNotFound';
-import { cn } from '../../../utils/util';
-import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
+import { cn } from '@/utils/util';
+import AdminCardSkelon from '@/components/skeleton/AdminCardSkeleton';
 
 const AdminProjectContainer = () => {
   const { projectSearchTerm, selectedProjectFilter } = useStateCtx();
@@ -78,24 +78,29 @@ const AdminProjectContainer = () => {
         })}
       >
         <span
-          className={cn('text-lg font-semibold text-gray-400', {
-            'text-primary-light': subset.length > 0
-          })}
+          className={cn(
+            'text-lg font-semibold text-gray-400 dark:text-gray-100',
+            {
+              'text-primary-light dark:text-[#28affd]': subset.length > 0
+            }
+          )}
         >
           {subset.length}
         </span>
-        <p className={cn('font-medium')}>
+        <p className={cn('font-medium text-header dark:text-gray-200')}>
           {subset.length > 0
             ? 'Search Result for'
             : subset.length > 1
               ? 'Search Results for'
               : 'No Results for'}{' '}
-          <b>&quot;{projectSearchTerm}&quot;</b>
+          <b className="dark:text-yellow-400 dark:bg-black/80">
+            &quot;{projectSearchTerm}&quot;
+          </b>
         </p>
       </div>
       <section
         className={cn(
-          'rounded-2xl min-[1162px]:py-[43px] min-[1162px]:px-[70px] sm:p-7 w-full h-full sm:border border-gray-300 ',
+          'rounded-2xl min-[1162px]:py-[43px] min-[1162px]:px-[70px] sm:p-7 w-full h-full sm:border dark:border-primary-light border-gray-300 ',
           {
             'grid place-items-center': subset.length === 0
           }
@@ -132,12 +137,12 @@ const AdminProjectContainer = () => {
             onPageChange={handlePageChange}
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            className="flex items-center justify-center  border border-gray-300 px-4 rounded-md select-none"
-            pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300"
-            previousClassName="pr-2 lg:pr-4 text-[#6B7280] font-medium"
-            nextClassName="pl-2 lg:pl-4 text-[#6B7280] font-medium"
-            pageLinkClassName="text-[#6B7280] w-full h-full flex items-center justify-center"
-            activeClassName="bg-[#becbd7]  font-medium"
+            className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
+            pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
+            previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+            nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+            pageLinkClassName="text-[#6B7280] dark:text-[#28affd] w-full h-full flex items-center justify-center"
+            activeClassName="bg-[#becbd7] dark:bg-[#28affd38]  font-medium"
             renderOnZeroPageCount={null}
             disabledClassName="cursor-not-allowed opacity-70"
             disabledLinkClassName="cursor-not-allowed opacity-70"

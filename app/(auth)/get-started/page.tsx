@@ -11,6 +11,8 @@ import React, { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { FiUser } from 'react-icons/fi';
 import { Header_for_many } from '../../../components/auth/Header';
+import { Textarea } from '@/components/ui/textarea';
+import { FormInput } from '@/components/ui/FormInput';
 
 const GetStarted = () => {
   // const initialPassword = 'jamestest2354';
@@ -19,14 +21,14 @@ const GetStarted = () => {
 
   return (
     <>
-      <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
+      <section className="w-full max-container md:mx-auto h-[100vh] bg-white md:pt-10 dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500">
         {/* header component  */}
         <Header_for_many />
 
-        <div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
+        <div className="desktop flex md:justify-center  h-full relative items-center lg:items-start lg:mt-20">
           <div className="mobile container px-3 ">
             {/* overlay */}
-            <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:bg-transparent">
+            <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
               <h1 className="text-center font-[600]  text-[28px]">
                 {' '}
                 Get Started !
@@ -35,80 +37,52 @@ const GetStarted = () => {
                 Begin your journey
               </span>
 
-              <form action="" className="flex flex-col mt-4 z-10">
-                <label htmlFor="Business Email" className="font-bold">
-                  Project Title
-                </label>
-                <Input
-                  type="text"
-                  id="projectTitle"
-                  name="projectTitle"
-                  value={projectTitle}
-                  onChange={e => setProjectTitle(e.target.value)}
-                  placeHolder="Enter Project Title"
-                  required
-                  className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
-                />
+              <form action="" className="flex flex-col mt-4 z-10 gap-y-6">
+                <div className="w-full">
+                  <label htmlFor="Business Email" className="font-bold">
+                    Project Title
+                  </label>
+                  <FormInput
+                    type="text"
+                    id="projectTitle"
+                    name="projectTitle"
+                    value={projectTitle}
+                    onChange={e => setProjectTitle(e.target.value)}
+                    placeholder="Enter Project Title"
+                    required
+                    className="mt-1 mb-3 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
+                  />
+                </div>
 
-                <label htmlFor="Business Email" className="font-bold">
-                  Project Description
-                </label>
-                <textarea
-                  id="projectDesc"
-                  name="projectDesc"
-                  value={projectDesc}
-                  onChange={e => setProjectDesc(e.target.value)}
-                  placeholder="Please describe your project"
-                  required
-                  rows={6}
-                  cols={40}
-                  className="mt-1 mb-3 p-2 w-full text-black border text-md font-medium rounded-md"
-                />
+                <div className="w-full">
+                  <label htmlFor="Business Email" className="font-bold">
+                    Project Description
+                  </label>
+                  <Textarea
+                    id="projectDesc"
+                    name="projectDesc"
+                    value={projectDesc}
+                    onChange={e => setProjectDesc(e.target.value)}
+                    placeholder="Please describe your project"
+                    required
+                    rows={6}
+                    cols={40}
+                    className="mt-1 mb-3 p-2 w-full text-black border text-md font-medium rounded-md"
+                  />
+                </div>
 
                 <Button className="w-full rounded-md my-3">Submit</Button>
               </form>
-
-              <div className="seperator flex items-center space-x-2 my-2">
-                <div className="seperate h-[1px] bg-[#C7C7C7] w-full"></div>
-                <h4 className="text-gray/80"> Or</h4>
-                <div className="seperate h-[1px] bg-[#C7C7C7] w-full"></div>
-              </div>
-
-              <Link href="">
-                <Button
-                  className=" text-black w-full my-3 border-[#C7C7C7] 
-							border rounded-md bg-[#fff] py-1"
-                  leftIcon={
-                    <Image
-                      src="/Mobile/google.svg"
-                      alt="google_logo_icon"
-                      width={20}
-                      height={20}
-                      className="mb-1"
-                    />
-                  }
-                >
-                  Contine with Google
-                </Button>
-              </Link>
             </div>
-
-            <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
-              Aready have an account?
-              <Link href="/sign-in" className="ml-1 underline">
-                Login
-              </Link>
-            </span>
           </div>
 
           {/* Desktop image by right */}
-          <div className="hidden md:block h-full w-full ">
+          <div className="hidden md:flex lg:h-full w-full max-w-[1000px] lg:items-start items-center">
             <Image
-              src="/MacBookPro2.svg"
+              src="/MacBookPro2.webp"
               alt="sign in Desktop"
-              width={140}
-              height={100}
-              className=" hidden md:block h-full w-full"
+              width={1000}
+              height={500}
             />
           </div>
         </div>
@@ -118,8 +92,8 @@ const GetStarted = () => {
           <Image
             src="/Mobile/mobile_back.png"
             alt="backgroud_ng_for_mobile"
-            width={140}
-            height={50}
+            width={700}
+            height={500}
             className="h-[739.363px] w-[684.675px]"
           />
         </div>

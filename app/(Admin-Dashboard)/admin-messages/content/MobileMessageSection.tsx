@@ -62,14 +62,14 @@ const MobileMessageSection = () => {
         </span>
       </button>
       <div className="flex w-full flex-col max-w-[687px] sm:h-[500px] hide-scroll overflow-y-auto">
-        {filterSearchMsgs.map(msg => (
-          <Suspense key={msg.id} fallback={<MessageSkeleton />}>
+        <Suspense fallback={<MessageSkeleton />}>
+          {filterSearchMsgs.map(msg => (
             <div
               key={msg.id}
-              className="w-full flex justify-between   border-t border-b border-gray-200 py-2 gap-x-2"
+              className="w-full flex justify-between   border-t border-b border-gray-200 dark:border-primary-light py-2 gap-x-2"
             >
               <div className="flex w-full flex-col items-start justify-between gap-y-1 min-[400px]:gap-y-2">
-                <h3 className="font-medium text-sm sm:text-base">
+                <h3 className="font-medium text-sm sm:text-base text-header dark:text-gray-100">
                   <span
                     dangerouslySetInnerHTML={{
                       __html: msg.author.replace(
@@ -88,7 +88,7 @@ const MobileMessageSection = () => {
                     {msg.stack}
                   </span>
                 </h3>
-                <p className="text-xs min-[400px]:text-sm sm:text-base">
+                <p className="text-xs min-[400px]:text-sm sm:text-base text-header dark:text-gray-400">
                   {msg.message.length > messageLen
                     ? msg.message.slice(0, messageLen) + '...'
                     : msg.message}
@@ -96,7 +96,7 @@ const MobileMessageSection = () => {
               </div>
 
               <div className="flex w-full  max-w-[130px] sm:max-w-[160px] flex-col items-end justify-between">
-                <p className="text-xs sm:text-sm opacity-70">
+                <p className="text-xs sm:text-sm opacity-70 text-header dark:text-gray-300">
                   {msg.date}, {msg.time}
                 </p>
                 <span
@@ -111,8 +111,8 @@ const MobileMessageSection = () => {
                 </span>
               </div>
             </div>
-          </Suspense>
-        ))}
+          ))}
+        </Suspense>
       </div>
     </section>
   );

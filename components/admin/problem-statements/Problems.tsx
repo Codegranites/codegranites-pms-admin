@@ -14,6 +14,7 @@ import { ProblemsDataProps } from '../../../app/(Admin-Dashboard)/admin-problem-
 import EditProblemStatement from './EditProblemStatement';
 import AttachNewFile from './AttachNewFile';
 import DeleteProblem from './DeleteProblem';
+import { cn } from '@/utils/util';
 
 interface ProblemsProps {
   openNewIdeaModal: () => void;
@@ -38,20 +39,30 @@ const Problems: React.FC<ProblemsProps> = ({
         <Button
           onClick={openNewIdeaModal}
           leftIcon={<Add />}
-          className="text-sm leading-6 font-medium rounded-lg my-4 py-4 px-10"
+          className="text-sm leading-6 font-medium rounded-lg my-4 py-4 px-10 dark:bg-primary-light"
         >
           New Idea
         </Button>
       </div>
-      <ul className="border-t w-full">
+      <ul className="border-t dark:border-t-primary-light w-full">
         {problemData &&
           problemData?.map(problem => (
             <li key={problem.id} className="transition-all duration-500">
               <div
-                className={`flex items-center justify-between pl-6 pr-12 py-4 border-b text-sm leading-6 font-medium hover:bg-[#EAEEF2]
-                				${openProblem === problem.id && 'bg-[#EAEEF2]'}`}
+                className={`flex items-center justify-between pl-6 pr-12 py-4 border-b dark:border-b-primary-light text-sm leading-6 font-medium hover:bg-[#EAEEF2] group/problem cursor-pointer:
+                				${
+                          openProblem === problem.id &&
+                          'bg-[#EAEEF2] text-header dark:text-gray-700'
+                        }`}
               >
-                <div className="flex items-center gap-x-2">
+                <div
+                  className={cn(
+                    'flex items-center gap-x-2 ',
+                    openProblem === problem.id
+                      ? ''
+                      : 'text-header dark:text-gray-300 group-hover/problem:text-header'
+                  )}
+                >
                   <ArrowRight2
                     size={24}
                     onClick={() => handleProblemOpen(problem.id)}
@@ -66,13 +77,21 @@ const Problems: React.FC<ProblemsProps> = ({
                       : problem.description}
                   </p>
                 </div>
-                <div>{problem.createdAt}</div>
+                <div
+                  className={cn(
+                    'text-header dark:text-gray-300 group-hover/problem:text-header',
+                    openProblem === problem.id &&
+                      'text-header dark:text-gray-700'
+                  )}
+                >
+                  {problem.createdAt}
+                </div>
 
                 {openProblem !== problem.id && (
                   <div className="flex items-center gap-x-3">
                     <button
                       onClick={() => setOpenEditProblem(true)}
-                      className="flex items-center gap-x-2 text-primary-light"
+                      className="flex items-center gap-x-2 text-primary-light dark:text-[#23a8d4]"
                     >
                       <MessageEdit />
                       <span>Edit</span>
@@ -93,12 +112,12 @@ const Problems: React.FC<ProblemsProps> = ({
                   <div
                     className={`flex items-center justify-between py-[18px] border-b border-[#E1E1E1] leading-6 font-medium`}
                   >
-                    <div className="flex items-center gap-x-4">
+                    <div className="flex items-center gap-x-4 text-header dark:text-gray-200">
                       <p>Owner: {problem.owner}</p>
-                      <p className="text-xs text-header font-normal">
+                      <p className="text-xs text-header dark:text-gray-200 font-normal">
                         Created {problem.createdAt}
                       </p>
-                      <p className="flex items-center gap-x-2 text-primary-light">
+                      <p className="flex items-center gap-x-2 text-primary-light dark:text-[#23a8d4]">
                         <MessageEdit />
                         <span>{problem.createdAt}</span>
                       </p>
@@ -109,7 +128,7 @@ const Problems: React.FC<ProblemsProps> = ({
                         onClick={() => setOpenAttachFile(true)}
                         className='flex items-center gap-x-2 border border-["#E1E1E1] px-[9px] rounded-lg mr-10 text-xs'
                       >
-                        <AttachSquare color={'#292D32'} />
+                        <AttachSquare className="text-header dark:text-gray-300" />
                         <p className="text-[#33A45E] text-left">
                           Attach <br />
                           new files
@@ -117,7 +136,7 @@ const Problems: React.FC<ProblemsProps> = ({
                       </button>
                       <button
                         onClick={() => setOpenEditProblem(true)}
-                        className="flex items-center gap-x-2 text-primary-light"
+                        className="flex items-center gap-x-2 text-primary-light dark:text-[#23a8d4]"
                       >
                         <MessageEdit />
                         <span>Edit</span>
@@ -131,7 +150,9 @@ const Problems: React.FC<ProblemsProps> = ({
                       </button>
                     </div>
                   </div>
-                  <p className="py-4 text-justify">{problem.description}</p>
+                  <p className="py-4 text-justify text-header dark:text-gray-300">
+                    {problem.description}
+                  </p>
                 </div>
               )}
 

@@ -4,7 +4,7 @@ import React from 'react';
 const ProjectNotFound = ({ text }: { text: string }) => {
   return (
     <div className="w-full flex flex-col gap-y-6">
-      <div className="w-full text-center   ">
+      <div className="w-full text-center   text-header dark:text-gray-200">
         <p>{text}</p>
         <p>OR</p>
         <p>Something Went wrong</p>

@@ -40,11 +40,11 @@ const ClientCardAdmin = ({
         transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
       }}
       onMouseMove={handleMouseMove}
-      className="w-full max-w-[454px] min-[350px]:h-[250px] flex justify-center items-center pb-1 p-[2px] rounded-xl border border-gray-200  relative admin-card"
+      className="w-full max-w-[454px] min-[350px]:h-[250px] flex justify-center items-center pb-1 p-[2px] rounded-xl border border-gray-200 dark:border-primary dark:p-1 relative admin-card"
     >
       <div className="card-border" />
 
-      <div className="card-content px-2 sm:px-4 py-4 md:py-7 flex w-full h-full flex-col bg-white ">
+      <div className="card-content px-2 sm:px-4 py-4 md:py-7 flex w-full h-full flex-col bg-white dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] ">
         <div className="flex justify-between w-full items-center max-[350px]:flex-col">
           <div className="w-full max-w-[150px] max-[450px]:max-w-[120px] min-[1139px]:max-w-[130px] min-[1300px]:max-w-[150px] max-[980px]:max-w-[130px] max-md:max-w-[150px]">
             <Image
@@ -56,7 +56,7 @@ const ClientCardAdmin = ({
             />
           </div>
           <div className="flex flex-col gap-y-2 max-[350px]:items-center">
-            <h3 className="text-base lg:text-lg font-semibold text-header">
+            <h3 className="text-base lg:text-lg font-semibold text-header dark:text-gray-200">
               <span
                 dangerouslySetInnerHTML={{
                   __html: name.replace(
@@ -71,14 +71,21 @@ const ClientCardAdmin = ({
                 }}
               />
             </h3>
-            <p className="text-sm">{job_title}</p>
-            <span className="text-xs">Email: {email}</span>
-            <p className="font-medium">
+            <p className="text-sm text-header dark:text-gray-300">
+              {job_title}
+            </p>
+            <span className="text-xs text-header dark:text-gray-300">
+              Email: {email}
+            </span>
+            <p className="font-medium text-header dark:text-gray-300">
               Number of projects:{' '}
               <span className="font-semibold">{number_projects}</span>
             </p>
           </div>
-          <button type="button" className="max-[450px]:hidden">
+          <button
+            type="button"
+            className="max-[450px]:hidden text-header dark:text-gray-300"
+          >
             <Edit2 size={24} />
           </button>
         </div>
@@ -87,7 +94,7 @@ const ClientCardAdmin = ({
             href={`/admin-clients/client?client_name=${encryptedName}&client_id=${id}`}
             type="button"
             tabIndex={0}
-            className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
+            className="text-primary rounded-lg  border border-primary dark:text-color-dark  dark:border-color-dark h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
           >
             View Profile
           </Link>

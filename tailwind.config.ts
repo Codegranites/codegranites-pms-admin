@@ -34,6 +34,7 @@ module.exports = {
         error: "#FF0000",
         active: "#EAEEF2",
         destructive:'#f81d28',
+        "color-dark": '#1c9abc'
       },
       // screens: {
 			// 	sm: '576px',

@@ -42,12 +42,12 @@ const ProjectCardAdmin = ({
         transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
       }}
       onMouseMove={handleMouseMove}
-      className="relative w-full max-w-[454px] h-[261px]  flex items-center justify-center pb-1 p-[2px] border border-gray-300 rounded-xl sm:rounded-2xl admin-card"
+      className="relative w-full max-w-[454px] h-[261px]  flex items-center justify-center pb-1  p-[2px] border border-gray-300 dark:border-primary dark:p-1 rounded-xl sm:rounded-2xl admin-card"
     >
       <div className="card-border" />
-      <div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white min-[1310px]:p-4 max-[1140px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
-        <Folder2 variant="Bold" />
-        <p className="text-sm text-header">
+      <div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] min-[1310px]:p-4 max-[1140px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
+        <Folder2 variant="Bold" className="text-header dark:text-gray-200 " />
+        <p className="text-sm text-header dark:text-gray-200">
           Project Title:{' '}
           <strong>
             <span
@@ -65,7 +65,7 @@ const ProjectCardAdmin = ({
             />
           </strong>
         </p>
-        <p className="text-sm text-header flex items-center gap-x-1 xl:gap-x-2">
+        <p className="text-sm text-header dark:text-gray-200 flex items-center gap-x-1 xl:gap-x-2">
           Project Status:{' '}
           <span
             className={cn(
@@ -96,20 +96,20 @@ const ProjectCardAdmin = ({
             ({status})
           </span>
         </p>
-        <p className="text-sm text-header">
+        <p className="text-sm text-header dark:text-gray-200">
           Project Owner: <strong>{project_owner}</strong>{' '}
-          <Link href="" className="text-primary-light">
+          <Link href="" className="text-primary-light dark:text-[#34bae7]">
             (View Profile)
           </Link>
         </p>
-        <p className="text-sm text-header">
+        <p className="text-sm text-header dark:text-gray-200">
           Project end date: <strong>{end_date}</strong>
         </p>
         <Link
           href={`/admin-projects/details?id=${id}&project_title=${encryptTitle}`}
           type="button"
           tabIndex={0}
-          className="text-primary rounded-lg  border border-primary h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
+          className="text-primary dark:text-color-dark  dark:border-color-dark border-primary rounded-lg  border h-[32px] px-4 py-2 flex items-center font-medium hover:opacity-70 transition-all duration-300"
         >
           View more
         </Link>

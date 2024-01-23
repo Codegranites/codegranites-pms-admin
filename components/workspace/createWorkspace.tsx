@@ -30,10 +30,10 @@ import CreateWorkSpaceForm from '../forms/createworkspaceform';
 export default function CreateaWorkspaceButton() {
   return (
     <div className="flex flex-col items-center justify-center w-full">
-      <span className="font-bold text-4xl items-start flex mb-6">
+      <span className="font-bold text-4xl items-start flex mb-6 text-header dark:text-gray-100">
         Create WorkSpace
       </span>
-      <div className="flex flex-col items-center w-full border rounded p-20 bg-white  mb-10 ">
+      <div className="flex flex-col items-center w-full border rounded p-20 bg-white dark:bg-primary  mb-10 dark:border-primary-light ">
         <CreateWorks />
       </div>
     </div>

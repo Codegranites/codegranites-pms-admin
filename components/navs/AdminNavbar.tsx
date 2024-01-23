@@ -24,7 +24,7 @@ const AdminNavbar = () => {
   return (
     <header
       className={cn(
-        'lg:px-9 px-3 border-b border-gray-200 h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between fixed md:relative max-md:top-0 max-md:left-0 max-md:z-[99] select-none bg-white/80 backdrop-blur-lg w-full',
+        'lg:px-9 px-3 border-b border-gray-200 dark:border-primary-light h-[50px] sm:h-[70px] md:h-[89px] flex items-center justify-between fixed md:relative max-md:top-0 max-md:left-0 max-md:z-[99] select-none bg-white/80 dark:bg-primary backdrop-blur-lg w-full',
         {
           'md:overflow-hidden': adminShowMobileMenu
         }
@@ -50,14 +50,17 @@ const AdminNavbar = () => {
           onClick={() => setAdminShowMobileMenu(!adminShowMobileMenu)}
         >
           {adminShowMobileMenu ? (
-            <Add size={60} />
+            <Add size={60} className="text-header dark:text-gray-200" />
           ) : (
-            <HambergerMenu size={32} />
+            <HambergerMenu
+              size={32}
+              className="text-header dark:text-gray-200"
+            />
           )}
         </button>
         {pathName === 'dashboard' ? (
           <div className="flex gap-x-2 sm:gap-x-4 items-center">
-            <h2 className="hidden md:inline sm:text-3xl capitalize font-medium text-header  ">
+            <h2 className="hidden md:inline sm:text-3xl capitalize font-medium text-header dark:text-gray-200  ">
               Welcome back! {firstName ?? 'User'}
             </h2>
             <h2 className="max-[370px]:text-base max-[500px]:text-lg text-xl md:hidden capitalize font-medium text-header  ">
@@ -68,7 +71,7 @@ const AdminNavbar = () => {
           <div className="flex gap-x-2 sm:gap-x-4 items-center">
             <h2
               onMouseEnter={handleMouseEnter}
-              className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header  "
+              className="max-[370px]:text-base max-[500px]:text-lg text-xl sm:text-3xl capitalize font-medium text-header dark:text-gray-200   "
               data-value={
                 decrptedTitle
                   ? pathName.replace('projects', 'project')
@@ -85,8 +88,10 @@ const AdminNavbar = () => {
             </h2>
             {decrptedTitle && (
               <div className="sm:flex items-center gap-x-2 hidden">
-                <span className="text-2xl sm:text-4xl text-gray-700">•</span>
-                <h3 className="max-[500px]:text-sm  sm:text-xl md:text-3xl capitalize min-[390px]:font-medium text-gray-700  ">
+                <span className="text-2xl sm:text-4xl text-gray-700 dark:text-gray-200 ">
+                  •
+                </span>
+                <h3 className="max-[500px]:text-sm  sm:text-xl md:text-3xl capitalize min-[390px]:font-medium text-gray-700 dark:text-gray-200   ">
                   {decrptedTitle.length > titleLen
                     ? `${decrptedTitle.slice(0, titleLen)}...`
                     : decrptedTitle}
@@ -95,21 +100,23 @@ const AdminNavbar = () => {
             )}
             {decrptedName && (
               <div className="sm:flex items-center gap-x-2 hidden">
-                <span className="text-3xl sm:text-4xl text-gray-700">•</span>
-                <h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+                <span className="text-3xl sm:text-4xl text-gray-700 dark:text-gray-200 ">
+                  •
+                </span>
+                <h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  dark:text-gray-200  ">
                   {decrptedName}
                 </h3>
               </div>
             )}
             {settingTab && (
               <>
-                <span className="text-3xl sm:text-4xl text-gray-700 sm:hidden">
+                <span className="text-3xl sm:text-4xl text-gray-700 dark:text-gray-200  sm:hidden">
                   <ChevronRight />
                 </span>
-                <span className="text-3xl sm:text-4xl text-gray-700 max-sm:hidden">
+                <span className="text-3xl sm:text-4xl text-gray-700 dark:text-gray-200  max-sm:hidden">
                   •
                 </span>
-                <h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  ">
+                <h3 className="max-[370px]:text-sm max-[500px]:text-base text-xl sm:text-3xl capitalize font-medium text-gray-700  dark:text-gray-200  ">
                   {settingTab.replace(/-/g, ' ')}
                 </h3>
               </>
@@ -117,8 +124,8 @@ const AdminNavbar = () => {
           </div>
         )}
       </div>
-      {user && (
-        <div className="flex items-center  md:hidden gap-x-3 xl:gap-x-5  [&>button]:font-medium [&>button]:text-header">
+      {user.image && (
+        <div className="flex items-center  md:hidden gap-x-3 xl:gap-x-5  [&>button]:font-medium [&>button]:text-header [&>button]:dark:text-gray-200">
           <button type="button">
             <Notification size={24} />
           </button>
@@ -126,7 +133,13 @@ const AdminNavbar = () => {
             type="button"
             className="w-8 h-8 border border-primary-light rounded-full"
           >
-            <Image src={user.image!} alt="user" width={32} height={32} />
+            <Image
+              src={user.image!}
+              alt="user"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
           </button>
         </div>
       )}
