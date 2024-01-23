@@ -7,6 +7,7 @@ import { Add, MessageAdd1, SearchNormal1 } from 'iconsax-react';
 import { Input } from '@/components/ui/Input';
 import { X } from 'lucide-react';
 import { MESSAGES } from './messages';
+import { FormInput } from '@/components/ui/FormInput';
 
 type MessageTabProps = {
   id?: number;
@@ -55,7 +56,7 @@ const MessageNav = () => {
   const { newMessageModal, setNewMessageModal } = useStateCtx();
   return (
     <div className="flex w-full flex-col gap-y-6 min-[400px]:gap-y-10 px-2">
-      <div className="w-full flex items-center justify-center pt-6 min-[400px]:pb-[43px] pb-7 border-b border-[#e1e1e1]">
+      <div className="w-full flex items-center justify-center pt-6 min-[400px]:pb-[43px] pb-7 border-b dark:border-primary-light border-[#e1e1e1]">
         <ul className="flex items-center gap-x-2 min-[400px]:gap-x-4 flex-wrap gap-y-3 min-[400px]:gap-y-5">
           {MESSAGE_TABS.map(tab => (
             <button
@@ -71,10 +72,10 @@ const MessageNav = () => {
               tabIndex={0}
               aria-label={tab.tab}
               className={cn(
-                ' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 max-[370px]:px-4 h-[40px] sm:h-[48px] text-header sm:font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
+                ' flex items-center rounded-md sm:rounded-lg gap-x-3 px-3 md:px-4 lg:px-5 max-[370px]:px-4 h-[40px] sm:h-[48px] text-header dark:text-gray-300 sm:font-medium text-sm min-[400px]:text-base transition-colors duration-300 cursor-pointer ',
                 activeMessageTab === tab.tab
-                  ? 'bg-primary-light sm:bg-[#eaeef2] text-white sm:text-header rounded outline-none'
-                  : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light border border-gray-300'
+                  ? 'bg-primary-light sm:bg-[#eaeef2] text-white sm:text-header dark:text-gray-700 rounded outline-none'
+                  : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light border border-gray-300 dark:border-primary-light'
               )}
               onClick={() => setActiveMessageTab(tab.tab)}
             >
@@ -101,7 +102,7 @@ const MessageNav = () => {
           id="new-message"
           type="button"
           className={cn(
-            ' hidden min-[500px]:flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+            ' hidden min-[500px]:flex h-[40px] w-[56px] min-[900px]:w-full min-[900px]:max-w-[170px] min-[900px]:min-h-[56px] min-[900px]:min-w-[214px]  lg:max-w-[250px] items-center lg:gap-x-5 gap-x-2  border border-primary dark:border-primary-light dark:text-gray-300 text-primary rounded-lg hover:opacity-80 transition-opacity duration-300 text-sm sm:text-base justify-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
           )}
         >
           <Add size={24} className="hidden min-[900px]:inline" />
@@ -112,15 +113,22 @@ const MessageNav = () => {
         </button>
 
         <div className="flex w-full sm:max-w-[381px] items-center relative">
-          <Input
-            tabIndex={0}
-            onChange={e => setSearchMsg(e.target.value)}
-            value={searchMsg}
-            leftIcon={<SearchNormal1 size={18} color="#535353" />}
-            type="text"
-            placeHolder="Search name..."
-            className="w-full h-[40px]  min-[900px]:h-[56px] outline-none focus-visible:border focus-visible:border-primary-light"
-          />
+          <div className="flex items-center w-full relative">
+            <FormInput
+              tabIndex={0}
+              onChange={e => setSearchMsg(e.target.value)}
+              value={searchMsg}
+              type="text"
+              placeholder="Search by name..."
+              className=" w-full h-[40px] dark:border-primary-light  min-[900px]:h-[56px] outline-none focus-visible:border focus-visible:border-primary-light dark:bg-transparent text-black dark:text-gray-200 border text-md font-medium rounded-md focus-visible:ring-primary-light"
+            />
+            {searchMsg.length === 0 && (
+              <span className="absolute right-3 text-header dark:text-gray-200">
+                <SearchNormal1 size={18} />
+              </span>
+            )}
+          </div>
+
           <button
             type="button"
             tabIndex={0}
@@ -133,7 +141,7 @@ const MessageNav = () => {
               }
             )}
           >
-            <X size={18} color="#535353" />
+            <X size={18} className="text-header dark:text-gray-200" />
           </button>
         </div>
       </div>

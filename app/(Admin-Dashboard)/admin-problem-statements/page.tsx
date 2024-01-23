@@ -1,8 +1,8 @@
 'use client';
 import React, { useState } from 'react';
-import EmptyState from '../../../components/admin/problem-statements/EmptyState';
-import NewIdeaModal from '../../../components/admin/problem-statements/NewIdeaModal';
-import Problems from '../../../components/admin/problem-statements/Problems';
+import EmptyState from '@/components/admin/problem-statements/EmptyState';
+import NewIdeaModal from '@/components/admin/problem-statements/NewIdeaModal';
+import Problems from '@/components/admin/problem-statements/Problems';
 
 export interface ProblemsDataProps {
   id: number;
@@ -48,7 +48,7 @@ const problemData: ProblemsDataProps[] = [
 const ProblemStatements: React.FC = () => {
   const [isIdeaModal, setIsIdeaModal] = useState<boolean>(false);
   return (
-    <div>
+    <div className="pt-10 lg:pt-2">
       {problemData.length > 0 ? (
         <Problems
           problemData={problemData}

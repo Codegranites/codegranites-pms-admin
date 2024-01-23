@@ -1,15 +1,15 @@
 'use client';
 
-import SuperAdminProject from '../../super-admin-project/super-admin-project';
+import SuperAdminProject from '@/components/super-admin-project/super-admin-project';
 import { Suspense, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { People } from 'iconsax-react';
 import ClientCardAdmin from '../card/ClientCardAdmin';
-import { ADMIN_CLIENTS, AdminClientCardProps } from '../../../libs/clients';
-import { useStateCtx } from '../../../context/StateContext';
-import { cn } from '../../../utils/util';
+import { ADMIN_CLIENTS, AdminClientCardProps } from '@/libs/clients';
+import { useStateCtx } from '@/context/StateContext';
+import { cn } from '@/utils/util';
 import ProjectNotFound from '../projects/ProjectNotFound';
-import AdminCardSkelon from '../../skeleton/AdminCardSkeleton';
+import AdminCardSkelon from '@/components/skeleton/AdminCardSkeleton';
 
 const AdminClientContainer = () => {
   const { clientSearchTerm, selectedClientFilter } = useStateCtx();
@@ -73,31 +73,38 @@ const AdminClientContainer = () => {
         })}
       >
         <span
-          className={cn('text-lg font-semibold text-gray-400', {
-            'text-primary-light': subset.length > 0
-          })}
+          className={cn(
+            'text-lg font-semibold text-gray-400 dark:text-gray-100',
+            {
+              'text-primary-light dark:text-[#28affd]': subset.length > 0
+            }
+          )}
         >
           {subset.length}
         </span>
-        <p className={cn('font-medium')}>
+        <p className={cn('font-medium text-header dark:text-gray-200')}>
           {subset.length > 0
             ? 'Search Result for'
             : subset.length > 1
               ? 'Search Results for'
               : 'No Results for'}{' '}
-          <b>&quot;{clientSearchTerm}&quot;</b>
+          <b className="dark:text-yellow-400 dark:bg-black/80">
+            &quot;{clientSearchTerm}&quot;
+          </b>
         </p>
       </div>
-      <section className="rounded-xl  w-full h-full sm:border border-gray-200">
-        <div className="flex w-full items-center justify-start border-b border-gray-200 py-5 pl-5 text-header">
+      <section className="rounded-xl  w-full h-full sm:border border-gray-200 dark:border-primary-light">
+        <div className="flex w-full items-center justify-start border-b border-gray-200 dark:border-primary-light py-5 pl-5 text-header dark:text-gray-200">
           <h3 className="flex gap-x-4 items-center">
             <People />
-            <span className="text-header font-semibold">All Clients</span>
+            <span className="text-header dark:text-gray-200 font-semibold">
+              All Clients
+            </span>
           </h3>
         </div>
         <section
           className={cn(
-            ' min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200'
+            ' min-[1300px]:py-[43px] min-[1300px]:px-[70px] pt-7 sm:p-7 w-full h-full sm:border border-gray-200 dark:border-primary-light'
           )}
         >
           <div
@@ -131,12 +138,12 @@ const AdminClientContainer = () => {
               onPageChange={handlePageChange}
               pageRangeDisplayed={3}
               marginPagesDisplayed={2}
-              className="flex items-center justify-center  border border-gray-300 px-4 rounded-md select-none"
-              pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300"
-              previousClassName="pr-2 lg:pr-4 text-[#6B7280] font-medium"
-              nextClassName="pl-2 lg:pl-4 text-[#6B7280] font-medium"
-              pageLinkClassName="text-[#6B7280] w-full h-full flex items-center justify-center"
-              activeClassName="bg-[#becbd7]  font-medium"
+              className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
+              pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
+              previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+              nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+              pageLinkClassName="text-[#6B7280] dark:text-[#28affd] w-full h-full flex items-center justify-center"
+              activeClassName="bg-[#becbd7] dark:bg-[#28affd38]  font-medium"
               renderOnZeroPageCount={null}
               disabledClassName="cursor-not-allowed opacity-70"
               disabledLinkClassName="cursor-not-allowed opacity-70"

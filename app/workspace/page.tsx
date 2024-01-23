@@ -32,9 +32,11 @@ function Workspace() {
       <section className="w-full relative ">
         <AdminNavbar />
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
-          <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 border border-b-2 border-l-0 border-r-0">
-            <RiStackLine size={23} />
-            <p className="text-[1rem] text-[#282828]">My work Space</p>
+          <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">
+            <RiStackLine size={23} className="text-header dark:text-gray-300" />
+            <p className="text-[1rem] text-header dark:text-gray-100">
+              My work Space
+            </p>
           </div>
           <CreateaWorkspaceButton />
           <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5">
@@ -56,12 +58,12 @@ function Workspace() {
                 onPageChange={handlePageChange}
                 pageRangeDisplayed={3}
                 marginPagesDisplayed={2}
-                className="flex items-center justify-center  border border-gray-300 px-4 rounded-md select-none"
-                pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300"
-                previousClassName="pr-2 lg:pr-4 text-[#6B7280] font-medium"
-                nextClassName="pl-2 lg:pl-4 text-[#6B7280] font-medium"
-                pageLinkClassName="text-[#6B7280] w-full h-full flex items-center justify-center"
-                activeClassName="bg-[#becbd7]  font-medium"
+                className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
+                pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
+                previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+                nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+                pageLinkClassName="text-[#6B7280] dark:text-[#28affd] w-full h-full flex items-center justify-center"
+                activeClassName="bg-[#becbd7] dark:bg-[#28affd38]  font-medium"
                 renderOnZeroPageCount={null}
                 disabledClassName="cursor-not-allowed opacity-70"
                 disabledLinkClassName="cursor-not-allowed opacity-70"

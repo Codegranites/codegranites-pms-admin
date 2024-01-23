@@ -36,7 +36,7 @@ export default function RootLayout({
         <StateContextProvider>
           <LenisProvider>
             <ThemeProvider>
-              <body className={workSans.className}>
+              <body className={`${workSans.className} dark:bg-primary`}>
                 <Providers>{children}</Providers>
                 <SwipeIndicator />
                 <GotoTop />

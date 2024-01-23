@@ -5,6 +5,11 @@
 
 :root {
   --loader-text-color: #f6e9fe;
+  --card-color: #052c42;
+  --card-color-dark: #0da6ff;
+}
+.dark {
+  --card-color: #28affd;
 }
 * {
   margin: 0;
@@ -62,7 +67,7 @@
   .card-border {
     background: radial-gradient(
       400px circle at var(--border--x) var(--border--y),
-      #052c42,
+      var(--card-color),
       transparent 40%
     );
     z-index: 1;
@@ -214,7 +219,7 @@ svg circle {
   &::before {
     background: radial-gradient(
       800px circle at var(--border--x) var(--border--y),
-      rgba(0, 0, 0, 0.002),
+      var(--card-color-dark),
       transparent 40%
     );
     z-index: 3;
@@ -236,7 +241,7 @@ svg circle {
   .card-border {
     background: radial-gradient(
       500px circle at var(--border--x) var(--border--y),
-      #052c42,
+      var(--card-color),
       transparent 40%
     );
     z-index: 1;
@@ -345,7 +350,7 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 .hide-scroll::-webkit-scrollbar {
-  width: 0px;
+  width: 4px;
 }
 .sidebar-scroll::-webkit-scrollbar {
   width: 6px;
@@ -370,10 +375,16 @@ input[type='number']::-webkit-outer-spin-button {
 
 ::-webkit-scrollbar-thumb {
   background: #052c42;
-  border-radius: 8px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #0ab8db;
 }
 
 ::selection {
   color: white;
   background: #052c42;
+}
+.dark ::selection {
+  color: rgb(201, 191, 2);
+  background: #011724;
 }
