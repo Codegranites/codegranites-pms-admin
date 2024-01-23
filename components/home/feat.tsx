@@ -20,7 +20,7 @@ const Feats = () => {
         onMouseEnter={handleMouseEnter}
         data-value="More Features"
         className={cn(
-          'font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-header',
+          'font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl text-header dark:text-gray-50',
           isInView2
             ? 'opacity-100 translate-y-0 delay-300 duration-1000'
             : ' opacity-0 translate-y-36'

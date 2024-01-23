@@ -24,11 +24,11 @@ const SectionOne = () => {
           height={411}
         />
       </div>
-      <div className="items-center justify-center self-center mb-4">
+      <div className="items-center justify-center self-center mb-4 text-header dark:text-gray-50">
         <h2 className="text-[28px] leading-[48px] font-semibold">
           Clients page
         </h2>
-        <p className="max-w-[551px] text-[18px] font-normal">
+        <p className="max-w-[551px] text-[18px] font-normal text-header dark:text-gray-200">
           Revolutionize client connections with our Clients Page feature.
           Immerse yourself in intuitive client management, effortlessly
           centralizing contacts and project histories. Uncover nuanced insights

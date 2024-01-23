@@ -18,7 +18,7 @@ const SectionOne = () => {
   return (
     <div
       className={cn(
-        'flex md:hidden flex-col item-center space-y-8 justify-center max-w-sm text-header px-4',
+        'flex md:hidden flex-col item-center space-y-8 justify-center max-w-sm text-header dark:text-gray-50 px-4',
         isInView
           ? 'opacity-100 translate-y-0 delay-300 duration-1000'
           : ' opacity-0 translate-y-36'
@@ -39,7 +39,7 @@ const SectionOne = () => {
           onMouseEnter={handleMouseEnter}
           data-value="Clients page"
           className={cn(
-            'text-[28px] leading-[48px] font-semibold text-header items-center justify-center',
+            'text-[28px] leading-[48px] font-semibold text-header dark:text-gray-50 items-center justify-center',
             isInView2
               ? 'opacity-100 translate-y-0 delay-300 duration-1000'
               : ' opacity-0 translate-y-36'
@@ -47,7 +47,7 @@ const SectionOne = () => {
         >
           Clients page
         </h2>
-        <p className="max-w-[551px] text-[18px] font-normal">
+        <p className="max-w-[551px] text-[18px] font-normal text-header dark:text-gray-200">
           Revolutionize client connections with our Clients Page feature.
           Immerse yourself in intuitive client management, effortlessly
           centralizing contacts and project histories. Uncover nuanced insights
@@ -71,7 +71,7 @@ const SectionOne = () => {
           onMouseEnter={handleMouseEnter}
           data-value="Projects page"
           className={cn(
-            'text-[28px] leading-[48px] font-semibold text-header items-center justify-center',
+            'text-[28px] leading-[48px] font-semibold text-header dark:text-gray-50 items-center justify-center',
             isInView3
               ? 'opacity-100 translate-y-0 delay-300 duration-1000'
               : ' opacity-0 translate-y-36'
@@ -79,7 +79,7 @@ const SectionOne = () => {
         >
           Projects page
         </h2>
-        <p className="max-w-[551px] text-[18px] font-normal">
+        <p className="max-w-[551px] text-[18px] font-normal text-header dark:text-gray-200">
           Unleash the power of organized innovation with our Projects Page
           feature. Navigate your project landscape effortlessly, with a visually
           intuitive interface that puts control back in your hands. From
@@ -109,7 +109,7 @@ const SectionOne = () => {
             onMouseEnter={handleMouseEnter}
             data-value="Project Milestones"
             className={cn(
-              'text-[28px] leading-[48px] font-semibold text-header items-center justify-center',
+              'text-[28px] leading-[48px] font-semibold text-header dark:text-gray-50 items-center justify-center',
               isInView1
                 ? 'opacity-100 translate-y-0 delay-300 duration-1000'
                 : ' opacity-0 translate-y-36'
@@ -117,7 +117,7 @@ const SectionOne = () => {
           >
             Project Milestones
           </h2>
-          <p className="max-w-[551px] text-[18px] font-normal">
+          <p className="max-w-[551px] text-[18px] font-normal text-header dark:text-gray-200">
             Chart your course to success with precision using our Project
             Milestones feature. Experience the thrill of achievement as you
             effortlessly set, track, and conquer critical project milestones.

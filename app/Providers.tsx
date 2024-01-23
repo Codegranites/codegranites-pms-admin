@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { AppProgressBar as ProgressBar } from 'next-nprogress-bar';
 import { ToastContainer } from 'react-toastify';
 import { SessionProvider } from 'next-auth/react';
@@ -8,7 +8,7 @@ import { useThemeContext } from '@/context/ThemeCtx';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   const { theme } = useThemeContext();
-  const [isDark, setIsDark] = useState(false);
+  const [isDark, setIsDark] = useState(() => theme === 'dark');
 
   useLayoutEffect(() => {
     if (
@@ -21,6 +21,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
     }
   }, [theme]);
 
+  console.log(isDark);
   return (
     <>
       <ToastContainer
@@ -38,12 +39,21 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
       {children}
 
-      <ProgressBar
-        height="4px"
-        color={isDark ? '#0ff' : '#587997'}
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
+      {isDark ? (
+        <ProgressBar
+          height="4px"
+          color="#0ff"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
+      ) : (
+        <ProgressBar
+          height="4px"
+          color="#587997"
+          options={{ showSpinner: false }}
+          shallowRouting
+        />
+      )}
     </>
   );
 };
