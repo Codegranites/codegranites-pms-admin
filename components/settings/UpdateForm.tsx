@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Button from '@ui/Button';
 import { toast } from 'react-toastify';
 import { Input } from '@/components/ui/Input';
+import { useStateCtx } from '@/context/StateContext';
 
 // Mock user data
 const mockUserData = {
@@ -41,6 +42,7 @@ const updateUserInBackend = async (userData: {
 };
 
 function UpdateForm() {
+  const { user } = useStateCtx();
   const [formData, setFormData] = useState(mockUserData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,7 +74,7 @@ function UpdateForm() {
             type="text"
             name="fullname"
             placeholder="enter fullname"
-            value={formData.fullname}
+            value={user.name ?? formData.fullname}
             onChange={handleChange}
             className="text-lg font-normal w-[500px] h-[60px]"
           />
@@ -87,7 +89,7 @@ function UpdateForm() {
             type="text"
             name="username"
             placeholder="enter userName"
-            value={formData.username}
+            value={user.name ?? formData.username}
             onChange={handleChange}
             className="text-lg font-normal w-[500px] h-[60px]"
           />

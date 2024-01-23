@@ -7,11 +7,11 @@ import GotoTop from '../components/GotoTop';
 import StateContextProvider from '../context/StateContext';
 import Providers from './Providers';
 
-import { SessionProvider } from '../context/sessionProvider';
 import SwipeIndicator from '../components/sidebars/SwipeIndicator';
 import Head from 'next/head';
 import LenisProvider from '@/components/LenisProvider';
 import ThemeProvider from '@/context/ThemeCtx';
+import { SessionProvider } from 'next-auth/react';
 
 const workSans = Work_Sans({
   subsets: ['latin'],
@@ -33,19 +33,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={workSans.variable}>
       <SessionProvider>
-        <Providers>
-          <StateContextProvider>
-            <LenisProvider>
-              <ThemeProvider>
-                <body className={workSans.className}>
-                  {children}
-                  <SwipeIndicator />
-                  <GotoTop />
-                </body>
-              </ThemeProvider>
-            </LenisProvider>
-          </StateContextProvider>
-        </Providers>
+        <StateContextProvider>
+          <LenisProvider>
+            <ThemeProvider>
+              <body className={workSans.className}>
+                <Providers>{children}</Providers>
+                <SwipeIndicator />
+                <GotoTop />
+              </body>
+            </ThemeProvider>
+          </LenisProvider>
+        </StateContextProvider>
       </SessionProvider>
     </html>
   );

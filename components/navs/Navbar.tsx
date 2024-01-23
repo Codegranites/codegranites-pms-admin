@@ -72,7 +72,7 @@ const Navbar = () => {
         ))}
       </div>
 
-      {user ? (
+      {user.email ? (
         <div className="hidden lg:flex gap-x-3 xl:gap-x-5  [&>button]:font-medium [&>button]:text-header">
           <button type="button">
             <SearchNormal1 size={24} />
@@ -84,7 +84,13 @@ const Navbar = () => {
             type="button"
             className="w-8 h-8 border border-primary-light rounded-full"
           >
-            <Image src={user.image!} alt="user" width={32} height={32} />
+            <Image
+              src={user.image!}
+              alt="user"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
           </button>
         </div>
       ) : (

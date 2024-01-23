@@ -190,6 +190,7 @@ export const shrinkString = ({
   str: string;
   len: number;
 }): string => {
+  if (!str) return '';
   if (str.length > len) {
     return str.substring(0, len) + '...';
   }

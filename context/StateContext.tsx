@@ -16,12 +16,6 @@ import { UserDetails } from '@/types';
 import { getNameFromEmail } from '@/utils/util';
 import { useSession } from 'next-auth/react';
 
-// Add Your Props here
-type User = {
-  name: string;
-  email: string;
-  image: string;
-};
 interface StateContextProps {
   currentPath: string;
   openPaymentModal: boolean;
@@ -113,27 +107,27 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   useLayoutEffect(() => {
     setUser({
       ...session?.user,
-      name: session?.user?.name ?? 'John doe',
-      image: session?.user?.image ?? '/facemoji.png',
-      email: session?.user?.email ?? 'Johndoe@fake.com'
+      name: session?.user?.name!,
+      image: session?.user?.image!,
+      email: session?.user?.email!
     });
 
     return;
   }, [session]);
-  useLayoutEffect(() => {
-    const userFromCookie = getCookie('user');
-    if (userFromCookie) {
-      const parsedUser = JSON.parse(userFromCookie) as UserDetails;
-      setUser({
-        name: getNameFromEmail(parsedUser.email),
-        email: parsedUser.email,
-        accountId: parsedUser.accountId,
-        role: parsedUser.role,
-        image: '/facemoji.png'
-      });
-    }
-    return;
-  }, []);
+  // useLayoutEffect(() => {
+  //   const userFromCookie = getCookie('user');
+  //   if (userFromCookie) {
+  //     const parsedUser = JSON.parse(userFromCookie) as UserDetails;
+  //     setUser({
+  //       name: getNameFromEmail(parsedUser.email),
+  //       email: parsedUser.email,
+  //       accountId: parsedUser.accountId,
+  //       role: parsedUser.role,
+  //       image: '/facemoji.png'
+  //     });
+  //   }
+  //   return;
+  // }, []);
 
   useEffect(() => {
     const projectFilter = localStorage.getItem('project-filter');
