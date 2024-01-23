@@ -154,7 +154,7 @@ const SidebarAdmin = () => {
               {shrinkString({ str: user.name!, len: 17 })}
             </span>
             <span className="text-[#3a3a3a] text-sm" title={user.email}>
-              {shrinkString({ str: user.email, len: 17 })}
+              {shrinkString({ str: user.email!, len: 17 })}
             </span>
           </div>
         </Link>

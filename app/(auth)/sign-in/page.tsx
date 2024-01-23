@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import { useSession } from '@/context/sessionProvider';
+
 import SigninForm from '@/components/forms/SigninForm';
 import { auth } from '@/auth';
 import { setCookie } from 'cookies-next';
@@ -17,11 +17,11 @@ const SignIn = async () => {
     accountId: generateId(),
     role: 'client'
   } as UserDetails;
-  console.log('USERDEETS :', dateToSeconds(data?.expires!));
-  setCookie('user', JSON.stringify(user), {
-    maxAge: dateToSeconds(data?.expires!),
-    path: '/'
-  });
+  // console.log('USERDEETS :', dateToSeconds(data?.expires!));
+  // setCookie('user', JSON.stringify(user), {
+  //   maxAge: dateToSeconds(data?.expires!),
+  //   path: '/'
+  // });
   return (
     <>
       <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">

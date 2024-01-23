@@ -147,7 +147,7 @@ export interface WorkspaceCardProps {
 
 export interface UserDetails {
   name?: string;
-  email: string;
+  email?: string;
   accountId?: string;
   role?: string;
   image: string | StaticImport;

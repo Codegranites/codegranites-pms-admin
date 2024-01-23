@@ -4,11 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '@ui/Button';
 import { Input } from '@/components/ui/Input';
 import Image from 'next/image';
-
-const user = {
-  name: 'Jane Doe',
-  email: 'JohnDoe@gmail.com'
-};
+import { useStateCtx } from '@/context/StateContext';
 
 //simulator
 const fetchImagesFromBackend = async () => {
@@ -27,6 +23,7 @@ const fetchImagesFromBackend = async () => {
 };
 
 function Profile() {
+  const { user } = useStateCtx();
   const [images, setImages] = useState<string[]>([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -69,23 +66,22 @@ function Profile() {
         <div className="mr-[80px] mt-9 flex justify-center items-center">
           <div className="relative w-full flex-col pr-6 justify-center ">
             <Image
-              src={images[currentImageIndex]}
+              src={user.image ?? images[currentImageIndex]}
               alt="user"
               width={250}
               height={250}
+              className="rounded-full"
             />
             <div className="flex flex-col  max-[1139px]:hidden group-hover:w-full group-hover:flex">
               <span className="text-black text-lg font-medium mt-5">Email</span>
               <span className="text-[#282828] text-lg" title={user.email}>
-                {user.email.length > 17
-                  ? user.email.slice(0, 17) + '...'
-                  : user.email}
+                {user.email}
               </span>
             </div>
           </div>
           <div className="flex-col">
             <Button
-              className="border w-[206px] h-[70px] mb-5 bg-transparent text-black"
+              className="border w-[206px] h-[70px] mb-5 bg-transparent text-black hover:text-white transition-colors duration-300"
               onClick={handleChangeImage}
             >
               Change Photo

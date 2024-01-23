@@ -20,7 +20,8 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         pauseOnHover
         theme="light"
       />
-      <SessionProvider>{children}</SessionProvider>
+
+      {children}
 
       <ProgressBar
         height="4px"
