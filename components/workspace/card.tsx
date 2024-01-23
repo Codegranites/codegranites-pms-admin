@@ -3,7 +3,7 @@ import useInView from '@/hooks/useInView';
 import { WorkspaceCardProps } from '@/types';
 import { cn, encryptString } from '@/utils/util';
 import Link from 'next/link';
-import { useSession } from '@/context/sessionProvider';
+// import { useSession } from '@/context/sessionProvider';
 
 const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   id,
@@ -12,7 +12,7 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   description,
   projectCount
 }) => {
-  const { setWorkspaceId } = useSession();
+  // const { setWorkspaceId } = useSession();
   const WorkSpaceRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView({ ref: WorkSpaceRef });
 
@@ -27,9 +27,9 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
     target.style.setProperty('--border--y', `${y}px`);
   };
 
-  const handleOpenClick = () => {
-    setWorkspaceId('WorkspaceId', (id ?? '').toString());
-  };
+  // const handleOpenClick = () => {
+  //   setWorkspaceId('WorkspaceId', (id ?? '').toString());
+  // };
 
   const workspacce1 = (name1: string) => {
     const words = name1.split(' ');
