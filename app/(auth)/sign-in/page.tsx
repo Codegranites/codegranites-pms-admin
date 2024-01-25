@@ -9,7 +9,7 @@ import { dateToSeconds, generateId } from '@/utils/util';
 
 const SignIn = async () => {
   const data = await auth();
-
+  console.log('FROM SIGN PAGE', data);
   const user = {
     email: data?.user?.email,
     name: data?.user?.name,

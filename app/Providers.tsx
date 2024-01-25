@@ -7,21 +7,6 @@ import { SessionProvider } from 'next-auth/react';
 import { useThemeContext } from '@/context/ThemeCtx';
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useThemeContext();
-  const [isDark, setIsDark] = useState(() => theme === 'dark');
-
-  useLayoutEffect(() => {
-    if (
-      theme === 'dark' ||
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setIsDark(true);
-    } else {
-      setIsDark(false);
-    }
-  }, [theme]);
-
-  console.log(isDark);
   return (
     <>
       <ToastContainer
@@ -39,21 +24,12 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
       {children}
 
-      {isDark ? (
-        <ProgressBar
-          height="4px"
-          color="#0ff"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
-      ) : (
-        <ProgressBar
-          height="4px"
-          color="#587997"
-          options={{ showSpinner: false }}
-          shallowRouting
-        />
-      )}
+      <ProgressBar
+        height="4px"
+        color="#0ff"
+        options={{ showSpinner: false }}
+        shallowRouting
+      />
     </>
   );
 };

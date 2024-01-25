@@ -29,9 +29,13 @@ import { useStateCtx } from '@/context/StateContext';
 import SocialLogin from '../auth/SocialLogin';
 import { UserDetails } from '@/types';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next-nprogress-bar';
+import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
+import { signIn } from '@/auth';
 
 const SigninForm = () => {
   const { setUser } = useStateCtx();
+  const router = useRouter();
 
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
@@ -56,12 +60,20 @@ const SigninForm = () => {
       login(values).then(data => {
         setSuccess(data?.success);
         setError(data?.error);
-        // setUser({
-        //   ...data.user,
-        //   name: getNameFromEmail(data?.user?.email!),
-        //   image: '/facemoji.png',
-        //   email: data?.user?.email ?? 'Johndoe@fake.com'
-        // });
+        if (data?.success) {
+          setTimeout(() => {
+            setSuccess('Redirecting....');
+          }, 1000);
+          setTimeout(() => {
+            router.push(DEFAULT_LOGIN_REDIRECT);
+          }, 2000);
+        }
+        setUser({
+          ...data.user,
+          name: getNameFromEmail(data?.user?.email!),
+          image: '/facemoji.png',
+          email: data?.user?.email ?? 'Johndoe@fake.com'
+        });
         // console.log(data.user);
       });
     });

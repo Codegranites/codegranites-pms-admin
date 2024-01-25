@@ -5,6 +5,7 @@ import { FOOTER_LINKS } from '../../libs/constants';
 import { cn } from '../../utils/util';
 import { BsTwitterX } from 'react-icons/bs';
 import Link from 'next/link';
+import ThemeButtons from '../ThemeButtons';
 
 const Footer = () => {
   return (
@@ -28,12 +29,12 @@ const Footer = () => {
               <SubscribeFooter />
             </div>
             <ul className="flex flex-col gap-y-5 max-[550px]:gap-y-3">
-              <span>Company</span>
+              <span className="text-header dark:text-gray-50">Company</span>
               {FOOTER_LINKS.company.map(link => (
                 <Link
                   href={link.link}
                   key={link.id}
-                  className="capitalize hover:font-medium hover:text-primary transition-colors duration-300"
+                  className="capitalize hover:font-medium  hover:text-primary dark:hover:text-color-dark transition-colors duration-300 text-header dark:text-gray-200"
                 >
                   {link.label}
                 </Link>
@@ -41,13 +42,13 @@ const Footer = () => {
             </ul>
 
             <ul className="flex flex-col gap-y-5 max-[550px]:gap-y-3">
-              <span>Help</span>
+              <span className="text-header dark:text-gray-50">Help</span>
               {FOOTER_LINKS.help.map(link => (
                 <Link
                   href={link.link}
                   key={link.id}
                   className={cn(
-                    'capitalize hover:font-medium hover:text-primary transition-colors duration-300',
+                    'capitalize hover:font-medium hover:text-primary dark:hover:text-color-dark transition-colors duration-300 text-header dark:text-gray-200',
                     {
                       uppercase: link.label === 'faq'
                     }
@@ -58,9 +59,11 @@ const Footer = () => {
               ))}
             </ul>
             <ul className="flex flex-col gap-y-5 max-[550px]:gap-y-3">
-              <span>Email Us</span>
+              <span className="text-header dark:text-gray-50">Email Us</span>
               {FOOTER_LINKS.emails.map(email => (
-                <li key={email.id}>{email.email}</li>
+                <li key={email.id} className="text-header dark:text-gray-100">
+                  {email.email}
+                </li>
               ))}
               <div className="flex items-center gap-x-4">
                 <span className="text-white h-[24px] w-[24px] bg-[#2867B2] font-medium rounded-full flex justify-center items-center">
@@ -70,6 +73,7 @@ const Footer = () => {
                   <BsTwitterX />
                 </span>
               </div>
+              <ThemeButtons />
             </ul>
           </div>
         </div>

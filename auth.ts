@@ -17,7 +17,7 @@ export const {
   },
   events: {
     async signIn({ user }) {
-      console.log('signIn', user);
+      console.log('signIn', user.email);
     }
   },
   ...authConfig

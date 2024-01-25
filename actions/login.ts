@@ -2,6 +2,7 @@
 
 import { LoginSchema } from '@/schemas';
 import * as z from 'zod';
+import { AuthError } from 'next-auth';
 import { cookies } from 'next/headers';
 
 import { signIn } from '@/auth';
@@ -35,32 +36,42 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         password
       })
     });
-
+    console.log(data.status);
     const res = await data.json();
-    console.log('FROM LOGIN: ', res);
     if (data.status === 200 || res.ok) {
-      // const user = jwtDecode(res.token) as UserDetails;
-      // cookie.set('access_token', res.token, {
-      //   maxAge: 60 * 60 * 24 * 30, // 30 days
-      //   path: '/',
-      //   httpOnly: true,
-      //   priority: 'high'
-      // });
-      // cookie.set('user', JSON.stringify(user), {
-      //   maxAge: 60 * 60 * 24 * 30, // 30 days
-      //   path: '/',
-      //   priority: 'high'
-      // });
+      signIn(res.token);
+      cookie.set('access_token', res.token, {
+        maxAge: 60 * 60 * 24 * 1, // 1 day
+        httpOnly: true,
+        path: '/',
+        priority: 'high'
+      });
+      const decodedToken = jwtDecode(res.token) as UserDetails;
+      if (decodedToken) {
+        const user = {
+          email: decodedToken.email,
+          name: decodedToken.name,
+          accountId: decodedToken.accountId,
+          role: decodedToken.role
+        };
+        cookie.set('user', JSON.stringify(user), {
+          maxAge: 60 * 60 * 24 * 1, // 1 day
+
+          path: '/',
+          priority: 'high'
+        });
+      }
+      console.log(res);
+
       return {
         success: 'Login successful!',
         redirect: DEFAULT_LOGIN_REDIRECT,
-        // user,
-        token: res.token
+        user: decodedToken
       };
     }
     if (data.status === 400) {
       return {
-        error: 'Invalid email and password or User does not exist'
+        error: 'Email or Phone number already exist'
       };
     }
     if (data.status === 404) {
