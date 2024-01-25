@@ -1,19 +1,17 @@
 'use client';
 
 import { NAV_LINKS } from '../../libs/constants';
-import Button from '@ui/Button';
 import { cn } from '../../utils/util';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { useRouter } from 'next-nprogress-bar';
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import MobileNav from './MobileNav';
 import { useStateCtx } from '../../context/StateContext';
 import useWindowHeight from '../../hooks/useDimension';
-import { Notification, SearchNormal, SearchNormal1 } from 'iconsax-react';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
+import UserContainer from '../auth/UserContainer';
 
 const Navbar = () => {
   const { landingMobileMenu, setLandingMobileMenu, user } = useStateCtx();
@@ -72,7 +70,7 @@ const Navbar = () => {
               ' w-full   flex justify-center capitalize text-base relative font-medium before:dark:bg-gray-200 before:bg-primary-light before:w-[0%] before:h-1 before:absolute before:-bottom-2 before:left-0 before:transition-all before:duration-500 ',
               isActive === link.link
                 ? 'before:w-full text-primary-light dark:text-white'
-                : 'text-gray-300'
+                : 'text-header dark:text-gray-300'
             )}
           >
             <span>{link.label}</span>
@@ -81,28 +79,9 @@ const Navbar = () => {
       </div>
 
       {user.email ? (
-        <div className="hidden lg:flex gap-x-3 xl:gap-x-5  [&>button]:font-medium [&>button]:text-header [&>button]:dark:text-gray-200">
-          <button type="button">
-            <SearchNormal1 size={24} />
-          </button>
-          <button type="button">
-            <Notification size={24} />
-          </button>
-          <button
-            type="button"
-            className="w-8 h-8 border border-primary-light rounded-full"
-          >
-            <Image
-              src={user.image!}
-              alt="user"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
-          </button>
-        </div>
+        <UserContainer user={user} />
       ) : (
-        <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light">
+        <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:dark:border-color-dark [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light [&>button]:dark:text-white">
           <button type="button">
             <Link href="/sign-in">Login</Link>
           </button>

@@ -21,7 +21,7 @@ export default {
           const user = await signinUser({ email, password });
           if (!user) return null;
 
-          return user;
+          return user.res;
         }
         return null;
       }
@@ -29,8 +29,8 @@ export default {
   ],
   callbacks: {
     async jwt({ user, token }) {
-      if (user) {
-        token.accessToken = user;
+      if (token) {
+        token.accessToken = token.token!;
       }
       return token;
     }

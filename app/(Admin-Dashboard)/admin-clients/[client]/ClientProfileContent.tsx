@@ -1,16 +1,16 @@
 'use client';
 
 import { ChevronLeft } from 'lucide-react';
-import NotFound from '../../../../components/admin/NotFound';
-import { ADMIN_CLIENTS } from '../../../../libs/clients';
+import NotFound from '@/components/admin/NotFound';
+import { ADMIN_CLIENTS } from '@/libs/clients';
 import { useRouter } from 'next-nprogress-bar';
 import { Suspense, useEffect, useState } from 'react';
-import LoadingSpinner from '../../../../components/loaders/LoadingSpinner';
+import LoadingSpinner from '@/components/loaders/LoadingSpinner';
 import ClientProfileInfo from './ClientProfileInfo';
 import { Trash } from 'iconsax-react';
 import RemoveClientModal from './RemoveClientModal';
-import { useStateCtx } from '../../../../context/StateContext';
-import SkeletonBio from '../../../../components/skeleton/SkeletonBio';
+import { useStateCtx } from '@/context/StateContext';
+import SkeletonBio from '@/components/skeleton/SkeletonBio';
 
 const ClientProfileContent = ({
   client_id,

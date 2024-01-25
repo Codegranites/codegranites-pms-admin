@@ -24,8 +24,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [theme, setTheme] = useState<ThemeProps>('' as ThemeProps);
 
   useLayoutEffect(() => {
-    const t =
-        '%c \ud83d\udc9a LogOut is not functional yet - Vxrcel \ud83d\udc9a',
+    const t = '%c  LogOut is not functional yet - Vxrcel ',
       n = [
         'font-size: 12px',
         'color: #fffce1',
