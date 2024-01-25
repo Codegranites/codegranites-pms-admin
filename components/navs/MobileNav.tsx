@@ -112,7 +112,7 @@ const MobileNav = () => {
             className={cn(
               'w-full flex items-center gap-x-4 dark:bg-gradient-to-r dark:from-black/10 dark:via-black/60 dark:to-transparent bg-gradient-to-r from-white via-white/80 to-transparent pl-3 py-3 transition-colors duration-300 justify-center mb-4 hover:bg-black/10 dark:hover:bg-color-dark/10  focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light',
               {
-                hidden: !!user
+                hidden: !user.email
               }
             )}
             role="button"
