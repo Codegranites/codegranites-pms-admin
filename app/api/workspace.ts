@@ -6,8 +6,7 @@ import { cookies } from 'next/headers';
 import * as z from 'zod';
 
 const BaseUrl =
-  process.env.NEXT_PUBLIC_WORKSPACEURL ??
-  'https://codegranite-api.onrender.com';
+  process.env.NEXT_PUBLIC_BASEURL ?? 'https://pms-backend-rvoy.onrender.com';
 
 const $Http = Calls(BaseUrl);
 
@@ -22,7 +21,8 @@ export const createWorkspace = async (
     };
   }
 
-  const authToken = cookies()?.get('access_token')?.value;
+  const authToken = cookies()?.get('access_token');
+  console.log('token:', authToken);
 
   if (!authToken) {
     return {
@@ -32,17 +32,14 @@ export const createWorkspace = async (
 
   const config = {
     headers: {
-      'Content-Type': 'application/json; charset=UTF-8',
+      'Content-Type': 'multipart/form-data',
       accept: 'application/json',
       Authorization: `Bearer ${authToken}`
     }
   };
-  // const { workspaceName, description } = validatedFields.data;
+  const { workspaceName, description } = validatedFields.data;
 
-  const description = validatedFields.data.description;
-  const name = validatedFields.data.workspaceName;
-
-  const values1 = { name, description };
+  const values1 = { name: workspaceName, description };
 
   try {
     const res = await $Http.post('/workspace/create', values1, config);
@@ -76,7 +73,7 @@ export const createWorkspace = async (
 };
 
 export const getWorkspace = async () => {
-  const authToken = cookies()?.get('access_token')?.value;
+  const authToken = cookies()?.get('access_token');
   if (!authToken) {
     return {
       error: 'Unauthorized. Missing access token.'
