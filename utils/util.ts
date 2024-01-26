@@ -211,3 +211,17 @@ export const dateToSeconds: DateToMilliseconds = (date: string): number => {
   const convertedDate = new Date(date);
   return Math.floor(convertedDate.getTime() / 1000);
 };
+
+/**
+ * Gets the initials from a given name
+ * @function getInitials
+ * @param {string} name
+ * @returns {string}
+ */
+export const getInitials = (name: string): string => {
+  const words = name.split(' ');
+  return words
+    .map(word => word[0])
+    .join('')
+    .toUpperCase();
+};

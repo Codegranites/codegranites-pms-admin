@@ -1,19 +1,24 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
+
 import AdminNavbar from '@/components/navs/AdminNavbar';
-import SidebarAdmin from '@/components/sidebars/SidebarAdmin';
 import { RiStackLine } from 'react-icons/ri';
 import ReactPaginate from 'react-paginate';
 import Card from '@/components/workspace/card';
 import { Workspaces } from '@/libs/constants';
 import WorkSpaceSkelon from '@/components/skeleton/WorkspaceSkeleton';
 import CreateaWorkspaceButton from '@/components/workspace/createWorkspace';
+import { getWorkspace } from '@/actions/workspace';
+import { WorkspaceType } from '@/types';
 
 function Workspace() {
   const WorkSpacePerPage = 4;
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
+  const [workspaces, setWorkspaces] = useState<WorkspaceType[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
     window?.scrollTo({ top: 0, behavior: 'smooth' });
@@ -25,12 +30,12 @@ function Workspace() {
 
   const startIndex = currentPage * WorkSpacePerPage;
   const endIndex = startIndex + WorkSpacePerPage;
-  const subset = Workspaces.slice(startIndex, endIndex);
+  const subset = workspaces.slice(startIndex, endIndex);
   return (
     <>
-      {/* <SidebarAdmin /> */}
       <section className="w-full relative ">
         <AdminNavbar />
+
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
           <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">
             <RiStackLine size={23} className="text-header dark:text-gray-300" />
@@ -41,9 +46,9 @@ function Workspace() {
           <CreateaWorkspaceButton />
           <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5">
             <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between">
-              {subset.map(space => (
-                <Suspense key={space.id} fallback={<WorkSpaceSkelon />}>
-                  <Card key={space.id} {...space} />
+              {subset.map(workspace => (
+                <Suspense key={workspace._id} fallback={<WorkSpaceSkelon />}>
+                  <Card key={workspace._id} {...workspace} />
                 </Suspense>
               ))}
             </div>

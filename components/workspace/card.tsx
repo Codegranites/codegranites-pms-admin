@@ -1,16 +1,14 @@
 import React from 'react';
 import useInView from '@/hooks/useInView';
-import { WorkspaceCardProps } from '@/types';
-import { cn, encryptString } from '@/utils/util';
+import { cn, getInitials } from '@/utils/util';
 import Link from 'next/link';
-// import { useSession } from '@/context/sessionProvider';
+import { WorkspaceType } from '@/types';
 
-const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
-  id,
-  logo,
+const WorkSpaceCard: React.FC<WorkspaceType> = ({
+  _id,
   name,
   description,
-  projectCount
+  projects
 }) => {
   // const { setWorkspaceId } = useSession();
   const WorkSpaceRef = React.useRef<HTMLDivElement>(null);
@@ -31,15 +29,6 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
   //   setWorkspaceId('WorkspaceId', (id ?? '').toString());
   // };
 
-  const workspacce1 = (name1: string) => {
-    const words = name1.split(' ');
-    return words.length > 1
-      ? words[0].toLocaleLowerCase()
-      : name1.toLocaleLowerCase;
-  };
-
-  const workspace = workspacce1(name);
-
   return (
     <div
       ref={WorkSpaceRef}
@@ -55,7 +44,7 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
       <div className="card-content flex-col flex bg-card dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] p-2 pl-3 justify-start items-start">
         <div className="flex pb-4 items-center gap-x-3">
           <p className="bg-[#F3DE8A] text-[#fff] text-[1rem] p-1 rounded-full h-[30px] w-[30px] items-center justify-center text-center">
-            {logo}
+            {getInitials(name || '')}
           </p>
           <h2 className="text-[1.5rem] leading-10 text-header dark:text-gray-100 font-bold ">
             {name}
@@ -68,12 +57,12 @@ const WorkSpaceCard: React.FC<WorkspaceCardProps> = ({
         </div>
         <div>
           <p className="text-[1rem] text-header dark:text-gray-300 font-normal pt-2 pb-4">
-            Projects: {projectCount}
+            Projects: {projects?.length || 0}
           </p>
         </div>
         <div>
           <Link
-            href={`/${workspace}/dashboard`}
+            href={`/dashboard`}
             className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center justify-center font-medium hover:opacity-70 transition-all duration-300"
           >
             Open
