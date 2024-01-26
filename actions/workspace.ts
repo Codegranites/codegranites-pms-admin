@@ -96,7 +96,7 @@ export const getWorkspace = async () => {
     if (res.status === 201) {
       return {
         success: 'Workspace retrieved successfully',
-        workspace: res.data
+        workspace: res.data.data
       };
     } else if (res.status === 401) {
       return {

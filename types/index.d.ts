@@ -152,3 +152,15 @@ export interface UserDetails {
   role?: string;
   image: string | StaticImport;
 }
+
+export type WorkspaceType = {
+  _id?: string;
+  id?: string;
+  name?: string;
+  description?: string;
+  createdby?: string;
+  guestModerator?: any;
+  clients?: any;
+  projects?: any;
+  transactions?: any;
+};
