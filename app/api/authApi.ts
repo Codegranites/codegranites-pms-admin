@@ -22,4 +22,24 @@ export async function resetPassword(props: { email: string }) {
   }
 }
 
+export async function changePassword(props: {
+  url: string;
+  password: string;
+}): Promise<{ status: number }> {
+  try {
+    const resetResponse = await $AuthHttp.post(`/account${props.url}`, {
+      password: props.password
+    });
+
+    if (resetResponse.status === 200) {
+      toast.success('Password Reset successfully');
+    }
+    return resetResponse;
+  } catch (error) {
+    console.log(error);
+    toast.error('An error occured');
+    return { status: 400 };
+  }
+}
+
 // james@#$2D
