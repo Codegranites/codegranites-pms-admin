@@ -1,18 +1,25 @@
 import React from 'react';
 import useInView from '@/hooks/useInView';
 import { cn, getInitials } from '@/utils/util';
-import Link from 'next/link';
 import { WorkspaceType } from '@/types';
+import { useStateCtx } from '@/context/StateContext';
+import { useRouter } from 'next/navigation';
 
 const WorkSpaceCard: React.FC<WorkspaceType> = ({
   _id,
+  createdBy,
   name,
   description,
   projects
 }) => {
-  // const { setWorkspaceId } = useSession();
+  const router = useRouter();
   const WorkSpaceRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView({ ref: WorkSpaceRef });
+  const { user } = useStateCtx();
+  const accountID = user?.accountId;
+  const createdby = createdBy;
+  console.log(createdby);
+  console.log(accountID);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget: target } = e;
@@ -25,10 +32,25 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
     target.style.setProperty('--border--y', `${y}px`);
   };
 
-  // const handleOpenClick = () => {
-  //   setWorkspaceId('WorkspaceId', (id ?? '').toString());
-  // };
+  const handleLinkClick = () => {
+    if (createdby !== undefined) {
+      localStorage.setItem('createdBy', createdby);
+    } else {
+      console.error('createdby is undefined');
+    }
 
+    if (_id !== undefined) {
+      localStorage.setItem('workspaceID', _id);
+    } else {
+      console.error('createdby is undefined');
+    }
+
+    if (accountID === createdBy) {
+      router.push('/admin-dashboard');
+    } else {
+      router.push('/dashboard');
+    }
+  };
   return (
     <div
       ref={WorkSpaceRef}
@@ -61,12 +83,12 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
           </p>
         </div>
         <div>
-          <Link
-            href={`/dashboard`}
+          <button
+            onClick={handleLinkClick}
             className="text-primary rounded-lg bg-white border border-primary h-[40px] w-[185px] px-4 py-2 flex items-center justify-center font-medium hover:opacity-70 transition-all duration-300"
           >
             Open
-          </Link>
+          </button>
         </div>
       </div>
     </div>
@@ -74,7 +96,3 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
 };
 
 export default WorkSpaceCard;
-
-{
-  /* <div className="flex pb-4 items-center gap-x-3"></div> */
-}

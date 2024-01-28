@@ -1,7 +1,7 @@
 import Calls from './call';
 import { toast } from 'react-toastify';
 
-const BaseUrl = 'https://pms-backend-rvoy.onrender.com/';
+export const BaseUrl = 'https://pms-backend-rvoy.onrender.com/';
 
 const $AuthHttp = Calls(BaseUrl);
 

@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { ClassValue } from 'clsx';
+import { getCookie } from 'cookies-next';
 import { twMerge } from 'tailwind-merge';
 
 export const cn = (...classes: ClassValue[]) => {
@@ -222,6 +223,7 @@ export const getInitials = (name: string): string => {
   const words = name.split(' ');
   return words
     .map(word => word[0])
+    .slice(0, 2)
     .join('')
     .toUpperCase();
 };
