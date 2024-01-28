@@ -1,8 +1,8 @@
 'use client';
 
 import { Suspense, useEffect, useState } from 'react';
-
-import AdminNavbar from '@/components/navs/AdminNavbar';
+import LoadingSpinner from '@/components/loaders/LoadingSpinner';
+import WorkspaceNav from './components/nav';
 import { RiStackLine } from 'react-icons/ri';
 import ReactPaginate from 'react-paginate';
 import Card from '@/components/workspace/card';
@@ -12,17 +12,29 @@ import CreateaWorkspaceButton from '@/components/workspace/createWorkspace';
 import { getWorkspace } from '@/actions/workspace';
 import { WorkspaceType } from '@/types';
 
-function Workspace() {
+async function Workspace() {
   const WorkSpacePerPage = 4;
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
   const [workspaces, setWorkspaces] = useState<WorkspaceType[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
     window?.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await getWorkspace();
+      if (result.success) {
+        setWorkspaces(result.workspace);
+      } else {
+        console.error(result.error);
+      }
+    };
+    fetchData();
+  }, []);
 
   useEffect(() => {
     setTotalPages(Math.ceil(Workspaces.length / 4));
@@ -34,7 +46,7 @@ function Workspace() {
   return (
     <>
       <section className="w-full relative ">
-        <AdminNavbar />
+        <WorkspaceNav />
 
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
           <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">

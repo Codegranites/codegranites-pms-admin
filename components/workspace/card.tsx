@@ -3,16 +3,20 @@ import useInView from '@/hooks/useInView';
 import { cn, getInitials } from '@/utils/util';
 import Link from 'next/link';
 import { WorkspaceType } from '@/types';
+import { useStateCtx } from '@/context/StateContext';
 
 const WorkSpaceCard: React.FC<WorkspaceType> = ({
   _id,
+  createdBy,
   name,
   description,
   projects
 }) => {
-  // const { setWorkspaceId } = useSession();
   const WorkSpaceRef = React.useRef<HTMLDivElement>(null);
   const isInView = useInView({ ref: WorkSpaceRef });
+  const { user } = useStateCtx();
+  const accountID = user?.accountId;
+  console.log(accountID);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget: target } = e;

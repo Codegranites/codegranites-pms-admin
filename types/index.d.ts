@@ -158,7 +158,7 @@ export type WorkspaceType = {
   id?: string;
   name?: string;
   description?: string;
-  createdby?: string;
+  createdBy?: string;
   guestModerator?: any;
   clients?: any;
   projects?: any;
