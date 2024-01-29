@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import LoadingSpinner from '@/components/loaders/LoadingSpinner';
-import WorkspaceNav from './components/nav';
 import { RiStackLine } from 'react-icons/ri';
 import ReactPaginate from 'react-paginate';
 import Card from '@/components/workspace/card';
@@ -18,6 +17,7 @@ async function Workspace() {
   const [currentPage, setCurrentPage] = useState(0);
   const [workspaces, setWorkspaces] = useState<WorkspaceType[]>([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handlePageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected);
@@ -26,13 +26,23 @@ async function Workspace() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await getWorkspace();
-      if (result.success) {
-        setWorkspaces(result.workspace);
-      } else {
-        console.error(result.error);
+      try {
+        setLoading(true);
+        const result = await getWorkspace();
+        if (result.success) {
+          setWorkspaces(result.workspace);
+          setError(null);
+        } else {
+          setError(result.error || 'Unknown error occurred.');
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+        setError('An unexpected error occurred. Please try again.');
+      } finally {
+        setLoading(false);
       }
     };
+
     fetchData();
   }, []);
 
@@ -46,8 +56,6 @@ async function Workspace() {
   return (
     <>
       <section className="w-full relative ">
-        <WorkspaceNav />
-
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
           <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">
             <RiStackLine size={23} className="text-header dark:text-gray-300" />
@@ -55,37 +63,67 @@ async function Workspace() {
               My work Space
             </p>
           </div>
+
           <CreateaWorkspaceButton />
-          <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5">
-            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between">
-              {subset.map(workspace => (
-                <Suspense key={workspace._id} fallback={<WorkSpaceSkelon />}>
-                  <Card key={workspace._id} {...workspace} />
-                </Suspense>
-              ))}
-            </div>
-            <div className="flex w-full md:justify-end justify-center mt-6 md:pr-7">
-              <ReactPaginate
-                breakLabel="..."
-                nextLabel="Next "
-                previousLabel=" Previous"
-                previousAriaLabel="Previous"
-                nextAriaLabel="Next"
-                pageCount={totalPages}
-                onPageChange={handlePageChange}
-                pageRangeDisplayed={3}
-                marginPagesDisplayed={2}
-                className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
-                pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
-                previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
-                nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"
-                pageLinkClassName="text-[#6B7280] dark:text-[#28affd] w-full h-full flex items-center justify-center"
-                activeClassName="bg-[#becbd7] dark:bg-[#28affd38]  font-medium"
-                renderOnZeroPageCount={null}
-                disabledClassName="cursor-not-allowed opacity-70"
-                disabledLinkClassName="cursor-not-allowed opacity-70"
-              />
-            </div>
+          <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5 items-center text-center dark:text-white">
+            {loading && <LoadingSpinner />}
+            {!error && subset && !loading && (
+              <>
+                {subset.length === 0 ? (
+                  <p className="text-2xl mt-6">No workspaces available.</p>
+                ) : (
+                  subset.map(workspace => (
+                    <Suspense
+                      key={workspace._id}
+                      fallback={<WorkSpaceSkelon />}
+                    >
+                      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between items-center text-center ">
+                        <Card key={workspace._id} {...workspace} />
+                      </div>
+                    </Suspense>
+                  ))
+                )}
+              </>
+            )}
+
+            {error && (
+              <div className="grid place-items-center dark:text-white">
+                <div className="text-center ">
+                  <h3 className="text-4xl">{error}</h3>
+                  <p className="text-2xl">
+                    ⚒️ We are currently working on this ⚒️
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {subset.length === 0 ||
+            loading ||
+            totalPages === 1 ||
+            error ? null : (
+              <div className="flex w-full md:justify-end justify-center mt-6 md:pr-7">
+                <ReactPaginate
+                  breakLabel="..."
+                  nextLabel="Next "
+                  previousLabel=" Previous"
+                  previousAriaLabel="Previous"
+                  nextAriaLabel="Next"
+                  pageCount={totalPages}
+                  onPageChange={handlePageChange}
+                  pageRangeDisplayed={3}
+                  marginPagesDisplayed={2}
+                  className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
+                  pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
+                  previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+                  nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"
+                  pageLinkClassName="text-[#6B7280] dark:text-[#28affd] w-full h-full flex items-center justify-center"
+                  activeClassName="bg-[#becbd7] dark:bg-[#28affd38]  font-medium"
+                  renderOnZeroPageCount={null}
+                  disabledClassName="cursor-not-allowed opacity-70"
+                  disabledLinkClassName="cursor-not-allowed opacity-70"
+                />
+              </div>
+            )}
           </section>
         </div>
       </section>

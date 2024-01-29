@@ -11,7 +11,9 @@ import {
   Notification,
   AddCircle,
   Profile2User,
-  ArchiveBook
+  ArchiveBook,
+  Profile,
+  Setting5
 } from 'iconsax-react';
 import {
   SettingsProps,
@@ -138,6 +140,33 @@ export const SIDEBAR_MOD_LINKS: SidebarAdminProps[] = [
 
 export const TYPESidebarLinks = SIDEBAR_ADMIN_LINKS.map(link => link.link);
 export const TYPESidebarLinksMod = SIDEBAR_MOD_LINKS.map(link => link.link);
+
+export const WorkspaceSidebarLinks: SidebarAdminProps[] = [
+  {
+    id: 1,
+    label: 'profile',
+    link: '/profile',
+    icon: Profile
+  },
+  {
+    id: 2,
+    label: 'Workspace',
+    link: '/workspace',
+    icon: Category
+  },
+  {
+    id: 3,
+    label: 'Account preferences',
+    link: '/account-preferences',
+    icon: Setting5
+  },
+  {
+    id: 5,
+    label: 'Notifications',
+    link: '/notifications-settings',
+    icon: Notification
+  }
+];
 
 export const Settingsnav: SettingsProps[] = [
   {
