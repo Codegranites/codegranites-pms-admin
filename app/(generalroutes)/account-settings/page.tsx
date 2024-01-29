@@ -15,7 +15,7 @@ const AccountPreference = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className="flex-col justify-between h-full  md:p-[50px]">
+    <div className="flex-col justify-between h-full  md:p-[50px] p-[20px]">
       <div className="flex gap-y-8 flex-col">
         <LangPrefences />
         <ThemePrefences />
