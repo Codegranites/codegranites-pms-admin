@@ -1,6 +1,4 @@
 'use client';
-
-import { Input } from '@/components/ui/Input';
 import {
   Select,
   SelectContent,
@@ -11,7 +9,6 @@ import {
   SelectValue
 } from '@ui/select';
 import { useState } from 'react';
-import Button from '@ui/Button';
 import { LanguageProps } from '@/types';
 
 const selectFilters: LanguageProps[] = [
@@ -32,7 +29,7 @@ const LangPrefences = () => {
   return (
     <div className="w-[620px] max-w-[680px]  items-center flex-col md:flex-row gap-y-4 ">
       <div className="flex-col items-center gap-x-1 text-black w-full ">
-        <span className="hidden sm:inline-block font-medium mb-4   text-2xl">
+        <span className="hidden sm:inline-block font-medium mb-4   text-2xl dark:text-white">
           Language
         </span>
 
@@ -40,7 +37,7 @@ const LangPrefences = () => {
           onValueChange={value => setSelectedValue(value)}
           defaultValue="english"
         >
-          <SelectTrigger className="w-full select-none h-[70px] py-3 text-lg font-medium">
+          <SelectTrigger className="w-full select-none h-[70px] py-3 text-lg font-medium dark:bg-primary dark:text-white">
             <SelectValue placeholder={selectedValue} />
           </SelectTrigger>
           <SelectContent className="backdrop-blur-xl bg-white/80">
@@ -49,7 +46,7 @@ const LangPrefences = () => {
                 <SelectItem
                   key={filter.id}
                   value={filter.value}
-                  className="hover:bg-[#becbd7] text-xl capitalize"
+                  className="hover:bg-[#becbd7] text-xl capitalize dark:text-white dark:bg-primary dark:border-none cursor-pointer"
                 >
                   {filter.label}
                 </SelectItem>

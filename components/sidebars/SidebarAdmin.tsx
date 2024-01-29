@@ -18,7 +18,21 @@ const SidebarAdmin = () => {
   const router = useRouter();
 
   const ClearLocalAndExit = () => {
-    localStorage.clear();
+    const createdBy = localStorage.getItem('createdBy');
+    const workspaceID = localStorage.getItem('workspaceID');
+
+    if (createdBy !== undefined) {
+      localStorage.removeItem('createdBy');
+    } else {
+      console.error('createdBy is undefined');
+    }
+
+    if (workspaceID !== undefined) {
+      localStorage.removeItem('workspaceID');
+    } else {
+      console.error('workspaceID is undefined');
+    }
+
     router.push('/workspace');
   };
 
