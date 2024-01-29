@@ -72,9 +72,14 @@ function Profile() {
               height={250}
               className="rounded-full"
             />
-            <div className="flex flex-col  max-[1139px]:hidden group-hover:w-full group-hover:flex">
-              <span className="text-black text-lg font-medium mt-5">Email</span>
-              <span className="text-[#282828] text-lg" title={user.email}>
+            <div className="flex flex-col  max-[1139px]:hidden group-hover:w-full group-hover:flex md:mb-4">
+              <span className="text-black text-lg font-medium mt-5 dark:text-white">
+                Email
+              </span>
+              <span
+                className="text-[#282828] text-lg dark:text-white"
+                title={user.email}
+              >
                 {user.email}
               </span>
             </div>

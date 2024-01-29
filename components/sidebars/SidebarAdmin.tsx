@@ -18,8 +18,8 @@ const SidebarAdmin = () => {
   const router = useRouter();
 
   const ClearLocalAndExit = () => {
-    const createdBy = localStorage.getItem('createdBy');
-    const workspaceID = localStorage.getItem('workspaceID');
+    const createdBy = localStorage?.getItem('createdBy');
+    const workspaceID = localStorage?.getItem('workspaceID');
 
     if (createdBy !== undefined) {
       localStorage.removeItem('createdBy');
