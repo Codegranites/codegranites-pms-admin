@@ -33,7 +33,7 @@ export default function CreateaWorkspaceButton() {
       <span className="font-bold text-4xl items-start flex md:mt-[70px] my-[30px] text-header dark:text-gray-100">
         Create WorkSpace
       </span>
-      <div className="flex flex-col items-center bg-white dark:bg-primary">
+      <div className="flex flex-col items-center bg-white dark:bg-gray-900">
         <CreateWorks />
       </div>
     </div>

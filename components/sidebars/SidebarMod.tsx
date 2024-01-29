@@ -138,7 +138,13 @@ const SidebarMod = () => {
           onClick={() => setActiveLink('profile')}
         >
           <div className="relative w-full max-w-[60px] flex justify-center h-[60px] ">
-            <Image src={user.image} alt="user" width={60} height={60} />
+            <Image
+              src={user.image}
+              alt="user"
+              width={60}
+              height={60}
+              className="rounded-full"
+            />
             <span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
           </div>
           <div className="flex flex-col  max-[1139px]:hidden w-full group-hover:w-full group-hover:flex">

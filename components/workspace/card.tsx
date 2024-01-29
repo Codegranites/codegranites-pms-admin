@@ -63,7 +63,7 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
       )}
     >
       <div className="card-border" />
-      <div className="card-content flex-col flex bg-card dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] p-2 pl-3 justify-start items-start">
+      <div className="card-content flex-col flex bg-card dark:bg-gray-950 p-2 pl-3 justify-start items-start">
         <div className="flex pb-4 items-center gap-x-3">
           <p className="bg-[#F3DE8A] text-[#fff] text-[1rem] p-1 rounded-full h-[30px] w-[30px] items-center justify-center text-center">
             {getInitials(name || '')}

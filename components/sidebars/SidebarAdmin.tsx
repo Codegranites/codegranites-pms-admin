@@ -18,7 +18,7 @@ const SidebarAdmin = () => {
   const router = useRouter();
 
   const ClearLocalAndExit = () => {
-    localStorage.clear();
+    // localStorage.clear();
     router.push('/workspace');
   };
 
@@ -29,7 +29,7 @@ const SidebarAdmin = () => {
   }, [pathname]);
 
   return (
-    <section className="bg-white dark:bg-primary dark:border-primary-light z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200  sidebar-scroll overflow-x-hidden group select-none">
+    <section className="bg-white dark:bg-gray-900 dark:border-primary-light z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200  sidebar-scroll overflow-x-hidden group select-none">
       <Link
         href="/"
         className=" max-[1140px]:w-full group-hover:w-full h-[53px]"
@@ -59,7 +59,7 @@ const SidebarAdmin = () => {
             className={cn(
               'flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] dark:text-gray-400 font-medium text-base transition-colors duration-300 cursor-pointer ',
               activeLink === link.link
-                ? 'bg-primary-light dark:bg-primary-light/75 dark:text-white  text-white rounded outline-none'
+                ? 'bg-primary-light dark:bg-primary-light dark:text-white  text-white rounded outline-none'
                 : 'hover:bg-black/10 dark:hover:bg-color-dark/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
             )}
             onClick={() => setActiveLink(link.link)}
@@ -67,7 +67,7 @@ const SidebarAdmin = () => {
             <link.icon
               size={24}
               aria-hidden
-              variant={activeLink === link.link ? 'Bold' : 'Outline'}
+              variant={activeLink === link.link ? 'Bulk' : 'Outline'}
             />
 
             <span className=" max-[1139px]:hidden group-hover:block w-[185px]">
@@ -101,7 +101,7 @@ const SidebarAdmin = () => {
           <Setting2
             size={24}
             aria-hidden
-            variant={activeLink === 'settings' ? 'Bold' : 'Outline'}
+            variant={activeLink === 'settings' ? 'Bulk' : 'Outline'}
           />
           <span className=" max-[1139px]:hidden group-hover:block">
             Settings
@@ -162,11 +162,11 @@ const SidebarAdmin = () => {
             <span className="w-[15px] h-[15px] bg-[#04802e] rounded-full border border- absolute bottom-1 right-1" />
           </div>
           <div className="flex flex-col  max-[1139px]:hidden w-full group-hover:w-full group-hover:flex">
-            <span className="text-[#090909] dark:text-gray-400 dark:font-medium text-base">
+            <span className="text-[#090909] dark:text-white dark:font-medium text-base">
               {shrinkString({ str: user.name!, len: 17 })}
             </span>
             <span
-              className="text-[#3a3a3a] dark:text-gray-400 text-sm"
+              className="text-[#3a3a3a] dark:text-gray-200 text-sm"
               title={user.email}
             >
               {shrinkString({ str: user.email!, len: 17 })}

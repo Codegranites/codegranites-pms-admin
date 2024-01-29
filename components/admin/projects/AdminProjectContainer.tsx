@@ -137,7 +137,7 @@ const AdminProjectContainer = () => {
             onPageChange={handlePageChange}
             pageRangeDisplayed={3}
             marginPagesDisplayed={2}
-            className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none"
+            className="flex items-center justify-center  border border-gray-300 dark:border-primary-light px-4 rounded-md select-none dark:bg-gray-950"
             pageClassName="w-8 h-8 flex justify-center items-center border-l border-r border-gray-300 dark:border-[#28affd]"
             previousClassName="pr-2 lg:pr-4 text-[#6B7280] dark:text-[#28affd] font-medium"
             nextClassName="pl-2 lg:pl-4 text-[#6B7280] dark:text-[#28affd] font-medium"

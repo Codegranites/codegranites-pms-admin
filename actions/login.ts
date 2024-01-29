@@ -41,7 +41,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     if (data.status === 200 || res.ok) {
       signIn(res.token);
       cookie.set('access_token', res.token, {
-        maxAge: 60 * 60 * 24 * 1, // 1 day
+        maxAge: 60 * 60 * 1 * 1, // 1 hour
         httpOnly: true,
         path: '/',
         priority: 'high'

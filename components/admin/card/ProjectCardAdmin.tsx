@@ -39,14 +39,14 @@ const ProjectCardAdmin = ({
       style={{
         transform: isInView ? 'none' : 'translateY(100px)',
         opacity: isInView ? 1 : 0,
-        transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
+        transition: 'transform 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
       }}
       onMouseMove={handleMouseMove}
-      className="relative w-full max-w-[454px] h-[261px]  flex items-center justify-center pb-1  p-[2px] border border-gray-300 dark:border-primary dark:p-1 rounded-xl sm:rounded-2xl admin-card"
+      className="relative w-full max-w-[454px] h-[261px]  flex items-center justify-center pb-1  p-[2px] border border-gray-300 dark:border-none dark:p-[3px] rounded-xl sm:rounded-2xl admin-card"
     >
       <div className="card-border" />
-      <div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] min-[1310px]:p-4 max-[1140px]:p-4 p-1 justify-center max-[360px]:[&>p]:text-[12px]">
-        <Folder2 variant="Bold" className="text-header dark:text-gray-200 " />
+      <div className="card-content w-full h-full flex flex-col items-start gap-y-4 bg-white dark:bg-gray-950 min-[1310px]:p-4 max-[1140px]:p-4 p-1 pl-2 justify-center max-[360px]:[&>p]:text-[12px]">
+        <Folder2 variant="Bulk" className="text-header dark:text-color-dark" />
         <p className="text-sm text-header dark:text-gray-200">
           Project Title:{' '}
           <strong>
@@ -73,7 +73,7 @@ const ProjectCardAdmin = ({
               {
                 'border-[#eea300] ': status === 'in-progress',
                 'border-[#008d36] ': status === 'completed',
-                'border-black/90 ': status === 'pending'
+                'border-black/90 dark:border-gray-600/90 ': status === 'pending'
               }
             )}
           >
@@ -83,7 +83,7 @@ const ProjectCardAdmin = ({
                 {
                   'bg-[#eea300] w-1/2': status === 'in-progress',
                   'bg-[#008d36] w-full': status === 'completed',
-                  'bg-black/90 w-[5%]': status === 'pending'
+                  'bg-black/90 dark:bg-gray-500 w-[5%]': status === 'pending'
                 }
               )}
             />
