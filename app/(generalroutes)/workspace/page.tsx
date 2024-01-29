@@ -68,7 +68,7 @@ async function Workspace() {
           <section className="flex flex-col w-full pb-6 min-h-screen text-center dark:text-white">
             {loading && <LoadingSpinner />}
             {!error && subset && !loading && (
-              <div className="w-full min-h-[941px] grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-4 lg:gap-x-6  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4 mt-5">
+              <div className="w-full min-h-screen grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-3 lg:gap-x-5  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4 mt-5">
                 {subset.length === 0 ? (
                   <p className="text-2xl mt-6">No workspaces available.</p>
                 ) : (
