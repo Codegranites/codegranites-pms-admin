@@ -3,7 +3,7 @@ import useInView from '@/hooks/useInView';
 import { cn, getInitials } from '@/utils/util';
 import { WorkspaceType } from '@/types';
 import { useStateCtx } from '@/context/StateContext';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next-nprogress-bar';
 
 const WorkSpaceCard: React.FC<WorkspaceType> = ({
   _id,
@@ -18,8 +18,6 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
   const { user } = useStateCtx();
   const accountID = user?.accountId;
   const createdby = createdBy;
-  console.log(createdby);
-  console.log(accountID);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const { currentTarget: target } = e;
@@ -56,7 +54,7 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
       ref={WorkSpaceRef}
       onMouseMove={handleMouseMove}
       className={cn(
-        'md:w-[500px] relative h-full sm:w-ful   flex flex-col p-[6px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 dark:border-primary hover:border-none card',
+        'md:w-[400px] relative h-full sm:w-ful   flex flex-col p-[6px] rounded-lg xl:rounded-xl transition-all duration-1000 hover:delay-0 hover:duration-500 hover:shadow-[0_10px_30px_0_rgba(0,0,0,0.2)]   border border-gray-200 dark:border-primary hover:border-none card',
         isInView
           ? 'opacity-100 translate-y-0 delay-200 duration-1000'
           : ' opacity-0 translate-y-36'
@@ -68,8 +66,8 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
           <p className="bg-[#F3DE8A] text-[#fff] text-[1rem] p-1 rounded-full h-[30px] w-[30px] items-center justify-center text-center">
             {getInitials(name || '')}
           </p>
-          <h2 className="text-[1.5rem] leading-10 text-header dark:text-gray-100 font-bold ">
-            {name}
+          <h2 className="text-[1.5rem] leading-10 text-header dark:text-gray-100 font-bold">
+            {name ? name.split(' ').slice(0, 2).join(' ') : ''}
           </h2>
         </div>
         <div className="pb-4">
