@@ -164,7 +164,7 @@ export const WorkspaceSidebarLinks: SidebarAdminProps[] = [
   {
     id: 5,
     label: 'Notifications',
-    link: 'notifications',
+    link: 'notification',
     icon: Notification
   }
 ];
