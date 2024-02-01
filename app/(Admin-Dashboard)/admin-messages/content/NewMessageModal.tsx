@@ -63,7 +63,7 @@ const NewMessageModal = () => {
         role="dialog"
         aria-labelledby="new-message"
         className={cn(
-          'pt-2 min-[376px]:pt-4 sm:py-6   flex flex-col w-[98%]  h-[400px] min-[376px]:h-[422px]  min-[500px]:w-[417px] justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none px-2 sm:px-4 md:px-6 lg:px-8',
+          'pt-2 min-[376px]:pt-4 sm:py-6   flex flex-col w-[98%]  h-[400px] min-[376px]:h-[422px]  min-[500px]:w-[417px] justify-between items-start bg-white dark:bg-gray-900 backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none px-2 sm:px-4 md:px-6 lg:px-8',
           newMessageModal
             ? 'scale-100 duration-700 opacity-100 rounded-xl md:rounded-2xl'
             : 'scale-0 duration-300 pointer-events-none',
@@ -74,7 +74,7 @@ const NewMessageModal = () => {
       >
         <div
           className={cn(
-            'flex items-center justify-between w-full border-b border-header  ',
+            'flex items-center justify-between w-full border-b border-header dark:border-primary-light  ',
             isMaximize ? 'sm:pb-3 pb-1' : 'pb-1'
           )}
         >
@@ -86,7 +86,9 @@ const NewMessageModal = () => {
               height={40}
               className="rounded-full"
             />
-            <p className="text-header font-semibold sm:text-lg">{user?.name}</p>
+            <p className="text-header dark:text-gray-200 font-semibold sm:text-lg">
+              {user?.name}
+            </p>
           </div>
 
           <div className="flex items-center gap-x-2">
@@ -115,21 +117,24 @@ const NewMessageModal = () => {
                   {saveForm ? 'saving' : 'save'}
                 </span>
               )}
-              <FolderCheck size={24} />
+              <FolderCheck
+                size={24}
+                className="text-header dark:text-color-dark"
+              />
             </button>
 
             {/* EXPAND */}
             <button
               type="button"
               title="save"
-              className="relative group/expand  hidden sm:inline-block "
+              className="relative group/expand  hidden sm:inline-block text-header dark:text-color-dark"
               onClick={() => setIsMaximize(!isMaximize)}
             >
               <span className="absolute z-10 bg-blue-700/80 text-white rounded-md text-xs px-2 py-1 -top-7 -right-[1.1rem] before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rotate-45 before:bg-gradient-to-tl from-blue-700 to-blue-700/20 opacity-0 group-hover/expand:opacity-100 transition-all duration-500 group-hover/expand:duration-200 pointer-events-none">
                 {isMaximize ? 'normal' : 'expand'}
               </span>
               {isMaximize ? (
-                <span className="w-6 h-6 rounded-md border-2 border-header flex ml-[2px]" />
+                <span className="w-6 h-6 rounded-md border-2 border-header dark:border-color-dark flex ml-[2px]" />
               ) : (
                 <Minus size={24} />
               )}
@@ -159,7 +164,7 @@ const NewMessageModal = () => {
                   });
                 }, 1200);
               }}
-              className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full group/close relative "
+              className="text-header dark:text-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full group/close relative "
             >
               <span className="absolute z-10 bg-red-700 text-white rounded-md text-xs px-2 py-1 -top-7 -right-[0.6rem] before:content-[''] before:absolute before:-bottom-1 before:left-1/2 before:-translate-x-1/2 before:w-2 before:h-2 before:rotate-45 before:bg-red-700 opacity-0 group-hover/close:opacity-100 transition-all duration-700 group-hover/close:duration-200 pointer-events-none ">
                 {clearForm && formData.message.length > 3
@@ -184,7 +189,7 @@ const NewMessageModal = () => {
           <div className="flex items-center  w-full relative">
             <span
               className={cn(
-                'absolute left-2 sm:left-3 text-header',
+                'absolute left-2 sm:left-3 text-header dark:text-gray-200',
                 isMaximize ? 'sm:font-medium' : ''
               )}
             >
@@ -196,7 +201,7 @@ const NewMessageModal = () => {
               id="receiver"
               name="receiver"
               className={cn(
-                'w-full rounded-md sm:rounded-lg border border-gray-200  pr-2 pl-12 sm:pl-16 md:pr-4 outline-none focus-visible:border focus-visible:border-primary-light text-sm sm:text-base',
+                'w-full dark:bg-gray-950  dark:text-gray-200 dark:border-primary-light rounded-md sm:rounded-lg border border-gray-200  pr-2 pl-12 sm:pl-16 md:pr-4 outline-none focus-visible:border focus-visible:border-primary-light text-sm sm:text-base',
                 isMaximize ? 'py-2 sm:py-4 ' : 'py-2'
               )}
               value={formData.receiver}
@@ -208,7 +213,7 @@ const NewMessageModal = () => {
           <div className="flex items-center  w-full relative">
             <span
               className={cn(
-                'absolute left-2 sm:left-3 text-header',
+                'absolute left-2 sm:left-3 text-header dark:text-gray-200',
                 isMaximize ? 'sm:font-medium' : ''
               )}
             >
@@ -220,7 +225,7 @@ const NewMessageModal = () => {
               id="subject"
               name="subject"
               className={cn(
-                'w-full rounded-md sm:rounded-lg border border-gray-200  pr-2 pl-20 sm:pl-24 md:pr-4 outline-none focus-visible:border focus-visible:border-primary-light text-sm sm:text-base',
+                'w-full dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light rounded-md sm:rounded-lg border border-gray-200  pr-2 pl-20 sm:pl-24 md:pr-4 outline-none focus-visible:border focus-visible:border-primary-light text-sm sm:text-base',
                 isMaximize ? 'py-2 sm:py-4 ' : 'py-2'
               )}
               value={formData.subject}
@@ -237,7 +242,7 @@ const NewMessageModal = () => {
               name="message"
               maxLength={messageLen}
               className={cn(
-                'w-full rounded-md border border-gray-200 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px]  resize-none sidebar-scroll text-xs min-[376px]:text-sm sm:text-base',
+                'w-full dark:text-gray-200 dark:bg-gray-950 dark:border-primary-light rounded-md border border-gray-200 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px]  resize-none sidebar-scroll text-xs min-[376px]:text-sm sm:text-base',
                 isMaximize ? 'sm:h-[230px] lg:h-[250px] mb-2' : 'sm:h-[185px]'
               )}
               value={formData.message}
@@ -260,7 +265,10 @@ const NewMessageModal = () => {
                   className="flex items-center gap-x-2   cursor-pointer"
                   htmlFor="file"
                 >
-                  <button type="button" className="pointer-events-none">
+                  <button
+                    type="button"
+                    className="pointer-events-none text-header dark:text-color-dark"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
@@ -270,7 +278,7 @@ const NewMessageModal = () => {
                     >
                       <path
                         d="M12.5 23.5C15.54 23.5 18 21.04 18 18V6.5H16.5V18C16.5 20.21 14.71 22 12.5 22C10.29 22 8.5 20.21 8.5 18V5.5C8.5 4.83696 8.76339 4.20107 9.23223 3.73223C9.70107 3.26339 10.337 3 11 3C11.663 3 12.2989 3.26339 12.7678 3.73223C13.2366 4.20107 13.5 4.83696 13.5 5.5V16C13.5 16.55 13.05 17 12.5 17C11.95 17 11.5 16.55 11.5 16V6.5H10V16C10 16.663 10.2634 17.2989 10.7322 17.7678C11.2011 18.2366 11.837 18.5 12.5 18.5C13.163 18.5 13.7989 18.2366 14.2678 17.7678C14.7366 17.2989 15 16.663 15 16V5.5C15 3.29 13.21 1.5 11 1.5C8.79 1.5 7 3.29 7 5.5V18C7 21.04 9.46 23.5 12.5 23.5Z"
-                        fill="#4E5256"
+                        fill="currentColor"
                       />
                     </svg>
                   </button>
@@ -291,7 +299,10 @@ const NewMessageModal = () => {
               </div>
 
               {/* EMOJI TRIGGER */}
-              <button type="button">
+              <button
+                type="button"
+                className="text-header dark:text-color-dark"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -301,19 +312,19 @@ const NewMessageModal = () => {
                 >
                   <path
                     d="M15.5 11.5C15.8978 11.5 16.2794 11.342 16.5607 11.0607C16.842 10.7794 17 10.3978 17 10C17 9.60218 16.842 9.22064 16.5607 8.93934C16.2794 8.65804 15.8978 8.5 15.5 8.5C15.1022 8.5 14.7206 8.65804 14.4393 8.93934C14.158 9.22064 14 9.60218 14 10C14 10.3978 14.158 10.7794 14.4393 11.0607C14.7206 11.342 15.1022 11.5 15.5 11.5Z"
-                    fill="#4E5256"
+                    fill="currentColor"
                   />
                   <path
                     d="M8.5 11.5C8.89782 11.5 9.27936 11.342 9.56066 11.0607C9.84196 10.7794 10 10.3978 10 10C10 9.60218 9.84196 9.22064 9.56066 8.93934C9.27936 8.65804 8.89782 8.5 8.5 8.5C8.10218 8.5 7.72064 8.65804 7.43934 8.93934C7.15804 9.22064 7 9.60218 7 10C7 10.3978 7.15804 10.7794 7.43934 11.0607C7.72064 11.342 8.10218 11.5 8.5 11.5Z"
-                    fill="#4E5256"
+                    fill="currentColor"
                   />
                   <path
                     d="M12 18.5C14.28 18.5 16.22 16.84 17 14.5H7C7.78 16.84 9.72 18.5 12 18.5Z"
-                    fill="#4E5256"
+                    fill="currentColor"
                   />
                   <path
                     d="M11.99 2.5C6.47 2.5 2 6.98 2 12.5C2 18.02 6.47 22.5 11.99 22.5C17.52 22.5 22 18.02 22 12.5C22 6.98 17.52 2.5 11.99 2.5ZM12 20.5C7.58 20.5 4 16.92 4 12.5C4 8.08 7.58 4.5 12 4.5C16.42 4.5 20 8.08 20 12.5C20 16.92 16.42 20.5 12 20.5Z"
-                    fill="#4E5256"
+                    fill="currentColor"
                   />
                 </svg>
               </button>
@@ -324,7 +335,7 @@ const NewMessageModal = () => {
               aria-label="Remove"
               disabled={isDisabled}
               className={cn(
-                'rounded-lg bg-primary-light text-white  px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light flex items-center gap-x-2',
+                'rounded-lg bg-primary-light dark:bg-gray-950 text-white  px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light flex items-center gap-x-2',
                 isMaximize
                   ? 'px-8 gap-x-5 h-[50px]'
                   : 'min-[450px]:w-[91px] h-[41px]'
