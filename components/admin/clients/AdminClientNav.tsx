@@ -97,7 +97,7 @@ const AdminClientNav = () => {
             <SelectTrigger className="w-[150px] select-none h-full py-3 text-header dark:text-gray-200 border-primary-light">
               <SelectValue placeholder={selectedClientFilter} />
             </SelectTrigger>
-            <SelectContent className="backdrop-blur-xl bg-white/80 dark:bg-primary-dark border-primary-light">
+            <SelectContent className="backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 border-primary-light">
               <SelectGroup>
                 {selectFilters.map(filter => (
                   <SelectItem

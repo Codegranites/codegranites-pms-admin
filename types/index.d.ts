@@ -164,3 +164,10 @@ export type WorkspaceType = {
   projects?: any;
   transactions?: any;
 };
+
+export interface CredentialsProps {
+  email: string;
+  accountId: string;
+  role: string;
+  expiresAt: string;
+}

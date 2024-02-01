@@ -40,7 +40,7 @@ const UserContainer = ({ user }: { user: UserDetails }) => {
       <div
         role="dialog"
         className={cn(
-          " absolute py-4 px-2 max-h-max   max-w-max  w-[250px] top-16 -right-4 z-[999999] dark:bg-primary/80 bg-white backdrop-blur-xl flex flex-col  justify-center items-center  border border-color-dark  shadow-[0_0_20px_rgba(0,0,0,0.3)] rounded-xl before:absolute before:content-[''] before:h-[20px] before:w-[20px] before:bg-gradient-to-tl from-transparent via-transparent dark:to-color-dark to-primary before:overflow-hidden before:-top-2 before:rotate-[45deg] before:right-4 before:z-[-1] transform-gpu transition-all ",
+          " absolute py-4 px-2 max-h-max   max-w-max  w-[250px] top-16 -right-4 z-[999999] dark:bg-gray-950/80 bg-white backdrop-blur-xl flex flex-col  justify-center items-center  border border-color-dark  shadow-[0_0_20px_rgba(0,0,0,0.3)] rounded-xl before:absolute before:content-[''] before:h-[20px] before:w-[20px] before:bg-gradient-to-tl from-transparent via-transparent dark:to-color-dark to-primary before:overflow-hidden before:-top-2 before:rotate-[45deg] before:right-4 before:z-[-1] transform-gpu transition-all ",
           isView
             ? 'opacity-100 h-[150px] duration-500 '
             : 'opacity-0 h-0 duration-200 overflow-hidden'

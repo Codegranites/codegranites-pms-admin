@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { DocumentDownload, Play, Share } from 'iconsax-react';
 
 import ProjectMilestones from './ProjectMilestones';
-import NotFound from '../../../../components/admin/NotFound';
+import NotFound from '@/components/admin/NotFound';
 import ProjectComments from './ProjectComments';
 
 const ProjectDetailsContent = ({ id }: { id?: string }) => {

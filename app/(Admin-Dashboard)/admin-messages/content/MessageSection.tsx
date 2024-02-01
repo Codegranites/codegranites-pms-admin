@@ -93,7 +93,7 @@ const MessageSection = () => {
                 {message.date}
               </span>
               <span className="text-sm w-full max-w-[100px] lg:max-w-[127px] flex items-center justify-center  border-r border-gray-200 text-header dark:text-gray-300 dark:border-primary-light h-full ">
-                <span className="bg-[#e8e8e8] dark:bg-primary-light px-2 py-1 font-medium rounded-full">
+                <span className="bg-[#e8e8e8] dark:bg-gray-950 px-2 py-1 font-medium rounded-full">
                   {message.time}
                 </span>
               </span>

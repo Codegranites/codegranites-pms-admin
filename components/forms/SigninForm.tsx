@@ -71,7 +71,9 @@ const SigninForm = () => {
         setUser({
           ...data.user,
           name: getNameFromEmail(data?.user?.email!),
-          image: '/facemoji.png',
+          image:
+            `https://ui-avatars.com/api/?name=${data?.user
+              ?.email!}&background=random` ?? '/facemoji.png',
           email: data?.user?.email ?? 'Johndoe@fake.com'
         });
         // console.log(data.user);

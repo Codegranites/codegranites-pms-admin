@@ -81,15 +81,6 @@ interface StateContextProps {
 export const StateContext = createContext({} as StateContextProps);
 
 const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
-  // Mock-Data for user profile
-  const mocuser = useMemo(() => {
-    return {
-      name: 'Jane Doe',
-      email: 'JohnDoe@gmail.com',
-      image: '/facemoji.png'
-    };
-  }, []);
-
   // Add Your State(s) Here
   const [user, setUser] = useState<UserDetails>({
     name: '',
@@ -128,7 +119,9 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
         email: parsedUser.email,
         accountId: parsedUser.accountId,
         role: parsedUser.role,
-        image: '/facemoji.png'
+        image:
+          `https://ui-avatars.com/api/?name=${parsedUser.email!}&background=random` ??
+          '/facemoji.png'
       });
     }
     return;

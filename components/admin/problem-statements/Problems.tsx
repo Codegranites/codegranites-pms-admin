@@ -39,7 +39,7 @@ const Problems: React.FC<ProblemsProps> = ({
         <Button
           onClick={openNewIdeaModal}
           leftIcon={<Add />}
-          className="text-sm leading-6 font-medium rounded-lg my-4 py-4 px-10 dark:bg-primary-light"
+          className="text-sm leading-6 font-medium rounded-lg my-4 py-4 px-10 dark:bg-gray-950"
         >
           New Idea
         </Button>
