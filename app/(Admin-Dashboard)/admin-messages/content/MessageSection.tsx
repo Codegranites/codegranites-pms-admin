@@ -1,9 +1,9 @@
 'use client';
 
 import { MESSAGES } from './messages';
-import { cn } from '../../../../utils/util';
-import { useMessageCtx } from '../../../../context/MessageContext';
-import MessageSkeleton from '../../../../components/skeleton/MessageSkeleton';
+import { cn } from '@/utils/util';
+import { useMessageCtx } from '@/context/MessageContext';
+import MessageSkeleton from '@/components/skeleton/MessageSkeleton';
 import { Suspense } from 'react';
 
 const MessageSection = () => {
