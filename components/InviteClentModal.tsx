@@ -1,31 +1,54 @@
 'use client';
 
-import React, { useState } from 'react';
+import * as React from 'react';
 import Modal from './ui/Modal';
 import { Input } from './ui/Input';
 import Button from './ui/Button';
 import Image from 'next/image';
+import FormError from './forms/FormError';
+import FormSuccess from './forms/FormSuccess';
 import { toast } from 'react-toastify';
+import { InviteToWorkspaceSchema } from '@/schemas';
+import { InviteClient } from '@/actions/workspace';
 
-function InviteClient({
-  isOpen,
-  onClose
-}: {
-  isOpen: boolean;
-  onClose: () => void;
-}) {
-  const [name, setName] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+function Invite({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const [workspaceId, setWorkspaceId] = React.useState<string | null>(null);
+  const [email, setEmail] = React.useState<string>('');
+  const [success, setSuccess] = React.useState<string | undefined>('');
+  const [error, setError] = React.useState<string | undefined>('');
+  const [loading, setLoading] = React.useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const workspacId = localStorage?.getItem('workspaceID');
 
-    if (name && email) {
-      toast.success('Invite sent suceffully');
-    } else {
-      toast.error('Please fill in both name and email fields.');
+  if (workspacId !== undefined) {
+    setWorkspaceId(workspacId);
+  } else {
+    console.error('workspaceID is undefined');
+  }
+
+  const values = { workspaceId, email };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    setError('');
+    setSuccess('');
+    try {
+      setLoading(true);
+
+      if (values.workspaceId !== null) {
+        const res = await InviteClient(values);
+        setSuccess(res?.success);
+        setError(res?.error);
+      } else {
+        console.error('workspaceID is null');
+      }
+    } catch (error) {
+      console.error('An error occurred during form submission:', error);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
+
   return (
     <Modal
       closeOnOverlayClick
@@ -44,22 +67,6 @@ function InviteClient({
           onSubmit={handleSubmit}
           className="w-full items-center justify-center flex flex-col"
         >
-          <div className="mb-2 w-full">
-            <label
-              htmlFor="name"
-              className="block text-[#1C1C1C] text-[16px]  mb-[8px] leading-[22px] font-semibold"
-            >
-              Full Nmae
-            </label>
-            <Input
-              type="text"
-              id="name"
-              value={name}
-              placeholder="Jane Doe"
-              onChange={e => setName(e.target.value)}
-              className="w-full p-[16px] text-black text-[14px] rounded font-medium"
-            />
-          </div>
           <div className="mb-4 w-full">
             <label
               htmlFor="email"
@@ -76,6 +83,8 @@ function InviteClient({
               className="w-full p-[16px] rounded text-black text-[14px] font-medium"
             />
           </div>
+          <FormError message={error} />
+          <FormSuccess message={success} />
           <Button
             type="submit"
             className="bg-[#2E577D] text-white p-[16px] rounded-lg max-w-[188px] max-h-[56px] items-center justify-center text-[14px] leading-[22px] font-medium"
@@ -87,4 +96,4 @@ function InviteClient({
     </Modal>
   );
 }
-export default InviteClient;
+export default Invite;

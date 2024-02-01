@@ -1,7 +1,12 @@
+import Workspace from '@/components/settings/workspace';
 import React from 'react';
 
 const WorkspaceSettings = () => {
-  return <div>WorkspaceSettings</div>;
+  return (
+    <div>
+      <Workspace />
+    </div>
+  );
 };
 
 export default WorkspaceSettings;

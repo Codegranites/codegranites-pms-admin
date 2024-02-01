@@ -6,10 +6,12 @@ import PasswordPopover from '@ui/passwordPopober';
 import Button from '@ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Eye, EyeSlash } from 'iconsax-react';
+import { changePassword } from '@/app/api/seetings';
+import { useStateCtx } from '@/context/StateContext';
 
 const ResetPassword = () => {
-  const initialPassword = 'jamestest2354'; // Mock initial password
-  const [currentPassword, setCurrentPassword] = useState(initialPassword);
+  const { user } = useStateCtx();
+  const [currentPassword, setCurrentPassword] = useState<string>('');
   const [newPassword, setNewPassword] = useState('');
   const [defaultInpType, setDefaultInpType] = useState<'password' | 'text'>(
     'password'
@@ -17,8 +19,10 @@ const ResetPassword = () => {
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
     'password' | 'text'
   >('password');
-  const [isResetDisabled, setIsResetDisabled] = useState(true);
+  const [isResetDisabled, setIsResetDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  console.log(user);
 
   const isStrongPassword = (password: string) => {
     const minLength = 8;
@@ -36,25 +40,32 @@ const ResetPassword = () => {
     );
   };
 
-  const handleChangePassword = () => {
+  const handleChangePassword = async () => {
     // Check if the current password is correct
-    if (currentPassword === initialPassword) {
+    if (currentPassword !== newPassword) {
       // Check if the new password is strong
       if (isStrongPassword(newPassword)) {
         // Set loading state to true
         setIsLoading(true);
-
+        console.log('starting');
         // Mock API call
-        setTimeout(() => {
-          // Update currentPassword and show success message using toast
-          setCurrentPassword(newPassword);
+        const res = await changePassword({
+          accountId: user?.accountId ?? '',
+          oldPassword: currentPassword,
+          newPassword: newPassword
+        });
+
+        if (res?.error) {
+          toast.error('An error occured', {
+            position: toast.POSITION.TOP_CENTER
+          });
+        } else {
           toast.success('Password changed successfully!', {
             position: toast.POSITION.TOP_CENTER
           });
-
-          // Reset loading state after completion
-          setIsLoading(false);
-        }, 1000);
+        }
+        // Reset loading state after completion
+        setIsLoading(false);
       } else {
         toast.error(
           'New password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a digit, and a special character.',
@@ -72,9 +83,10 @@ const ResetPassword = () => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewPassword(e.target.value);
-    setIsResetDisabled(
-      !isStrongPassword(e.target.value) || currentPassword === ''
-    );
+    // console.log(currentPassword)
+    // setIsResetDisabled(
+    //   !isStrongPassword(e.target.value) || currentPassword === ''
+    // );
   };
 
   return (

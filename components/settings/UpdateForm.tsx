@@ -66,7 +66,7 @@ function UpdateForm() {
   };
 
   return (
-    <div className="w-[620px] max-w-[680px] px-[32px] justify-center items-center">
+    <div className="w-[620px] max-w-[680px] px-[32px] justify-center items-center dark:text-white">
       <form className="w-[500px]">
         <label className="font-semibold text-2xl">
           Full Name
@@ -76,7 +76,7 @@ function UpdateForm() {
             placeholder="enter fullname"
             value={user.name ?? formData.fullname}
             onChange={handleChange}
-            className="text-lg font-normal w-[500px] h-[60px]"
+            className="text-lg font-normal w-[500px] h-[60px] dark:bg-white text-black"
           />
         </label>
         <br />
@@ -91,19 +91,19 @@ function UpdateForm() {
             placeholder="enter userName"
             value={user.name ?? formData.username}
             onChange={handleChange}
-            className="text-lg font-normal w-[500px] h-[60px]"
+            className="text-lg font-normal w-[500px] h-[60px] dark:bg-white text-black"
           />
         </label>
         <br />
-        <label className="font-semibold text-2xl mb-2">
-          Job Title{' '}
+        <label className="font-semibold text-2xl mb-2 dark:text-white">
+          Job Title
           <Input
             type="text"
             name="jobTitle"
             placeholder="enter job description"
             value={formData.jobTitle}
             onChange={handleChange}
-            className="text-lg font-normal w-[500px] h-[60px]"
+            className="text-lg font-normal w-[500px] h-[60px] dark:bg-white text-black"
           />
         </label>
         <br />
@@ -115,7 +115,7 @@ function UpdateForm() {
             placeholder="enter organization name"
             value={formData.organization}
             onChange={handleChange}
-            className="text-lg font-normal w-[500px] h-[60px]"
+            className="text-lg font-normal w-[500px] h-[60px] dark:bg-white text-black"
           />
         </label>
         <br />
@@ -123,7 +123,7 @@ function UpdateForm() {
       <Button
         intent={'primary'}
         onClick={handleSubmit}
-        className="w-[250px] h-[70px]"
+        className="w-[250px] h-[70px] dark:bg-white dark:text-primary text-[20px] font-medium leading-4 "
       >
         Update Profile
       </Button>

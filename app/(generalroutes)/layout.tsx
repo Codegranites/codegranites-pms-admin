@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import GeneralNav from '@/components/navs/GeneralNav';
 
-import SidebarMod from '../../components/sidebars/SidebarMod';
+import SidebarMod from '../../components/sidebars/WorkspaceSidebar';
 import SkeletonNavbar from '@/components/skeleton/SkeletonNavbar';
 
 export default function GeneralLayout({

@@ -144,26 +144,27 @@ export const TYPESidebarLinksMod = SIDEBAR_MOD_LINKS.map(link => link.link);
 export const WorkspaceSidebarLinks: SidebarAdminProps[] = [
   {
     id: 1,
-    label: 'profile',
-    link: '/profile',
-    icon: Profile
-  },
-  {
-    id: 2,
     label: 'Workspace',
-    link: '/workspace',
+    link: 'workspace',
     icon: Category
   },
   {
+    id: 2,
+    label: 'profile',
+    link: 'profile',
+    icon: Profile
+  },
+
+  {
     id: 3,
     label: 'Account preferences',
-    link: '/account-preferences',
+    link: 'account-settings',
     icon: Setting5
   },
   {
     id: 5,
     label: 'Notifications',
-    link: '/notifications-settings',
+    link: 'notification',
     icon: Notification
   }
 ];

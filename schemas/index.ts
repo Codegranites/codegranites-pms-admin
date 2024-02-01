@@ -30,3 +30,10 @@ export const CreateWorkSpaceSchema = z.object({
     message: 'Workspace Description must be at least 8 characters'
   })
 });
+
+export const InviteToWorkspaceSchema = z.object({
+  email: z.string().email(),
+  workspaceId: z.string().min(6, {
+    message: 'an error occured'
+  })
+});

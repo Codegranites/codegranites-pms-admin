@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useRouter } from 'next-nprogress-bar';
 import { useStateCtx } from '@/context/StateContext';
+import ThemeButtons from '../ThemeButtons';
 
 const WorkspaceSidebar = () => {
   const { user } = useStateCtx();
@@ -22,12 +23,18 @@ const WorkspaceSidebar = () => {
   }, [currentPath]);
 
   return (
-    <section className="bg-white z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200 sidebar-scroll overflow-x-hidden group select-none">
+    <section className="bg-white dark:bg-primary dark:border-primary-light z-[50] w-[0px] md:w-[96px] min-[1140px]:w-[270px] hover:w-[270px] hover:p-4 transition-all duration-300 py-4 min-[1140px]:p-4 hidden md:flex flex-col gap-y-4 items-center justify-between min-[1140px]:items-start fixed h-screen left-0 top-0 overflow-y-auto border-r border-gray-200  sidebar-scroll overflow-x-hidden group select-none">
       <Link
         href="/"
         className=" max-[1140px]:w-full group-hover:w-full h-[53px]"
       >
-        <Image src="/logo.png" alt="Logo" width={155} height={53} />
+        <Image
+          src="/logo.png"
+          alt="Logo"
+          width={155}
+          height={53}
+          className="dark:invert"
+        />
       </Link>
       <ul className="flex flex-col gap-y-4 pt-8">
         {WorkspaceSidebarLinks.map(link => (
@@ -44,10 +51,10 @@ const WorkspaceSidebar = () => {
             tabIndex={0}
             aria-label={link.label}
             className={cn(
-              'flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer ',
+              'flex items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] dark:text-gray-400 font-medium text-base transition-colors duration-300 cursor-pointer ',
               activeLink === link.link
-                ? 'bg-primary-light text-white rounded outline-none'
-                : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
+                ? 'bg-primary-light dark:bg-primary-light/75 dark:text-white  text-white rounded outline-none'
+                : 'hover:bg-black/10 dark:hover:bg-color-dark/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
             )}
             onClick={() => setActiveLink(link.link)}
           >
@@ -67,63 +74,12 @@ const WorkspaceSidebar = () => {
       </ul>
       <div className="flex flex-col w-full gap-y-6 xl:gap-y-8 pt-4 items-center">
         <Link
-          href="/settings"
-          role="button"
-          tabIndex={0}
-          aria-label="Settings"
-          onKeyUp={e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              setActiveLink('settings');
-              return;
-            }
-          }}
-          className={cn(
-            'flex group-hover:w-full min-[1140px]:w-full min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#3a3a3a] font-medium text-base transition-colors duration-300 cursor-pointer',
-            activeLink === 'settings'
-              ? 'bg-primary-light text-white rounded outline-none'
-              : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
-          )}
-          onClick={() => setActiveLink('settings')}
-        >
-          <Setting2
-            size={24}
-            aria-hidden
-            variant={activeLink === 'settings' ? 'Bold' : 'Outline'}
-          />
-          <span className=" max-[1139px]:hidden group-hover:block">
-            Settings
-          </span>
-        </Link>
-
-        {/* LogOut */}
-        <Link
-          href="/"
-          role="button"
-          tabIndex={0}
-          aria-label="logout"
-          onKeyUp={e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              router.push('/');
-              return;
-            }
-          }}
-          className={cn(
-            'flex group-hover:w-full min-[1140px]:w-full min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#e80000] font-medium text-base transition-colors duration-300 cursor-pointer hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500'
-          )}
-        >
-          <LogoutCurve size={24} aria-hidden />
-          <span className=" max-[1139px]:hidden group-hover:block">LogOut</span>
-        </Link>
-
-        {/* User Profile */}
-
-        <Link
           href="/profile"
           className={cn(
             'w-full flex items-center gap-x-[6px]  p-2 transition-colors duration-300 justify-center mb-4',
             activeLink === 'profile'
               ? 'bg-primary-light text-white rounded outline-none [&>div>span]:text-white'
-              : 'hover:bg-black/10 focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
+              : 'hover:bg-black/10 dark:hover:bg-color-dark/10  focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light'
           )}
           role="button"
           tabIndex={0}
@@ -144,9 +100,31 @@ const WorkspaceSidebar = () => {
             <span className="text-[#090909] text-base">{user.name}</span>
           </div>
         </Link>
+        <div className="w-full opacity-0 min-[1139px]:opacity-100 flex justify-center group-hover:opacity-100 transition-colors duration-300">
+          <ThemeButtons />
+        </div>
+        {/* LogOut */}
+        <Link
+          href="/"
+          role="button"
+          tabIndex={0}
+          aria-label="logout"
+          onKeyUp={e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              router.push('/');
+              return;
+            }
+          }}
+          className={cn(
+            'flex flex-nowrap group-hover:w-full min-[1140px]:w-full  min-[1140px]:justify-start items-center gap-x-3 py-2 px-3 h-[52px] text-[#e80000] font-medium text-sm transition-colors duration-300 cursor-pointer hover:bg-black/10 dark:hover:bg-color-dark/10  focus-visible:bg-black/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500'
+          )}
+        >
+          <LogoutCurve size={24} aria-hidden />
+          <span className=" max-[1139px]:hidden group-hover:block">LogOut</span>
+        </Link>
       </div>
     </section>
   );
 };
 
-export default WorkspaceSidebarLinks;
+export default WorkspaceSidebar;

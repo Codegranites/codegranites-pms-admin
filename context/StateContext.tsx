@@ -26,6 +26,8 @@ interface StateContextProps {
   setAdminShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
   modShowMobileMenu: boolean;
   setModShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
+  workspaceShowMobileMenu: boolean;
+  setworkspaceShowMobileMenu: React.Dispatch<React.SetStateAction<boolean>>;
 
   // Landing Page props
   landingMobileMenu: boolean;
@@ -129,6 +131,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [isView, setIsView] = useState(false);
   const [adminShowMobileMenu, setAdminShowMobileMenu] = useState(false);
   const [modShowMobileMenu, setModShowMobileMenu] = useState(false);
+  const [workspaceShowMobileMenu, setworkspaceShowMobileMenu] = useState(false);
   const [landingMobileMenu, setLandingMobileMenu] = useState(false);
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
   const [isRemoveClientModal, setIsRemoveClientModal] = useState(false);
@@ -168,7 +171,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     newMessageModal ||
     landingMobileMenu ||
     isView;
-  const anyMobileSidebarOpen = adminShowMobileMenu || modShowMobileMenu;
+  const anyMobileSidebarOpen =
+    adminShowMobileMenu || modShowMobileMenu || workspaceShowMobileMenu;
 
   // Sidebar Mobile
   const isMobileDevice = () => {
@@ -289,6 +293,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         setIsView(false), setAdminShowMobileMenu(false);
+        setworkspaceShowMobileMenu(false);
         setModShowMobileMenu(false);
         setOpenPaymentModal(false);
         setIsRemoveClientModal(false);
@@ -320,6 +325,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       setAdminShowMobileMenu,
       modShowMobileMenu,
       setModShowMobileMenu,
+      workspaceShowMobileMenu,
+      setworkspaceShowMobileMenu,
       landingMobileMenu,
       setLandingMobileMenu,
       currentPath,
@@ -377,6 +384,7 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
       anyModalOpen,
       adminShowMobileMenu,
       modShowMobileMenu,
+      workspaceShowMobileMenu,
       landingMobileMenu,
       currentPath,
       user,

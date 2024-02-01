@@ -57,7 +57,7 @@ async function Workspace() {
     <>
       <section className="w-full relative ">
         <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0">
-          <div className="flex flex-row gap-x-3 items-center px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">
+          <div className="flex flex-row gap-x-3 px-6 pt-8 lg:pb-5 lg:pt-6 pb-6 dark:border-primary-light border border-b-2 border-l-0 border-r-0">
             <RiStackLine size={23} className="text-header dark:text-gray-300" />
             <p className="text-[1rem] text-header dark:text-gray-100">
               My work Space
@@ -65,10 +65,10 @@ async function Workspace() {
           </div>
 
           <CreateaWorkspaceButton />
-          <section className="flex flex-col gap-y-6 w-full pb-6 min-h-screen px-5 items-center text-center dark:text-white">
+          <section className="flex flex-col w-full pb-6 min-h-screen text-center dark:text-white">
             {loading && <LoadingSpinner />}
             {!error && subset && !loading && (
-              <>
+              <div className="w-full min-h-screen grid grid-cols-1 min-[929px]:grid-cols-2 gap-x-3 lg:gap-x-5  place-content-start place-items-center gap-y-16 max-[929px]:gap-y-8 mb-6 min-[1139px]:gap-x-1 min-[1220px]:gap-x-4 mt-5">
                 {subset.length === 0 ? (
                   <p className="text-2xl mt-6">No workspaces available.</p>
                 ) : (
@@ -77,13 +77,11 @@ async function Workspace() {
                       key={workspace._id}
                       fallback={<WorkSpaceSkelon />}
                     >
-                      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 p-[2rem] justify-between items-center text-center ">
-                        <Card key={workspace._id} {...workspace} />
-                      </div>
+                      <Card key={workspace._id} {...workspace} />
                     </Suspense>
                   ))
                 )}
-              </>
+              </div>
             )}
 
             {error && (
@@ -97,10 +95,7 @@ async function Workspace() {
               </div>
             )}
 
-            {subset.length === 0 ||
-            loading ||
-            totalPages === 1 ||
-            error ? null : (
+            {subset.length !== 0 && !loading && !error && totalPages > 1 && (
               <div className="flex w-full md:justify-end justify-center mt-6 md:pr-7">
                 <ReactPaginate
                   breakLabel="..."
