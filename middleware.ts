@@ -12,7 +12,8 @@ import { NextResponse } from 'next/server';
 
 export default auth(req => {
   const access_token = cookies().get('access_token');
-  const decodedToken = access_token && jwtDecode(access_token.value);
+
+  const decodedToken = access_token?.value && jwtDecode(access_token.value);
   console.log('decodedToken', decodedToken);
 
   const { nextUrl } = req;

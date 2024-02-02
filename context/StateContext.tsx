@@ -87,7 +87,8 @@ const StateContextProvider = ({ children }: { children: React.ReactNode }) => {
     email: '',
     accountId: '',
     role: '',
-    image: '/facemoji.png'
+    image: '/facemoji.png',
+    token: ''
   });
   const { data: session } = useSession();
   const [selectedProjectFilter, setSelectedProjectFilter] = useState('');

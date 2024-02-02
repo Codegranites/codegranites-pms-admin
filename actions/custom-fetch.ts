@@ -10,7 +10,8 @@ interface RefreshTokenProps {
   message: string;
 }
 
-const MAX_TIME_REFRESH = 60 * 1000; // 1 minute in milliseconds
+const MAX_TIME_REFRESH = 60 * 2; // 2 minutes
+const REFRESH_TOKEN_URL = '/auth/refresh-token';
 
 /**
  * A server action to handle custom fetch requests
@@ -24,20 +25,23 @@ const MAX_TIME_REFRESH = 60 * 1000; // 1 minute in milliseconds
 // Function to handle custom fetch requests
 export const customFetch = async (
   path: string,
-  init: RequestInit | undefined,
-  req: NextRequest
+  init: RequestInit | undefined
+  // req?: string
 ) => {
   const cookie = cookies();
   // Get the user credentials
-  const credentials = getCredentials(req);
+  const credentials = await getCredentials(cookie);
 
-  if (!credentials) {
+  if (!credentials?.token) {
     return { message: 'Unauthorized', status: 401 };
   }
 
   const theFetchRequest = makeFetch(path, credentials.token, init);
 
-  if (credentials.expires! - (Date.now() + MAX_TIME_REFRESH) < 0) {
+  if (
+    credentials.expires &&
+    credentials.expires - (Date.now() / 1000 + MAX_TIME_REFRESH) < 0
+  ) {
     // Try to refresh the token
     const newToken = (await refreshToken(
       credentials.token
