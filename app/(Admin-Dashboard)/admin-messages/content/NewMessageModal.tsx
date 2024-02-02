@@ -8,6 +8,7 @@ import { useStateCtx } from '../../../../context/StateContext';
 import WordCounter from '../../../../components/admin/card/WordCounter';
 import Image from 'next/image';
 import { Minus } from 'iconsax-react';
+import { customFetch } from '@/actions/custom-fetch';
 
 type FormProps = {
   receiver: string;
@@ -34,9 +35,33 @@ const NewMessageModal = () => {
   const isDisabled =
     !formData.receiver || !formData.subject || !(formData.message.length > 3);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setNewMessageModal(false);
+
+    try {
+      const res = await customFetch('/message/create', {
+        method: 'POST',
+        body: JSON.stringify({
+          senderId: user?.accountId,
+          subject: formData.subject,
+          description: formData.message,
+          email: formData.receiver,
+          receiverId: formData.receiver
+        })
+      });
+      console.log(res);
+      if (res.status === 200) {
+        setFormData({
+          receiver: '',
+          subject: '',
+          message: '',
+          file: {} as File
+        });
+        localStorage.removeItem('new-message');
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {

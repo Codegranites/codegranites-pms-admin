@@ -151,6 +151,7 @@ export interface UserDetails {
   accountId?: string;
   role?: string;
   image: string | StaticImport;
+  token?: string;
 }
 
 export type WorkspaceType = {

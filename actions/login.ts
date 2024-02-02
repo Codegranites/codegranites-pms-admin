@@ -41,7 +41,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     if (data.status === 200 || res.ok) {
       signIn(res.token);
       cookie.set('access_token', res.token, {
-        maxAge: 60 * 60 * 1 * 1, // 1 hour
+        maxAge: 60 * 60 * 24 * 1, // 1 day
         httpOnly: true,
         path: '/',
         priority: 'high'
@@ -52,7 +52,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
           email: decodedToken.email,
           name: decodedToken.name,
           accountId: decodedToken.accountId,
-          role: decodedToken.role
+          role: decodedToken.role,
+          token: res.token
         };
         cookie.set('user', JSON.stringify(user), {
           maxAge: 60 * 60 * 24 * 1, // 1 day
