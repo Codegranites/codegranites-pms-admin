@@ -2,7 +2,7 @@
 
 import { FolderCheck, Send, X } from 'lucide-react';
 import { cn } from '../../../../utils/util';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useTransition } from 'react';
 
 import { useStateCtx } from '../../../../context/StateContext';
 import WordCounter from '../../../../components/admin/card/WordCounter';
@@ -22,6 +22,7 @@ const NewMessageModal = () => {
   const [saveForm, setSaveForm] = useState(false);
   const [clearForm, setClearForm] = useState(false);
   const [isMaximize, setIsMaximize] = useState(true);
+  const [isLoading, startTransition] = useTransition();
 
   const [formData, setFormData] = useState<FormProps>({
     receiver: '',
@@ -39,26 +40,27 @@ const NewMessageModal = () => {
     e.preventDefault();
 
     try {
-      const res = await customFetch('/message/create', {
-        method: 'POST',
-        body: JSON.stringify({
-          senderId: user?.accountId,
-          subject: formData.subject,
-          description: formData.message,
-          email: formData.receiver,
-          receiverId: formData.receiver
-        })
-      });
-      console.log(res);
-      if (res.status === 200) {
-        setFormData({
-          receiver: '',
-          subject: '',
-          message: '',
-          file: {} as File
+      startTransition(async () => {
+        const res = await customFetch('/message/create', {
+          method: 'POST',
+          body: JSON.stringify({
+            subject: formData.subject,
+            description: formData.message,
+            email: formData.receiver,
+            receiverEmail: formData.receiver
+          })
         });
-        localStorage.removeItem('new-message');
-      }
+        console.log(res);
+        if (res.status === 200) {
+          setFormData({
+            receiver: '',
+            subject: '',
+            message: '',
+            file: {} as File
+          });
+          localStorage.removeItem('new-message');
+        }
+      });
     } catch (error) {
       console.log(error);
     }
@@ -354,20 +356,37 @@ const NewMessageModal = () => {
                 </svg>
               </button>
             </div>
-            <button
-              type="submit"
-              tabIndex={0}
-              aria-label="Remove"
-              disabled={isDisabled}
-              className={cn(
-                'rounded-lg bg-primary-light dark:bg-gray-950 text-white  px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light flex items-center gap-x-2',
-                isMaximize
-                  ? 'px-8 gap-x-5 h-[50px]'
-                  : 'min-[450px]:w-[91px] h-[41px]'
+
+            <div className="flex relative items-center [perspective:300px] transform-gpu max-sm:w-full">
+              <button
+                type="submit"
+                tabIndex={0}
+                aria-label="Remove"
+                disabled={isDisabled || isLoading}
+                className={cn(
+                  'rounded-lg bg-primary-light dark:bg-gray-950 text-white  px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light flex items-center gap-x-2',
+                  isMaximize
+                    ? 'px-8 gap-x-5 h-[50px]'
+                    : 'min-[450px]:w-[91px] h-[41px]'
+                )}
+              >
+                <span
+                  className={cn(
+                    'flex items-center gap-x-2',
+                    isLoading ? '[&>span]:opacity-0' : ''
+                  )}
+                >
+                  <Send size={20} /> Send
+                </span>
+              </button>
+              {isLoading && (
+                <div className="button--loader absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                  <span />
+                  <span />
+                  <span />
+                </div>
               )}
-            >
-              <Send size={20} /> Send
-            </button>
+            </div>
           </div>
         </form>
       </div>

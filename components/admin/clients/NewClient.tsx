@@ -5,9 +5,9 @@ import { X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { Add } from 'iconsax-react';
-import { useStateCtx } from '../../../context/StateContext';
+import { useStateCtx } from '@/context/StateContext';
 
-import { cn } from '../../../utils/util';
+import { cn } from '@/utils/util';
 import Image from 'next/image';
 
 type FormProps = {

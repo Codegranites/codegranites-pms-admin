@@ -74,8 +74,7 @@ const SigninForm = () => {
           image:
             `https://ui-avatars.com/api/?name=${data?.user
               ?.email!}&background=random` ?? '/facemoji.png',
-          email: data?.user?.email ?? 'Johndoe@fake.com',
-          token: data?.user?.token
+          email: data?.user?.email ?? 'Johndoe@fake.com'
         });
         // console.log(data.user);
       });

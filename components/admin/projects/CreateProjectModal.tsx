@@ -4,23 +4,14 @@ import { ChevronRight, X } from 'lucide-react';
 
 import { useEffect, useState } from 'react';
 
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@radix-ui/react-select';
-
 import { Add } from 'iconsax-react';
-import { ProjectCardProps } from '../../../libs/projects';
-import { useStateCtx } from '../../../context/StateContext';
+import { ProjectCardProps } from '@/libs/projects';
+import { useStateCtx } from '@/context/StateContext';
 import {
   selectCurrencies,
   selectStatus
-} from '../../../app/(Admin-Dashboard)/admin-projects/[details]/edit-project';
-import { cn } from '../../../utils/util';
+} from '@/app/(Admin-Dashboard)/admin-projects/[details]/edit-project';
+import { cn } from '@/utils/util';
 import WordCounter from '../card/WordCounter';
 import Image from 'next/image';
 
