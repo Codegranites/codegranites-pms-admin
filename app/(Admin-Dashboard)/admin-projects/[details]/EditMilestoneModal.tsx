@@ -87,14 +87,14 @@ const EditMilestoneModal = () => {
         role="dialog"
         aria-labelledby="make-payment"
         className={cn(
-          'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[650px] md:h-[720px] xl:h-[750px] md:w-[682px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+          'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[650px] md:h-[720px] xl:h-[750px] md:w-[682px]  justify-between items-start dark:bg-gray-900  bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
           isEditMiletoneModal
             ? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
             : 'translate-x-full duration-300 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="text-lg md:text-2xl font-medium text-header dark:text-gray-100">
             Edit Milestone
           </h3>
           <button
@@ -102,7 +102,7 @@ const EditMilestoneModal = () => {
             tabIndex={0}
             aria-label="Close"
             onClick={() => setIsEditMiletoneModal(false)}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header dark:text-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
           >
             <X size={24} />
           </button>
@@ -112,7 +112,10 @@ const EditMilestoneModal = () => {
           className="flex w-full flex-col gap-y-4 py-4 xl:py-8 px-2 sm:px-4 md:px-6 lg:px-8 h-full items-start"
         >
           <div className="flex flex-col  gap-y-2 w-full">
-            <label htmlFor="description" className="font-medium">
+            <label
+              htmlFor="description"
+              className="font-medium dark:text-gray-200"
+            >
               Milestone Title
             </label>
             <input
@@ -120,7 +123,7 @@ const EditMilestoneModal = () => {
               placeholder="Milestone title..."
               id="milestone-title"
               name="title"
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light "
               value={formData.title}
               onChange={e =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -129,7 +132,10 @@ const EditMilestoneModal = () => {
           </div>
 
           <div className="flex flex-col  gap-y-2 w-full">
-            <label htmlFor="description" className="font-medium">
+            <label
+              htmlFor="description"
+              className="font-medium dark:text-gray-200"
+            >
               Add Description
             </label>
             <textarea
@@ -137,7 +143,7 @@ const EditMilestoneModal = () => {
               id="description"
               name="description"
               maxLength={160}
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
+              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light  h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
               value={formData.description}
               onChange={e =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -147,7 +153,9 @@ const EditMilestoneModal = () => {
           </div>
 
           <div className="flex  xl:pt-4 items-start flex-col gap-y-4">
-            <p className="text-center  font-medium">Select Status</p>
+            <p className="text-center  font-medium dark:text-gray-200">
+              Select Status
+            </p>
             <div className="flex md:flex-col gap-4 flex-wrap mb-2">
               {STATUSES.map(status => (
                 <p
@@ -155,10 +163,11 @@ const EditMilestoneModal = () => {
                   className={cn(
                     'text-center text-sm md:text-base flex items-center gap-x-2 transition-all duration-300',
                     {
-                      ' font-medium': status.label === formData.status,
                       'text-[#eea300] ': status.label === 'in-progress',
-                      'text-[#008d36] ': status.label === 'completed',
-                      'text-primary-light ': status.label === 'pending'
+                      'text-[#008d36] dark:text-[#0ce15d] ':
+                        status.label === 'completed',
+                      'text-primary-light dark:text-color-dark ':
+                        status.label === 'pending'
                     }
                   )}
                 >
@@ -168,14 +177,14 @@ const EditMilestoneModal = () => {
                     }
                     type="button"
                     className={cn(
-                      'w-6 h-6 rounded-full border-primary border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
+                      'w-6 h-6 rounded-full border-primary dark:border-color-dark border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
                       {
                         ' p-1': status.label === formData.status
                       }
                     )}
                   >
                     {formData.status === status.label && (
-                      <span className="bg-primary h-full w-full rounded-full" />
+                      <span className="bg-primary dark:bg-color-dark h-full w-full rounded-full" />
                     )}
                   </button>
                   <span className="capitalize">{status.label} </span>
@@ -191,7 +200,7 @@ const EditMilestoneModal = () => {
               aria-label="Cancel"
               onClick={() => setIsEditMiletoneModal(false)}
               className={cn(
-                'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+                'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:border-color-dark dark:text-color-dark'
               )}
             >
               Cancel

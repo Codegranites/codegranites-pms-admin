@@ -49,7 +49,7 @@ const ProjectMilestones = () => {
   return (
     <div
       className={cn(
-        'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] sm:rounded-xl lg:max-w-[372px] relative  xl:mr-7 2xl:mr-8'
+        'flex flex-col w-full max-w-[687px] px-3 py-6 border border-[#e1e1e1] dark:border-primary-light sm:rounded-xl lg:max-w-[372px] relative  xl:mr-7 2xl:mr-8 dark:bg-gray-950'
         // {
         // 	'lg:sticky top-4': !noSticky
         // }
@@ -59,8 +59,8 @@ const ProjectMilestones = () => {
       <EditMilestoneModal />
       <ViewMilestoneDetailsModal />
       <DeleteMilestoneModal />
-      <div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] ">
-        <h3 className="text-lg font-semibold text-header ">
+      <div className="flex w-full items-center justify-between pb-2 md:pb-3 border-b border-[#e1e1e1] dark:border-primary-light ">
+        <h3 className="text-lg font-semibold text-header dark:text-gray-100">
           Project Milestones
         </h3>
         <button
@@ -70,7 +70,7 @@ const ProjectMilestones = () => {
           aria-haspopup
           aria-expanded={isMenu}
           onClick={() => setIsMenu(prev => !prev)}
-          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6 rounded-full border border-[#090909] flex items-center justify-center"
+          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6 rounded-full border border-[#090909] dark:border-gray-200 dark:text-gray-200 flex items-center justify-center"
         >
           <Add size={24} />
         </button>
@@ -88,7 +88,7 @@ const ProjectMilestones = () => {
         role="dialog"
         aria-labelledby="add-milestone"
         className={cn(
-          'flex w-[190px] h-[56px]  px-4 py-2 absolute right-2 top-[3.5rem] rounded-lg justify-center  border border-gray-200 backdrop-blur-xl bg-white/80 transition-all duration-300 z-[999] shadow-[0_5px_15px_-3px_rgba(0,0,0,0.3)]',
+          'flex w-[190px] h-[56px]  px-4 py-2 absolute right-2 top-[3.5rem] rounded-lg justify-center  border border-gray-200 dark:border-primary-light backdrop-blur-xl bg-white/80 dark:bg-gray-900 transition-all duration-300 z-[999] shadow-[0_5px_15px_-3px_rgba(0,0,0,0.3)]',
           {
             'opacity-100': isMenu,
             'opacity-0 pointer-events-none': !isMenu
@@ -102,7 +102,7 @@ const ProjectMilestones = () => {
           }}
           type="button"
           tabIndex={0}
-          className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2"
+          className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 px-2 dark:text-gray-100"
         >
           <Add size={18} />
           <span>Add Milestone</span>
@@ -112,13 +112,13 @@ const ProjectMilestones = () => {
       <CreateMilestoneModal />
 
       {PROJECT_MILESTONES.length > 0 ? (
-        <div className="flex  w-full flex-col gap-y-4 pt-2 overflow-hiden ">
-          {PROJECT_MILESTONES.map(milestone => (
-            <Suspense key={milestone.id} fallback={<LoadingSpinner />}>
+        <Suspense fallback={<LoadingSpinner />}>
+          <div className="flex  w-full flex-col gap-y-4 pt-2 overflow-hiden ">
+            {PROJECT_MILESTONES.map(milestone => (
               <ProjectMilestone key={milestone.id} {...milestone} />
-            </Suspense>
-          ))}
-        </div>
+            ))}
+          </div>
+        </Suspense>
       ) : (
         <div className="flex w-full max-w-[298px] flex-col gap-y-6 items-center mx-auto py-8 text-sm text-header">
           <p>

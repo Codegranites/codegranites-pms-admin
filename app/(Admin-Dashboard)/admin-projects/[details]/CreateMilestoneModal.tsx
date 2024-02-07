@@ -80,14 +80,14 @@ const CreateMilestoneModal = () => {
         role="dialog"
         aria-labelledby="make-payment"
         className={cn(
-          'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[650px] md:h-[720px] lg:h-[750px] md:w-[682px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+          'py-6   flex flex-col w-[98%] sm:w-[95%] dark:min-[500px]:h-[650px] min-[500px]:h-[650px] md:h-[720px] dark:md:h-[750px] lg:h-[750px] dark:lg:h-[800px] md:w-[682px]  justify-between items-start bg-white dark:bg-gray-900 backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
           createMilestoneModal
             ? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
             : 'translate-x-full duration-300 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="sm:text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="sm:text-lg md:text-2xl font-medium text-header dark:text-gray-100">
             Create New Milestone
           </h3>
           <button
@@ -103,7 +103,7 @@ const CreateMilestoneModal = () => {
               });
               setCreateMilestoneModal(false);
             }}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header dark:text-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
           >
             <X size={24} />
           </button>
@@ -115,7 +115,7 @@ const CreateMilestoneModal = () => {
           <div className="flex flex-col  gap-y-2 w-full">
             <label
               htmlFor="description"
-              className="text-sm sm:text-base font-medium"
+              className="text-sm sm:text-base font-medium dark:text-gray-100"
             >
               Milestone Title
             </label>
@@ -124,7 +124,7 @@ const CreateMilestoneModal = () => {
               placeholder="Milestone title..."
               id="milestone-title"
               name="title"
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-100 dark:border-primary-light"
               value={formData.title}
               onChange={e =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -135,7 +135,7 @@ const CreateMilestoneModal = () => {
           <div className="flex flex-col  gap-y-2 w-full">
             <label
               htmlFor="description"
-              className="text-sm sm:text-base font-medium"
+              className="text-sm sm:text-base font-medium dark:text-gray-100"
             >
               Add Description
             </label>
@@ -144,7 +144,7 @@ const CreateMilestoneModal = () => {
               id="description"
               name="description"
               maxLength={MAX_DESC}
-              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[185px] resize-none sidebar-scroll text-sm sm:text-base"
+              className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-100 dark:border-primary-light h-[150px] sm:h-[185px] resize-none sidebar-scroll text-sm sm:text-base"
               value={formData.description}
               onChange={e =>
                 setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -153,8 +153,10 @@ const CreateMilestoneModal = () => {
             <WordCounter word={formData.description} length={MAX_DESC} />
           </div>
 
-          <div className="flex  xl:pt-2 items-start flex-col gap-y-4">
-            <p className="text-center  font-medium">Select Status</p>
+          <div className="flex  xl:pt-2 items-start flex-col gap-y-4 dark:bg-primary-light dark:w-full dark:rounded-xl dark:p-5">
+            <p className="text-center  font-medium dark:text-gray-100">
+              Select Status
+            </p>
             <div className="flex md:flex-col gap-4 flex-wrap mb-2">
               {STATUSES.map(status => (
                 <p
@@ -165,7 +167,8 @@ const CreateMilestoneModal = () => {
                       ' font-medium': status.label === formData.status,
                       'text-[#eea300] ': status.label === 'in-progress',
                       'text-[#008d36] ': status.label === 'completed',
-                      'text-primary-light ': status.label === 'pending'
+                      'text-primary-light dark:text-primary ':
+                        status.label === 'pending'
                     }
                   )}
                 >

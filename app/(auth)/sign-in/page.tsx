@@ -1,11 +1,9 @@
 import Image from 'next/image';
-import { useState } from 'react';
 
 import SigninForm from '@/components/forms/SigninForm';
 import { auth } from '@/auth';
-import { setCookie } from 'cookies-next';
 import { UserDetails } from '@/types';
-import { dateToSeconds, generateId } from '@/utils/util';
+import { generateId } from '@/utils/util';
 
 const SignIn = async () => {
   const data = await auth();
@@ -24,7 +22,7 @@ const SignIn = async () => {
   // });
   return (
     <>
-      <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">
+      <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary dark:to-gray-900 transition-colors duration-500 ">
         {/* <Header_for_many /> */}
 
         <div className="desktop flex md:justify-between md:gap-x-8 items-center h-full relative max-container px-2 sm:px-4 lg:px-8">

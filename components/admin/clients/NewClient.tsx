@@ -79,14 +79,14 @@ const NewClientModal = () => {
         aria-labelledby="create-client"
         aria-modal
         className={cn(
-          'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg  fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
+          'py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white dark:bg-gray-900  backdrop-blur-lg  fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none ',
           createClientModal
             ? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
             : '-translate-x-full duration-300 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="text-lg md:text-2xl font-medium  text-header dark:text-gray-200">
             Add Client
           </h3>
           <button
@@ -94,7 +94,7 @@ const NewClientModal = () => {
             tabIndex={0}
             aria-label="Close"
             onClick={() => setCreateClientModal(false)}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header dark:text-[#e80000] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
           >
             <X size={24} />
           </button>
@@ -119,7 +119,7 @@ const NewClientModal = () => {
                     className="w-full h-full object-cover rounded-lg transition-all duration-300 hover:duration-700 hover:scale-150"
                   />
                   {/* @ts-ignore */}
-                  <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium">
+                  <span className="absolute bottom-1 left-0 bg-gradient-to-r from-white via-white/50 to-white/5 px-2 w-full text-left font-medium dark:text-gray-200">
                     {/* @ts-ignore */}
                     {formData.image?.name.length > 20
                       ? // @ts-ignore
@@ -143,7 +143,7 @@ const NewClientModal = () => {
               ) : (
                 <div
                   className={cn(
-                    'flex w-full h-full min-h-[300px] items-center justify-center bg-[#f6f6f6] px-8',
+                    'flex w-full h-full min-h-[300px] items-center justify-center bg-[#f6f6f6] dark:bg-gray-950 px-8',
                     {
                       hidden: formData.image
                     }
@@ -156,13 +156,13 @@ const NewClientModal = () => {
                     <button
                       role="span"
                       type="button"
-                      className="w-12 h-12 rounded-full bg-white flex items-center justify-center pointer-events-none"
+                      className="w-12 h-12 rounded-full bg-white dark:bg-primary-light flex items-center justify-center pointer-events-none text-[#535353] dark:text-gray-300"
                       tabIndex={-1}
                       aria-hidden
                     >
-                      <Add size={24} color="#535353" />
+                      <Add size={24} />
                     </button>
-                    <span className="text-xs sm:text-sm w-full text-center text-[#535353]">
+                    <span className="text-xs sm:text-sm w-full text-center dark:text-gray-300 text-[#535353]">
                       Upload Profile photo
                     </span>
                   </label>
@@ -183,7 +183,10 @@ const NewClientModal = () => {
             <div className="flex w-full flex-col gap-y-4 sm:gap-y-6 pt-8 md:pt-0">
               {/* Client name */}
               <div className="flex flex-col  gap-y-2 w-full">
-                <label htmlFor="client-name" className="font-medium">
+                <label
+                  htmlFor="client-name"
+                  className="font-medium dark:text-gray-200"
+                >
                   Client name
                 </label>
                 <input
@@ -191,7 +194,7 @@ const NewClientModal = () => {
                   placeholder="Enter name..."
                   id="client-name"
                   name="name"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                   value={formData.name}
                   onChange={e =>
                     setFormData({
@@ -204,7 +207,10 @@ const NewClientModal = () => {
 
               {/* Client Title */}
               <div className="flex flex-col  gap-y-2 w-full">
-                <label htmlFor="job_title" className="font-medium">
+                <label
+                  htmlFor="job_title"
+                  className="font-medium dark:text-gray-200"
+                >
                   Job Title
                 </label>
                 <input
@@ -212,7 +218,7 @@ const NewClientModal = () => {
                   placeholder="e.g CEO..."
                   id="job_title"
                   name="job_title"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                   value={formData.job_title}
                   onChange={e =>
                     setFormData({
@@ -225,7 +231,10 @@ const NewClientModal = () => {
 
               {/* Client Email */}
               <div className="flex flex-col  gap-y-2 w-full">
-                <label htmlFor="email" className="font-medium">
+                <label
+                  htmlFor="email"
+                  className="font-medium dark:text-gray-200"
+                >
                   Email address
                 </label>
                 <input
@@ -234,7 +243,7 @@ const NewClientModal = () => {
                   placeholder="Enter email..."
                   id="email"
                   name="email"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                   value={formData.email}
                   onChange={e =>
                     setFormData({
@@ -247,7 +256,10 @@ const NewClientModal = () => {
 
               {/* Client Phone */}
               <div className="flex flex-col  gap-y-2 w-full">
-                <label htmlFor="phone" className="font-medium">
+                <label
+                  htmlFor="phone"
+                  className="font-medium dark:text-gray-200"
+                >
                   Phone number
                 </label>
                 <input
@@ -256,7 +268,7 @@ const NewClientModal = () => {
                   placeholder="Enter phone..."
                   id="phone"
                   name="phone"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                   value={formData.phone}
                   onChange={e => {
                     const inputVal = e.target.value;
@@ -270,7 +282,10 @@ const NewClientModal = () => {
 
               {/* Project Title*/}
               <div className="flex flex-col  gap-y-2 w-full">
-                <label htmlFor="project" className="font-medium">
+                <label
+                  htmlFor="project"
+                  className="font-medium dark:text-gray-200"
+                >
                   Project title
                 </label>
                 <input
@@ -279,7 +294,7 @@ const NewClientModal = () => {
                   placeholder="Project title..."
                   id="project"
                   name="project"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                   value={formData.project}
                   onChange={e =>
                     setFormData({
@@ -310,7 +325,7 @@ const NewClientModal = () => {
                     setCreateClientModal(false);
                   }}
                   className={cn(
-                    'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+                    'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium dark:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
                   )}
                 >
                   Cancel
@@ -322,7 +337,7 @@ const NewClientModal = () => {
                   disabled={isDisabled}
                   aria-label="Remove"
                   className={cn(
-                    'rounded-lg bg-primary-light text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light'
+                    'rounded-lg bg-primary-light text-white min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium dark:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light'
                   )}
                 >
                   Save Changes

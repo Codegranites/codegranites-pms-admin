@@ -32,10 +32,13 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next-nprogress-bar';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { signIn } from '@/auth';
+import { useSearchParams } from 'next/navigation';
 
 const SigninForm = () => {
   const { setUser } = useStateCtx();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') ?? DEFAULT_LOGIN_REDIRECT;
 
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
@@ -65,7 +68,7 @@ const SigninForm = () => {
             setSuccess('Redirecting....');
           }, 1000);
           setTimeout(() => {
-            router.push(DEFAULT_LOGIN_REDIRECT);
+            router.push(callbackUrl);
           }, 2000);
         }
         setUser({

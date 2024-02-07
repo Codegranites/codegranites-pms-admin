@@ -44,25 +44,25 @@ const ClientProfileContent = ({
           aria-label="Go Back"
           onClick={() => router.back()}
           type="button"
-          className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4"
+          className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4 dark:text-gray-200"
         >
           <ChevronLeft aria-hidden />
           <span>Back</span>
         </button>
       </div>
       <Suspense fallback={<LoadingSpinner />}>
-        <section className="w-full flex  flex-col   mb-6 items-start  mt-4 md:mt-8 border border-gray-200 rounded-xl lg:rounded-2xl px-2 sm:px-8 xl:px-10 py-10 md:pb-16">
+        <section className="w-full flex  flex-col   mb-6 items-start  mt-4 md:mt-8 border border-gray-200 rounded-xl lg:rounded-2xl px-2 sm:px-8 xl:px-10 py-10 md:pb-16 dark:bg-gray-950 dark:border-primary-light">
           <div className="flex w-full flex-col max-w-[1093px] gap-y-4 lg:gap-y-6">
             <ClientProfileInfo client={client} />
           </div>
 
           <div className="flex flex-col gap-y-2  h-full w-full max-w-[945px] pt-6">
-            <h3 className="text-lg md:text-2xl font-medium text-header">
+            <h3 className="text-lg md:text-2xl font-medium text-header dark:text-gray-200">
               Bio:
             </h3>
             {isBio ? (
               <div className="w-full h-full max-h-[244px] overflow-y-auto py-3 sidebar-scroll">
-                <p className="text-sm md:text-base text-header [word-spacing:3px] [line-height:1.9]">
+                <p className="text-sm md:text-base text-header dark:text-gray-300 [word-spacing:3px] [line-height:1.9]">
                   {client?.bio}
                 </p>
               </div>
@@ -80,7 +80,7 @@ const ClientProfileContent = ({
             aria-expanded={isRemoveClientModal}
             onClick={() => setIsRemoveClientModal(true)}
             type="button"
-            className="text-[#b50000] flex items-center gap-x-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 px-1"
+            className="text-[#b50000] dark:font-medium flex items-center gap-x-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-500 px-1"
           >
             <Trash size={18} aria-hidden />
             <span>
