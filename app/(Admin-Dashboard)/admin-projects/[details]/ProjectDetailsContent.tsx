@@ -32,7 +32,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
           aria-label="Go Back"
           onClick={() => router.back()}
           type="button"
-          className="flex font-medium items-center gap-x-1 text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4"
+          className="flex font-medium items-center gap-x-1 text-header dark:text-gray-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light pr-1 pt-4"
         >
           <ChevronLeft aria-hidden />
           <span>Back</span>
@@ -42,8 +42,8 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
         <div className="flex w-full flex-col max-w-[687px] gap-y-4 lg:gap-y-6 ">
           <ProjectDetailsSection project={project} />
           {/* Documents */}
-          <div className="flex flex-col w-full py-3 sm:p-3  sm:rounded-xl sm:border max-sm:border-t border-[#e1e1e1] h-full">
-            <h3 className="text-lg font-semibold text-header  pb-4">
+          <div className="flex flex-col w-full py-3 sm:p-3  sm:rounded-xl sm:border max-sm:border-t border-[#e1e1e1] dark:border-primary-light dark:bg-gray-950 h-full">
+            <h3 className="text-lg font-semibold text-header dark:text-gray-100  pb-4">
               Project Documents
             </h3>
             <div className="flex flex-col h-full max-h-[250px] overflow-y-auto sidebar-scroll w-full">
@@ -55,7 +55,7 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
               <div className="flex">
                 <button
                   type="button"
-                  className="text-primary underline text-sm font-medium pt-4 capitalize"
+                  className="text-primary dark:text-color-dark underline text-sm font-medium pt-4 capitalize"
                   onClick={() => {
                     if (docsNum === docs.length) {
                       setDocsNum(5);
@@ -70,27 +70,30 @@ const ProjectDetailsContent = ({ id }: { id?: string }) => {
             </div>
           </div>
           {/* Prototype */}
-          <div className="flex flex-col gap-y-4 w-full px-3 py-6 border border-[#e1e1e1] sm:rounded-xl  ">
-            <h3 className="text-lg font-semibold text-header border-b border-[#e1e1e1] pb-2">
+          <div className="flex flex-col gap-y-4 w-full px-3 py-6 border border-[#e1e1e1] dark:border-primary-light sm:rounded-xl  dark:bg-gray-950">
+            <h3 className="text-lg font-semibold text-header dark:text-gray-200 border-b border-[#e1e1e1] dark:border-primary-light pb-2">
               Project Prototype
             </h3>
 
-            <div className="flex w-full flex-col gap-y-4 items-center">
+            <div className="flex w-full flex-col gap-y-4 items-center ">
               <div className="flex justify-start w-full max-w-[559px] items-center gap-x-2">
-                <span className="font-medium max-[364px]:text-sm">
+                <span className="font-medium max-[364px]:text-sm dark:text-gray-200">
                   Prototype Link:
                 </span>
-                <Link href="" className="text-primary text-sm">
+                <Link
+                  href=""
+                  className="text-primary text-sm dark:text-color-dark"
+                >
                   https://my-prototype.com
                 </Link>
               </div>
 
-              <div className="relative h-[236px] w-full max-w-[559px] bg-[#090909] flex items-center justify-center">
+              <div className="relative h-[236px] w-full max-w-[559px] bg-[#090909] dark:bg-gray-900 flex items-center justify-center">
                 <button
                   type="button"
-                  className="w-24 h-24 border-2 border-gray-100 rounded-full flex items-center justify-center"
+                  className="w-24 h-24 border-2 border-gray-100 dark:border-color-dark text-[#f1f1f1] dark:text-color-dark rounded-full flex items-center justify-center"
                 >
-                  <Play variant="Bold" size={64} color="#f1f1f1" />
+                  <Play variant="Bold" size={64} />
                 </button>
               </div>
               <div className="flex w-full items-center justify-end gap-x-3">

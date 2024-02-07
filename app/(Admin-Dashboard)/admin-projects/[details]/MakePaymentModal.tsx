@@ -57,14 +57,14 @@ const MakePaymentModal = ({
         role="dialog"
         aria-labelledby="make-payment"
         className={cn(
-          'py-6   flex flex-col w-[360px] h-[350px] min-[450px]:h-[380px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[459px] justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none ',
+          'py-6   flex flex-col w-[360px] h-[350px] min-[450px]:h-[380px] min-[450px]:w-[400px] min-[550px]:w-[500px] md:w-[682px] md:h-[459px] justify-between items-start bg-white dark:bg-gray-900 backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 -translate-x-1/2 z-[999]  transition-all opacity-0 select-none ',
           openModal
             ? 'scale-100 duration-500 opacity-100 rounded-xl md:rounded-2xl'
             : 'scale-0 duration-200 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="text-lg md:text-2xl font-medium text-header dark:text-gray-200">
             Make Payment
           </h3>
           <button
@@ -72,17 +72,17 @@ const MakePaymentModal = ({
             tabIndex={0}
             aria-label="Close"
             onClick={() => setOpenModal(false)}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header dark:text-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
           >
             <X size={24} />
           </button>
         </div>
 
         <div className="flex w-full h-full pt-2 sm:pt-8 items-center flex-col gap-y-5">
-          <p className="text-center text-sm md:text-base">
+          <p className="text-center text-sm md:text-base text-header dark:text-gray-200">
             Make payment to enable us continue with this project
           </p>
-          <p className="text-center text-sm md:text-base font-semibold">
+          <p className="text-center text-sm md:text-base text-header dark:text-gray-200 font-semibold">
             Select payment type
           </p>
           <div className="flex flex-col gap-y-3 md:gap-y-5">
@@ -90,7 +90,7 @@ const MakePaymentModal = ({
               <p
                 key={payment.id}
                 className={cn(
-                  'text-center text-sm md:text-base flex items-center gap-x-2 transition-all duration-300',
+                  'text-center text-sm md:text-base text-header dark:text-gray-200 flex items-center gap-x-2 transition-all duration-300',
                   selectedPayment === 'final' && payment.label !== 'final'
                     ? 'opacity-40'
                     : ''
@@ -111,14 +111,14 @@ const MakePaymentModal = ({
                   }}
                   type="button"
                   className={cn(
-                    'w-6 h-6 rounded-full border-primary border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
+                    'w-6 h-6 rounded-full border-primary dark:border-color-dark border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
                     {
                       ' p-1': payment.label === selectedPayment
                     }
                   )}
                 >
                   {selectedPayment === payment.label && (
-                    <span className="bg-primary h-full w-full rounded-full" />
+                    <span className="bg-primary dark:bg-color-dark h-full w-full rounded-full" />
                   )}
                 </button>
                 <span className="capitalize">{payment.label} Payment</span>

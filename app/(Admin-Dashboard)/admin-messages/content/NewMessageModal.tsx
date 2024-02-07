@@ -44,10 +44,10 @@ const NewMessageModal = () => {
         const res = await customFetch('/message/create', {
           method: 'POST',
           body: JSON.stringify({
+            email: formData.receiver,
             subject: formData.subject,
             description: formData.message,
-            email: formData.receiver,
-            receiverEmail: formData.receiver
+            accountId: user.accountId
           })
         });
         console.log(res);

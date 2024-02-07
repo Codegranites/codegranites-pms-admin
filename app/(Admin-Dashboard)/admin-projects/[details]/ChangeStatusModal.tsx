@@ -70,14 +70,14 @@ const ChangeStatusModal = () => {
         role="dialog"
         aria-labelledby="make-payment"
         className={cn(
-          'py-6   flex flex-col max-[400px]:w-[300px] w-[360px] h-[350px] md:h-[400px] lg:w-[400px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none -translate-x-1/2',
+          'py-6   flex flex-col max-[400px]:w-[300px] w-[360px] h-[350px] md:h-[400px] lg:w-[400px]  justify-between items-start bg-white dark:bg-gray-900 backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none -translate-x-1/2',
           changeStatusModal
             ? 'scale-100 duration-500 opacity-100 rounded-xl md:rounded-2xl'
             : 'scale-0 duration-200 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="text-lg md:text-2xl font-medium text-header dark:text-gray-100">
             Change Status
           </h3>
           <button
@@ -85,14 +85,14 @@ const ChangeStatusModal = () => {
             tabIndex={0}
             aria-label="Close"
             onClick={() => setChangeStatusModal(false)}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full dark:text-[#e80000]"
           >
             <X size={24} />
           </button>
         </div>
 
         <div className="flex w-full h-full pt-4 sm:pt-6 items-center flex-col gap-y-4">
-          <p className="text-center text-base sm:text-lg font-semibold">
+          <p className="text-center text-base sm:text-lg font-semibold dark:text-gray-200">
             Select Status
           </p>
           <div className="flex flex-col gap-y-4 md:gap-y-6">
@@ -107,8 +107,10 @@ const ChangeStatusModal = () => {
                   {
                     ' font-medium': status.label === selectedStatus,
                     'text-[#eea300] ': status.label === 'in-progress',
-                    'text-[#008d36] ': status.label === 'completed',
-                    'text-primary-light ': status.label === 'pending'
+                    'text-[#008d36] dark:text-[#0ce15d] ':
+                      status.label === 'completed',
+                    'text-primary-light dark:text-color-dark ':
+                      status.label === 'pending'
                   }
                 )}
               >
@@ -118,14 +120,14 @@ const ChangeStatusModal = () => {
                   }}
                   type="button"
                   className={cn(
-                    'w-6 h-6 rounded-full border-primary border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
+                    'w-6 h-6 rounded-full border-primary dark:border-color-dark border flex focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light',
                     {
                       ' p-1': status.label === selectedStatus
                     }
                   )}
                 >
                   {selectedStatus === status.label && (
-                    <span className="bg-primary h-full w-full rounded-full" />
+                    <span className="bg-primary dark:bg-color-dark h-full w-full rounded-full" />
                   )}
                 </button>
                 <span className="capitalize">{status.label} </span>

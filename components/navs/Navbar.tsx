@@ -1,15 +1,15 @@
 'use client';
 
-import { NAV_LINKS } from '../../libs/constants';
-import { cn } from '../../utils/util';
+import { NAV_LINKS } from '@/libs/constants';
+import { cn } from '@/utils/util';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import MobileNav from './MobileNav';
-import { useStateCtx } from '../../context/StateContext';
-import useWindowHeight from '../../hooks/useDimension';
+import { useStateCtx } from '@/context/StateContext';
+import useWindowHeight from '@/hooks/useDimension';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 import UserContainer from '../auth/UserContainer';
 
@@ -17,6 +17,7 @@ const Navbar = () => {
   const { landingMobileMenu, setLandingMobileMenu, user } = useStateCtx();
   const searchParams = useSearchParams().get('path');
   const scrollHeight = useWindowHeight();
+  const pathname = usePathname();
 
   const [isActive, setIsActive] = useState('');
   useEffect(() => {
@@ -83,7 +84,7 @@ const Navbar = () => {
       ) : (
         <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:dark:border-color-dark [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light [&>button]:dark:text-white">
           <button type="button">
-            <Link href="/sign-in">Login</Link>
+            <Link href={`/sign-in?callbackUrl=${pathname}`}>Login</Link>
           </button>
           <button type="button">
             <Link href="/get-started">Get started</Link>
