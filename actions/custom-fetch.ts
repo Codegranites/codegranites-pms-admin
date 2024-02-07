@@ -47,6 +47,7 @@ export const customFetch = async (
       credentials.token
     )) as RefreshTokenProps;
     if (newToken) {
+      console.log('newToken', newToken);
       // Update the credentials
       const { token } = newToken;
       cookie.set('access_token', JSON.stringify(token), {

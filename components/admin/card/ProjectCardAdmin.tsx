@@ -1,10 +1,10 @@
 import { Folder2 } from 'iconsax-react';
 import Link from 'next/link';
 import React from 'react';
-import { ProjectCardProps } from '../../../libs/projects';
-import useInView from '../../../hooks/useInView';
-import { cn } from '../../../utils/util';
-import { useStateCtx } from '../../../context/StateContext';
+import { ProjectCardProps } from '@/libs/projects';
+import useInView from '@/hooks/useInView';
+import { cn } from '@/utils/util';
+import { useStateCtx } from '@/context/StateContext';
 
 const ProjectCardAdmin = ({
   status,
