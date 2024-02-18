@@ -9,7 +9,7 @@ import { Copy } from 'iconsax-react';
 function Workspace() {
   const [workspaceName, setWorkspaceName] = useState<string>('Code granites');
   return (
-    <div className="py-10 px-12 max-w-lg mx-auto">
+    <div className="py-10 px-4 me:px-8 max-w-lg mx-auto">
       <div className="pb-10">
         <div className="flex gap-9 flex-col sm:flex-row">
           <Image
