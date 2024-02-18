@@ -43,11 +43,11 @@ const WorkSpaceCard: React.FC<WorkspaceType> = ({
       console.error('createdby is undefined');
     }
 
-    if (accountID === createdBy) {
-      router.push('/admin-dashboard');
-    } else {
-      router.push('/dashboard');
-    }
+  if (accountID === createdBy) {
+    router.push(`admin-dashboard?id=${_id}`);
+  } else {
+    router.push(`/dashboard?id=${_id}`);
+  }
   };
   return (
     <div
