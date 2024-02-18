@@ -1,8 +1,12 @@
 import React from 'react';
-import SettingNav from '../../../components/sidebars/Settings';
+import Workspace from '@/components/settings/workspace';
 
 const SettingsAdmin = () => {
-  return <div className="">SettingsAdmin</div>;
+  return(
+    <div>
+      <Workspace />
+    </div>
+)
 };
 
 export default SettingsAdmin;
