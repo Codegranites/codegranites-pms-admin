@@ -90,7 +90,7 @@ function makeFetch(
   };
 }
 
-const refreshToken = async (tokenToRefresh: string) => {
+export const refreshToken = async (tokenToRefresh: string) => {
   return new Promise(resolve => {
     fetch(`${process.env.NEXT_PUBLIC_BASEURL}/auth/refresh-token`, {
       method: 'POST',

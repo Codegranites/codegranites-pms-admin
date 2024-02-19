@@ -46,8 +46,7 @@ const NewMessageModal = () => {
           body: JSON.stringify({
             email: formData.receiver,
             subject: formData.subject,
-            description: formData.message,
-            accountId: user.accountId
+            description: formData.message
           })
         });
         console.log(res);
