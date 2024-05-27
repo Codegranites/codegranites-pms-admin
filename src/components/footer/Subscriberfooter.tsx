@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { MdOutlineChevronRight } from 'react-icons/md';
-import { toast } from 'react-toastify';
-// import { subscribeToEmail } from '@/app/api/subscribe';
+import React, { useState } from "react";
+import { MdOutlineChevronRight } from "react-icons/md";
+import { toast } from "react-toastify";
+import { subscribeToEmail } from "@/app/api/subscribe";
 
 const SubscribeFooter = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // try {
-    //   const response = await subscribeToEmail({ email });
+    try {
+      const response = await subscribeToEmail({ email });
 
-    //   console.log('Response from subscribeToEmail:', response);
+      console.log("Response from subscribeToEmail:", response);
 
-    //   toast.success('Subscription successful!');
+      toast.success("Subscription successful!");
 
-    //   setEmail('');
-    // } catch (error) {
-    //   console.error('Error from subscribeToEmail:', error);
-    //   toast.error('Error subscribing to email. Please try again.');
-    // }
+      setEmail("");
+    } catch (error) {
+      console.error("Error from subscribeToEmail:", error);
+      toast.error("Error subscribing to email. Please try again.");
+    }
   };
 
   return (
@@ -43,7 +43,7 @@ const SubscribeFooter = () => {
             required
             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             value={email}
-            onChange={e => setEmail(e.target.value.toLowerCase().trim())}
+            onChange={(e) => setEmail(e.target.value.toLowerCase().trim())}
             className="border-none outline-none rounded-lg w-full pr-2"
           />
           <button

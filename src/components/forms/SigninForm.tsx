@@ -1,84 +1,87 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-'use client';
+"use client";
 
-import { useEffect, useLayoutEffect, useState, useTransition } from 'react';
+import { useEffect, useLayoutEffect, useState, useTransition } from "react";
 
-import { MdOutlineMail } from 'react-icons/md';
-import { Eye, EyeSlash } from 'iconsax-react';
-import Button from '@/components/ui/Button';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useForm } from 'react-hook-form';
-import { LoginSchema } from '@/schemas';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
+import { MdOutlineMail } from "react-icons/md";
+import { Eye, EyeSlash } from "iconsax-react";
+import Button from "@/components/ui/Button";
+import Image from "next/image";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
+import { LoginSchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormLabel,
-  FormMessage
-} from '../ui/form';
-import { FormInput } from '../ui/FormInput';
-import { cn, getNameFromEmail } from '@/utils/util';
-import FormError from './FormError';
-import FormSuccess from './FormSuccess';
-import { login } from '@/actions/login';
-import { useStateCtx } from '@/context/StateContext';
-import SocialLogin from '../auth/SocialLogin';
-import { UserDetails } from '@/types';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next-nprogress-bar';
-import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
-import { signIn } from '@/auth';
-import { useSearchParams } from 'next/navigation';
+  FormMessage,
+} from "../ui/form";
+import { FormInput } from "../ui/FormInput";
+import { cn, getNameFromEmail } from "@/utils/util";
+import FormError from "./FormError";
+import FormSuccess from "./FormSuccess";
+import { login } from "@/actions/login";
+import { useStateCtx } from "@/context/StateContext";
+import SocialLogin from "../auth/SocialLogin";
+import { UserDetails } from "@/types";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next-nprogress-bar";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const SigninForm = () => {
   const { setUser } = useStateCtx();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') ?? DEFAULT_LOGIN_REDIRECT;
+  const callbackUrl = searchParams.get("callbackUrl") ?? DEFAULT_LOGIN_REDIRECT;
 
-  const [success, setSuccess] = useState<string | undefined>('');
-  const [error, setError] = useState<string | undefined>('');
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [error, setError] = useState<string | undefined>("");
 
   const [isLoading, startTransition] = useTransition();
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
-    'password' | 'text'
-  >('password');
+    "password" | "text"
+  >("password");
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
-      email: '',
-      password: ''
-    }
+      email: "",
+      password: "",
+    },
   });
 
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
-    setError('');
-    setSuccess('');
+    setError("");
+    setSuccess("");
 
     startTransition(() => {
-      login(values).then(data => {
+      login(values).then((data) => {
+        const loginva = JSON.stringify(values);
+        signIn("credentials", { loginva, redirect: false });
+
         setSuccess(data?.success);
         setError(data?.error);
         if (data?.success) {
           setTimeout(() => {
-            setSuccess('Redirecting....');
+            setSuccess("Redirecting....");
           }, 1000);
-          setTimeout(() => {
-            router.push(callbackUrl);
-          }, 2000);
+          // setTimeout(() => {
+          //   router.push(callbackUrl);
+          // }, 2000);
         }
-        setUser({
-          ...data.user,
-          name: getNameFromEmail(data?.user?.email!),
-          image:
-            `https://ui-avatars.com/api/?name=${data?.user
-              ?.email!}&background=random` ?? '/facemoji.png',
-          email: data?.user?.email ?? 'Johndoe@fake.com'
-        });
+        // setUser({
+        //   ...data.user,
+        //   name: getNameFromEmail(data?.user?.email!),
+        //   image:
+        //     `https://ui-avatars.com/api/?name=${data?.user
+        //       ?.email!}&background=random` ?? '/facemoji.png',
+        //   email: data?.user?.email ?? 'Johndoe@fake.com'
+        // });
         // console.log(data.user);
       });
     });
@@ -137,22 +140,22 @@ const SigninForm = () => {
                       className=" w-full text-black h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light"
                     />
                     <span className="absolute right-2">
-                      {defaultInpTypeNew === 'text' ? (
+                      {defaultInpTypeNew === "text" ? (
                         <Eye
                           color="#777"
-                          onClick={() => setDefaultInpTypeNew('password')}
+                          onClick={() => setDefaultInpTypeNew("password")}
                         />
                       ) : (
                         <EyeSlash
                           color="#777"
-                          onClick={() => setDefaultInpTypeNew('text')}
+                          onClick={() => setDefaultInpTypeNew("text")}
                         />
                       )}
                     </span>
                   </div>
                 </FormControl>
                 <span className="mb-4 text-xs ">
-                  Forgot password?{' '}
+                  Forgot password?{" "}
                   <Link
                     href="/forgot-password"
                     className="text-primary-light font-medium"
@@ -171,8 +174,8 @@ const SigninForm = () => {
             <Button
               disabled={isLoading}
               className={cn(
-                'w-full rounded-md my-3',
-                isLoading ? '[&>div>span]:opacity-0' : ''
+                "w-full rounded-md my-3",
+                isLoading ? "[&>div>span]:opacity-0" : ""
               )}
               type="submit"
               spinnerColor="#fff"

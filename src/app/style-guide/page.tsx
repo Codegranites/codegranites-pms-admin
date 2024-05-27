@@ -1,32 +1,32 @@
-'use client';
+"use client";
 
-import { Input, SelectInput } from '@/components/ui/Input';
-import Button from '@ui/Button';
+import { Input, SelectInput } from "@/components/ui/Input";
+import Button from "@ui/Button";
 import {
   ArrowDown2,
   ArrowUp2,
   EmptyWalletAdd,
   Eye,
   EyeSlash,
-  I24Support
-} from 'iconsax-react';
-import React, { useEffect, useRef, useState } from 'react';
-import { CodeBlock, a11yDark } from 'react-code-blocks';
-import SampleModal from '../../components/SampleModal';
-import useDisclosure from '../../hooks/useDisclosure';
+  I24Support,
+} from "iconsax-react";
+import React, { useEffect, useRef, useState } from "react";
+import { CodeBlock, a11yDark } from "react-code-blocks";
+import SampleModal from "../../components/SampleModal";
+import useDisclosure from "../../hooks/useDisclosure";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
-} from '@ui/SelectInput';
-import Link from 'next/link';
+  SelectValue,
+} from "@ui/SelectInput";
+import Link from "next/link";
 
 function CodegranitesCodeBlock({
   code,
   language,
-  showLineNumbers
+  showLineNumbers,
 }: {
   code: string;
   language: string;
@@ -44,7 +44,7 @@ function CodegranitesCodeBlock({
 
 const codes = [
   {
-    variant: 'primary',
+    variant: "primary",
     code: `   // Primary button
     import Button from '@ui/Button';
 
@@ -56,10 +56,10 @@ const codes = [
           spinnerColor="#000"
           >
               Primary
-      </Button>`
+      </Button>`,
   },
   {
-    variant: 'secondary',
+    variant: "secondary",
     code: `   // Secondary button
     import Button from '@ui/Button';
 
@@ -71,10 +71,10 @@ const codes = [
           spinnerColor="#000"
           >
               Secondary
-      </Button>`
+      </Button>`,
   },
   {
-    variant: 'success',
+    variant: "success",
     code: `   // Success button
     import Button from '@ui/Button';
 
@@ -86,10 +86,10 @@ const codes = [
             spinnerColor="#000"
           >
             Success
-          </Button>`
+          </Button>`,
   },
   {
-    variant: 'error',
+    variant: "error",
     code: `   // Error button
     import Button from '@ui/Button';
 
@@ -101,10 +101,10 @@ const codes = [
             spinnerColor="#000"
           >
             Error
-          </Button>`
+          </Button>`,
   },
   {
-    variant: 'link',
+    variant: "link",
     code: `   // Link button
     import Button from '@ui/Button';
 
@@ -115,37 +115,37 @@ const codes = [
             size={'md'}
           >
             Link Button
-          </Button>`
+          </Button>`,
   },
   {
-    variant: 'primary',
+    variant: "primary",
     code: `   // Size - sm
     import Button from '@ui/Button';
 
     <Button intent={'primary'} size={'sm'}>
             Size - sm
-    </Button>`
+    </Button>`,
   },
   {
-    variant: 'primary',
+    variant: "primary",
     code: `   // Size - lg
     import Button from '@ui/Button';
     
     <Button intent={'primary'} size={'lg'}>
             Size - lg
-    </Button>`
-  }
+    </Button>`,
+  },
 ];
 
 function StyleGuide() {
   const [loading, setLoading] = useState(false);
   const [codeSelected, setCodeSelected] = useState(0);
   const { isOpen, onClose, onOpen } = useDisclosure();
-  const [defaultInpType, setDefaultInpType] = useState<'password' | 'text'>(
-    'password'
+  const [defaultInpType, setDefaultInpType] = useState<"password" | "text">(
+    "password"
   );
   const [isDdOpen, setIsDdOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState('');
+  const [selectedValue, setSelectedValue] = useState("");
 
   useEffect(() => {
     if (loading) {
@@ -189,9 +189,9 @@ function StyleGuide() {
         <div className="flex items-center justify-center gap-9">
           <Button
             leftIcon={<I24Support color="#fff" />}
-            intent={'primary'}
-            onClick={e => handleClick(1)}
-            size={'md'}
+            intent={"primary"}
+            onClick={(e) => handleClick(1)}
+            size={"md"}
             isLoading={loading}
             spinnerColor="#000"
           >
@@ -199,9 +199,9 @@ function StyleGuide() {
           </Button>
           <Button
             leftIcon={<I24Support color="#06C270" />}
-            intent={'secondary'}
+            intent={"secondary"}
             onClick={() => handleClick(1)}
-            size={'md'}
+            size={"md"}
             isLoading={loading}
             spinnerColor="#000"
           >
@@ -209,9 +209,9 @@ function StyleGuide() {
           </Button>
           <Button
             leftIcon={<I24Support color="#fff" />}
-            intent={'success'}
+            intent={"success"}
             onClick={() => handleClick(2)}
-            size={'md'}
+            size={"md"}
             isLoading={loading}
             spinnerColor="#000"
           >
@@ -219,9 +219,9 @@ function StyleGuide() {
           </Button>
           <Button
             leftIcon={<I24Support color="#fff" />}
-            intent={'error'}
+            intent={"error"}
             onClick={() => handleClick(3)}
-            size={'md'}
+            size={"md"}
             isLoading={loading}
             spinnerColor="#000"
           >
@@ -230,31 +230,31 @@ function StyleGuide() {
           <Button
             leftIcon={<I24Support color="#fff" />}
             onClick={onOpen}
-            size={'md'}
+            size={"md"}
           >
             Open Modal
           </Button>
         </div>
         <div className="flex items-center justify-center gap-9 pt-10">
           <Button
-            intent={'primary'}
+            intent={"primary"}
             onClick={() => setCodeSelected(5)}
-            size={'sm'}
+            size={"sm"}
           >
             Size - sm
           </Button>
           <Button
-            intent={'primary'}
+            intent={"primary"}
             onClick={() => setCodeSelected(6)}
-            size={'lg'}
+            size={"lg"}
           >
             Size - lg
           </Button>
           <Button
             leftIcon={<I24Support color="#fff" />}
-            intent={'primary'}
+            intent={"primary"}
             onClick={() => handleClick(7)}
-            size={'md'}
+            size={"md"}
             disabled
             spinnerColor="#000"
           >
@@ -262,18 +262,18 @@ function StyleGuide() {
           </Button>
           <Button
             leftIcon={<I24Support color="#fff" />}
-            intent={'primary'}
+            intent={"primary"}
             href="#"
             onClick={() => setCodeSelected(4)}
-            size={'md'}
+            size={"md"}
           >
             Link Button
           </Button>
         </div>
         <div className="py-5 px-9 r-10">
           <CodegranitesCodeBlock
-            code={codeSelected === codeSelected ? codes[codeSelected].code : ''}
-            language={'JavaScript'}
+            code={codeSelected === codeSelected ? codes[codeSelected].code : ""}
+            language={"JavaScript"}
             showLineNumbers={true}
           />
         </div>
@@ -310,52 +310,52 @@ function StyleGuide() {
 
           <SelectInput
             leftIcon={<I24Support color="#777" />}
-            inputSize={'md'}
+            inputSize={"md"}
             options={[
               {
-                value: 'helpme2',
-                label: 'With left icon',
-                disabled: false
+                value: "helpme2",
+                label: "With left icon",
+                disabled: false,
               },
               {
-                value: 'helpme',
-                label: 'some random placeholder',
-                disabled: true
-              }
+                value: "helpme",
+                label: "some random placeholder",
+                disabled: true,
+              },
             ]}
             disabled={false}
             intent="default"
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
           />
           <Input
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
             rightIcon={
-              defaultInpType === 'text' ? (
+              defaultInpType === "text" ? (
                 <Eye
                   color="#777"
-                  onClick={() => setDefaultInpType('password')}
+                  onClick={() => setDefaultInpType("password")}
                 />
               ) : (
                 <EyeSlash
                   color="#777"
-                  onClick={() => setDefaultInpType('text')}
+                  onClick={() => setDefaultInpType("text")}
                 />
               )
             }
             type={defaultInpType}
-            intent={'default'}
+            intent={"default"}
             disabled={false}
           />
           <Input
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
             type="email"
-            intent={'default'}
+            intent={"default"}
             placeHolder="Disabled"
             disabled={true}
           />
@@ -364,41 +364,41 @@ function StyleGuide() {
         <div className="flex items-center justify-center gap-9 pt-5">
           {/* Select */}
           <SelectInput
-            inputSize={'md'}
+            inputSize={"md"}
             options={[
               {
-                value: 'helpme2',
-                label: 'Without Icon'
+                value: "helpme2",
+                label: "Without Icon",
               },
               {
-                value: 'helpme',
-                label: 'some random placeholder'
-              }
+                value: "helpme",
+                label: "some random placeholder",
+              },
             ]}
             disabled={false}
             intent="default"
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
           />
 
           {/* Input */}
           <Input
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
             type="email"
-            intent={'default'}
+            intent={"default"}
             disabled={false}
             placeHolder="Without Icon"
           />
           <Input
-            onChange={e => {
+            onChange={(e) => {
               console.log(e.target.value);
             }}
             type="email"
-            intent={'default'}
-            inputSize={'lg'}
+            intent={"default"}
+            inputSize={"lg"}
             placeHolder="Size - lg and right Icon"
             rightIcon={<EmptyWalletAdd color="#777" />}
           />
@@ -461,7 +461,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
   </SelectContent>
 </Select>
 `}
-            language={'JavaScript'}
+            language={"JavaScript"}
             showLineNumbers={true}
           />
         </div>
