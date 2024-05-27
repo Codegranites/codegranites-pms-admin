@@ -4,6 +4,7 @@ import React, { useEffect, useLayoutEffect, useState } from "react";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import { ToastContainer } from "react-toastify";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "@/components/ui/toaster";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -23,6 +24,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
         />
 
         {children}
+        <Toaster />
 
         <ProgressBar
           height="4px"
