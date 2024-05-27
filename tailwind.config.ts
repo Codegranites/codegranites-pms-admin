@@ -1,11 +1,11 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+
+const config: Config = {
   darkMode: ["class"],
   content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     container: {
@@ -33,58 +33,17 @@ module.exports = {
         "success-hover": "#8acba3",
         error: "#FF0000",
         active: "#EAEEF2",
-        destructive:'#f81d28',
-        "color-dark": '#1c9abc'
+        destructive: "#f81d28",
+        "color-dark": "#1c9abc",
       },
-      // screens: {
-			// 	sm: '576px',
-			// 	'sm-max': { max: '576px' },
-			// 	md: '768px',
-			// 	'md-max': { max: '768px' },
-			// 	lg: '992px',
-			// 	'lg-max': { max: '992px' },
-			// 	xl: '1200px',
-			// 	'xl-max': { max: '1200px' },
-			// 	'2xl': '1320px',
-			// 	'2xl-max': { max: '1320px' },
-			// 	'3xl': '1600px',
-			// 	'3xl-max': { max: '1600px' },
-			// 	'4xl': '1850px',
-			// 	'4xl-max': { max: '1850px' }
-			// },
       keyframes: {
         "accordion-down": {
-          from: { height: 0 },
+          from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: 0 },
-        },
-        pulsing: {
-          "50%": {
-            opacity: "0.2",
-          },
-        },
-        loadspin: {
-          "100%": {
-            transform: "rotate(360deg)",
-          },
-        },
-        shimmer: {
-          "100%": {
-            transform: "translateX(100%)",
-          },
-        },
-        slideUp: {
-          "70%": {
-            opacity: "0.7",
-            transform: "translateY(50px)",
-          },
-          "100%": {
-            transform: "translateY(0)",
-            opacity: "1",
-          },
+          to: { height: "0" },
         },
         slideDown: {
           "100%": {
@@ -116,6 +75,35 @@ module.exports = {
             transform: "rotateY(360deg)",
           },
         },
+        pulsing: {
+          "50%": {
+            opacity: "0.2",
+          },
+        },
+        loadspin: {
+          "100%": {
+            transform: "rotate(360deg)",
+          },
+        },
+        shimmer: {
+          "100%": {
+            transform: "translateX(100%)",
+          },
+        },
+        slideUp: {
+          "70%": {
+            opacity: "0.7",
+            transform: "translateY(50px)",
+          },
+          "100%": {
+            transform: "translateY(0)",
+            opacity: "1",
+          },
+        },
+        "caret-blink": {
+          "0%,70%,100%": { opacity: "1" },
+          "20%,50%": { opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -124,9 +112,11 @@ module.exports = {
         slideUp: "slideUp 1s 0.2s ease forwards",
         loadspin: "loadspin 1.2s linear infinite",
         pulsing: "pulsing 1.5s ease infinite",
-        rotate3d: "rotate3d 2s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite",
+        rotate3d:
+          "rotate3d 2s 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) infinite",
         slideDown: "slideDown 1s 0.2s ease forwards",
         slideNavUp: "slideDown 1s 0.2s ease forwards",
+        "caret-blink": "caret-blink 1.25s ease-out infinite",
       },
       fontFamily: {
         Worksans: ["Work Sans", "sans-serif"],
@@ -136,3 +126,4 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
 };
+export default config;
