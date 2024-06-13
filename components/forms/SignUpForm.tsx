@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-
 import { Eye, EyeSlash, Sms, User } from 'iconsax-react';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
@@ -51,9 +50,15 @@ const SignUpForm = () => {
 
     startTransition(() => {
       register(values).then(data => {
-        setSuccess(data?.success);
-        setError(data?.error);
-      });
+         if (data?.success) {
+          setSuccess(data.success);
+          router.push(`/verify-email?to=${values.email}`);
+        } else {
+          setError(data?.error);
+        }
+      })
+        // setError(data?.error);
+        // router.push('/verify-email')
     });
   };
 
