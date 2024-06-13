@@ -82,7 +82,7 @@ const SignUpForm = () => {
             Register
           </h1>
           <span className="block text-center font-[400] text-[14px]">
-            Let's get started
+            Let`&apos;`s get started
           </span>
         </div>
       </div>
