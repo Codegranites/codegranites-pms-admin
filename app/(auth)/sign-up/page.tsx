@@ -32,7 +32,7 @@ const SignUp: React.FC = () => {
           {/* Desktop image by right */}
           <div className="hidden md:block h-full w-full rounded-full  items-center max-w-[818px]">
             <Image
-              src="/MacBookPro3.webp"
+              src="/MacBookPro3.png"
               alt="sign in Desktop"
               width={1000}
               height={500}
