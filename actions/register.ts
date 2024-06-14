@@ -48,6 +48,4 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
       error: 'Something went wrong.'
     };
   }
-
-  // return { success: 'Login successful, check your email!' };
 };

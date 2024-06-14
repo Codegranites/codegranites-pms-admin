@@ -7,10 +7,13 @@
   --loader-text-color: #f6e9fe;
   --card-color: #052c42;
   --card-color-dark: #0da6ff;
+    margin: 0;
+    padding: 0;
 }
 .dark {
   --card-color: #28affd;
 }
+
 * {
   margin: 0;
   padding: 0;
