@@ -77,7 +77,7 @@ const SignUpForm = () => {
           />
         </Link>
 
-        <div className="top ">
+        <div className="top">
           <h1 className="text-center font-[600] text-2xl  min-[370px]:text-[28px]">
             Register
           </h1>
