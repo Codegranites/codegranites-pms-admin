@@ -63,8 +63,8 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8">
-      <div className="wrapper_auth_top relative pt-20 ">
+    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8 md:mt-4">
+      <div className="wrapper_auth_top relative pt-20 md:pt-0">
         <Link href="/" className="logo w-[100px] block">
           <Image
             src="/logo.png"
