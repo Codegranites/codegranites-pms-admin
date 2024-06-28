@@ -12,15 +12,15 @@ import { usePathname } from 'next/navigation';
 import { changePassword } from '@/app/api/authApi';
 import { Header_for_many } from '@/components/auth/Header';
 import { PasswordVerificationSucessModal } from '@/components/auth/PasswordResetSuccessModal';
+import reset from '/public/MacBook Pro 16 3.svg';
+import mobile from '/public/Frame 1000003508.svg';
 
 const ResetPassword = () => {
   const [isLoading, setIsloading] = useState<boolean>(false);
   const pathName = usePathname();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
-    'password' | 'text'
-  >('password');
+  const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); // New state for the modal
 
   const handleLoggedIn = async (e: React.FormEvent) => {
@@ -44,36 +44,34 @@ const ResetPassword = () => {
 
   return (
     <>
-      <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
-        {/* header component  */}
+      <section className="md:mx-auto h-[100vh] bg-white">
+        {/* header component */}
         <Header_for_many />
 
         {/* Email Verification Modal */}
-        {/* <PasswordVerificationSucessModal isVerificationModalOpen={isVerificationModalOpen} closeModal={closeModal} /> */}
-
         {isVerificationModalOpen ? (
           <PasswordVerificationSucessModal
             isVerificationModalOpen={isVerificationModalOpen}
             closeModal={closeModal}
           />
         ) : (
-          <div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
-            <div className="mobile container px-3 ">
+          <div className="desktop flex justify-center md:justify-between items-center h-full relative">
+            <div className="mobile container px-3 w-full md:w-[55%] lg:w-1/2 flex flex-col justify-center items-center">
               {/* overlay */}
-              <div className="relative mt-20 py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
-                <h1 className="text-center font-[600]  text-[28px]">
+              <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:w-[580px] md:h-[401px]">
+                <h1 className="text-center font-[600] text-[28px]">
                   Reset your password
                 </h1>
-                <span className="block text-center font-[400] text-[14px] mt-2 ">
+                <span className="block text-center font-[400] text-[14px] mt-2">
                   Enter a new password for your account
                 </span>
 
                 <form
                   action=""
                   className="flex flex-col mt-4 z-10"
-                  onSubmit={e => handleLoggedIn(e)}
+                  onSubmit={handleLoggedIn}
                 >
-                  <label htmlFor="Business Email" className="font-bold">
+                  <label htmlFor="password" className="font-bold">
                     Password
                   </label>
                   <PasswordPopover password={password}>
@@ -82,7 +80,7 @@ const ResetPassword = () => {
                       id="password"
                       name="Password"
                       value={password}
-                      onChange={e => setPassword(e.target.value)}
+                      onChange={(e) => setPassword(e.target.value)}
                       placeHolder="Enter Password"
                       required
                       rightIcon={
@@ -98,12 +96,12 @@ const ResetPassword = () => {
                           />
                         )
                       }
-                      className="mt-1 p-2 w-full text-black h-[60px] border text-md font-medium rounded-md"
+                      className="mt-1 p-2 mb-4 w-full text-black h-[60px] border text-md font-medium rounded-md"
                     />
                   </PasswordPopover>
 
-                  <label htmlFor="Business Email" className="font-bold">
-                    Password
+                  <label htmlFor="confirmPassword" className="font-bold">
+                    Confirm Password
                   </label>
                   <PasswordPopover password={confirmPassword}>
                     <Input
@@ -111,7 +109,7 @@ const ResetPassword = () => {
                       id="confirmPassword"
                       name="confirmPassword"
                       value={confirmPassword}
-                      onChange={e => setConfirmPassword(e.target.value)}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
                       placeHolder="Enter Password"
                       required
                       rightIcon={
@@ -133,7 +131,7 @@ const ResetPassword = () => {
 
                   <Button
                     isLoading={isLoading}
-                    className="w-full rounded-md my-3"
+                    className="w-full rounded-md mt-[2em] md:mt-[4em] mb-3"
                     type="submit"
                     spinnerColor="#fff"
                   >
@@ -141,19 +139,18 @@ const ResetPassword = () => {
                   </Button>
                 </form>
               </div>
-
-              <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
+              <span className=" text-white mb-8 mt-10 text-sm  relative block text-center md:text-black z-30">
                 What is
-                <Link href="/auth/sign-up" className="ml-1 underline">
+                <Link href="/auth/sign-up" className="ml-1 underline text-white md:text-primary-light">
                   CodeGranite
                 </Link>
               </span>
             </div>
 
             {/* Desktop image by right */}
-            <div className="hidden md:block h-full w-full ">
+            <div className="hidden md:block h-full w-full md:w-[45%] lg:w-1/2 p-[24px] ">
               <Image
-                src="/MacBookPro3.svg"
+                src={reset}
                 alt="sign in Desktop"
                 width={140}
                 height={100}
@@ -164,13 +161,13 @@ const ResetPassword = () => {
         )}
 
         {/* image_bellow_all */}
-        <div className="fixed -bottom-40 md:hidden z-0">
+        <div className="fixed -bottom-40 right-0 md:hidden z-10">
           <Image
-            src="/Mobile/mobile_back.png"
+            src={mobile}
             alt="backgroud_ng_for_mobile"
-            width={140}
-            height={50}
-            className="h-[739.363px] w-[684.675px]"
+            width={900}
+            height={700}
+            className="w-[685px] h-[739px] object-contain"
           />
         </div>
       </section>
