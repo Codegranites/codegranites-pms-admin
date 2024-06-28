@@ -6,6 +6,8 @@ import { auth } from '@/auth';
 import { setCookie } from 'cookies-next';
 import { UserDetails } from '@/types';
 import { dateToSeconds, generateId } from '@/utils/util';
+import { Header_for_many } from '@/components/auth/Header';
+import login from '/public/MacBook Pro 16_ - 3 (1).svg';
 
 const SignIn = async () => {
   const data = await auth();
@@ -24,20 +26,22 @@ const SignIn = async () => {
   // });
   return (
     <>
-      <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">
-        {/* <Header_for_many /> */}
+    {/* dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500  */}
+      <section className="h-screen w-full bg-white flex flex-col justify-between items-center">
+        <Header_for_many />
 
-        <div className="desktop flex md:justify-between md:gap-x-8 items-center h-full relative max-container px-2 sm:px-4 lg:px-8">
+        <div className="p-[32px] desktop flex justify-center md:gap-x-8 items-center h-full relative max-container px-2 sm:px-4">
           {/* Form | Signin */}
           {/* @ts-ignore */}
           <SigninForm user={data?.user} />
           {/* Desktop image by right */}
-          <div className="hidden md:flex h-full w-full rounded-full  items-center max-w-[818px]">
+          <div className="hidden h-full md:flex md:w-1/2 justify-center items-center">
             <Image
-              src="/MacBookPro3.webp"
+              src={login}
               alt="sign in Desktop"
               width={1000}
               height={500}
+              className=" hidden md:block w-full"
             />
           </div>
         </div>
