@@ -56,9 +56,9 @@ const ResetPassword = () => {
           />
         ) : (
           <div className="desktop flex justify-center md:justify-between items-center h-full relative">
-            <div className="mobile container px-3 w-full md:w-[55%] lg:w-1/2 flex flex-col justify-center items-center">
+            <div className="mobile container p-[32px] w-full md:w-1/2 h-full flex flex-col justify-center items-center">
               {/* overlay */}
-              <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 md:w-[580px] md:h-[401px]">
+              <div className="w-[330px] sm:w-[398px] h-[401px] xl:w-[580px] relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
                 <h1 className="text-center font-[600] text-[28px]">
                   Reset your password
                 </h1>
@@ -131,7 +131,7 @@ const ResetPassword = () => {
 
                   <Button
                     isLoading={isLoading}
-                    className="w-full rounded-md mt-[2em] md:mt-[4em] mb-3"
+                    className="w-full rounded-md mt-[2em]  mb-3"
                     type="submit"
                     spinnerColor="#fff"
                   >
@@ -147,16 +147,16 @@ const ResetPassword = () => {
               </span>
             </div>
 
-            {/* Desktop image by right */}
-            <div className="hidden md:block h-full w-full md:w-[45%] lg:w-1/2 p-[24px] ">
-              <Image
-                src={reset}
-                alt="sign in Desktop"
-                width={140}
-                height={100}
-                className=" hidden md:block h-full w-full"
-              />
-            </div>
+          {/* Desktop image by right */}
+          <div className="hidden h-full md:flex md:w-1/2 justify-center items-center">
+            <Image
+              src={reset}
+              alt="sign in Desktop"
+              width={140}
+              height={100}
+              className=" hidden md:block h-full w-full"
+            />
+          </div>
           </div>
         )}
 
