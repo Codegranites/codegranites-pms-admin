@@ -112,7 +112,8 @@ const ForgotPassword: React.FC = () => {
           </div>
         </div>
 
-        {/* image_bellow_all */}
+        {/* image_bellow_all at mobile and tablet screens */}
+
         <div className="fixed -bottom-40 md:hidden z-0">
           <Image
             src="/Mobile/mobile_back.png"

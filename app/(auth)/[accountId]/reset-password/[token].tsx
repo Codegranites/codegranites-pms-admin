@@ -21,7 +21,7 @@ const ResetPassword = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<'password' | 'text'>('password');
-  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); // New state for the modal
+  const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false); 
 
   const handleLoggedIn = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +45,8 @@ const ResetPassword = () => {
   return (
     <>
       <section className="md:mx-auto h-[100vh] bg-white">
-        {/* header component */}
+
+        {/* header component for authentication */}
         <Header_for_many />
 
         {/* Email Verification Modal */}
