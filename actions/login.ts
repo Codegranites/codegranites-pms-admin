@@ -9,6 +9,7 @@ import { signIn } from '@/auth';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
 import { jwtDecode } from 'jwt-decode';
 import { UserDetails } from '@/types';
+import { refreshToken } from './custom-fetch';
 const BaseUrl = 'https://pms-backend-rvoy.onrender.com';
 
 export const login = async (values: z.infer<typeof LoginSchema>) => {
@@ -38,6 +39,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     });
     console.log(data.status);
     const res = await data.json();
+    // const refreshTheToken = await refreshToken(res.token);
+    // console.log(refreshTheToken);
     if (data.status === 200 || res.ok) {
       signIn(res.token);
       cookie.set('access_token', res.token, {
@@ -52,7 +55,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
           email: decodedToken.email,
           name: decodedToken.name,
           accountId: decodedToken.accountId,
-          role: decodedToken.role
+          role: decodedToken.role,
+          token: res.token
         };
         cookie.set('user', JSON.stringify(user), {
           maxAge: 60 * 60 * 24 * 1, // 1 day

@@ -40,11 +40,11 @@ const ClientCardAdmin = ({
         transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s'
       }}
       onMouseMove={handleMouseMove}
-      className="w-full max-w-[454px] min-[350px]:h-[250px] flex justify-center items-center pb-1 p-[2px] rounded-xl border border-gray-200 dark:border-primary dark:p-1 relative admin-card"
+      className="w-full max-w-[454px] min-[350px]:h-[250px] flex justify-center items-center pb-1 p-[2px] rounded-xl border border-gray-200 dark:border-none dark:p-1 relative admin-card"
     >
       <div className="card-border" />
 
-      <div className="card-content px-2 sm:px-4 py-4 md:py-7 flex w-full h-full flex-col bg-white dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] ">
+      <div className="card-content px-2 sm:px-4 py-4 md:py-7 flex w-full h-full flex-col bg-white dark:bg-gray-950 ">
         <div className="flex justify-between w-full items-center max-[350px]:flex-col">
           <div className="w-full max-w-[150px] max-[450px]:max-w-[120px] min-[1139px]:max-w-[130px] min-[1300px]:max-w-[150px] max-[980px]:max-w-[130px] max-md:max-w-[150px]">
             <Image
@@ -84,7 +84,7 @@ const ClientCardAdmin = ({
           </div>
           <button
             type="button"
-            className="max-[450px]:hidden text-header dark:text-gray-300"
+            className="max-[450px]:hidden text-header dark:text-color-dark"
           >
             <Edit2 size={24} />
           </button>

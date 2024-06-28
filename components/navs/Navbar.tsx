@@ -1,15 +1,15 @@
 'use client';
 
-import { NAV_LINKS } from '../../libs/constants';
-import { cn } from '../../utils/util';
+import { NAV_LINKS } from '@/libs/constants';
+import { cn } from '@/utils/util';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { Suspense, useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import MobileNav from './MobileNav';
-import { useStateCtx } from '../../context/StateContext';
-import useWindowHeight from '../../hooks/useDimension';
+import { useStateCtx } from '@/context/StateContext';
+import useWindowHeight from '@/hooks/useDimension';
 import SkeletonNavbar from '../skeleton/SkeletonNavbar';
 import UserContainer from '../auth/UserContainer';
 
@@ -17,6 +17,7 @@ const Navbar = () => {
   const { landingMobileMenu, setLandingMobileMenu, user } = useStateCtx();
   const searchParams = useSearchParams().get('path');
   const scrollHeight = useWindowHeight();
+  const pathname = usePathname();
 
   const [isActive, setIsActive] = useState('');
   useEffect(() => {
@@ -31,7 +32,7 @@ const Navbar = () => {
       className={cn(
         ' max-[500px]:py-2   px-4 sm:px-8 xl:px-16 2xl:px-24 flex w-full justify-between items-center  transition-colors duration-500',
         scrollHeight > 200
-          ? ' fixed backdrop-blur-xl top-0 left-0  z-50 -translate-y-28 opacity-0 animate-slideDown bg-white/90 dark:bg-primary/90 py-2 border-b border-gray-200 dark:border-primary-light shadow-md'
+          ? ' fixed backdrop-blur-xl top-0 left-0  z-50 -translate-y-28 opacity-0 animate-slideDown bg-white/90 dark:bg-gray-900/90 py-2 border-b border-gray-200 dark:border-primary-light shadow-md'
           : 'sm:py-6 py-4',
         {
           'bg-white/60 ': scrollHeight > 800 && scrollHeight < 4300
@@ -83,7 +84,7 @@ const Navbar = () => {
       ) : (
         <div className="hidden lg:flex gap-x-3 xl:gap-x-5 [&>button]:border-primary-light [&>button]:dark:border-color-dark [&>button]:border [&>button]:px-4 [&>button]:py-2 [&>button]:rounded-md [&>button:last-child]:bg-primary-light  [&>button:last-child]:text-white [&>button]:font-medium [&>button]:text-primary-light [&>button]:dark:text-white">
           <button type="button">
-            <Link href="/sign-in">Login</Link>
+            <Link href={`/sign-in?callbackUrl=${pathname}`}>Login</Link>
           </button>
           <button type="button">
             <Link href="/get-started">Get started</Link>

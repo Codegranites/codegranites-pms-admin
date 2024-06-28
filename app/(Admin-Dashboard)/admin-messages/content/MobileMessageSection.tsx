@@ -1,11 +1,11 @@
 'use client';
 
 import { Suspense } from 'react';
-import MessageSkeleton from '../../../../components/skeleton/MessageSkeleton';
-import { useMessageCtx } from '../../../../context/MessageContext';
-import { cn } from '../../../../utils/util';
+import MessageSkeleton from '@/components/skeleton/MessageSkeleton';
+import { useMessageCtx } from '@/context/MessageContext';
+import { cn } from '@/utils/util';
 import { Add, MessageAdd1 } from 'iconsax-react';
-import { useStateCtx } from '../../../../context/StateContext';
+import { useStateCtx } from '@/context/StateContext';
 
 const MobileMessageSection = () => {
   const {

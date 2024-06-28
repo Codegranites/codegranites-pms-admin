@@ -16,7 +16,7 @@ const NotFound = ({ text }: { text: string }) => {
             <span className="font-tommy absolute left-0 text-5xl -bottom-6 scale-y-125">
               ?
             </span>
-            <span className="font-tommy absolute -top-6 sm:-top-12 text-[100px] sm:text-[128px] scale-y-125 text-primary animate-rotate3d ">
+            <span className="font-tommy absolute -top-6 sm:-top-12 text-[100px] sm:text-[128px] scale-y-125 text-primary dark:text-cyan-400 animate-rotate3d ">
               ?
             </span>
             <span className="font-tommy absolute right-0  text-5xl -bottom-8 scale-y-125">

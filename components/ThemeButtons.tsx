@@ -25,8 +25,7 @@ const ThemeButtons = () => {
         type="button"
         className={cn(
           'w-[33px] h-[33px]  p-2',
-          theme === 'dark' &&
-            'bg-black/10  rounded-full dark:bg-primary-light/70'
+          theme === 'dark' && 'bg-black/10  rounded-full dark:bg-gray-600/50'
         )}
         onClick={() => setTheme('dark')}
       >
@@ -36,8 +35,7 @@ const ThemeButtons = () => {
         type="button"
         className={cn(
           'w-[33px] h-[33px] p-2',
-          theme === 'system' &&
-            'bg-black/10  rounded-full dark:bg-primary-light/70'
+          theme === 'system' && 'bg-black/10  rounded-full dark:bg-gray-600/50'
         )}
         onClick={() => setTheme('system')}
       >

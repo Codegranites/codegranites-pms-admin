@@ -18,7 +18,7 @@ export default function AdminLayout({
         <Suspense fallback={<SkeletonNavbar />}>
           <AdminNavbar />
         </Suspense>
-        <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0 dark:bg-primary">
+        <div className="flex w-full flex-col h-full relative max-container pt-12 md:pt-0 dark:bg-gray-900">
           {children}
         </div>
       </section>

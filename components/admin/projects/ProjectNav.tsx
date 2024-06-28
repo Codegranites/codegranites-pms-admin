@@ -112,7 +112,7 @@ const ProjectNav = () => {
                   }
                 />
               </SelectTrigger>
-              <SelectContent className="backdrop-blur-xl bg-white/80 dark:bg-primary-dark border-primary-light">
+              <SelectContent className="backdrop-blur-xl bg-white/80 dark:bg-gray-950/80 border-primary-light">
                 <SelectGroup>
                   {selectProjectFilters.map(filter => (
                     <SelectItem

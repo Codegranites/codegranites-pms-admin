@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useTransition } from 'react';
-
 import { Eye, EyeSlash, Sms, User } from 'iconsax-react';
 import Button from '@/components/ui/Button';
 import Image from 'next/image';
@@ -51,24 +50,45 @@ const SignUpForm = () => {
 
     startTransition(() => {
       register(values).then(data => {
-        setSuccess(data?.success);
-        setError(data?.error);
-      });
+         if (data?.success) {
+          setSuccess(data.success);
+          router.push(`/verify-email?to=${values.email}`);
+        } else {
+          setError(data?.error);
+        }
+      })
+        // setError(data?.error);
+        // router.push('/verify-email')
     });
   };
 
   return (
-    <div className="relative py-4 min-[850px]:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
-      <h1 className="text-center font-[600] text-2xl  min-[370px]:text-[28px]">
-        Let us know you better
-      </h1>
-      <span className="block text-center font-[400] text-[14px] mt-2 ">
-        Fil the following to continue
-      </span>
+    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8 md:mt-4">
+      <div className="wrapper_auth_top relative pt-20 md:pt-0">
+        <Link href="/" className="logo w-[100px] block">
+          <Image
+            src="/logo.png"
+            alt="our Logo"
+            height={90}
+            width={90}
+            className="object-cover h-full w-full relative"
+          />
+        </Link>
+
+        <div className="top">
+          <h1 className="text-center font-[600] text-2xl  min-[370px]:text-[28px]">
+            Register
+          </h1>
+          <span className="block text-center font-[400] text-[14px]">
+            Let&apos;s get started
+          </span>
+        </div>
+      </div>
+
       <Form {...form}>
         <form
           action=""
-          className="flex flex-col mt-4 z-10 gap-y-2 min-[850px]:gap-y-6 "
+          className="space-y-3"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
@@ -84,7 +104,7 @@ const SignUpForm = () => {
                       type="text"
                       {...field}
                       placeholder="Enter Full Name"
-                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[42px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
@@ -110,7 +130,7 @@ const SignUpForm = () => {
                       type="email"
                       {...field}
                       placeholder="Enter Business Email Address"
-                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9 "
+                      className=" w-full text-black h-[42px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9 "
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
@@ -136,7 +156,7 @@ const SignUpForm = () => {
                       type="text"
                       {...field}
                       placeholder="Enter Phone Number"
-                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[42px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
                       <Phone className="h-full w-full" color="#777" />
@@ -153,7 +173,7 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-semibold ">Password</FormLabel>
+                <FormLabel className="font-semibold -mb-2">Password</FormLabel>
                 <FormControl>
                   <div className="flex w-full relative items-center">
                     <FormInput
@@ -162,7 +182,7 @@ const SignUpForm = () => {
                       type={defaultInpTypeNew}
                       name="password"
                       placeholder="Enter Password"
-                      className=" w-full text-black h-[45px] sm:h-[56px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                      className=" w-full text-black h-[42px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
                     />
 
                     <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
@@ -225,7 +245,7 @@ const SignUpForm = () => {
         </form>
       </Form>
 
-      <div className="seperator flex items-center space-x-2 my-2 min-[850px]:my-10">
+      <div className="seperator flex items-center space-x-2 my-2">
         <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />
         <h4 className="text-gray/80"> Or</h4>
         <span className="seperate h-[1px] bg-[#C7C7C7] w-full" />

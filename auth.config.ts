@@ -31,6 +31,7 @@ export default {
     async jwt({ user, token }) {
       if (token) {
         token.accessToken = token.token!;
+        token.exp = token.exp!;
       }
       return token;
     }
