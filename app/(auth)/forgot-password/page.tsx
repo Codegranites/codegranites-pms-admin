@@ -13,6 +13,7 @@ import { Header_for_many } from '../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
 import { resetPassword } from '@/app/api/authApi';
 import { EmailVerificationModal } from '../../../components/auth/EmailVerificationModal';
+import reset from '/public/MacBook Pro 16 3.svg';
 
 const ForgotPassword: React.FC = () => {
   const [isVerificationModalOpen, setIsVerificationModalOpen] = useState(false);
@@ -46,15 +47,15 @@ const ForgotPassword: React.FC = () => {
         isVerificationModalOpen={isVerificationModalOpen}
         closeModal={closeModal}
       />
-      <section className="md:w-[80%] md:mx-auto h-[100vh] bg-white">
+      <section className="w-full md:mx-auto h-[100vh] bg-white">
         {/* header component  */}
         <Header_for_many />
 
-        <div className="desktop block md:flex md:justify-center md:items-center h-full relative ">
-          <div className="mobile container px-3 ">
+        <div className="desktop block md:flex md:justify-center md:items-center h-full relative">
+          <div className="mobile container p-[32px] md:w-1/2 flex flex-col justify-center items-center">
             {/* overlay */}
-            <div className="relative mt-20 md:-mt-10 py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
-              <h1 className="text-center font-[600]  text-[28px]">
+            <div className="w-[580px] h-[401px] relative  py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
+              <h1 className="text-center font-[600] text-[28px]">
                 Forgot Password
               </h1>
               <span className="block text-center font-[400] text-[14px] mt-2 ">
@@ -90,20 +91,19 @@ const ForgotPassword: React.FC = () => {
                   Reset Password
                 </Button>
               </form>
+              <span className=" text-white mt-8 text-sm relative block text-center md:text-black z-10">
+                What is
+                <Link href="/sign-up" className="ml-1 underline text-primary-light">
+                  CodeGranite
+                </Link>
+              </span>
             </div>
-
-            <span className=" text-white mb-8 mt-5 text-sm  relative block text-center md:text-black z-10">
-              What is
-              <Link href="/sign-up" className="ml-1 underline">
-                CodeGranite
-              </Link>
-            </span>
           </div>
 
           {/* Desktop image by right */}
-          <div className="hidden md:block h-full w-full ">
+          <div className="hidden md:flex md:w-1/2 p-[32px] justify-center items-center">
             <Image
-              src="/MacBookPro0.svg"
+              src={reset}
               alt="sign in Desktop"
               width={140}
               height={100}
