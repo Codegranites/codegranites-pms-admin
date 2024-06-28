@@ -51,10 +51,10 @@ const ForgotPassword: React.FC = () => {
         {/* header component  */}
         <Header_for_many />
 
-        <div className="desktop block md:flex md:justify-center md:items-center h-full relative">
-          <div className="mobile container p-[32px] md:w-1/2 flex flex-col justify-center items-center">
+        <div className="desktop flex justify-center md:justify-between items-center h-full relative">
+          <div className="mobile container p-[32px] w-full md:w-1/2 h-full flex flex-col justify-center items-center">
             {/* overlay */}
-            <div className="w-[580px] h-[401px] relative  py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
+            <div className="w-[330px] sm:w-[398px] h-[353px] xl:w-[580px] relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
               <h1 className="text-center font-[600] text-[28px]">
                 Forgot Password
               </h1>
@@ -91,17 +91,17 @@ const ForgotPassword: React.FC = () => {
                   Reset Password
                 </Button>
               </form>
-              <span className=" text-white mt-8 text-sm relative block text-center md:text-black z-10">
+            </div>
+              <span className=" text-white mb-8 mt-10 text-sm  relative block text-center md:text-black z-30">
                 What is
-                <Link href="/sign-up" className="ml-1 underline text-primary-light">
+                <Link href="/auth/sign-up" className="ml-1 underline text-white md:text-primary-light">
                   CodeGranite
                 </Link>
               </span>
-            </div>
           </div>
 
           {/* Desktop image by right */}
-          <div className="hidden md:flex md:w-1/2 p-[32px] justify-center items-center">
+          <div className="hidden h-full md:flex md:w-1/2 justify-center items-center">
             <Image
               src={reset}
               alt="sign in Desktop"
