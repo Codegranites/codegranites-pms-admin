@@ -16,8 +16,10 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] 
-      dark:from-primary-light dark:to-primary-dark transition-colors duration-500 ">
+      <section
+        className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] 
+      dark:from-primary-light dark:to-primary-dark transition-colors duration-500 "
+      >
         {/* <Header_for_many /> */}
 
         {/* Email Verification Modal */}
@@ -26,17 +28,19 @@ const SignUp: React.FC = () => {
           closeModal={closeModal}
         />
 
-        <div className="desktop flex md:justify-between md:gap-x-6 items-center h-full relative max-container px-2 sm:px-4 lg:px-8 pt-10">
+        <div className="desktop grid grid-cols-1 md:grid-cols-2 md:justify-between md:gap-x-6 items-center 
+        h-full relative max-container px-2 sm:px-4 lg:px-8 pt-10 md:pt-0">
           {/* Form | Signin */}
           <SignUpForm />
           {/* Desktop image by right */}
+
           <div className="hidden md:block h-full w-full rounded-full  items-center max-w-[818px]">
             <Image
               src="/MacBookPro3.png"
               alt="sign in Desktop"
               width={1000}
               height={500}
-              className='object-cover h-full w-full'
+              className="object-cover h-full w-full"
             />
           </div>
         </div>
