@@ -5,7 +5,7 @@ const SplashScreen = () => {
   return (
     <div
       className={cn(
-        'fixed inset-0 z-[9999] grid place-content-center bg-primary transition-all duration-700'
+        'fixed inset-0 z-[9999] grid place-content-center bg-gray-900 transition-all duration-700'
       )}
     >
       <svg viewBox="0 0 800 260" className="w-full font-bold">

@@ -1,19 +1,11 @@
 'use client';
 
 import { X } from 'lucide-react';
-import { cn } from '../../../../utils/util';
-import { useEffect, useState } from 'react';
-import { ProjectCardProps } from '../../../../libs/projects';
-import { useStateCtx } from '../../../../context/StateContext';
-import WordCounter from '../../../../components/admin/card/WordCounter';
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '@radix-ui/react-select';
+import { cn } from '@/utils/util';
+import { useState } from 'react';
+import { ProjectCardProps } from '@/libs/projects';
+import { useStateCtx } from '@/context/StateContext';
+import WordCounter from '@/components/admin/card/WordCounter';
 import { selectCurrencies, selectStatus } from './edit-project';
 import { Add } from 'iconsax-react';
 
@@ -75,14 +67,14 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
         role="dialog"
         aria-labelledby="make-payment"
         className={cn(
-          'pt-2 pb-6 sm:py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none',
+          'pt-2 pb-6 sm:py-6   flex flex-col w-[98%] sm:w-[95%]  min-[500px]:h-[750px] 2xl:h-[820px] max-w-[1000px] h-[600px] max-h-[1458px]  justify-between items-start bg-white dark:bg-gray-900 backdrop-blur-lg fixed top-1/2 left-1/2  -translate-y-1/2 z-[999]  transition-all opacity-0 select-none',
           editProjectModal
             ? '-translate-x-1/2 duration-700 opacity-100 sm:rounded-xl md:rounded-2xl'
             : '-translate-x-full duration-300 pointer-events-none'
         )}
       >
-        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] pb-4 pl-4 px-4 md:pl-8 ">
-          <h3 className="text-lg md:text-2xl font-medium text-header">
+        <div className="flex items-center justify-between w-full border-b border-[#e1e1e1] dark:border-primary-light pb-4 pl-4 px-4 md:pl-8 ">
+          <h3 className="text-lg md:text-2xl font-medium text-header dark:text-gray-100">
             Edit Project
           </h3>
           <button
@@ -90,7 +82,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             tabIndex={0}
             aria-label="Close"
             onClick={() => setEditProjectModal(false)}
-            className="text-header focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
+            className="text-header dark:text-red-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light rounded-full"
           >
             <X size={24} />
           </button>
@@ -104,7 +96,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full">
               <label
                 htmlFor="project-title"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-100"
               >
                 Project Title
               </label>
@@ -113,7 +105,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 placeholder="Project title..."
                 id="project-title"
                 name="title"
-                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                 value={formData.title}
                 onChange={e =>
                   setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -125,7 +117,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full">
               <label
                 htmlFor="description"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-100"
               >
                 Project Description
               </label>
@@ -134,7 +126,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 id="description"
                 name="description"
                 maxLength={MAX_DESC_LEN}
-                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
+                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100 h-[150px] sm:h-[193px] resize-none sidebar-scroll text-sm sm:text-base"
                 value={formData.description}
                 onChange={e =>
                   setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -146,7 +138,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full">
               <label
                 htmlFor="project-owner"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-100"
               >
                 Project Owner
               </label>
@@ -155,7 +147,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 placeholder="Project owner..."
                 id="project-owner"
                 name="project_owner"
-                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                 value={formData.project_owner}
                 onChange={e =>
                   setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -166,7 +158,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full">
               <label
                 htmlFor="project-manager"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-100"
               >
                 Project Manager
               </label>
@@ -175,7 +167,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 placeholder="Project manager..."
                 id="project-manager"
                 name="project_manager"
-                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                 value={formData.project_manager}
                 onChange={e =>
                   setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -188,7 +180,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
               <div className="flex flex-col  gap-y-2 w-full">
                 <label
                   htmlFor="start-date"
-                  className="text-sm sm:text-base font-medium"
+                  className="text-sm sm:text-base font-medium dark:text-gray-100"
                 >
                   Start date
                 </label>
@@ -197,7 +189,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                   placeholder="12/12/2024"
                   id="start-date"
                   name="start_date"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                   value={formData.start_date}
                   onChange={e =>
                     setFormData({
@@ -211,7 +203,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
               <div className="flex flex-col  gap-y-2 w-full">
                 <label
                   htmlFor="end-date"
-                  className="text-sm sm:text-base font-medium"
+                  className="text-sm sm:text-base font-medium dark:text-gray-100"
                 >
                   End date
                 </label>
@@ -220,7 +212,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                   placeholder="12/12/2024"
                   id="end-date"
                   name="end_date"
-                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200 md:py-4 py-2 px-2 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                   value={formData.end_date}
                   onChange={e =>
                     setFormData({
@@ -236,7 +228,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full relative">
               <label
                 htmlFor="total_cost"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-100"
               >
                 Total cost of project
               </label>
@@ -249,7 +241,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                   placeholder="Project total cost..."
                   id="total_cost"
                   name="total_cost"
-                  className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                  className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                   value={formData.total_cost}
                   onChange={e =>
                     setFormData({
@@ -261,7 +253,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
 
                 <select
                   name="currency"
-                  className="w-[80px] select-none py-1 outline-none bg-[#f8f4f6] rounded-lg px-1 uppercase absolute right-4 font-medium focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4"
+                  className="w-[80px] select-none py-1 outline-none bg-[#f8f4f6] rounded-lg px-1 uppercase absolute right-4 font-medium focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4 dark:bg-color-dark dark:text-gray-200"
                   id="currency"
                   value={formData.currency}
                   onChange={e =>
@@ -290,7 +282,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
               <div className="flex flex-col  gap-y-2 w-full">
                 <label
                   htmlFor="initial_payment"
-                  className="text-sm sm:text-base font-medium"
+                  className="text-sm sm:text-base font-medium dark:text-gray-100"
                 >
                   Initial Payment
                 </label>
@@ -303,7 +295,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                     placeholder="Project total cost..."
                     id="initial_payment"
                     name="initial_payment"
-                    className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                    className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                     value={formData.initial_payment}
                     onChange={e =>
                       setFormData({
@@ -318,7 +310,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
               <div className="flex flex-col  gap-y-2 w-full">
                 <label
                   htmlFor="final_payment"
-                  className="text-sm sm:text-base font-medium"
+                  className="text-sm sm:text-base font-medium dark:text-gray-200"
                 >
                   Final Payment
                 </label>
@@ -331,7 +323,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                     placeholder="Project Final payment."
                     id="final_payment"
                     name="final_payment"
-                    className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light"
+                    className="w-full rounded-md border border-gray-200  py-2 md:py-4 px-2 pl-6 md:pl-7 md:px-4 outline-none focus-visible:border focus-visible:border-primary-light dark:bg-gray-950 dark:border-primary-light dark:text-gray-100"
                     value={
                       Number(formData.total_cost) -
                       Number(formData.initial_payment)
@@ -346,13 +338,13 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
             <div className="flex flex-col  gap-y-2 w-full">
               <label
                 htmlFor="project-status"
-                className="text-sm sm:text-base font-medium"
+                className="text-sm sm:text-base font-medium dark:text-gray-200"
               >
                 Project Status
               </label>
               <select
                 name="status"
-                className="w-full rounded-md border border-gray-200  select-none md:py-4 py-2 px-2 md:px-4  outline-none  capitalize focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4 "
+                className="w-full rounded-md border border-gray-200  select-none md:py-4 py-2 px-2 md:px-4  outline-none  capitalize focus-visible:outline focus-visible:outline-primary-light focus-visible:outline-offset-4 dark:bg-gray-950 dark:text-gray-200 dark:border-primary-light"
                 id="project-status"
                 value={formData.status}
                 onChange={e =>
@@ -379,7 +371,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 aria-label="Attach Docs"
                 onClick={() => setEditProjectModal(false)}
                 className={cn(
-                  'flex items-center gap-x-1 sm:gap-x-3 px-2 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px]  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+                  'flex items-center gap-x-1 sm:gap-x-3 px-2 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px]  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:text-gray-200 dark:border-primary-light'
                 )}
               >
                 <Add size={24} />
@@ -394,7 +386,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 aria-label="Add Prototype"
                 onClick={() => setEditProjectModal(false)}
                 className={cn(
-                  'flex items-center gap-x-1 sm:gap-x-3 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+                  'flex items-center gap-x-1 sm:gap-x-3 justify-center  rounded-lg border border-primary w-full min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2  text-sm sm:text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:text-gray-200 dark:border-primary-light'
                 )}
               >
                 <Add size={24} />
@@ -411,7 +403,7 @@ const EditProjectModal = ({ project }: EditProjectProps) => {
                 aria-label="Cancel"
                 onClick={() => setEditProjectModal(false)}
                 className={cn(
-                  'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary'
+                  'rounded-lg border border-primary text-primary min-[450px]:w-[178px] min-[450px]:h-[56px] h-[40px] px-2 max-[450px]:px-4 text-base hover:opacity-80 transition-opacity duration-300 disabled:cursor-not-allowed disabled:opacity-40 font-medium focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary dark:text-color-dark dark:border-color-dark'
                 )}
               >
                 Cancel

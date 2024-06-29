@@ -31,8 +31,8 @@ const Card = ({ title, description, icon }: CardProps) => {
       )}
     >
       <div className="card-border" />
-      <div className="card-content w-full h-full flex flex-col items-center p-2 bg-card dark:bg-gradient-to-br  from-primary-light  to-[#1b3c5a] justify-center">
-        <div className="flex h-[80px] w-[80px] bg-white dark:bg-primary justify-center items-center">
+      <div className="card-content w-full h-full flex flex-col items-center p-2 bg-card dark:bg-gray-950 justify-center">
+        <div className="flex h-[80px] w-[80px] bg-white dark:bg-gray-900 justify-center items-center">
           <Image src={icon} alt="icon" width={48} height={48} />
         </div>
         <div className="flex flex-col items-center [&>p:last-child]:text-center gap-y-4 mt-4 sm:mt-7">

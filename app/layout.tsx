@@ -36,13 +36,11 @@ export default function RootLayout({
         <StateContextProvider>
           <ThemeProvider>
             <body
-              className={`${workSans.className} dark:bg-primary transition-colors duration-500`}
+              className={`${workSans.className} dark:bg-gray-900 transition-colors duration-500`}
             >
-              <LenisProvider>
-                <Providers>{children}</Providers>
-                <SwipeIndicator />
-                <GotoTop />
-              </LenisProvider>
+              <Providers>{children}</Providers>
+              <SwipeIndicator />
+              <GotoTop />
             </body>
           </ThemeProvider>
         </StateContextProvider>

@@ -108,8 +108,8 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
   }, [comments]);
 
   return (
-    <div className="border-t border-[#e1e1e1] py-6 lg:py-8 mt-4 flex w-full flex-col gap-y-5 lg:gap-y-8 max-lg:items-center px-1">
-      <h3 className="text-xl font-medium sm:text-3xl text-header max-lg:w-full text-center">
+    <div className="border-t border-[#e1e1e1] dark:border-primary-light py-6 lg:py-8 mt-4 flex w-full flex-col gap-y-5 lg:gap-y-8 max-lg:items-center px-1">
+      <h3 className="text-xl font-medium sm:text-3xl text-header dark:text-gray-100 max-lg:w-full text-center">
         Comments
       </h3>
       {comments[projectId]?.project_id === projectId &&
@@ -117,7 +117,7 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
         <div className="flex w-full max-w-[600px] py-6 flex-col">
           {comments[projectId]?.comments.map(comment => (
             <div
-              className="flex items-start gap-x-2 py-2 w-full border-b border-[#e1e1e1]"
+              className="flex items-start gap-x-2 py-2 w-full border-b border-[#e1e1e1] dark:border-primary-light"
               key={comment.id}
             >
               <Image
@@ -129,20 +129,20 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
               />
               <div className="flex flex-col w-full">
                 <div className="flex w-full justify-between">
-                  <p className="text-sm lg:text-base font-medium">
+                  <p className="text-sm lg:text-base font-medium dark:text-gray-100 tracking-wide">
                     {comment.author}
                   </p>
-                  <p className="text-xs text-header italic">
+                  <p className="text-xs text-header dark:text-gray-300 italic">
                     {commentsTime(comment.time!)}
                   </p>
                 </div>
-                <p className="text-sm">{comment.comment}</p>
+                <p className="text-sm dark:text-gray-300">{comment.comment}</p>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <p className="w-full text-center">
+        <p className="w-full text-center  dark:text-gray-200">
           There are no comments yet for this project
         </p>
       )}
@@ -167,7 +167,7 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
             name="comment"
             id="comment"
             placeholder="Leave a comment"
-            className="w-full resize-none h-[193px] rounded-xl border border-[#e1e1e1] px-4 py-2 sidebar-scroll outline-none focus-visible:border-primary transition-all duration-300"
+            className="w-full resize-none h-[193px] rounded-xl border border-[#e1e1e1] dark:border-primary-light px-4 py-2 sidebar-scroll outline-none focus-visible:border-primary transition-all duration-300 dark:bg-gray-950"
           />
 
           <div className="flex w-full justify-end">
@@ -177,7 +177,7 @@ const ProjectComments = ({ projectId }: { projectId: string }) => {
               tabIndex={0}
               aria-label="comment"
               type="submit"
-              className="text-sm font-medium mt-2 bg-primary-light text-white h-[48px] hover:bg-primary rounded-lg px-4 transition-all duration-300 flex items-center gap-x-2 disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:bg-primary-light"
+              className="text-sm font-medium mt-2 bg-primary-light  text-white h-[48px] hover:bg-primary rounded-lg px-4 transition-all duration-300 flex items-center gap-x-2 disabled:cursor-not-allowed disabled:opacity-80 disabled:hover:bg-primary-light"
             >
               Comment
               <DirectRight size={18} values="Outline" />

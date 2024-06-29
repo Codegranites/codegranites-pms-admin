@@ -38,7 +38,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
 
   return (
     <>
-      <div className="w-full flex justify-between items-start border-b border-[#e1e1e1] relative hover:bg-black/10 transition-all duration-300 py-1">
+      <div className="w-full flex justify-between items-start border-b border-[#e1e1e1] dark:border-primary-light relative hover:bg-black/10 transition-all duration-300 py-1">
         <div
           className="flex flex-col w-full items-start focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light "
           tabIndex={0}
@@ -51,16 +51,21 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
           }}
         >
           <div className="flex  items-center gap-x-1">
-            <span className="w-2 h-2 rounded-full bg-primary" />
-            <p className="text-sm 2xl:text-base font-medium">{title}</p>
+            <span className="w-2 h-2 rounded-full bg-primary dark:bg-[#0ce15d]" />
+            <p className="text-sm 2xl:text-base font-medium dark:text-gray-100">
+              {title}
+            </p>
           </div>
           <p>
-            <span className="text-xs 2xl:text-sm mr-1">Status</span>(
+            <span className="text-xs 2xl:text-sm mr-1 dark:text-gray-100">
+              Status
+            </span>
+            (
             <span
               className={cn('font-medium capitalize text-sm', {
                 'text-[#eea300] ': status === 'in-progress',
-                'text-[#008d36] ': status === 'completed',
-                'text-primary-light ': status === 'pending'
+                'text-[#008d36] dark:text-[#0ce15d] ': status === 'completed',
+                'text-primary-light dark:text-color-dark ': status === 'pending'
               })}
             >
               {status.replace('-', ' ')}
@@ -76,7 +81,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
           aria-haspopup
           onClick={() => setIsMenu(prev => !prev)}
           aria-expanded={isMenu}
-          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6  flex items-center justify-center"
+          className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-light rotate-90 h-6 w-6  flex items-center justify-center dark:text-gray-200"
         >
           <More />
         </button>
@@ -94,7 +99,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
           aria-orientation="vertical"
           aria-labelledby="project-milestone"
           className={cn(
-            'flex w-[190px] h-[141px] flex-col px-3 py-2 absolute -right-2 min-[830px]:-right-8 lg:right-0 min-[1140px]:-right-9 top-9 rounded-lg justify-center gap-y-4 border border-gray-200 backdrop-blur-xl bg-white/80 transition-all duration-300 z-[999] shadow-lg',
+            'flex w-[190px] h-[141px] flex-col px-3 py-2 absolute -right-2 min-[830px]:-right-8 lg:right-0 xl:-right-5 top-9 rounded-lg justify-center gap-y-4 border border-gray-200 backdrop-blur-xl bg-white/80 dark:bg-gray-950/70 transition-all duration-300 z-[999] shadow-lg',
             {
               'opacity-100': isMenu,
               'opacity-0 pointer-events-none': !isMenu
@@ -109,7 +114,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
             }}
             type="button"
             tabIndex={0}
-            className=" focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300"
+            className=" focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300 dark:text-gray-200"
           >
             <Edit2 size={18} />
             <span>Edit Milestone</span>
@@ -124,7 +129,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
             }}
             type="button"
             tabIndex={0}
-            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300"
+            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300 dark:text-gray-200"
           >
             <Trash size={18} />
             <span>Delete Milestone</span>
@@ -139,7 +144,7 @@ const ProjectMilestone = ({ status, title, id }: ProjectMilestoneProps) => {
             }}
             type="button"
             tabIndex={0}
-            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300"
+            className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-light w-full flex items-center gap-x-2 text-base hover:opacity-70 transition-opacity duration-300 dark:text-gray-200"
           >
             <Status size={18} />
             <span>Change Status</span>
