@@ -13,6 +13,7 @@ import { FiUser } from 'react-icons/fi';
 import { Header_for_many } from '../../../components/auth/Header';
 import { Textarea } from '@/components/ui/textarea';
 import { FormInput } from '@/components/ui/FormInput';
+import signup from '/public/MacBook Pro 16_ - 3.svg';
 
 const GetStarted = () => {
   // const initialPassword = 'jamestest2354';
@@ -21,16 +22,16 @@ const GetStarted = () => {
 
   return (
     <>
-      <section className="w-full max-container md:mx-auto h-[100vh] bg-white md:pt-10 dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500">
+    {/* dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary-light dark:to-primary-dark transition-colors duration-500 */}
+      <section className="w-full max-container md:mx-auto h-[100vh] bg-white md:pt-10">
         {/* header component  */}
         <Header_for_many />
 
-        <div className="desktop flex md:justify-center  h-full relative items-center lg:items-start lg:mt-20">
-          <div className="mobile container px-3 ">
+        <div className="desktop flex md:justify-between justify-center h-full relative items-center">
+          <div className="mobile container px-3 w-full md:w-1/2 flex flex-col justify-center items-center">
             {/* overlay */}
-            <div className="relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
+            <div className="w-[580px] h-[719px] relative py-4 rounded-[16px] bg-white shadow-lg px-3 md:shadow-none z-20 ">
               <h1 className="text-center font-[600]  text-[28px]">
-                {' '}
                 Get Started !
               </h1>
               <span className="block text-center font-[400] text-[14px] mt-2 ">
@@ -74,14 +75,20 @@ const GetStarted = () => {
                 <Button className="w-full rounded-md my-3">Submit</Button>
               </form>
             </div>
+              <span className=" text-white mb-8 mt-10 text-sm  relative block text-center md:text-black z-30">
+                What is
+                <Link href="/auth/sign-up" className="ml-1 underline text-white md:text-primary-light">
+                  CodeGranite
+                </Link>
+              </span>
           </div>
 
           {/* Desktop image by right */}
-          <div className="hidden md:flex lg:h-full w-full max-w-[1000px] lg:items-start items-center">
+          <div className="hidden md:flex w-full md:w-1/2 items-center justify-center">
             <Image
-              src="/MacBookPro2.webp"
+              src={signup}
               alt="sign in Desktop"
-              width={1000}
+              width={600}
               height={500}
             />
           </div>

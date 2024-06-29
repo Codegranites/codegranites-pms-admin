@@ -85,7 +85,7 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-lg px-4 sm:px-6 md:shadow-none z-20 w-full max-w-[600px] mx-auto">
+    <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-2xl px-4 sm:px-6 md:shadow-none z-20 w-[398px] lg:w-[580px] md:h-[719px] mx-auto">
       <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
       <span className="block text-center font-[400] text-[14px] mt-2 ">
         Great to have you back with us again
