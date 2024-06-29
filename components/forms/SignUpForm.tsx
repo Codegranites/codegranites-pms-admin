@@ -29,6 +29,7 @@ const SignUpForm = () => {
   const router = useRouter();
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
+  const [showConfirmPassword, setShowConfirmPassword] = useState<'password' | 'text'>('password');
 
   const [isLoading, startTransition] = useTransition();
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
@@ -40,7 +41,8 @@ const SignUpForm = () => {
       fullName: '',
       email: '',
       phoneNumber: '',
-      password: ''
+      password: '',
+      confirmPassword: ''
     }
   });
 
@@ -48,22 +50,28 @@ const SignUpForm = () => {
     setError('');
     setSuccess('');
 
+    // check for both passwod
+     if (values.password !== values.confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
     startTransition(() => {
       register(values).then(data => {
-         if (data?.success) {
+        if (data?.success) {
           setSuccess(data.success);
           router.push(`/verify-email?to=${values.email}`);
         } else {
           setError(data?.error);
         }
-      })
-        // setError(data?.error);
-        // router.push('/verify-email')
+      });
+      // setError(data?.error);
+      // router.push('/verify-email')
     });
   };
 
   return (
-    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8 md:mt-4">
+    <div className="relative px-4 sm:px-6 z-20 bg-white shadow-lg md:shadow-none w-full xl:w-[580px] mx-auto overflow-y-scroll pb-4 mt-8 md:mt-4">
       <div className="wrapper_auth_top relative pt-20 md:pt-0">
         <Link href="/" className="logo w-[100px] block">
           <Image
@@ -202,19 +210,50 @@ const SignUpForm = () => {
                     </span>
                   </div>
                 </FormControl>
-                <button
-                  disabled={isLoading}
-                  type="button"
-                  className="mb-4 text-xs "
-                >
-                  Forgot password?{' '}
-                  <Link
-                    href="/forgot-password"
-                    className="text-primary-light font-medium"
-                  >
-                    Reset
-                  </Link>
-                </button>
+
+                {/* confirm Password  */}
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* confirm password  */}
+          <FormField
+            control={form.control}
+            name="confirmPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="font-semibold -mb-2">
+                  Confirm Password
+                </FormLabel>
+                <FormControl>
+                  <div className="flex w-full relative items-center">
+                    <FormInput
+                      disabled={isLoading}
+                      {...field}
+                      type={showConfirmPassword}
+                      name="Confirm password"
+                      placeholder="Confirm  Password"
+                      className=" w-full text-black h-[42px] border text-md font-medium rounded-md focus-visible:ring-primary-light pr-10 sm:pr-9"
+                    />
+
+                    <span className="absolute right-4 sm:right-2 h-4 w-4 sm:w-6 sm:h-6 sm:p-[2px]">
+                      {showConfirmPassword === 'text' ? (
+                        <Eye
+                          className="w-full h-full"
+                          color="#777"
+                          onClick={() => setShowConfirmPassword('password')}
+                        />
+                      ) : (
+                        <EyeSlash
+                          className="w-full h-full"
+                          color="#777"
+                          onClick={() => setShowConfirmPassword('text')}
+                        />
+                      )}
+                    </span>
+                  </div>
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}

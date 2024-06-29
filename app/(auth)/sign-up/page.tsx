@@ -28,13 +28,13 @@ const SignUp: React.FC = () => {
           closeModal={closeModal}
         />
 
-        <div className="desktop grid grid-cols-1 md:grid-cols-2 md:justify-between md:gap-x-6 items-center 
+        <div className="desktop grid grid-cols-1 md:grid-cols-2 place-items-center md:gap-x-6 items-center 
         h-full relative max-container px-2 sm:px-4 lg:px-8 pt-10 md:pt-0">
           {/* Form | Signin */}
           <SignUpForm />
           {/* Desktop image by right */}
 
-          <div className="hidden md:block h-full w-full rounded-full  items-center max-w-[818px]">
+          <div className="hidden h-full md:flex xl:w-[580px] justify-center items-center">
             <Image
               src="/MacBookPro3.png"
               alt="sign in Desktop"

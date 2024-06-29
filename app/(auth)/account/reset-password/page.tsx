@@ -7,9 +7,9 @@ import { Eye, EyeSlash } from 'iconsax-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { Header_for_many } from '../../../components/auth/Header';
+import { Header_for_many } from '../../../../components/auth/Header';
 import { useRouter } from 'next-nprogress-bar';
-import { PasswordVerificationSucessModal } from '../../../components/auth/PasswordResetSuccessModal';
+import { PasswordVerificationSucessModal } from '../../../../components/auth/PasswordResetSuccessModal';
 
 const ResetPassword = () => {
   const [password, setPassword] = useState('');
