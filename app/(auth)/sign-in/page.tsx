@@ -1,9 +1,10 @@
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 import SigninForm from '@/components/forms/SigninForm';
 import { auth } from '@/auth';
+import { setCookie } from 'cookies-next';
 import { UserDetails } from '@/types';
-
 import { dateToSeconds, generateId } from '@/utils/util';
 import { Header_for_many } from '@/components/auth/Header';
 import login from '/public/MacBook Pro 16_ - 3 (1).svg';
@@ -30,22 +31,23 @@ const SignIn = async () => {
         <Header_for_many />
 
         <section className="h-screen w-full bg-white dark:bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] dark:from-primary dark:to-gray-900 transition-colors duration-500 ">
-          {/* <Header_for_many /> */}
+          {/* <Header_for_many />   className="desktop flex justify-center md:justify-between md:gap-x-6 items-center 
+        h-full relative max-container px-2 sm:px-4 lg:px-8 pt-10 md:pt-0" */}
 
           <div
-            className="desktop grid grid-cols-1 md:grid-cols-2 md:justify-between md:gap-x-6 items-center 
+            className="desktop grid grid-cols-1 md:grid-cols-2 place-items-center md:gap-x-6 items-center 
         h-full relative max-container px-2 sm:px-4 lg:px-8 pt-10 md:pt-0"
           >
             {/* Form | Signin */}
             {/* @ts-ignore */}
             <SigninForm user={data?.user} />
             {/* Desktop image by right */}
-            <div className="hidden h-full md:flex md:w-1/2 justify-center items-center">
+            <div className="hidden h-full md:flex xl:w-[580px] justify-center items-center">
               <Image
                 src={login}
                 alt="sign in Desktop"
-                width={1000}
-                height={500}
+                width={800}
+                height={800}
                 className=" hidden md:block w-full"
               />
             </div>

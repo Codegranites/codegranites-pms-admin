@@ -85,9 +85,9 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8 md:mt-4">
+    <div className="relative px-4 sm:px-6 z-20 bg-white shadow-lg md:shadow-none w-full xl:w-[580px] mx-auto overflow-y-scroll pb-4 mt-8 md:mt-4">
       <div className="flex flex-col">
-        <div className="wrapper_auth_top relative pt-20 md:pt-0">
+        {/* <div className="wrapper_auth_top relative pt-20 md:pt-0">
           <Link href="/" className="logo w-[100px] block">
             <Image
               src="/logo.png"
@@ -97,7 +97,7 @@ const SigninForm = () => {
               className="object-cover h-full w-full relative"
             />
           </Link>
-        </div>
+        </div> */}
         <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
         <span className="block text-center font-[400] text-[14px] mt-2 ">
           Great to have you back with us again
@@ -106,7 +106,7 @@ const SigninForm = () => {
       <Form {...form}>
         <form
           action=""
-          className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6 "
+          className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6"
           onSubmit={form.handleSubmit(onSubmit)}
         >
           <FormField
