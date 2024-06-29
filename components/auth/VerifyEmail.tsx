@@ -20,20 +20,21 @@ const VerifyEmail = ({ token }: { token?: string }) => {
       .then(data => {
         if (data?.status === 200) {
           setIsVerified(true);
+          setIsLoading(false);
+          setTimeout(() => {
+            router.push('/sign-in');
+          }, 2000);
         } else {
           setError('Verification failed');
         }
         setIsLoading(false);
+        router.push('/sign-in');
       })
       .catch(() => {
         setError('An error occurred');
         setIsLoading(false);
       });
   }, [token]);
-
-  const handleSignIn = () => {
-    router.push('/sign-in');
-  };
 
   return (
     <div className="w-full h-screen flex flex-col gap-y-6 items-center justify-center">
@@ -54,13 +55,9 @@ const VerifyEmail = ({ token }: { token?: string }) => {
         <p className="text-red-500">{error}</p>
       ) : (
         <>
-          <p className="text-green-500 font-bold text-xl md:text-3xl">Email verified successfull</p>
-          <button
-            onClick={handleSignIn}
-            className="px-4 py-2 bg-primary text-white rounded-md"
-          >
-            Sign In
-          </button>
+          <p className="text-green-500 font-bold text-xl md:text-3xl">
+            Email verified successfull
+          </p>
         </>
       )}
     </div>

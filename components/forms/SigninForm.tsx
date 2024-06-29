@@ -85,11 +85,24 @@ const SigninForm = () => {
   };
 
   return (
-    <div className="relative py-4 md:py-6 rounded-[16px] bg-white shadow-2xl px-4 sm:px-6 md:shadow-none z-20 w-[398px] lg:w-[580px] md:h-[719px] mx-auto">
-      <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
-      <span className="block text-center font-[400] text-[14px] mt-2 ">
-        Great to have you back with us again
-      </span>
+    <div className="relative  px-4 sm:px-6 z-20 w-full mx-auto  overflow-y-scroll pb-4 mt-8 md:mt-4">
+      <div className="flex flex-col">
+        <div className="wrapper_auth_top relative pt-20 md:pt-0">
+          <Link href="/" className="logo w-[100px] block">
+            <Image
+              src="/logo.png"
+              alt="our Logo"
+              height={90}
+              width={90}
+              className="object-cover h-full w-full relative"
+            />
+          </Link>
+        </div>
+        <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
+        <span className="block text-center font-[400] text-[14px] mt-2 ">
+          Great to have you back with us again
+        </span>
+      </div>
       <Form {...form}>
         <form
           action=""
