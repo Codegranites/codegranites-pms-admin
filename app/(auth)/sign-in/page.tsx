@@ -40,7 +40,8 @@ const SignIn = async () => {
           >
             {/* Form | Signin */}
             {/* @ts-ignore */}
-            <SigninForm user={data?.user} />
+            <SigninForm />
+            {/* <SigninForm user={data?.user} /> */}
             {/* Desktop image by right */}
             <div className="hidden h-full md:flex xl:w-[580px] justify-center items-center">
               <Image

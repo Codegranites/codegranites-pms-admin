@@ -21,6 +21,8 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     };
   }
 
+  console.log(validatedFields)
+
   const { email, password } = validatedFields.data;
 
   try {
@@ -38,6 +40,7 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
       })
     });
     console.log(data.status);
+    console.log(data);
     const res = await data.json();
     // const refreshTheToken = await refreshToken(res.token);
     // console.log(refreshTheToken);

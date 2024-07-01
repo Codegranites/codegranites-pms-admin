@@ -1,8 +1,5 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-'use client';
-
-import { useEffect, useLayoutEffect, useState, useTransition } from 'react';
-
+'use client'
+import { useState } from 'react';
 import { MdOutlineMail } from 'react-icons/md';
 import { Eye, EyeSlash } from 'iconsax-react';
 import Button from '@/components/ui/Button';
@@ -27,11 +24,8 @@ import FormSuccess from './FormSuccess';
 import { login } from '@/actions/login';
 import { useStateCtx } from '@/context/StateContext';
 import SocialLogin from '../auth/SocialLogin';
-import { UserDetails } from '@/types';
-import { useSession } from 'next-auth/react';
-import { useRouter } from 'next-nprogress-bar';
+import { useRouter } from 'next/navigation';
 import { DEFAULT_LOGIN_REDIRECT } from '@/routes';
-import { signIn } from '@/auth';
 import { useSearchParams } from 'next/navigation';
 
 const SigninForm = () => {
@@ -42,11 +36,11 @@ const SigninForm = () => {
 
   const [success, setSuccess] = useState<string | undefined>('');
   const [error, setError] = useState<string | undefined>('');
-
-  const [isLoading, startTransition] = useTransition();
+  const [isLoading, setIsLoading] = useState(false);
   const [defaultInpTypeNew, setDefaultInpTypeNew] = useState<
     'password' | 'text'
   >('password');
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -55,22 +49,24 @@ const SigninForm = () => {
     }
   });
 
-  const onSubmit = (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     setError('');
     setSuccess('');
+    setIsLoading(true);
 
-    startTransition(() => {
-      login(values).then(data => {
-        setSuccess(data?.success);
-        setError(data?.error);
-        if (data?.success) {
-          setTimeout(() => {
-            setSuccess('Redirecting....');
-          }, 1000);
-          setTimeout(() => {
-            router.push(callbackUrl);
-          }, 2000);
-        }
+    try {
+      const data = await login(values);
+      setSuccess(data?.success);
+      setError(data?.error);
+
+      if (data?.success) {
+        setTimeout(() => {
+          setSuccess('Redirecting....');
+        }, 1000);
+        setTimeout(() => {
+          router.push(callbackUrl);
+        }, 2000);
+
         setUser({
           ...data.user,
           name: getNameFromEmail(data?.user?.email!),
@@ -79,25 +75,17 @@ const SigninForm = () => {
               ?.email!}&background=random` ?? '/facemoji.png',
           email: data?.user?.email ?? 'Johndoe@fake.com'
         });
-        // console.log(data.user);
-      });
-    });
+      }
+    } catch (error) {
+      setError('Something went wrong.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="relative px-4 sm:px-6 z-20 bg-white shadow-lg md:shadow-none w-full xl:w-[580px] mx-auto overflow-y-scroll pb-4 mt-8 md:mt-4">
       <div className="flex flex-col">
-        {/* <div className="wrapper_auth_top relative pt-20 md:pt-0">
-          <Link href="/" className="logo w-[100px] block">
-            <Image
-              src="/logo.png"
-              alt="our Logo"
-              height={90}
-              width={90}
-              className="object-cover h-full w-full relative"
-            />
-          </Link>
-        </div> */}
         <h1 className="text-center font-[600]  text-[28px]"> Welcome back !</h1>
         <span className="block text-center font-[400] text-[14px] mt-2 ">
           Great to have you back with us again
@@ -105,7 +93,6 @@ const SigninForm = () => {
       </div>
       <Form {...form}>
         <form
-          action=""
           className="flex flex-col mt-4 z-10 gap-y-2 md:gap-y-6"
           onSubmit={form.handleSubmit(onSubmit)}
         >
